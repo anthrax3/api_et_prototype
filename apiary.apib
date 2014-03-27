@@ -340,10 +340,12 @@ Total counts of jobs for a given account for a given date range, grouped by stat
     + memberId (required) ... MID for the account
     + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
-            + `count`
+            + `total`
             + `pending`
+            + `paused`
             + `processing`
             + `completed`
+            + `canceled`
     + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from this scheduled date/time.  Depending on Precision, this may be rounded to the nearest Day or Hour.
     + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end scheduled date/time to capture results on.
 
@@ -357,10 +359,12 @@ Total counts of jobs for a given account for a given date range, grouped by stat
                     "parent": { "href": "/accounts/{memberId}/jobs" }
                 },
                 "memberId": "{memberId}",
-                "count": 654248,
+                "total": 654248,
                 "pending" : 234234,
+                "paused" : 234234,
                 "processing" : 23423,
                 "completed" : 234,
+                "canceled" : 234,
                 "startDate": "2014-02-04T03:00:00Z",
                 "endDate": "2014-02-10T03:00:00Z"
             }
@@ -376,10 +380,12 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
     + memberId (required) ... MID for the account
     + fields (optional, string ) ... Comma Separated string of event fields to be returned.
         + Values 
-            + `count`
+            + `total`
             + `pending`
+            + `paused`
             + `processing`
             + `completed`
+            + `canceled`
     + startDate =`today - 7 days` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting counts from.  Depending on Precision, this may be rounded to the nearest Day or Hour.
     + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
 
@@ -393,8 +399,12 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
                     "parent": { "href": "/accounts/{memberId}/jobs" }
                 },
                 "memberId": "{memberId}",
-                "count": 100000,
+                "total": 100000,
                 "pending" : { 
+                    "count" : 2000,
+                    "percent" : 2.000
+                },
+                "paused" : { 
                     "count" : 2000,
                     "percent" : 2.000
                 },
@@ -403,8 +413,12 @@ v2 - Total counts of jobs for a given account for a given date range, grouped by
                     "percent" : 3.000
                 },
                 "completed" : { 
-                    "count" : 95000,
-                    "percent" : 95.000
+                    "count" : 93000,
+                    "percent" : 93.000
+                },
+                "canceled" : { 
+                    "count" : 1000,
+                    "percent" : 1.000
                 },
                 "startDate": "2014-02-04T03:00:00Z",
                 "endDate": "2014-02-10T03:00:00Z"
