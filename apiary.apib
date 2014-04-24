@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: http://www.exacttargetapis.com/
 
 # ExactTarget API Specifications - Prototype
-Prototype of ExactTarget APIs.
+Prototypes of ExactTarget APIs.
 
 # Group Account Resource
 
@@ -75,7 +75,7 @@ Collection of Messages sent by an account.
                     "next" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&page=3" },
                     "prev" : { "href": "/accounts/{memberId}/messages/transactional?pageSize=25&page=1" },
                     "status" : { "href": "/accounts/{memberId}/messages/transactional/status" },
-                    "search" : { "verb" : "POST", "href" : "/account/{memberId}/messages/transactional", "parameters" : "query" }
+                    "search" : { "verb" : "POST", "href" : "/accounts/{memberId}/messages/transactional", "parameters" : "query" }
                 },
                 "memberId": "{memberId}",
                 "count": 134, 
@@ -131,25 +131,14 @@ A summary of all events that have occurred for an account for a given timerange,
     
             {
                 "_links": {
-                    "daily": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}"},
-                    "hourly": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/accounts/{id}/events/summary{?fields,startDate,endDate}" },
-                    "parent": { "href": "/accounts/{id}" }
+                    "daily": { "href": "/accounts/{memberId}/events/daily{?fields,startDate,endDate}"},
+                    "hourly": { "href": "/accounts/{memberId}/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/accounts/{memberId}/events/summary{?fields,startDate,endDate}" },
+                    "parent": { "href": "/accounts/{memberId}" }
                 },
-                "id": "{id}",
+                "memberId": "{memberId}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
-                "status" : {
-                  "toSend": 18714, 
-                  "inProgress" : { 
-                    "count" : 100, 
-                    "percent" : 0.005 
-                  },
-                  "pending" : { 
-                    "count" : 200, 
-                    "percent" : 0.011 
-                  }
-                },
                 "sent" : { 
                   "count" : 18500, 
                   "percent" : 98.856 
@@ -185,12 +174,8 @@ A summary of all events that have occurred for an account for a given timerange,
                   "count" : 3, 
                   "percent" : 0.001 
                 },
-                "apiErrors" : { 
-                  "count" : 0
-                },
-                "emailErrors" : { 
-                  "count" : 0, 
-                  "percent" : 0.000 
+                "errored" : { 
+                  "count" : 0 
                 }
             }
 
@@ -214,27 +199,16 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "hourly": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}"},
-                    "self": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}" },
-                    "parent": { "href": "/accounts/{id}/events" }
+                    "hourly": { "href": "/accounts/{memberId}/events/hourly{?fields,startDate,endDate}"},
+                    "self": { "href": "/accounts/{memberId}/events/daily{?fields,startDate,endDate}" },
+                    "parent": { "href": "/accounts/{memberId}/events" }
                 },
-                "id": "{id}",
+                "memberId": "{memberId}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
-                "Events": [
+                "events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "count" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "count" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
                           "count" : 18500, 
                           "percent" : 98.856 
@@ -270,27 +244,12 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                           "count" : 3, 
                           "percent" : 0.001 
                         },
-                        "apiErrors" : { 
-                            "count" : 0
-                        },
-                        "emailErrors" : { 
-                          "count" : 0, 
-                          "percent" : 0.000 
+                        "errored" : { 
+                          "count" : 0
                         }
                     },
                     {
                         "date" : "2014-02-05T07:06:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "count" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "count" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
                           "count" : 18500, 
                           "percent" : 98.856 
@@ -326,27 +285,12 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                           "count" : 3, 
                           "percent" : 0.001 
                         },
-                        "apiErrors" : { 
-                          "count" : 0
-                        },
-                        "emailErrors" : { 
-                          "count" : 0, 
-                          "percent" : 0.000 
+                        "errored" : { 
+                          "count" : 0 
                         }
                     },
                     {
                         "date" : "2014-02-04T07:06:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "count" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "count" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
                           "count" : 18500, 
                           "percent" : 98.856 
@@ -382,12 +326,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                           "count" : 3, 
                           "percent" : 0.001 
                         },
-                        "apiErrors" : { 
-                          "count" : 0
-                        },
-                        "emailErrors" : { 
-                          "count" : 0, 
-                          "percent" : 0.000 
+                        "errored" : { 
+                          "count" : 0 
                         }
                     }
                 ]
@@ -410,26 +350,16 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
     
             {
                 "_links": {
-                    "daily": { "href": "/accounts/{id}/events/daily{?fields,startDate,endDate}"},
-                    "self": { "href": "/accounts/{id}/events/hourly{?fields,startDate,endDate}" },
-                    "parent": { "href": "/accounts/{id}/events" }
+                    "daily": { "href": "/accounts/{memberId}/events/daily{?fields,startDate,endDate}"},
+                    "self": { "href": "/accounts/{memberId}/events/hourly{?fields,startDate,endDate}" },
+                    "parent": { "href": "/accounts/{memberId}/events" }
                 },
+                "memberId": "{memberId}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
-                "Events": [
+                "events": [
                     {
                         "date" : "2014-02-04T01:00:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "count" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "count" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
                           "count" : 18500, 
                           "percent" : 98.856 
@@ -465,27 +395,12 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                           "count" : 3, 
                           "percent" : 0.001 
                         },
-                        "apiErrors" : { 
+                        "errored" : { 
                           "count" : 0
-                        },
-                        "emailErrors" : { 
-                          "count" : 0, 
-                          "percent" : 0.000 
                         }
                     },
                     {
                         "date" : "2014-02-04T02:00:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "count" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "count" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
                           "count" : 18500, 
                           "percent" : 98.856 
@@ -521,27 +436,12 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                           "count" : 3, 
                           "percent" : 0.001 
                         },
-                        "apiErrors" : { 
+                        "errored" : { 
                           "count" : 0
-                        },
-                        "emailErrors" : { 
-                          "count" : 0, 
-                          "percent" : 0.000 
                         }
                     },
                     {
                         "date" : "2014-02-04T03:00:00Z",
-                        "status" : {
-                          "toSend": 18714, 
-                          "inProgress" : { 
-                            "count" : 100, 
-                            "percent" : 0.005 
-                          },
-                          "pending" : { 
-                            "count" : 200, 
-                            "percent" : 0.011 
-                          }
-                        },
                         "sent" : { 
                           "count" : 18500, 
                           "percent" : 98.856 
@@ -577,12 +477,8 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
                           "count" : 3, 
                           "percent" : 0.001 
                         },
-                        "apiErrors" : { 
+                        "errored" : { 
                           "count" : 0
-                        },
-                        "emailErrors" : { 
-                          "count" : 0, 
-                          "percent" : 0.000 
                         }
                     }
                 ]
@@ -602,6 +498,152 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 
 # Group Jobs resource
 
+## Jobs - v1 [/v1/jobs/]
+A collection of job objects.
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "count":2,
+                "page":1,
+                "pageSize":25,
+                "_links": {
+                    "self": { "href": "/jobs/" },
+                },
+                "items" : [
+                    {
+                        "id" : "15324",
+                        "emailId" : 31448, 
+                        "status" : "Pending",
+                        "fromName" : "Scott",
+                        "fromEmail" : "Scott@exacttarget.com",
+                        "name" : "Amp Script in Email",
+                        "emailSubject" : "Amp Script in Email",
+                        "scheduledTime" : "2014-03-29T17:00:00",
+                        "totalSendCount" : 0,
+                        "lists" : [
+                            {
+                                "id" : 10253,
+                                "name" : "Main List"
+                            },
+                            {
+                                "id" : 134064,
+                                "name" : "Gmail"
+                            }
+                        ],
+                        "exclusionLists" : [
+                            {
+                                "id" : 10254,
+                                "name" : "Another List"
+                            },
+                            {
+                                "id":134065,
+                                "name":"Not This One"
+                            }
+                        ]
+                    },
+                    {
+                        "id" : "36548",
+                        "emailId" : 31448, 
+                        "status" : "Pending",
+                        "fromName" : "Scott",
+                        "fromEmail" : "Scott@exacttarget.com",
+                        "name" : "Another Email",
+                        "emailSubject" : "This is another email",
+                        "scheduledTime" : "2014-03-30T09:00:00",
+                        "totalSendCount" : 0,
+                        "lists" : [
+                            {
+                                "id" : 10253,
+                                "name" : "Main List"
+                            },
+                            {
+                                "id" : 134064,
+                                "name" : "Gmail"
+                            }
+                        ],
+                        "exclusionLists" : [
+                            {
+                                "id" : 10254,
+                                "name" : "Another List"
+                            },
+                            {
+                                "id":134065,
+                                "name":"Not This One"
+                            }
+                        ]
+                    }
+                ]
+            }
+
+### Retrieve a collection of jobs [GET]
++ Response 200
+    [Jobs - v1][]
+
+## Job - v1 [/v1/jobs/{id}]
+A single job object.
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the job.
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/jobs/{id}" },
+                    "parent": { "href": "/jobs/" },
+                    "events" : { "href" : "/jobs/{id}/events" }
+                    "status" : { "href" : "/jobs/{id}/status" }
+                },
+                "id" : "{id}",
+                "emailId" : 31448, 
+                "status" : "Pending",
+                "fromName" : "Scott",
+                "fromEmail" : "Scott@exacttarget.com",
+                "name" : "Amp Script in Email",
+                "emailSubject" : "Amp Script in Email",
+                "scheduledTime" : "2014-03-29T17:00:00",
+                "totalSendCount" : 0,
+                "lists" : [
+                    {
+                        "id" : 10253,
+                        "name" : "Main List"
+                    },
+                    {
+                        "id" : 134064,
+                        "name" : "Gmail"
+                    }
+                ],
+                "exclusionLists" : [
+                    {
+                        "id" : 10254,
+                        "name" : "Another List"
+                    },
+                    {
+                        "id":134065,
+                        "name":"Not This One"
+                    }
+                ]
+            }
+
+### Retrieve a job [GET]
++ Response 200
+    [Job - v1][]
+
+### Update a job [PATCH]
++ Request (application/json)
+
+        {
+            "scheduledTime" : "2014-03-29T17:00:00"
+        }
+        
++ Response 200
+    [Job - v1][]
+
 ## Jobs Events [/jobs/{id}/events{?fields}]
 A single Event object belonging to a job.  Always returns the latest values for the job, no date/time filtering allowed.
 
@@ -620,7 +662,7 @@ A single Event object belonging to a job.  Always returns the latest values for 
                     "parent": { "href": "/jobs/{id}" }
                 },
                 "id": "{id}",
-                "accountId" : "{accountId}",
+                "memberId" : "{memberId}",
                 "messageId" : "{messageId}",
                 "sent" : { 
                   "count" : 18500 
@@ -655,6 +697,9 @@ A single Event object belonging to a job.  Always returns the latest values for 
                 "unsubscribed": { 
                   "count" : 33, 
                   "percent" : 0.002 
+                },
+                "errored" : { 
+                  "count" : 0
                 }
             }
 
@@ -703,124 +748,81 @@ Status information of a job
 + Response 200
     [Jobs Status][]
 
-## Job Email Thumbnail [/jobs/{id}/thumbnail{?width,height,subId}]
-Email thumbnail for a job
-
-+ Parameters
-    + id (required) ... Job id.
-    + width (required) ... width of the image.
-    + height (required) ... height of the image.
-    + subId (optional) ... Subscriber ID. This would be used in the event that the consumer wants the resulting thumbnail to be customized for a particular subscriber
-
-+ Model (application/json)
-    JSON Representation of the email preview for a job
-    + Body
-    
-            {
-                "id": "{id}",
-                "img": "GQ8XQAYFAiEMfN0qD0COTgMX",
-                "contentType": "image/jpeg"
-            }
-
-### Retrieve Email Thumbnail for a Job [GET]
-+ Response 200
-    [Job Email Thumbnail][]
-
-
 
 # Group Message Resource
 
+## Retrieve Queued Transactions - v1 [/v1/messages/{id}/queue{?filter}]
+A collection of queued transactions for a paused message
 
-## Create Triggered Message [/messages/triggered]
-Create a new TriggeredSendDefinition
-
-+   triggeredSendStatus, potential values: Inactive, Active, Canceled 
-+   priority : Low, Medium, High
-
++ Parameters
+    + id (required) ... id for the message.
+    + filter (optional, string) ... complex search criteria.  Ability to search by email address or subscriber key.
+        http://base/Development/REST_API#Querying
+    
 + Model (application/json)
-    JSON Response when a TriggeredSendDefinition is created
+    JSON Representation for all queued transactions associated to a message
     + Body
     
             {
-                "id" : "3BC9D7FE-BE25-E111-8480-001CC49493B0", 
-                "name" : "TSD Name",
-                "description" : "TSD Description",
-                "emailId" : 1000,
-                "customerKey" : "customerKey123",
-                "listId" : 400,
-                "triggeredSendStatus" : "New", 
-                "sendClassification" : { 
-                    "customerKey" : "sc CustomerKey123", 
-                    "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
+                "_links": {
+                    "self": { "href": "/messages/{id}/queue"},
+                    "next" : { "href": "/messages/{id}/queue{?pageSize=25&page=3&...}"},
+                    "prev" : { "href": "/messages/{id}/queue{?pageSize=25&page=1&...}"}
                 },
-                "senderProfile" : { 
-                    "customerKey" : "sp CustomerKey", 
-                    "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
-                },
-                "deliveryProfile" : { 
-                    "customerKey" : "dp CustomerKey", 
-                    "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
-                },
-                "autoAddSubscribers" : true, 
-                "autoUpdateSubscribers" : true, 
-                "ccEmail" : "an@email.com",
-                "bccEmail" : "an@email.com",
-                "emailSubject" : "The email subject",
-                "isMultipart" : true,
-                "isWrapped" : true,
-                "suppressTracking" : true,
-                "categoryId" : 2147483683,
-                "campaignId" : 1000, /* doesn't exist in current SDK */
-                "refreshContent" : true,
-                "exclusionFilter" : "ampScript Goes Here",
-                "priority" : "Low", 
-                "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
+                "count" : 3,
+                "page": 2,
+                "pageSize": 2,                
+                "Transactions": [
+                    {
+                        "jobId": "654231",
+                        "tssId": "8E844912-1429-E211-B468-0022642D9886",
+                        "tssrId": "0993DAEE-2190-E311-BB14-00237D5401CE",
+                        "dateQueued": "2014-02-04T03:00:00Z",
+                        "Member":
+                        {
+                            "memberId": "654",
+                            "listId": "8435",
+                            "fullName": "Erin Smith",
+                            "emailAddress": "esmith@foo.com",
+                            "subscriberKey": "esmith@foo.com"
+                        },
+                        "Data":
+                        {
+                            "FirstName": "Tim",
+                            "LastName": "Jones",
+                            "Company": "",
+                            "SessionType": "This is my session value",
+                            "ConfirmationNumber": "sdfjlk345"
+                        }
+                    },
+                    {
+                        "jobId": "654231",
+                        "tssId": "8E844912-1429-E211-B468-0022642D9886",
+                        "tssrId": "89844912-1429-E211-B468-0022642D9886",
+                        "dateQueued": "2014-02-04T03:00:00Z",
+                        "Member":
+                        {
+                            "memberId": "659",
+                            "listId": "8435",
+                            "fullName": "Bob Jones",
+                            "emailAddress": "bjones@foo.com",
+                            "subscriberKey": "bob123"
+                        },
+                        "Data":
+                        {
+                            "html__subject": "Welcome to our email",
+                            "html__emailbody": "&lt;PRE&gt; The following import has completed with validation errors Wednesday, April 23, 2014 8:38:35 AM GMT-6    Name: SUP_ONE_3559_1060764_15283    Description: SUP_3559-OptL-0 Transportation &amp; Parking - 1060764    External Key: SUP_ONE_3559_1060764_15283    Source: IMPORT_SUP_ONE_3559_1060764_15283.tsv     Destination: 3559-OptL-0 Transportation &amp; Parking - 1060764 Results:    Inserted: 44    Updated: 6515 ValidationErrors:    InvalidEmailAddress: 2     ListDetective: 5 Validation results have been logged to a delimited text file and attached to this message. %%[attachfile(\"FTP\",\"1052685\SUP_ONE_3559_1060764_15283 Results 201404230837.txt\")]%% MID 1060764 &lt;/PRE&gt;"
+                        }
+                    }
+                ]
             }
 
-### Create a Triggered Send Definition Message [POST]
-
-
-+ Request (application/json)
-
-        {
-            "name" : "TSD Name",
-            "description" : "TSD Description",
-            "emailId" : 1000,
-            "customerKey" : "customerKey123",
-            "listId" : 400,
-            "triggeredSendStatus" : "New", 
-            "sendClassification" : { 
-                "customerKey" : "sc CustomerKey123", 
-                "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66"
-            },
-            "senderProfile" : { 
-                "customerKey" : "sp CustomerKey", 
-                "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
-            },
-            "deliveryProfile" : { 
-                "customerKey" : "dp CustomerKey", 
-                "objectId" : "30dd879c-ee2f-11db-8314-0800200c9a66" 
-            },
-            "autoAddSubscribers" : true, 
-            "autoUpdateSubscribers" : true, 
-            "ccEmail" : "an@email.com",
-            "bccEmail" : "an@email.com",
-            "emailSubject" : "The email subject",
-            "isMultipart" : true,
-            "isWrapped" : true,
-            "suppressTracking" : true,
-            "categoryId" : 2147483683,
-            "campaignId" : 1000, 
-            "refreshContent" : true,
-            "exclusionFilter" : "ampScript Goes Here",
-            "priority" : "Low", 
-            "sendSourceDataExtension" : { "customerKey" : "ssde customerKey" }
-        }
-
+### Retrieve Queued Transactions for a Message [GET]
 + Response 200
-    [Create Triggered Message][]
+    [Retrieve Queued Transactions - v1][]
 
-## Triggered Send Message [/messages/triggered/{id}]
+
+## Triggered Send Message - v2 [/v2/messages/triggered/{id}]
 The Triggered Send Message Resource
 
 + Model (application/json)
@@ -868,8 +870,7 @@ The Triggered Send Message Resource
                 "modified": {
                     "name": "Fred Fredrickson",
                     "date": "2014-02-04T03:00:00Z"
-                },
-                "lastSentDate": "2014-02-04T03:00:00Z"
+                }
             }
 
 
@@ -878,193 +879,9 @@ The Triggered Send Message Resource
 
 ### Retrieve a Triggered Send Message [GET]
 + Response 200
-    [Triggered Send Message][]    
+    [Triggered Send Message - v2][]    
 
-
-## Search for Triggered Messages [/messages/triggered{?fields,filters}]
-Search for triggeredSendDefinitions 
-
-+ Model
-    
-            {
-                "links": {
-                    "self": { "href": "/v1/messages/triggered"},                    
-                    "next" : { "href": "/v1/messages/triggered{?pageSize=25&page=3&...}"},
-                    "previous" : { "href": "/v1/messages/triggered{?pageSize=25&page=1&...}"}                    
-                },
-                "count" : 3,
-                "page": 2,
-                "pageSize": 3,                
-                "items" : [
-                    {
-                        "id" : "3BC9D7FE-BE25-E111-8480-001CC49493B0", 
-                        "name" : "TSD Name",
-                        "description" : "TSD Description",
-                        "emailId" : 1000,
-                        "key" : "customerKey123",
-                        "listId" : 400,
-                        "triggeredSendStatus" : "New", 
-                        "sendClassificationId": "fa5063f4-556b-e011-a61f-0050568700ba",
-                        "senderProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "deliveryProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "autoAddSubscribers" : true, 
-                        "autoUpdateSubscribers" : true,
-                        "bccEmail" : "an@email.com",
-                        "emailSubject" : "The email subject",
-                        "isMultipart" : true,
-                        "isWrapped" : true,
-                        "suppressTracking" : true,
-                        "categoryId" : 2147483683,
-                        "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
-                        "exclusionFilter" : "ampScript Goes Here",
-                        "priority" : "Low",
-                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "version": 4,
-                        "created": {
-                            "name": "Joe Schmoe",
-                            "date": "2014-02-04T03:00:00Z"
-                        },
-                        "modified": {
-                            "name": "Fred Fredrickson",
-                            "date": "2014-02-04T03:00:00Z"
-                        },
-                        "lastSentDate": "2014-02-04T03:00:00Z"
-                    },
-                    {
-                        "id" : "3BC9D7FE-BE25-E111-8480-001CC49493B1",
-                        "name" : "TSD Name",
-                        "description" : "TSD Description",
-                        "emailId" : 1001,
-                        "key" : "customerKey123",
-                        "listId" : 401,
-                        "triggeredSendStatus" : "New",
-                        "sendClassificationId": "fa5063f4-556b-e011-a61f-0050568700ba",
-                        "senderProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "deliveryProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "autoAddSubscribers" : true,
-                        "autoUpdateSubscribers" : true,
-                        "bccEmail" : "an@email.com",
-                        "emailSubject" : "The email subject",
-                        "isMultipart" : true,
-                        "isWrapped" : true,
-                        "suppressTracking" : true,
-                        "categoryId" : 2147483683,
-                        "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
-                        "exclusionFilter" : "ampScript Goes Here",
-                        "priority" : "Low",
-                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "version": 4,
-                        "created": {
-                            "name": "Joe Schmoe",
-                            "date": "2014-02-04T03:00:00Z"
-                        },
-                        "modified": {
-                            "name": "Fred Fredrickson",
-                            "date": "2014-02-04T03:00:00Z"
-                        },
-                        "lastSentDate": "2014-02-04T03:00:00Z"
-                    },
-                    {
-                        "id" : "3BC9D7FE-BE25-E111-8480-001CC49493B2",
-                        "name" : "TSD Name",
-                        "description" : "TSD Description",
-                        "emailId" : 1002,
-                        "key" : "customerKey123",
-                        "listId" : 402,
-                        "triggeredSendStatus" : "New",
-                        "sendClassificationId": "fa5063f4-556b-e011-a61f-0050568700ba",
-                        "senderProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "deliveryProfileId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "autoAddSubscribers" : true,
-                        "autoUpdateSubscribers" : true,
-                        "bccEmail" : "an@email.com",
-                        "emailSubject" : "The email subject",
-                        "isMultipart" : true,
-                        "isWrapped" : true,
-                        "suppressTracking" : true,
-                        "categoryId" : 2147483683,
-                        "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }],                        
-                        "exclusionFilter" : "ampScript Goes Here",
-                        "priority" : "Low",
-                        "sendSourceDataExtensionId" : "30dd879c-ee2f-11db-8314-0800200c9a66",
-                        "version": 4,
-                        "created": {
-                            "name": "Joe Schmoe",
-                            "date": "2014-02-04T03:00:00Z"
-                        },
-                        "modified": {
-                            "name": "Fred Fredrickson",
-                            "date": "2014-02-04T03:00:00Z"
-                        },
-                        "lastSentDate": "2014-02-04T03:00:00Z"
-                    }
-                ]
-            }
-
-+ Parameters
-    + fields (optional, string) ... comma-separated collection of fields to be returned
-        + Values
-            + `PartnerKey`
-            + `CreatedDate`
-            + `ModifiedDate`
-            + `ClientId`
-            + `CustomerKey`
-            + `EmailId`
-            + `ListId`
-            + `Name`
-            + `Description`
-            + `TriggeredSendType`
-            + `TriggeredSendStatus`
-            + `HeaderContentAreaId`
-            + `FooterContentAreaId`
-            + `SendClassificationId`
-            + `SendClassificationCustomerKey`
-            + `SenderProfileCustomerKey`
-            + `SenderProfileId`
-            + `DeliveryProfileCustomerKey`
-            + `DeliveryProfileId`
-            + `PrivateDomainId`
-            + `PrivateIPId`
-            + `AutoAddSubscribers`
-            + `AutoUpdateSubscribers`
-            + `BatchInterval`
-            + `FromName`
-            + `FromAddress`
-            + `BccEmail`
-            + `EmailSubject`
-            + `DynamicEmailSubject`
-            + `IsMultipart`
-            + `IsWrapped`
-            + `TestEmailAddr`
-            + `AllowedSlots`
-            + `NewSlotTrigger`
-            + `SendLimit`
-            + `SendWindowOpen`
-            + `SendWindowClose`
-            + `SuppressTracking`
-            + `Keyword`
-            + `ListPartnerKey`
-            + `EmailPartnerKey`
-            + `SendClassificationPartnerKey`
-            + `PrivateDomainPartnerKey`
-            + `PrivateIPPartnerKey`
-            + `ClientPartnerClientKey`
-            + `IsPlatformObject`
-            + `CategoryID`
-    + filters (optional, string) ... JSON Collection of filter objects to be used to filter results.  Must contain a TSD property, a Simple Operator, and a Value or DateValue.
-        + values
-            + `[{ "property" : "customerKey", "SimpleOperator" : "equals", "Value" : "customValue" }]`
-            + `[{ "property" : "customerKey", "SimpleOperator" : "equals", "DateValue" : "customValue" },{ "property" : "customerKey", "SimpleOperator" : "equals", "Value" : "customValue" }]`
-    
-
-
-
-
-### Retrieve a collection of triggered send definition messages [GET]
-+ Response 200
-[Search for Triggered Messages][]
-
-## Triggered Send Status [/messages/triggered/status{?fields,startDate,endDate}]
+## Triggered Send Status - v2 [/messages/triggered/status{?fields,startDate,endDate}]
 
 Status information about a triggered send.  Retrieves status for the account ID based upon token used to make the call.
 
@@ -1077,7 +894,7 @@ Status information about a triggered send.  Retrieves status for the account ID 
                     "self": { "href": "/messages/triggered/status{?startDate,endDate}" },
                     "parent": { "href": "/messages/triggered" }
                 },
-                "accountId" : "{accountId}",
+                "memberId" : "{memberId}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
                 "count": 134, 
@@ -1093,7 +910,7 @@ Status information about a triggered send.  Retrieves status for the account ID 
     + endDate =`today` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
     + fields = `count,active` (optional, string) ... comma separated list of fields to return
         + values
-            + `accountId`
+            + `memberId`
             + `startDate`
             + `endDate`
             + `accountId`
@@ -1108,7 +925,7 @@ Status information about a triggered send.  Retrieves status for the account ID 
 ### Retrieve Triggered Send counts [GET]
 
 + Response 200
-    [Triggered Send Status][]
+    [Triggered Send Status - v2][]
 
 ## Send a Triggered Message [/messages/{id}/send]
 Send a message using a pre-existing triggered send definition
@@ -1180,6 +997,9 @@ A collection of all events that have occurred for a message for a given time ran
                 "unsubscribed": { 
                   "count" : 33, 
                   "percent" : 0.002 
+                },
+                "errored" : { 
+                  "count" : 0
                 }
             }
 
@@ -1209,7 +1029,7 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                 "id": "{id}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
-                "Events": [
+                "events": [
                     {
                         "date" : "2014-02-06T07:06:00Z",
                         "sent" : { 
@@ -1245,6 +1065,9 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         "unsubscribed": { 
                           "count" : 33, 
                           "percent" : 0.002 
+                        },
+                        "errored" : { 
+                          "count" : 0
                         }
                     },
                     {
@@ -1282,6 +1105,9 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         "unsubscribed": { 
                           "count" : 33, 
                           "percent" : 0.002 
+                        },
+                        "errored" : { 
+                          "count" : 0
                         }
                     },
                     {
@@ -1319,6 +1145,9 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         "unsubscribed": { 
                           "count" : 33, 
                           "percent" : 0.002 
+                        },
+                        "errored" : { 
+                          "count" : 0
                         }
                     }
                 ]
@@ -1348,7 +1177,7 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                 "id": "{id}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
-                "Events": [
+                "events": [
                     {
                         "date" : "2014-02-04T01:00:00Z",
                         "sent" : { 
@@ -1384,6 +1213,9 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         "unsubscribed": { 
                           "count" : 33, 
                           "percent" : 0.002 
+                        },
+                        "errored" : { 
+                          "count" : 0
                         }
                     },
                     {
@@ -1421,6 +1253,9 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         "unsubscribed": { 
                           "count" : 33, 
                           "percent" : 0.002 
+                        },
+                        "errored" : { 
+                          "count" : 0
                         }
                     },
                     {
@@ -1458,6 +1293,9 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
                         "unsubscribed": { 
                           "count" : 33, 
                           "percent" : 0.002 
+                        },
+                        "errored" : { 
+                          "count" : 0
                         }
                     }
                 ]
@@ -1474,106 +1312,1369 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Response 200
     [Message Events Hourly][]
 
-## Message Email Thumbnail [/messages/{id}/thumbnail{?width,height,subId}]
-Email thumbnail for message jobs
+# Group Contact API
+Documentation of the ContactServices API
 
-+ Parameters
-    + id (required) ... id for the message.  Could be a Triggered Send or an Email Send Definition id.
-    + width (required) ... width of the image.
-    + height (required) ... height of the image.
-    + subId (optional) ... Subscriber ID. This would be used in the event that the consumer wants the resulting thumbnail to be customized for a particular subscriber
+## General API Contracts
+
+ `filterJSON` Specification
+    
+    {
+        "conditionSet" : {      
+            "operator" : "And", 
+            "conditionSets" : [],
+            "conditions" : [{    
+                "attribute" : {  
+                    "key" : "",  
+                    "id" : "",   
+                    "isCustomerData" : false
+                },
+                "operator" : "In",                  
+                "values" : ["", "",]
+            }]
+        }
+    }
+
+
+## First Class Resources
+ 
+ - __Contact__ - a single contact resource identifiable by either a ContactID or a ContactKey
+ - __ContactEvent__ a event linked to an identifiable contact by either a ContactID or a ContactKey.
+ - __Schema__- the model representation of all data related to contacts for a given account. 
+ - __AttributeSet__ - the data related to a specific collection of *AttributeDefinitions* within the *ContactSchema*
+
+## FilterJSON [/search]
 
 + Model (application/json)
-    JSON Representation of the email preview for all jobs associated to a message
+
+    JSON Representation of a `filterJSON' object.
     + Body
-    
+            
             {
-                "id": "{id}",
-                "img": "GQ8XQAYFAiEMfN0qD0COTgMX",
-                "contentType": "image/jpeg"
+                "conditionSet" : {      
+                    "operator" : "And", 
+                    "conditionSets" : [],
+                    "conditions" : [{    
+                        "attribute" : {  
+                            "key" : "MobileDemographics.MobileNumber",  
+                            "id" : "",   
+                            "isCustomerData" : false
+                        },
+                        "operator" : "In",                  
+                        "values" : ["3171233456", "",]
+                    }]
+                }
             }
 
-### Retrieve Email Thumbnail for a Message [GET]
-+ Response 200
-    [Message Email Thumbnail][]
 
-## Retrieve Queued Transactions [/messages/{id}/queue{?filter}]
-A collection of queued transactions for a paused message
+# Group Contact
 
-+ Parameters
-    + id (required) ... id for the message.
-    + filter (optional, string) ... complex search criteria.  Ability to search by email address or subscriber key.
-        http://base/Development/REST_API#Querying
-    
+## Contacts Collection [/contacts] 
+A collection of Contacts.
+
 + Model (application/json)
-    JSON Representation for all queued transactions associated to a message
-    + Body
     
+    + Body
+            
             {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
                 "_links": {
-                    "self": { "href": "/messages/{id}/queue"},
-                    "next" : { "href": "/messages/{id}/queue{?pageSize=25&page=3&...}"},
-                    "prev" : { "href": "/messages/{id}/queue{?pageSize=25&page=1&...}"}
+                    "self": { "href": "/contacts/{?filter}" },
+                    "schemas": { "href": "/schemas" },
+                    "contactSchemas": { "href": "/schemas/type:{contacts}" },
                 },
-                "count" : 3,
-                "page": 2,
-                "pageSize": 2,                
-                "Transactions": [
-                    {
-                        "jobId": "654231",
-                        "tssId": "8E844912-1429-E211-B468-0022642D9886",
-                        "tssrId": "0993DAEE-2190-E311-BB14-00237D5401CE",
-                        "dateQueued": "2014-02-04T03:00:00Z",
-                        "Member":
-                        {
-                            "memberId": "654",
-                            "listId": "8435",
-                            "fullName": "Erin Smith",
-                            "emailAddress": "esmith@foo.com",
-                            "subscriberKey": "esmith@foo.com"
-                        }
+                "items": [{
+                        "contactID": 12345,
+                        "contactKey": "sgest@somewhere.com"
                     },
                     {
-                        "jobId": "654231",
-                        "tssId": "8E844912-1429-E211-B468-0022642D9886",
-                        "tssrId": "89844912-1429-E211-B468-0022642D9886",
-                        "dateQueued": "2014-02-04T03:00:00Z",
-                        "Member":
-                        {
-                            "memberId": "659",
-                            "listId": "8435",
-                            "fullName": "Bob Jones",
-                            "emailAddress": "bjones@foo.com",
-                            "subscriberKey": "bob123"
-                        }
+                        "contactID": 2343,
+                        "contactKey": "ugest@somewherelse.com"
                     }
                 ]
             }
 
-### Retrieve Queued Transactions for a Message [GET]
+### Create Contacts [POST]
++ Request
+    
+        {
+            "contactKey": "tnewcome@exacttarget.com",
+            "attributeSets": [{
+                "name": "Email Demographics",
+                "items": [{
+                    "values": [{
+                        "name": "Last Name",
+                        "value": "Nukem"
+                    },
+                    {
+                        "name": "First Name",
+                        "value": "Antoine"
+                    }]
+                }]
+            },
+            {
+                "name": "Email Addresses",
+                "items": [{
+                    "values": [{
+                        "name": "Email Address",
+                        "value": "tnewcome@exacttarget.com"
+                    },
+                    {
+                        "name": "HTML Enabled",
+                        "value": true
+                    }]
+                }]
+            }]
+        }
+        
 + Response 200
-    [Retrieve Queued Transactions][]
+    [Contacts Collection][]
+
+## Search Contacts [/contacts/search]
+Retrieve a list of contacts that match a filter condition represented as `filterJSON` posted in the message body.
+
+### Search Contacts [POST]
++ Request 
+    [FilterJSON][]
++ Response 200
+    [Contacts Collection][]
+
+# Group ContactEvent
+
+## ContactEvent [/contactEvents]
+Definition of a ContactEvent
+
++ Model (application/json)
+    JSON representation of a single ContactEvent  resource.
+
+    + Body
+    
+            {
+        
+                "contactKey": "sgest@comewhere.com",
+                "contactID": "1234567",
+                "eventDefinitionKey": "myevent",
+                "data": [{
+                    "key": "RetailOrderEvent",
+                    "name": "Retail Order Event",
+                    "id": "5CE001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "items": [{
+                        "values": [{
+                            "name": "Customer Key",
+                            "value": "tnewcome@exacttarget.com",
+                        },
+                        {
+                            "name": "Order Number",
+                            "value": "123456"
+                        },
+                        {
+                            "name": "Order Total",
+                            "value": "177.99"
+                        }]
+                    }]
+                }]
+            }
+
+### Create a ContactEvent [POST]
++ Request
+    [ContactEvent][]
++ Response 200
+    [ContactEvent][]
+
+# Group Schema
+Schema related resources of the *Contacts-API*
+
+## Schemas Collection [/schemas]
+
++ Model (applcation/json)
+JSON representation of a Schema collection response.
+
+    + Body
+        
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                    "self": { "href": "/schemas" }
+                },
+                "items":[{
+                    "links": {
+                        "self": { "href": "/schemas/{id}" }
+                    },
+                    "id": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "version": 1,
+                    "schemaType": "Contacts",
+                    "enterpriseID": 10650001,
+                    "availableBusinessUnits": [10650002,10650003]
+                },
+                {
+                    "links": {
+                        "self": { "href": "/schemas/{id}" }
+                    },
+                    "id": "E6158F81-ABAB-E311-80AE-08EDB9DDEBF0",
+                    "version": 1,
+                    "schemaType": "Contacts",
+                    "enterpriseID": 10650001,
+                    "availableBusinessUnits": [10650004,10650005]
+                }]
+            }
+
+### Retrieve the Schemas collection for the current account [GET]
++ Response 200
+    [Schemas Collection][]
+
+## Schema by Id [/schemas/{id}]
+
++ Model (application/json)
+JSON representation of a Schema response payload.
+
+    + Body
+    
+            {
+                "links": {
+                        "self": { "href": "/schemas/{id}" }
+                    },
+                "schema":{
+                    "id": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "version": 1,
+                    "schemaType": "Contacts",
+                    "enterpriseID": 10650001,
+                    "availableBusinessUnits": [10650002,10650003],
+                    "links": {
+                        "self": { "href": "/schemas/{id}" }
+                        "attributeGroups": { "href": "/schemas/{id}/attributeGroups" },
+                        "attributeSetDefinitions": { "href": "/schemas/{id}/attributeSetDefinitions" }
+                    }
+                }
+            }
+
+### Retrieve a Schema by Id [GET]
++ Response 200
+    [Schema by Id][]
+
+## AttributeGroup Collection [/schemas/{id}/attributeGroups]
+A colection of AttributeGroup references.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                    "self": {"href": "/schemas/{id}/attributeGroups" },
+                    "schema": {"href": "/schemas/{id}" },
+                },
+                "items": [{
+                    "links": {
+                        "self": {"href": "/schemas/{schemaId}/attributeGroups/{id}" }
+                    },
+                    "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
+                    "key": "com.exacttarget.mobilepush.ETMobilePush",
+                    "name": "ExactTarget MobilePush",
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                },
+                {
+                    "links": {
+                        "self": {"href": "/schemas/{schemaId}/attributeGroups/{id}" }
+                    },
+                    "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
+                    "key": "com.exacttarget.mobilepush.ETMobilePush",
+                    "name": "ExactTarget MobilePush",
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                }]
+            }
+
+### Retrieve an AttributeGroup Collection for an identified Schema [GET]
++ Response 200
+    [AttributeGroup Collection][]
+
+## AttributeGroup by Id [/schemas/{id}/attributeGroups/{id}]
+A single AttributeGroup object.
+
++ Model (applcation/json)
+JSON Representation of a single AttributeGroup resource.
+
+    + Body
+    
+            {
+                "links": {
+                    "self": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}" },
+                    "schema": {"href": "/schemas/{parentReferenceId}" },
+                    "attributeSetDefinitions": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}/attributeSetDefinitions" },
+                },
+                "attributeGroup": {
+                    "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
+                    "key": "com.exacttarget.mobilepush.ETMobilePush",
+                    "name": "ExactTarget MobilePush",
+                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "isSystemDefined": true,
+                    "applicationID": "131975ED-E859-4CC9-B479-62A615BC6C8A",
+                    "applicationKey": "com.exacttarget.mobilepush",
+                    "templateID": 100,
+                    "fullyQualifiedName": "com.exacttarget.mobilepush.ETMobilePush",
+                    "attributeGroupType": "standard"
+                }
+            }
+
+### Retrieve an AttributeGroup by Id [GET]
++ Response 200
+    [AttributeGroup by Id][]
+
+## AttributeGroup by Key [/schemas/{id}/attributeGroups/key:{key}]
+A single AttributeGroup object.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "links": {
+                    "self": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}" },
+                    "schema": {"href": "/schemas/{parentReferenceId}" },
+                    "attributeSetDefinitions": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}/attributeSetDefinitions" }
+                },
+                "attributeGroup": {
+                    "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
+                    "key": "com.exacttarget.mobilepush.ETMobilePush",
+                    "name": "ExactTarget MobilePush",
+                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "isSystemDefined": true,
+                    "applicationID": "131975ED-E859-4CC9-B479-62A615BC6C8A",
+                    "applicationKey": "com.exacttarget.mobilepush",
+                    "templateID": 100,
+                    "fullyQualifiedName": "com.exacttarget.mobilepush.ETMobilePush",
+                    "attributeGroupType": "standard"
+                }
+            }
+
+### Retrieve an AttributeGroup by Key [GET]
++ Response 200
+    [AttributeGroup by Key][]
+
+## AttributeSetDefinition Collection [/schemas/{id}/attributeSetDefinitions]
+A collection of AttributeSetDefinition references for the identified schema.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                        "self": { "href": "/schemas/{id}/attributeSetDefinitions" }
+                        "schema": { "href": "/schemas/{id}" },
+                    },
+                "items": [{
+                    "links": {
+                        "self": { "href": "/schemas/{parentReferenceId}/attributeSetDefinitions/{id}" }
+                    },
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "MobileConnect Demographics",
+                    "key": "com.exacttarget.mobileconnect.MobileDemographics",
+                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                },
+                {
+                    "links": {
+                        "self": { "href": "/schemas/{parentReferenceId}/attributeSetDefinitions/{id}" }
+                    },
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "Retail Orders",
+                    "key": "RetailOrders",
+                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                }]    
+            }
+
+### Retrieve an AttributeSetDefinitions Collection [GET]
++ Response 200
+    [AttributeSetDefinition Collection][]
+
+## AttributeSetDefinition by Id [/schemas/{id}/attributeSetDefinitions/{id}]
+A single AttributeSetDefinition object.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "links": {
+                        "self": { "href": "/schemas/{id}/attributeSetDefinitions/{id}" },
+                        "attributeDefinitions": { "href": "/attributeSetDefinitions/{id}/attributeDefinitions" },
+                        "relationships": { "href": "/attributeSetDefinitions/{id}/relationships" },
+                        "schemas": { "href": "/schemas" }
+                    },
+                
+                "attributeSetDefinition": {
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "MobileConnect Demographics",
+                    "key": "MobileDemographics",
+                    ...
+                    ...
+                    ...more 
+                }    
+            }
+            
+### Retrieve an AttributeSetDefinition by Id [GET]
++ Response 200
+    [AttributeSetDefinition by Id][]
+
+## AttributeSetDefinition by Key [/schemas/{id}/attributeSetDefinitions/key:{key}]
+A single AttributeSetDefinition object.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "links": {
+                        "self": { "href": { "href": "/attributeSetDefinition/{id}" } }
+                        "attributeDefinitions": { "href": "/attributeSetDefinition/{id}/attributeDefinitions" },
+                        "relationships": { "href": "/attributeSetDefinition/{id}/relationships" },
+                        "schemas": { "href": "/schemas" }
+                    },
+                
+                
+                "attributeSetDefinition": {
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "MobileConnect Demographics",
+                    "key": "MobileDemographics",
+                    ...
+                    ...
+                    ...more 
+                }    
+            }
+            
+### Retrieve an AttributeSetDefinition by Key [GET]
++ Response 200
+    [AttributeSetDefinition by Key][]
+
+## AttributeDefinition Collection [/attributeSetDefinition/{id}/attributeDefinitions]
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                        "self": { "href": "/attrubuteSetDefinition/{id}/attributeDefinitions" },
+                        "attributeSetDefinition": { "href": "/attrubuteSetDefinition/{id}" }
+                    },
+                "items": [{
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "Customer Key",
+                    "key": "Retail Orders.Customer Key",
+                    ...
+                    ... more
+                },
+                {
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "Order Number",
+                    "key": "Retail Orders.Order Number",
+                    ...
+                    ... more
+                }]    
+            }
+
+### Retrieve an AttributeSetDefinition by Name [GET]
++ Response 200
+    [AttributeDefinition Collection][]
+
+## Relationships Collection [/attributeSetDefinition/{id}/relationships]
+A collection of Relationship objects for the identified Attribute Set Definition.
+
++ Model (applcation/json)
+JSON Representation of a collection of Attribute Definition objects.
+
+    + Body
+    
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                        "self": { "href": "/attrubuteSetDefinition/{id}/relationships" },
+                        "attributeSetDefinition": { "href": "/attrubuteSetDefinition/{id}" }
+                    },
+                "items": [{
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "setDefinitionId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "leftItem": {
+                        "relationshipType": "AttributeGroup",
+                        "identifier": "2d386709-562f-e311-bb14-00237d5401ce",
+                        "cardinality": "One"
+                    },
+                    "rightItem": {
+                        "relationshipType": "AttributeSet",
+                        "identifier": "2e386709-562f-e311-bb14-00237d5401ce",
+                        "cardinality": "One",
+                        "objectState": "Created"
+                    },
+                    "relationshipAttributes": [{
+                        "leftAttributeID": "30386709-562f-e311-bb14-00237d5401ce",
+                        "rightAttributeID": "30386709-562f-e311-bb14-00237d5401ce"
+                },
+                {
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "leftItem": {
+                        "relationshipType": "AttributeGroup",
+                        "identifier": "2d386709-562f-e311-bb14-00237d5401ce",
+                        "cardinality": "One"
+                    },
+                    "rightItem": {
+                        "relationshipType": "AttributeSet",
+                        "identifier": "2e386709-562f-e311-bb14-00237d5401ce",
+                        "cardinality": "One",
+                        "objectState": "Created"
+                    },
+                    "relationshipAttributes": [{
+                        "leftAttributeID": "30386709-562f-e311-bb14-00237d5401ce",
+                        "rightAttributeID": "30386709-562f-e311-bb14-00237d5401ce"
+                    }]
+                }]
+            }    
+
+### Retrieve a Relationships Collection [GET]
++ Response 200
+    [Relationships Collection][]
+
+# Group AttributeSet 
+Data related resources of the *Contacts-API*
+
+## Attribute Value Container
+
+JSON Repesentation of an Attribute Value Container or a row of data.
+
+    {
+        "values": [{
+            "name": "Customer Key",
+            "value": "sgest@urkidding.com",
+        },
+        {
+            "name": "Order Number",
+            "value": "123456"
+        },
+        {
+            "name": "Order Total",
+            "value": "177.99"
+        }]
+    }
+
+## AttributeSet Data by Id [/attributeSets/{id ?filter}]
+A collection of Attribute Value Containers or the data rows of an identified Atribute Set.
+
++ Model (applcation/json)
+JSON Representation of an AttributeSets Data payload.
+
+    + Body
+
+            {
+                "count": 200,
+                "page": 10,
+                "pageSize": 3,
+                "_links": {
+                        "self": { "href": "/attributeSets/{id, ?filter}"},
+                        "next": { "href": "/attributeSets/{id, ?filter}?$page=11&$pageSize=3" },
+                        "prev": { "href": "/attributeSets/{id, ?filter}?$page=9&$pageSize=3" },
+                        "attributeSetDefinition":{},
+                        "attributeDefinitions":{},
+                    },
+                
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+            }
+            
+### AttributeSet Data by Id [GET]
++ Response 200
+    [AttributeSet Data by Id][]
+
+### Create AttributeSet Data by Id [POST]
++ Request
+        
+            {
+
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+            }
+
++ Response 200
+    [AttributeSet Data by Id][]
+
+### Update AttributeSet Data by Id [PATCH]
++ Request
+            
+            {
+
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+        }
 
 
-## Delete Queued Transactions [/messages/{id}/queue]
-Delete a collection of queued transactions for a paused message
++ Response 200
+    [AttributeSet Data by Id][]
+
+### Replace AttributeSet Data by Id [PUT]
+
++ Request
+
+            {
+
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+        }
+
++ Response 200
+    [AttributeSet Data by Id][]
+
+# Group ContentEntity
+Used to manipulate ContentEntity objects.  These are things like Paste HTMLs, images, videos, etc.
+
+## ContentEntity [/AssetService-Internal/v1/contents/{id}]
+A single Content entity with all of its details
 
 + Parameters
-    + id (required) ... id for the message.
+    + id (required, number, `1`) ... Numeric `id` of the Content
 
-### Delete All Queued Transactions for a Message [DELETE]
++ Model (application/json)
+
+        {
+            "id": 313,
+            "key": "danceKid6",
+            "assetType": "photo",
+            "classification": "content",
+            "version": null,
+            "name": "Dance Kid7",
+            "description": "Kid party dancing7",
+            "owner": 30980,
+            "createdDate": "2014-03-26T15:45:20-04:00",
+            "createdBy": 30980,
+            "modifiedDate": "2014-03-26T15:45:20-04:00",
+            "modifiedBy": 30980,
+            "enterpriseId": 281359,
+            "memberId": 281359,
+            "businessUnitAvailability": null,
+            "channels": {
+                "email": true,
+                "mms": true,
+                "print": false,
+                "push": false,
+                "sms": false,
+                "social": true,
+                "web": true
+            },
+            "status": "Active",
+            "locked": null,
+            "archived": false,
+            "favorite": false,
+            "category": {
+                "id": 1392299587995,
+                "parentId": 0,
+                "name": "uploaded",
+                "path": "/uploaded",
+                "hasChildren": true,
+                "itemCount": 66
+            },
+            "tags": ["party","funny","dancing","kids","memes"],
+            "campaigns": null,
+            "contentSizeBytes": null
+        }
+
+
+### Retrieve a Content [GET]
++ Response 200 (application/json)
+
+    [ContentEntity][]
+
+### Update a Content [PATCH]
++ Request (application/json)
+
+    [ContentEntity][]
+
++ Response 200 (application/json)
+
+    [ContentEntity][]
+
+### Delete a Content [DELETE]
 + Response 204
 
-## Delete Queued Transactions [/messages/{id}/queue/{tssid}/{tssrId}]
-Delete a queued transaction from a paused message
+## ContentEntitys [/AssetService-Internal/v1/contents]
+
+### Get all Content [GET]
++ Response 200 (application/json)
+
+        {
+            "count": 2,
+            "page": 1,
+            "pageSize": 25,
+            "links": {
+                "self": { "href": "/v1/contents" },
+                "next": { "href": "/v1/contents?$page=2&$pagesize=25" }
+            },
+            "items": [
+                {
+                    "tags": ["tv","science"],
+                    "status": "1",
+                    "modifiedBy": 0,
+                    "enterpriseId": 281359,
+                    "channels": {
+                        "email": true,
+                        "mms": true,
+                        "print": true,
+                        "push": true,
+                        "sms": false,
+                        "social": true,
+                        "web": true
+                    },
+                    "favorite": false,
+                    "modifiedDate": "2014-03-05T10:04:32-05:00",
+                    "id": 119,
+                    "category": {
+                        "id": 1394031845402,
+                        "parentId": 1392299587995,
+                        "name": "tv shows",
+                        "path": "/uploaded/tv shows",
+                        "hasChildren": false,
+                        "itemCount": 5
+                    },
+                    "archived": false,
+                    "createdBy": 0,
+                    "assetType": "photo",
+                    "description": "Sketch of Walter White",
+                    "classification": "file",
+                    "name": "Heisenberg",
+                    "owner": 0,
+                    "memberId": 281359,
+                    "createdDate": "2014-03-05T10:04:32-05:00",
+                    "key": "heisenberg",
+                    "version": null,
+                    "businessUnitAvailability": null,
+                    "locked": null,
+                    "campaigns": null,
+                    "contentSizeBytes": null
+                },
+                {
+                    "tags": ["King of Queens","ketchup","tv"],
+                    "status": "Active",
+                    "modifiedBy": 0,
+                    "enterpriseId": 281359,
+                    "channels": {
+                        "email": true,
+                        "mms": true,
+                        "print": true,
+                        "push": true,
+                        "sms": true,
+                        "social": true,
+                        "web": true
+                    },
+                    "favorite": false,
+                    "modifiedDate": "2014-03-05T10:04:50-05:00",
+                    "id": 157,
+                    "category": {
+                        "id": 1394031845402,
+                        "parentId": 1392299587995,
+                        "name": "tv shows",
+                        "path": "/uploaded/tv shows",
+                        "hasChildren": false,
+                        "itemCount": 5
+                    },
+                    "archived": false,
+                    "createdBy": 0,
+                    "assetType": "photo",
+                    "description": "Doug teaching Arthur how to say Ketchup",
+                    "classification": "file",
+                    "name": "Ketchup vs. Catsup",
+                    "owner": 0,
+                    "memberId": 281359,
+                    "createdDate": "2014-03-05T10:04:50-05:00",
+                    "key": "ketchup",
+                    "version": null,
+                    "businessUnitAvailability": null,
+                    "locked": null,
+                    "campaigns": null,
+                    "contentSizeBytes": null
+                }
+            ]
+        }
+
+### Create a Content [POST]
++ Request
+
+        {
+            "key": "danceKid2",
+            "assetType": "photo",
+            "classification": "content",
+            "version": null,
+            "name": "Dance Kid2",
+            "description": "Kid party dancing2",
+            "owner": 30980,
+            "createdBy": 30980,
+            "modifiedBy": 30980,
+            "enterpriseId": 281359,
+            "memberId": 281359,
+            "businessUnitAvailability": null,
+            "channels": {
+                "email": true,
+                "mms": true,
+                "print": false,
+                "push": false,
+                "sms": false,
+                "social": true,
+                "web": true
+            },
+            "status": "Active",
+            "locked": null,
+            "archived": false,
+            "favorite": false,
+            "category": {
+                "id": 1392299587995
+            },
+            "tags": [
+                "party",
+                "funny",
+                "dancing",
+                "kids",
+                "memes"
+            ],
+            "campaigns": null,
+            "contentSizeBytes": null
+        }
+        
++ Response 200
+    [ContentEntity][]
+
+# Group Subscriber Resource
+
+## Subscriber List Status by Subscriber Id and List Id [/subscriberListStatus/{id}/list/{listId}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
 
 + Parameters
-    + id (required) ... id for the message.
-    + tssid (required) ... id for the triggered send subscriber.
-    + tssrId (required) ... id for the triggered send subscriber request.
+    + id (required, number, `123`) ... Numeric `id` of the Subscriber to retrieve status data from
+    + listId (required, number, `123`) ... Numeric `listId` of the Subscriber list to retrieve status data from
 
-### Delete Queued Transaction for a Message [DELETE]
-+ Response 204
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/{id}/list/{listId}" }
+                },
+                "id": "123"
+            }
 
-# Group Contacts
+### Retrieve a Subscriber Status for a list [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Id and List Id][]
+
+### Change a Subscriber List Status [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+
+## Subscriber List Status by Subscriber Id and List Name [/subscriberListStatus/{id}/list/name:{name}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Subscriber to retrieve status data from
+    + name (required, string, `Coupon Only List`) ... String `name` of the Subscriber list to retrieve status data from
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/{id}/list/name:{name}" }
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Id and List Name][]
+
+### Change a Subscriber List Status [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+## Subscriber List Status by Subscriber Key and List Id [/subscriberListStatus/key:{key}/list/{listId}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + key (required, string, `apiary@exacttarget.com`) ... String `key` of the Subscriber to retrieve status data from
+    + listId (required, number, `123`) ... Numeric `listId` of the Subscriber list to retrieve status data from
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/key:{key}/list/{listId}" }
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Key and List Id][]
+
+### Change a Subscriber List Status [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+## Subscriber List Status by Subscriber Key and List Name [/subscriberListStatus/key:{key}/list/{name}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + key (required, string, `apiary@exacttarget.com`) ... String `key` of the Subscriber to retrieve status data from
+    + name (required, string, `Coupon Only List`) ... String `name` of the Subscriber list to retrieve status data from
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/key:{key}/list/{name}" }
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Key and List Name][]
+
+### Change a Subscriber List Status [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+## Subscriber List Status by Subscriber Id [/subscriberListStatus/{id}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Subscriber to retrieve status data from. Will default to a hidden list
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/{id}" }
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Id][]
+
+### Change a Subscriber List Status [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+## Subscriber List Status by Subscriber Key [/subscriberListStatus/key:{key}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + key (required, string, `apiary@exacttarget.com`) ... String `key` of the Subscriber to retrieve status data from. Will default to a hidden list
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/key:{key}" }
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Key][]
+
+### Change a Subscriber List Status [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+## Subscriber List Status by Subscriber Id and List Id for a Child Account and Children [/subscriberListStatus/{id}/list/{listId}/@allorgs?{mId}]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Subscriber to retrieve status data from
+    + listId (required, number, `123`) ... Numeric `listId` of the Subscriber list to retrieve status data from
+    + mId (optional, number, `123`) ... Numeric 'mId' of the child account and its children to retrieve Subscriber status data from
+
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/{id}/list/{listId}/@allorgs?MID={mId}"}
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list for a specific child account and its children [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Id and List Id for a Child Account and Children][]
+
+### Change a Subscriber List Status for a list for a specific child account and its children [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+## Subscriber List Status by Subscriber Id and List Id for the Current Account and Children [/subscriberListStatus/{id}/list/{listId}/@allorgs]
+A single Subscriber entity belonging to a hidden list. Contains relevant subscriber list status data.
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Subscriber to retrieve status data from
+    + listId (required, number, `123`) ... Numeric `listId` of the Subscriber list to retrieve status data from
+    
++ Model (application/json)
+    JSON Representation of a subscriber with list status data.
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/subscriberListStatus/{id}/list/{listId}/@allorgs" }
+                },
+                "id": "123"
+            }
+
+### Retrieve a Subscriber Status for a list for the current account and its children [GET]
++ Response 200
+    [Subscriber List Status by Subscriber Id and List Id for the Current Account and Children][]
+
+### Change a Subscriber List Status for a list for the current account and its children [POST]
++ Request
+
+        {
+            "status":"active"
+        }
+
++ Response 200
+
+#  Group Subscriber Attribute
+    Subscriber Attribute contains the Profile Attributes and Preferences
+## SubscriberAttribute - v1 [/v1/subscribers/attributes]
+A collection of Subscriber Attribute objects.
+
++ Model (application/json)
+    JSON Representation of a subscribers with list status data.
+    + Body
+    
+            {
+                "count":2,
+                "page":1,
+                "pageSize":25,
+                "_links": {
+                    "parent": {"/v1/subscribers" },
+                    "self": { "href": "/v1/subscribers/attributes" },
+                },
+                "items" :
+                     {
+                        "id" : 1221,
+                        "name" : "Full Name", 
+                        "fieldType" : 0,
+                        "minLength" : 0,
+                        "maxLength" : 200,
+                        "displayOrder" : 1,
+                        "displayAs" : "Full Name",
+                        "description" : "System default for subscribers full name",
+                        "hasRestrictedValues" : false,
+                        "isRequired" : 0,
+                        "defaultValue" : "true"
+                    },
+                    {
+                       "id" : 212,
+                        "name" : "Email Address", 
+                        "fieldType" : 0,
+                        "minLength" : 0,
+                        "maxLength" : 200,
+                        "displayOrder" : 2,
+                        "displayAs" : "Email Address",
+                        "description" : "System default for subscribers email address",
+                        "hasRestrictedValues" : true,
+                            "restrictedValues" : [1],
+                                        {
+                                                "valueName" : "Email Address Value",
+                                                "isDefault" : "false",
+                                                "valueDesc" : "System defalt Email",
+                                                "displayOrder": "2",
+                                                "defaultValue" : "Email" 
+                                            }   
+                        "isRequired" : 1,
+                        "defaultValue" : "true"
+                    }
+                
+            }
+
+### Retrieve a collection of subscriberAttributes [GET]
++ Response 200
+    [SubscriberAttribute - v1][]
+
+## Subscriber Attribute by Attribute ID [/v1/subscribers/attributes/{id}]
+A single subscriber attribute object with all its details
+
++ Parameters
+    + id (required, number, `2345`) ... Numeric `id` of the attribute.
+    
++ Model (application/json)
+   
+            {
+                "_links": {
+                    "parent": { "href": "/v1/subscribers/attributes"},
+                    "self":   { "href": "/v1/subscribers/attributes/{id}" },
+                 }
+                "id" : 213,
+                "name" : "User Defined", 
+                "fieldType" : 0,
+                "minLength" : 0,
+                "maxLength" : 2000,
+                "displayOrder" : 4,
+                "displayAs" : "User Defined",
+                "description" : "System default for subscribers User Defined",
+                "hasRestrictedValues" : false,
+                "isRequired" : 0,
+                "defaultValue" : "false"
+            }
+
+### Retrieve a Subscriber Attribute [GET]
++ Response 200 (application/json)
+    [Subscriber Attribute by Attribute ID][]
+
+
+### Update a Subscriber Attribute [PATCH]
++ Request(application/json)
+
+        {
+                 "_links": {
+                    "parent": { "href": "/v1/subscribers/attributes"},
+                    "self":   { "href": "/v1/subscribers/attributes/{id}" },
+                 }
+                "name" : "First Name", 
+                "fieldType" : 0,
+                "minLength" : 0,
+                "maxLength" : 2000,
+                "displayOrder" : 1,
+                "displayAs" : "First Name",
+                "description" : "System default for subscribers First Name",
+                "hasRestrictedValues" : false,
+                "isRequired" : 0,
+                "defaultValue" : "false"
+        }
+        
++ Response 200 (application/json)
+    [Subscriber Attribute by Attribute ID][]
+
+### Delete a Subscriber Attribute [DELETE]
++ Response 200 
+
 
