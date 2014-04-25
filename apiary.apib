@@ -2677,4 +2677,48 @@ A single subscriber attribute object with all its details
 ### Delete a Subscriber Attribute [DELETE]
 + Response 200 
 
+#  Group Filters
+    FilterDefinition with its details.
+    
+## FilterDefinition by ID [/v1/filters/filterdefinition/{id}]
 
++ Parameters
+    + id (required, guid, `37EEE91D-0931-DF11-B1F8-001E379A7685`) ... Guid `id` of the attribute.
+
+### Delete a FilterDefinition [DELETE]
++ Response 200 
+
+        "37EEE91D-0931-DF11-B1F8-001E379A7685"
+
+## FilterDefinition [/v1/filters/filterdefinition]
+
+### Create a FilterDefinition [POST]
++ Request(application/json)
+
+        {
+                 "key": "FilterDefinitionTest20",
+                 "name": "FilterDefinitionTest20",
+                 "description": "FilterDefinitionTest20",
+                 "categoryId": 4047,
+                 "filterDefinitionXml": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"AND\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1475\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[Ford]]></Value></Condition></ConditionSet></FilterDefinition>",
+                 "derivedFromType": 1
+        }
+        
++ Response 200 (application/json)
+
+        {       
+                 "id": "a10bc14f-d51a-441f-8632-f34391fea797",
+                 "key": "FilterDefinitionTest20",
+                 "owner": 10650001,
+                 "createdDate": "2013-03-22T15:41:26.023",
+                 "lastUpdated": "2013-03-22T15:41:26.023",
+                 "createdBy": "10650001",
+                 "name": "FilterDefinitionTest20",
+                 "description": "FilterDefinitionTest20",
+                 "categoryId": 4047,
+                 "filterDefinitionXml": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"AND\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1475\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[Ford]]></Value></Condition></ConditionSet></FilterDefinition>",
+                 "derivedFromObjectId": "00000000-0000-0000-0000-000000000000",
+                 "derivedFromType": 1,
+                 "isSendable": false
+
+        }
