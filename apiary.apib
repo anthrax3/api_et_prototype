@@ -2722,3 +2722,130 @@ A single subscriber attribute object with all its details
                  "isSendable": false
 
         }
+
+# Group Blackout Dates
+Notes related resources of the **Blackout Dates API**
+
+## Blackout Dates Collection [/accounts/{id}/blackoutdates/{?startDate,endDate,includeChildren}]
+A collection of all Blackout Dates that are in progress or scheduled in the future
+
++ Model (application/json)
+    JSON Representation of a Blackout Dates collection
+    + Body
+    
+            {
+                "_links": {
+                    "next": { "href": "/accounts/{memberId}/blackoutdates{?startDate,endDate,includeChildren}&$page=2&$pageSize=10" },
+                    "self": { "href": "/accounts/{memberId}/blackoutdates{?startDate,endDate,includeChildren}&$page=1&$pageSize=10" },
+                    "parent": { "href": "/accounts/{memberId}/" },
+                    "includeChildren": { "href": "/accounts/{memberId}?includChildren=true" }
+                },
+                items: [
+                    {
+                        "id": 1, 
+                        "Name": "January Blackout Dates", 
+                        "StartDate": "2014-01-20T00:00:00Z", 
+                        "EndDate": "2014-01-24T23:59:59Z", 
+                        "Description": "Blackout Dates for January 2014",
+                        "accounts": [ 10650001 ]
+                    }, 
+                    {
+                        "id": 2, 
+                        "Name": "February Blackout Dates", 
+                        "StartDate": "2014-02-20T00:00:00Z", 
+                        "EndDate": "2014-02-24T23:59:59Z", 
+                        "Description": "Blackout Dates for February 2014",
+                        "accounts": [ 10650001 ]
+                    },
+                    {
+                        "id": 3, 
+                        "Name": "Sub Account Blackout Dates", 
+                        "StartDate": "2014-02-20T00:00:00Z", 
+                        "EndDate": "2014-02-24T23:59:59Z", 
+                        "Description": "Blackout Dates for Child Account",
+                        "accounts": [ 10650002 ]
+                    },
+                    {
+                        "id": 4, 
+                        "Name": "Sub Account Blackout Dates 2", 
+                        "StartDate": "2014-02-20T00:00:00Z", 
+                        "EndDate": "2014-02-24T23:59:59Z", 
+                        "Description": "Blackout Dates for Child Account",
+                        "accounts": [ 10650001, 10650002 ]
+                    },
+                    ...
+                ],
+                page: 1,
+                pageSize: 10,
+                count: 15
+            }
+
++ Parameters
+    + id (required) ... id for the account
+    + startDate =`startDate of Blackout Date range` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting Blackout Dates. 
+    + endDate =`endDate of Blackout Date range` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + includeChildren = `show blackout dates for all child accounts` (optional, boolean) ... Specify whether or not to display child account Blackout Dates
+
+### List all Blackout Dates for an Account [GET]
++ Response 200
+    [Blackout Dates Collection][]
+
+## Blackout Date By Id [/accounts/{id}/blackoutdates/{blackoutdateid}]
+A Blackout Date defines when no user-scheduled messages can be sent in an account (or sub-account)
+
++ Model (application/json)
+    JSON Representation of a Blackout Date
+    + Body
+    
+            {
+                "id": 1, 
+                "Name": "January Blackout Dates", 
+                "StartDate": "2014-01-20T00:00:00Z", 
+                "EndDate": "2014-01-24T23:59:59Z", 
+                "Description": "Blackout Dates for January 2014",
+                "accounts": [ 10650001 ]
+            }
+
++ Parameters
+    + id (required) ... id for the account
+    + blackoutdateid (required) ... id for the Blackout Date
+    
+### Get Blackout Date By Id [GET]
++ Response 200
+    [Blackout Date By Id][]
+
+### Create Blackout Date [POST]
++ Request
+
+        {
+            "Name": "New Blackout Date",
+            "StartDate": "2014-01-20T00:00:00Z", 
+            "EndDate": "2014-01-24T23:59:59Z",  
+            "Description": "Blackout Dates for January 2014",
+            "acounts": [ 10650001 ]
+        }
+
++ Response 201
+    [Blackout Date By Id][]
+
+### Update Blackout Date [PATCH]
++ Request
+    
+        {
+            "Name": "Updated January Blackout Dates", 
+            "EndDate": "2014-01-25T23:59:59Z", 
+        }
+            
+
++ Response 200
+    [Blackout Date By Id][]
+
+### Delete Blackout Date [DELETE]
++ Response 200
+    
+        {
+            "_links": {
+                "parent": { "href": "/accounts/{id}" }
+            },
+            "message": "Blackout Date successfully deleted"
+        }
