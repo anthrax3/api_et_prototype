@@ -2726,7 +2726,7 @@ A single subscriber attribute object with all its details
 # Group Blackout Dates
 Notes related resources of the **Blackout Dates API**
 
-## Blackout Dates Collection [/accounts/{id}/blackoutdates/{?startDate,endDate,includeChildren}]
+## Blackout Dates Collection [/messaging-internal/v1/accounts/{id}/blackoutdates/{?startDate,endDate,includeChildren}]
 A collection of all Blackout Dates that are in progress or scheduled in the future
 
 + Model (application/json)
@@ -2763,15 +2763,7 @@ A collection of all Blackout Dates that are in progress or scheduled in the futu
                         "StartDate": "2014-02-20T00:00:00Z", 
                         "EndDate": "2014-02-24T23:59:59Z", 
                         "Description": "Blackout Dates for Child Account",
-                        "accounts": [ 10650002 ]
-                    },
-                    {
-                        "id": 4, 
-                        "Name": "Sub Account Blackout Dates 2", 
-                        "StartDate": "2014-02-20T00:00:00Z", 
-                        "EndDate": "2014-02-24T23:59:59Z", 
-                        "Description": "Blackout Dates for Child Account",
-                        "accounts": [ 10650001, 10650002 ]
+                        "accounts": [ 10650001 ]
                     },
                     ...
                 ],
@@ -2782,15 +2774,15 @@ A collection of all Blackout Dates that are in progress or scheduled in the futu
 
 + Parameters
     + id (required) ... id for the account
-    + startDate =`startDate of Blackout Date range` (optional, string) ... ISO8601 formatted Date String, from which to begin collecting Blackout Dates. 
-    + endDate =`endDate of Blackout Date range` (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
-    + includeChildren = `show blackout dates for all child accounts` (optional, boolean) ... Specify whether or not to display child account Blackout Dates
+    + startDate (optional, string) ... ISO8601 formatted Date String, from which to begin collecting Blackout Dates. 
+    + endDate (optional, string) ... ISO8601 formatted Date string, end time to cap results on.
+    + includeChildren = `false` (optional, boolean) ... Specify whether or not to display child account Blackout Dates
 
 ### List all Blackout Dates for an Account [GET]
 + Response 200
     [Blackout Dates Collection][]
 
-## Blackout Date By Id [/accounts/{id}/blackoutdates/{blackoutdateid}]
+## Blackout Date By Id [/messaging-internal/v1/accounts/{id}/blackoutdates/{blackoutdateid}]
 A Blackout Date defines when no user-scheduled messages can be sent in an account (or sub-account)
 
 + Model (application/json)
@@ -2833,7 +2825,10 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
     
         {
             "Name": "Updated January Blackout Dates", 
-            "EndDate": "2014-01-25T23:59:59Z", 
+            "StartDate": "2014-05-20T00:00:00Z", 
+            "EndDate": "2014-05-24T23:59:59Z",  
+            "Description": "Blackout Dates for May 2014 Updated",
+            "acounts": [ 10650001 ]
         }
             
 
