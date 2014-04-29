@@ -121,7 +121,7 @@ Collection of Messages sent by an account.
 + Response 200
     [Account Messages Transactional Collection][]
 
-## Account Events [/accounts/{memberId}/events{?fields,startDate,endDate}]
+## Account Events [/accounts/{memberId}/events/messages/triggered{?fields,startDate,endDate}]
 A summary of all events that have occurred for an account for a given timerange, rolled into a single object.
 
 + Model (application/json)
@@ -190,7 +190,7 @@ A summary of all events that have occurred for an account for a given timerange,
 + Response 200
     [Account Events][]
 
-## Account Events Daily [/accounts/{memberId}/events/daily{?fields,startDate,endDate}]
+## Account Events Daily [/accounts/{memberId}/events/messages/triggered/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for an account, rolled into 24 hour chunks.
 
 + Model (application/json)
@@ -343,7 +343,7 @@ A collection of events that have occurred for an account, rolled into 24 hour ch
 + Response 200
     [Account Events Daily][]
 
-## Account Events Hourly [/accounts/{memberId}/events/hourly{?fields,startDate,endDate}]
+## Account Events Hourly [/accounts/{memberId}/events/messages/triggered/hourly{?fields,startDate,endDate}]
 + Model (application/json)
     JSON Representation of events that have occurred on an Account, rolled up hourly.
     + Body
@@ -959,7 +959,7 @@ Send a message using a pre-existing triggered send definition
 
 
 
-## Message Events [/messages/{id}/events{?fields,startDate,endDate}]
+## Message Events [/messages/triggered/{id}/events{?fields,startDate,endDate}]
 A collection of all events that have occurred for a message for a given time range.  Results are collated into a single result.
 
 + Model (application/json)
@@ -1025,7 +1025,7 @@ A collection of all events that have occurred for a message for a given time ran
 + Response 200
     [Message Events][]
 
-## Message Events Daily [/messages/{id}/events/daily{?fields,startDate,endDate}]
+## Message Events Daily [/messages/triggered/{id}/events/daily{?fields,startDate,endDate}]
 A collection of events that have occurred for a message, rolled into 24 hour chunks.
 
 + Model (application/json)
@@ -1175,7 +1175,7 @@ A collection of events that have occurred for a message, rolled into 24 hour chu
 + Response 200
     [Message Events Daily][]
 
-## Message Events Hourly [/messages/{id}/events/hourly{?fields,startDate,endDate}]
+## Message Events Hourly [/messages/triggered/{id}/events/hourly{?fields,startDate,endDate}]
 + Model (application/json)
     JSON Representation of events that have occurred on a Message, rolled up hourly.
     + Body
