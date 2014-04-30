@@ -1681,26 +1681,26 @@ A collection of AttributeSetDefinition references for the identified schema.
                 "page": 1,
                 "pageSize": 25,
                 "links": {
-                        "self": { "href": "/schemas/{id}/attributeSetDefinitions" }
-                        "schema": { "href": "/schemas/{id}" },
+                        "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions" }
+                        "schema": { "href": "/schemas/{schemaId}" },
                     },
                 "items": [{
                     "links": {
-                        "self": { "href": "/schemas/{parentReferenceId}/attributeSetDefinitions/{id}" }
+                        "self": { "href": "/schemas/{parentId}/attributeSetDefinitions/{id}" }
                     },
                     "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
                     "name": "MobileConnect Demographics",
                     "key": "com.exacttarget.mobileconnect.MobileDemographics",
-                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                    "parentId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
                 },
                 {
                     "links": {
-                        "self": { "href": "/schemas/{parentReferenceId}/attributeSetDefinitions/{id}" }
+                        "self": { "href": "/schemas/{parentId}/attributeSetDefinitions/{id}" }
                     },
                     "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
                     "name": "Retail Orders",
                     "key": "RetailOrders",
-                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                    "parentId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
                 }]    
             }
 
@@ -1717,10 +1717,8 @@ A single AttributeSetDefinition object.
     
             {
                 "links": {
-                        "self": { "href": "/schemas/{id}/attributeSetDefinitions/{id}" },
-                        "attributeDefinitions": { "href": "/attributeSetDefinitions/{id}/attributeDefinitions" },
-                        "relationships": { "href": "/attributeSetDefinitions/{id}/relationships" },
-                        "schemas": { "href": "/schemas" }
+                        "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions/{id}" },
+                        "schema": { "href": "/schemas/{schemaId}" }
                     },
                 
                 "attributeSetDefinition": {
