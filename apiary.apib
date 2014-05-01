@@ -2737,7 +2737,7 @@ A single subscriber attribute object with all its details
 # Group Blackout Dates
 Notes related resources of the **Blackout Dates API**
 
-## Blackout Dates Collection [/messaging-internal/v1/accounts/{id}/blackoutdates/{?startDate,endDate,includeChildren}]
+## Blackout Dates Collection [/messaging-internal/v1/accounts/{id}/blackoutDates/{?startDate,endDate,includeChildren}]
 A collection of all Blackout Dates that are in progress or scheduled in the future
 
 + Model (application/json)
@@ -2746,34 +2746,34 @@ A collection of all Blackout Dates that are in progress or scheduled in the futu
     
             {
                 "_links": {
-                    "next": { "href": "/accounts/{memberId}/blackoutdates{?startDate,endDate,includeChildren}&$page=2&$pageSize=10" },
-                    "self": { "href": "/accounts/{memberId}/blackoutdates{?startDate,endDate,includeChildren}&$page=1&$pageSize=10" },
+                    "next": { "href": "/accounts/{memberId}/blackoutDates{?startDate,endDate,includeChildren}&$page=2&$pageSize=10" },
+                    "self": { "href": "/accounts/{memberId}/blackoutDates{?startDate,endDate,includeChildren}&$page=1&$pageSize=10" },
                     "parent": { "href": "/accounts/{memberId}/" },
                     "includeChildren": { "href": "/accounts/{memberId}?includChildren=true" }
                 },
                 items: [
                     {
                         "id": 1, 
-                        "Name": "January Blackout Dates", 
-                        "StartDate": "2014-01-20T00:00:00Z", 
-                        "EndDate": "2014-01-24T23:59:59Z", 
-                        "Description": "Blackout Dates for January 2014",
+                        "name": "January Blackout Dates", 
+                        "startDate": "2014-01-20T00:00:00Z", 
+                        "endDate": "2014-01-24T23:59:59Z", 
+                        "description": "Blackout Dates for January 2014",
                         "accounts": [ 10650001 ]
                     }, 
                     {
                         "id": 2, 
-                        "Name": "February Blackout Dates", 
-                        "StartDate": "2014-02-20T00:00:00Z", 
-                        "EndDate": "2014-02-24T23:59:59Z", 
-                        "Description": "Blackout Dates for February 2014",
+                        "name": "February Blackout Dates", 
+                        "startDate": "2014-02-20T00:00:00Z", 
+                        "endDate": "2014-02-24T23:59:59Z", 
+                        "description": "Blackout Dates for February 2014",
                         "accounts": [ 10650001 ]
                     },
                     {
                         "id": 3, 
-                        "Name": "Sub Account Blackout Dates", 
-                        "StartDate": "2014-02-20T00:00:00Z", 
-                        "EndDate": "2014-02-24T23:59:59Z", 
-                        "Description": "Blackout Dates for Child Account",
+                        "name": "Sub Account Blackout Dates", 
+                        "startDate": "2014-02-20T00:00:00Z", 
+                        "endDate": "2014-02-24T23:59:59Z", 
+                        "description": "Blackout Dates for Child Account",
                         "accounts": [ 10650001 ]
                     },
                     ...
@@ -2793,7 +2793,7 @@ A collection of all Blackout Dates that are in progress or scheduled in the futu
 + Response 200
     [Blackout Dates Collection][]
 
-## Blackout Date By Id [/messaging-internal/v1/accounts/{id}/blackoutdates/{blackoutdateid}]
+## Blackout Date By Id [/messaging-internal/v1/accounts/{id}/blackoutDates/{blackoutDateId}]
 A Blackout Date defines when no user-scheduled messages can be sent in an account (or sub-account)
 
 + Model (application/json)
@@ -2802,16 +2802,16 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
     
             {
                 "id": 1, 
-                "Name": "January Blackout Dates", 
-                "StartDate": "2014-01-20T00:00:00Z", 
-                "EndDate": "2014-01-24T23:59:59Z", 
-                "Description": "Blackout Dates for January 2014",
+                "name": "January Blackout Dates", 
+                "startDate": "2014-01-20T00:00:00Z", 
+                "endDate": "2014-01-24T23:59:59Z", 
+                "description": "Blackout Dates for January 2014",
                 "accounts": [ 10650001 ]
             }
 
 + Parameters
     + id (required) ... id for the account
-    + blackoutdateid (required) ... id for the Blackout Date
+    + blackoutDateId (required) ... id for the Blackout Date
     
 ### Get Blackout Date By Id [GET]
 + Response 200
@@ -2821,10 +2821,10 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
 + Request
 
         {
-            "Name": "New Blackout Date",
-            "StartDate": "2014-01-20T00:00:00Z", 
-            "EndDate": "2014-01-24T23:59:59Z",  
-            "Description": "Blackout Dates for January 2014",
+            "name": "New Blackout Date",
+            "startDate": "2014-01-20T00:00:00Z", 
+            "endDate": "2014-01-24T23:59:59Z",  
+            "description": "Blackout Dates for January 2014",
             "acounts": [ 10650001 ]
         }
 
@@ -2835,10 +2835,10 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
 + Request
     
         {
-            "Name": "Updated January Blackout Dates", 
-            "StartDate": "2014-05-20T00:00:00Z", 
-            "EndDate": "2014-05-24T23:59:59Z",  
-            "Description": "Blackout Dates for May 2014 Updated",
+            "name": "Updated January Blackout Dates", 
+            "startDate": "2014-05-20T00:00:00Z", 
+            "endDate": "2014-05-24T23:59:59Z",  
+            "description": "Blackout Dates for May 2014 Updated",
             "acounts": [ 10650001 ]
         }
             
