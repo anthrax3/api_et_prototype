@@ -2817,20 +2817,6 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
 + Response 200
     [Blackout Date By Id][]
 
-### Create Blackout Date [POST]
-+ Request
-
-        {
-            "name": "New Blackout Date",
-            "startDate": "2014-01-20T00:00:00Z", 
-            "endDate": "2014-01-24T23:59:59Z",  
-            "description": "Blackout Dates for January 2014",
-            "accounts": [ 10650001 ]
-        }
-
-+ Response 201
-    [Blackout Date By Id][]
-
 ### Update Blackout Date [PATCH]
 + Request
     
@@ -2855,3 +2841,21 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
             },
             "message": "Blackout Date successfully deleted"
         }
+
+
+## Blackout Date [/messaging-internal/v1/accounts/{id}/blackoutDates/]
+A Blackout Date defines when no user-scheduled messages can be sent in an account (or sub-account)
+
+### Create Blackout Date [POST]
++ Request
+
+        {
+            "name": "New Blackout Date",
+            "startDate": "2014-01-20T00:00:00Z", 
+            "endDate": "2014-01-24T23:59:59Z",  
+            "description": "Blackout Dates for January 2014",
+            "accounts": [ 10650001 ]
+        }
+
++ Response 201
+    [Blackout Date By Id][]
