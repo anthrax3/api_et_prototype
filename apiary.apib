@@ -2917,3 +2917,78 @@ A Blackout Date defines when no user-scheduled messages can be sent in an accoun
             "description": "Blackout Dates for January 2014",
             "accounts": [ 10650001 ]
         }
+        
+        
+
+# Group EmailTools
+Notes related resources of the **EmailTools API**
+
+## EmailToolsEntity [/EmailServices-Internal/v1/emailTools/]
+A single EmailTools entity with all of its details
+
+
++ Model (application/json)
+
+        {
+            "emailTools": [{
+                "name": "Track Email Opens",
+                "value": "<custom name=\"opencounter\" type=\"tracking\">",
+            },
+            {
+                "name": "Physical Mailing Address (Required)",
+                "value": "stuff"
+            },
+            {
+                "name": "Forward to a Friend",
+                "value": "stuff"
+            },
+            {
+                "name": "View Email as a Web Page",
+                "value": "stuff"
+            },
+            {
+                "name": "Privacy Policy",
+                "value": "stuff"
+            },
+            {
+                "name": "Unsubscribe Center",
+                "value": "<a href=\"%%unsub_center_url%%\" alias=\"{0}\">{0}</a>"
+            },
+            {
+                "name": "Profile Center (Required)",
+                "value": "<a href=\"%%profile_center_url%%\" alias=\"{0}\">{0}</a>"
+            },
+            {
+                "name": "Subscription Center",
+                "value": "<a href=\"%%subscription_center_url%%\" alias=\"{0}\">{0}</a>"
+            },
+            {
+                "name": "Powered By Logo",
+                "value": "stuff"
+            },
+            {
+                "name": "Social Markup",
+                "value": "stuff"
+            },
+            {
+                "name": "Facebook Like",
+                "value": "stuff"
+            },
+            {
+                "name": "View Email as a Web Page",
+                "value": "stuff"
+            },
+            {
+                "name": "Subscription Center",
+                "value": "stuff"
+            }]
+        }
+
+
+
+### Retrieve emailTools [GET]
++ Response 200 (application/json)
+
+    [EmailToolsEntity][]
+
+        
