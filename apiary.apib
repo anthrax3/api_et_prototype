@@ -1709,6 +1709,46 @@ A collection of AttributeSetDefinition references for the identified schema.
 + Response 200
     [AttributeSetDefinition Collection][]
 
+
+## AttributeGroups AttributeSetDefinition Collection [/attributeGroups/{id}/attributeSetDefinitions]
+A collection of AttributeSetDefinition references for the identified schema.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                        "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions" }
+                        "schema": { "href": "/schemas/{schemaId}" },
+                    },
+                "items": [{
+                    "links": {
+                        "self": { "href": "/schemas/{parentId}/attributeSetDefinitions/{id}" }
+                    },
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "MobileConnect Demographics",
+                    "key": "com.exacttarget.mobileconnect.MobileDemographics",
+                    "parentId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                },
+                {
+                    "links": {
+                        "self": { "href": "/schemas/{parentId}/attributeSetDefinitions/{id}" }
+                    },
+                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                    "name": "Retail Orders",
+                    "key": "RetailOrders",
+                    "parentId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0"
+                }]    
+            }
+
+### Retrieve an AttributeGroups AttributeSetDefinitions Collection [GET]
++ Response 200
+    [AttributeGroups AttributeSetDefinition Collection][]
+
 ## AttributeSetDefinition by Id [/schemas/{id}/attributeSetDefinitions/{id}]
 A single AttributeSetDefinition object.
 
