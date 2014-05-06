@@ -698,7 +698,7 @@ Status information of a job
 
 # Group Message Resource
 
-## Triggered Send Message - v2 [/v2/messages/triggered/{id}]
+## Triggered Send Message - v2 [/messaging-internal/v2/messages/triggered/{id}]
 The Triggered Send Message Resource
 
 + Model (application/json)
@@ -757,7 +757,7 @@ The Triggered Send Message Resource
 + Response 200
     [Triggered Send Message - v2][]    
 
-## Triggered Send Status - v2 [/messages/triggered/status{?fields,startDate,endDate}]
+## Triggered Send Status - v2 [/messaging-internal/v2/messages/triggered/status{?fields,startDate,endDate}]
 
 Status information about a triggered send.  Retrieves status for the account ID based upon token used to make the call.
 
@@ -803,7 +803,7 @@ Status information about a triggered send.  Retrieves status for the account ID 
 + Response 200
     [Triggered Send Status - v2][]
 
-## Send a Triggered Message [/messages/{id}/send]
+## Send a Triggered Message [/messaging-internal/v1/messages/{id}/send]
 Send a message using a pre-existing triggered send definition
 
 
