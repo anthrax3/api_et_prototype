@@ -2433,51 +2433,43 @@ A single EmailTools entity with all of its details
             },
             {
                 "name": "Physical Mailing Address (Required)",
-                "value": "stuff"
+                "value": "<table cellpadding=\"2\" cellspacing=\"0\" width=\"600\" ID=\"Table5\" Border=0><tr><td><font face=\"verdana\" size=\"1\" color=\"#444444\">This email was sent to:  %%emailaddr%% <br><br><b>Email Sent By:</b> %%Member_Busname%%<br>%%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%<br><br></font></td></tr></table>"
             },
             {
                 "name": "Forward to a Friend",
-                "value": "stuff"
+                "value": "<a href=\"%%ftaf_url%%\"><img src=\"http://www.exacttarget.com/members/newsletters/gfx/forwardafriendicon.gif\" border=\"0\"></a>"
             },
             {
                 "name": "View Email as a Web Page",
-                "value": "stuff"
+                "value": "To view this email as a web page, click <a href=\"%%view_email_url%%\">here.</a>"
             },
             {
                 "name": "Privacy Policy",
-                "value": "stuff"
+                "value": "We respect your right to privacy - click <a href=\"http://email.exacttarget.com/company-anti-sp-policy.asp\">here</a> to view our policy."
             },
             {
                 "name": "Unsubscribe Center",
-                "value": "<a href=\"%%unsub_center_url%%\" alias=\"{0}\">{0}</a>"
+                "value": "<a href=\"%%unsub_center_url%%\" alias=\"Unsubscribe\">Unsubscribe</a>"
             },
             {
                 "name": "Profile Center (Required)",
-                "value": "<a href=\"%%profile_center_url%%\" alias=\"{0}\">{0}</a>"
+                "value": "<a href=\"%%profile_center_url%%\" alias=\"Update Profile\">Update Profile</a>"
             },
             {
                 "name": "Subscription Center",
-                "value": "<a href=\"%%subscription_center_url%%\" alias=\"{0}\">{0}</a>"
+                "value": "<a href=\"%%subscription_center_url%%\" alias=\"Manage Subscriptions\">Manage Subscriptions</a>"
             },
             {
                 "name": "Powered By Logo",
-                "value": "stuff"
+                "value": "<a href=\"http://www.exacttarget.com\"><img src=\"http://images.exacttarget.com/smalllogo2.gif\" border=\"0\"></a>"
             },
             {
                 "name": "Social Markup",
-                "value": "stuff"
+                "value": "<!-- RegionStart[ contentslot:\"slotname\", title:\"Title of Shared Content web page\", description:\"customer key of CSS file in portfolio\", csskey:\"Description of Shared Content web page\"] -->\n<!-- Creates a link to share this content with a social network -->\n<a href=\"%%=GetSocialPublishURL('replacewithsocialnetwork','slotname')=%%\" alias=\"Publish to Social Network Name - slotname\" title=\"Publish to Social Network Name\"><img src=\"icon url\" alt=\"Social Network Name\" title=\"Social Network Name\" border=\"0\"></a>\n<!-- RegionEnd[ contentslot:\"slotname\"] -->"
             },
             {
                 "name": "Facebook Like",
-                "value": "stuff"
-            },
-            {
-                "name": "View Email as a Web Page",
-                "value": "stuff"
-            },
-            {
-                "name": "Subscription Center",
-                "value": "stuff"
+                "value": "<!-- RegionStart[ contentslot:\"slotname\"] -->\r\n\r\n<!-- Creates a Facebook 'LIKE' button.  Content slot name in RegionStart/RegionEnd must match the value of the \"contentslot\" \r\n     JSON property.  JSON properties in \"templates\" map to Facebook Like Widget properties as of '8/25/2011'.   \r\n     See http://developers.facebook.com/docs/reference/plugins/like/ for additional documentation for the 'LIKE' properties below. -->\r\n\r\n<div id=\"CONTAINER_FB1399386754263\"><!-- %%[ IF _MessageContext == \"Social\" THEN ]%% -->\r\n<!--__FBDIV_FB1399386754263__-->\r\n<!-- %%[ ELSE ]%% -->\r\n<a href=\"%%=GetSocialPublishURL('13','FB1399386754263')=%%\" id=\"FB1399386754263\" alias=\"Publish Like to Facebook\" fb=\"true\">\r\n<img border=\"0\" alt=\"Facebook Like\" src=\"\" />\r\n</a>\r\n<!-- %%[ ENDIF ]%% -->\r\n  <!-- {\"id\":\"FB1399386754263\",\r\n        \"type\":\"facebooklike\",\r\n        \"contentslot\":\"slotname\",\r\n        \"templates\":{\r\n        \"ogtags\":[{\"property\":\"og:title\",\"content\":\"title\"},\r\n                    {\"property\":\"og:description\",\"content\":\"\"},\r\n                    {\"property\":\"og:site_name\",\"content\":\"localhost\"},\r\n                    {\"property\":\"og:image\",\"content\":\"\"},\r\n                    {\"property\":\"fb:app_id\",\"content\":\"1234567890\"},\r\n                    {\"property\":\"og:type\",\"content\":\"article\"}],\r\n        \"fblike\":{\r\n          \"send\":false,\r\n          \"layout\":\"standard\",\r\n          \"show_faces\":true,\r\n          \"width\":450,\r\n          \"action\":\"like\",\r\n          \"font\":\"arial\",\r\n          \"colorscheme\":\"light\",\r\n          \"ref\":\"\"}}} -->\r\n</div>\r\n<!-- RegionEnd[ contentslot:\"slotname\"] -->\r\n"
             }]
         }
 
