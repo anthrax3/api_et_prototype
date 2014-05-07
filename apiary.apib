@@ -1496,221 +1496,1283 @@ JSON Representation of an AttributeSet Data payload.
 + Response 200
     [Search AttributeSet Data by Name][]
 
-# Group ContentEntity
-Used to manipulate ContentEntity objects.  These are things like Paste HTMLs, images, videos, etc.
 
-## ContentEntity [/AssetService-Internal/v1/contents/{id}]
-A single Content entity with all of its details
+# Group Content API
+Documentation of the AssetServices API
 
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Content
+## General API Contracts
+
+  `User` Specification
+
+    {
+        "id": 281766,
+        "email": "agillaspie@exacttarget.com",
+        "name": "Adam Gillaspie",
+        "userId": "content.agillaspie"
+    }
+
+  `Category` Specification
+
+    {
+        "id": 310,
+        "name": "Partner Images",
+        "path": "/Assets/Partner Images",
+        "hasChildren": true,
+        "itemCount": 6
+    }
+
+  `ChannelAvailability` Specification
+
+    {
+        "email": true,
+        "mms": true,
+        "print": false,
+        "push": true,
+        "sms": false,
+        "social": true,
+        "web": true
+    }
+
+ `SearchQuery` Specification
+
+    {
+        "query" : [
+            {
+                "field": "tags",
+                "operator": "orsgroup",
+                "values": [
+                    "animals",
+                    "dog"
+                ]
+            },
+            {
+                "field": "assetType",
+                "operator": "matches",
+                "values": [
+                    "photo"
+                ]
+            }
+        ]
+    }
+    
+
+## First Class Resources
+
+ - __Asset__ - a single Asset resource identifiable by either a numeric ID or a string Key
+ - __AssetType__ - the type of an Asset, which may contain unique metadata or settings
+ - __Upload__- an asynchronous task that uploads an Asset into the system
+ - __Search__ - a query object that can be executed to return a collection of Assets
+ - __CustomField__ - a custom key/value pair that users may define and associate to an Asset
+ - __Conversion__ - an asynchronous task that generates variations of an Asset
+
+
+## File Asset [/assets/classification:file]
 
 + Model (application/json)
 
-        {
-            "id": 313,
-            "key": "danceKid6",
-            "assetType": "photo",
-            "classification": "content",
-            "version": null,
-            "name": "Dance Kid7",
-            "description": "Kid party dancing7",
-            "owner": 30980,
-            "createdDate": "2014-03-26T15:45:20-04:00",
-            "createdBy": 30980,
-            "modifiedDate": "2014-03-26T15:45:20-04:00",
-            "modifiedBy": 30980,
-            "enterpriseId": 281359,
-            "memberId": 281359,
-            "businessUnitAvailability": null,
-            "channels": {
-                "email": true,
-                "mms": true,
-                "print": false,
-                "push": false,
-                "sms": false,
-                "social": true,
-                "web": true
-            },
-            "status": "Active",
-            "locked": null,
-            "archived": false,
-            "favorite": false,
-            "category": {
-                "id": 1392299587995,
-                "parentId": 0,
-                "name": "uploaded",
-                "path": "/uploaded",
-                "hasChildren": true,
-                "itemCount": 66
-            },
-            "tags": ["party","funny","dancing","kids","memes"],
-            "campaigns": null,
-            "contentSizeBytes": null
-        }
+    JSON Representation of an Asset of Classification `file`.
+    + Body
 
-
-### Retrieve a Content [GET]
-+ Response 200 (application/json)
-
-    [ContentEntity][]
-
-### Update a Content [PATCH]
-+ Request (application/json)
-
-    [ContentEntity][]
-
-+ Response 200 (application/json)
-
-    [ContentEntity][]
-
-### Delete a Content [DELETE]
-+ Response 204
-
-## ContentEntitys [/AssetService-Internal/v1/contents]
-
-### Get all Content [GET]
-+ Response 200 (application/json)
-
-        {
-            "count": 2,
-            "page": 1,
-            "pageSize": 25,
-            "links": {
-                "self": { "href": "/v1/contents" },
-                "next": { "href": "/v1/contents?$page=2&$pagesize=25" }
-            },
-            "items": [
-                {
-                    "tags": ["tv","science"],
-                    "status": "1",
-                    "modifiedBy": 0,
-                    "enterpriseId": 281359,
-                    "channels": {
-                        "email": true,
-                        "mms": true,
-                        "print": true,
-                        "push": true,
-                        "sms": false,
-                        "social": true,
-                        "web": true
-                    },
-                    "favorite": false,
-                    "modifiedDate": "2014-03-05T10:04:32-05:00",
-                    "id": 119,
-                    "category": {
-                        "id": 1394031845402,
-                        "parentId": 1392299587995,
-                        "name": "tv shows",
-                        "path": "/uploaded/tv shows",
-                        "hasChildren": false,
-                        "itemCount": 5
-                    },
-                    "archived": false,
-                    "createdBy": 0,
-                    "assetType": "photo",
-                    "description": "Sketch of Walter White",
-                    "classification": "file",
-                    "name": "Heisenberg",
-                    "owner": 0,
-                    "memberId": 281359,
-                    "createdDate": "2014-03-05T10:04:32-05:00",
-                    "key": "heisenberg",
-                    "version": null,
-                    "businessUnitAvailability": null,
-                    "locked": null,
-                    "campaigns": null,
-                    "contentSizeBytes": null
+            {
+                "id": 104,
+                "key": "justAKitten",
+                "assetType": "photo",
+                "classification": "file",
+                "version": 1,
+                "name": "Kitten",
+                "description": "Kitten sitting on a rug",
+                "owner": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
                 },
-                {
-                    "tags": ["King of Queens","ketchup","tv"],
-                    "status": "Active",
-                    "modifiedBy": 0,
-                    "enterpriseId": 281359,
-                    "channels": {
-                        "email": true,
-                        "mms": true,
-                        "print": true,
-                        "push": true,
-                        "sms": true,
-                        "social": true,
-                        "web": true
-                    },
-                    "favorite": false,
-                    "modifiedDate": "2014-03-05T10:04:50-05:00",
-                    "id": 157,
-                    "category": {
-                        "id": 1394031845402,
-                        "parentId": 1392299587995,
-                        "name": "tv shows",
-                        "path": "/uploaded/tv shows",
-                        "hasChildren": false,
-                        "itemCount": 5
-                    },
-                    "archived": false,
-                    "createdBy": 0,
-                    "assetType": "photo",
-                    "description": "Doug teaching Arthur how to say Ketchup",
-                    "classification": "file",
-                    "name": "Ketchup vs. Catsup",
-                    "owner": 0,
-                    "memberId": 281359,
-                    "createdDate": "2014-03-05T10:04:50-05:00",
-                    "key": "ketchup",
-                    "version": null,
-                    "businessUnitAvailability": null,
-                    "locked": null,
-                    "campaigns": null,
-                    "contentSizeBytes": null
+                "createdDate": "2014-05-06T05:28:01-04:00",
+                "createdBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "modifiedDate": "2014-05-06T05:28:03-04:00",
+                "modifiedBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "enterpriseId": 281359,
+                "memberId": 281359,
+                "status": "active",
+                "activeDate": "2014-05-06T05:28:01-04:00",
+                "archiveDate": "0001-01-01T00:00:00",
+                "locked": false,
+                "favorite": true,
+                "category": {
+                    "id": 0,
+                    "name": "Assets",
+                    "path": "/Assets",
+                    "hasChildren": false,
+                    "itemCount": 3
+                },
+                "tags": [
+                    "animals",
+                    "kitten",
+                    "cute"
+                ],
+                "campaigns": [],
+                "customFields": {
+                    "animal": "cat",
+                    "season": "Spring"
+                },
+                "channels": {
+                    "email": false,
+                    "mms": false,
+                    "print": false,
+                    "push": false,
+                    "sms": false,
+                    "social": false,
+                    "web": false
+                },
+                "fileProperties": {
+                    "fileName": "justAKitten.jpg",
+                    "fileFormat": "jpg",
+                    "fileCreatedDate": "2014-05-06 07:28:01 +0000",
+                    "fileModifiedDate": "2014-05-06 07:28:01 +0000",
+                    "uploadedDate": "2014-05-06 07:28:01 +0000",
+                    "importStatus": "complete",
+                    "lensType": null,
+                    "focalLength": null,
+                    "cameraModel": null,
+                    "iso": null,
+                    "colorSpace": null,
+                    "colorType": null,
+                    "shutterSpeed": null,
+                    "aperture": null,
+                    "imageRotation": null,
+                    "primaryFileName": null,
+                    "previewStatus": "complete",
+                    "title": null,
+                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
                 }
-            ]
-        }
+            }
 
-### Create a Content [POST]
+## Structured Content Asset [/assets/classification:structuredcontent]
+
++ Model (application/json)
+
+    JSON Representation of an Asset of Classification `structuredcontent`.
+    + Body
+
+            {
+                "id": 229,
+                "key": "heroContent",
+                "assetType": "htmlonly",
+                "classification": "structuredcontent",
+                "version": 1,
+                "name": "Hero Content Area",
+                "description": "HTML content for a Message",
+                "owner": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "createdDate": "2014-05-06T14:59:53-04:00",
+                "createdBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "modifiedDate": "2014-05-06T14:59:54-04:00",
+                "modifiedBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "enterpriseId": 281359,
+                "memberId": 281359,
+                "status": "active",
+                "activeDate": "2014-05-06T15:34:02-04:00",
+                "archiveDate": "0001-01-01T00:00:00",
+                "locked": false,
+                "favorite": true,
+                "category": {
+                    "id": 0,
+                    "name": "Assets",
+                    "path": "/Assets",
+                    "hasChildren": false,
+                    "itemCount": 3
+                },
+                "tags": [],
+                "campaigns": [],
+                "customFields": {
+                    "partner": "ExactTarget",
+                    "season": "Summer"
+                },
+                "channels": {
+                    "email": false,
+                    "mms": false,
+                    "print": false,
+                    "push": false,
+                    "sms": false,
+                    "social": false,
+                    "web": false
+                },
+                "contentFields": {
+                    "body": "<p>This is just some content from Adam.</p>"
+                },
+                "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+            }
+
+
+# Group Asset
+  
+  __Standard Properties__ defined on every Asset
+
+    {
+        "id": 104,
+        "key": "justAKitten",
+        "assetType": "photo",
+        "classification": "file",
+        "version": 1,
+        "name": "Kitten",
+        "description": "Kitten sitting on a rug",
+        "owner": {
+            "id": 282209,
+            "email": "agillaspie@exacttarget.com",
+            "name": "API Client S1QA3 app user",
+            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+        },
+        "createdDate": "2014-05-06T05:28:01-04:00",
+        "createdBy": {
+            "id": 282209,
+            "email": "agillaspie@exacttarget.com",
+            "name": "API Client S1QA3 app user",
+            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+        },
+        "modifiedDate": "2014-05-06T05:28:03-04:00",
+        "modifiedBy": {
+            "id": 282209,
+            "email": "agillaspie@exacttarget.com",
+            "name": "API Client S1QA3 app user",
+            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+        },
+        "enterpriseId": 281359,
+        "memberId": 281359,
+        "status": "active",
+        "activeDate": "2014-05-06T05:28:01-04:00",
+        "archiveDate": "0001-01-01T00:00:00",
+        "locked": false,
+        "favorite": true,
+        "category": {
+            "id": 0,
+            "name": "Assets",
+            "path": "/Assets",
+            "hasChildren": false,
+            "itemCount": 3
+        },
+        "tags": [
+            "animals",
+            "kitten",
+            "cute"
+        ],
+        "campaigns": [],
+        "customFields": {
+            "animal": "cat",
+            "season": "Spring"
+        },
+        "channels": {
+            "email": false,
+            "mms": false,
+            "print": false,
+            "push": false,
+            "sms": false,
+            "social": false,
+            "web": false
+        }
+    }
+
+__Asset Properties with Restricted Values__
+
+`assetType` *(Additional Custom AssetTypes are also valid)*
+  
+  + archive
+  + audio
+  + code
+  + document
+  + photo
+  + rawImage
+  + video
+  + none
+  + htmlOnly
+  + textOnly
+  + imageOnly
+  + textPlusImage
+  + textPlusImagePlusHeadline
+  + dynamicContent
+  + header
+  + footer
+  + message
+
+`classification`
+  
+  + file
+  + structuredcontent
+  + content
+  
+`status`
+  
+  + active
+  + archived
+  + deleted
+
+`importStatus`
+  
+  + uploading
+  + uploaded
+  + imported
+  + reimported
+  + complete
+  + error
+
+`previewStatus`
+  
+  + unknown
+  + exif
+  + icon
+  + converting
+  + complete
+  + error
+
+__Classification-Specific Properties__
+
+A handful of top-level properties are only available on Assets of a specific *Classification*. Highlighted below are the properties that are unique to each *Classification*, along with some example data. 
+
+  __Classification__: `file`
+  
+  The fields that are available inside of __fileProperties__ are specific to the *AssetType*. 
+  
+    {
+        "fileProperties": {
+            "fileName": "justAKitten.jpg",
+            "fileFormat": "jpg",
+            "fileCreatedDate": "2014-05-06 07:28:01 +0000",
+            "fileModifiedDate": "2014-05-06 07:28:01 +0000",
+            "uploadedDate": "2014-05-06 07:28:01 +0000",
+            "importStatus": "complete",
+            "lensType": null,
+            "focalLength": null,
+            "cameraModel": null,
+            "iso": null,
+            "colorSpace": null,
+            "colorType": null,
+            "shutterSpeed": null,
+            "aperture": null,
+            "imageRotation": null,
+            "primaryFileName": null,
+            "previewStatus": "complete",
+            "title": null,
+            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
+        }
+    }
+
+
+  __Classification__: `structuredcontent`
+  
+  The fields that are available inside of __contentFields__ are specific to the *AssetType*.  
+
+    {
+        "contentFields": {
+            "headline": "Don't Miss Out!",
+            "body": "This is just a sample story. Check out more by visiting our website!",
+            "image": 104
+        },
+        "content": "<table><tr><td colspan=\"2\"><h2>{{headline}}</h2></td></tr><tr><td>{{image}}</td><td><div>{{body}}</div></td></tr></table>"
+    }
+    
+  __Classification__: `content`
+
+  For Assets with the AssetType `message`, the __content__ property contains the entire stringified *Guide Message Model*.
+
+    {
+        "channelType": {
+            "value": "email",
+            "isActive": true,
+            "modelType": "channelType",
+            "validated": false
+        },
+        "messageType": {
+            "value": "application/vnd.et.message.email.html",
+            "isActive": true,
+            "modelType": "messageType",
+            "validated": false
+        },
+        "content": "{\"key\":\"baseValidationMessage\",\"name\":\"Validation Test Message With Address\",\"assetType\":\"message\",\"classification\":\"content\",\"description\":\"This is a sample message from the new editor\",\"category\":{\"id\":312,\"name\":\"Assets\"},\"tags\":[\"sample\",\"email\"],\"status\":\"active\",\"validated\":false,\"channelType\":{\"value\":\"email\",\"isActive\":true,\"modelType\":\"channelType\",\"validated\":false},\"messageType\":{\"value\":\"application/vnd.et.message.email.html\",\"isActive\":true,\"modelType\":\"messageType\",\"validated\":false},\"views\":[{\"bodyTag\":\"<body>\",\"content\":\"HelloWorld Has Address - First Name GTL: {{[First Name]}}<br>First Name OLD: %%First Name%%\",\"head\":\"\",\"htmlTag\":\"<html>\",\"slots\":[{\"alias\":\"hero\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{\"class\":\"text\",\"style\":\"color:#3c4044; font-family:Arial; font-size:13px; line-height:17px; text-align:left\",\"valign\":\"top\",\"width\":\"158\"},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false},{\"alias\":\"content1\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{\"valign\":\"top\",\"width\":\"350\"},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":true},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[{\"alias\":\"leftColumn\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false},{\"alias\":\"rightColumn\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false}],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false},{\"alias\":\"navigation\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false}],\"viewType\":{\"kind\":\"subjectline\",\"mimeType\":\"text/plain\",\"value\":\"text/plain; kind=subjectline\",\"isActive\":true,\"modelType\":\"viewType\",\"validated\":false},\"isActive\":true,\"validated\":false}]}"
+    }    
+
+## Asset [/assets/{id}]
+A single Asset identified by a numeric *id*.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "id": 104,
+                "key": "justAKitten",
+                "assetType": "photo",
+                "classification": "file",
+                "version": 1,
+                "name": "Kitten",
+                "description": "Kitten sitting on a rug",
+                "owner": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "createdDate": "2014-05-06T05:28:01-04:00",
+                "createdBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "modifiedDate": "2014-05-06T05:28:03-04:00",
+                "modifiedBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "enterpriseId": 281359,
+                "memberId": 281359,
+                "status": "active",
+                "activeDate": "2014-05-06T05:28:01-04:00",
+                "archiveDate": "0001-01-01T00:00:00",
+                "locked": false,
+                "favorite": true,
+                "category": {
+                    "id": 0,
+                    "name": "Assets",
+                    "path": "/Assets",
+                    "hasChildren": false,
+                    "itemCount": 3
+                },
+                "tags": [
+                    "animals",
+                    "kitten",
+                    "cute"
+                ],
+                "campaigns": [],
+                "customFields": {
+                    "animal": "cat",
+                    "season": "Spring"
+                },
+                "channels": {
+                    "email": false,
+                    "mms": false,
+                    "print": false,
+                    "push": false,
+                    "sms": false,
+                    "social": false,
+                    "web": false
+                },
+                "fileProperties": {
+                    "fileName": "justAKitten.jpg",
+                    "fileFormat": "jpg",
+                    "fileCreatedDate": "2014-05-06 07:28:01 +0000",
+                    "fileModifiedDate": "2014-05-06 07:28:01 +0000",
+                    "uploadedDate": "2014-05-06 07:28:01 +0000",
+                    "importStatus": "complete",
+                    "lensType": null,
+                    "focalLength": null,
+                    "cameraModel": null,
+                    "iso": null,
+                    "colorSpace": null,
+                    "colorType": null,
+                    "shutterSpeed": null,
+                    "aperture": null,
+                    "imageRotation": null,
+                    "primaryFileName": null,
+                    "previewStatus": "complete",
+                    "title": null,
+                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
+                }
+            }
+
+
+### Retrieve an Asset [GET]
+
++ Response 200
+    [Asset][]
+
+
+### Partially Update an Asset [PATCH]
+__Editable Properties__:
+
+| Name  | Type |
+| :------------- | :------------- |
+| key  | string | 
+| name  | string |
+| description  | string |
+| owner  | User |
+| status  | string |
+| activeDate  | date |
+| archiveDate  | date |
+| category  | Category |
+| tags  | array | 
+| channels  | ChannelAvailability |
+| customFields  | object | 
+| contentFields  | object | 
+| content  | string |
+
 + Request
 
         {
-            "key": "danceKid2",
-            "assetType": "photo",
-            "classification": "content",
-            "version": null,
-            "name": "Dance Kid2",
-            "description": "Kid party dancing2",
-            "owner": 30980,
-            "createdBy": 30980,
-            "modifiedBy": 30980,
-            "enterpriseId": 281359,
-            "memberId": 281359,
-            "businessUnitAvailability": null,
+            "id": 104,
+            "key": "justAKitten",
+            "name": "Kitten",
+            "description": "Kitten sitting on a rug",
+            "owner": {
+                "id": 282209
+            },
+            "status": "active",
+            "activeDate": "2014-05-06T05:28:01-04:00",
+            "archiveDate": "0001-01-01T00:00:00",
+            "category": {
+                "id": 0
+            },
+            "tags": [
+                "animals",
+                "kitten",
+                "cute"
+            ],
+            "customFields": {
+                "animal": "cat",
+                "season": "Spring"
+            },
             "channels": {
-                "email": true,
-                "mms": true,
+                "email": false,
+                "mms": false,
                 "print": false,
                 "push": false,
                 "sms": false,
-                "social": true,
-                "web": true
-            },
-            "status": "Active",
-            "locked": null,
-            "archived": false,
-            "favorite": false,
-            "category": {
-                "id": 1392299587995
-            },
-            "tags": [
-                "party",
-                "funny",
-                "dancing",
-                "kids",
-                "memes"
-            ],
-            "campaigns": null,
-            "contentSizeBytes": null
+                "social": false,
+                "web": false
+            }
         }
-        
+
 + Response 200
-    [ContentEntity][]
+    [Asset][]
+
+
+### Delete an Asset [DELETE]
+
++ Parameters
+    + id (required, integer, `120,145,170`) ... Numeric `id` of the Asset. Specify multiple Assets by comma-delimiting `id`s.
+
++ Response 204
+
+
+## Asset by Key [/assets/key:{key}]
+A single Asset identified by a string *key*.
+
++ Parameters
+    + key (required, string, `justAKitten`) ... String `key` of the Asset.
+
+### Retrieve an Asset by Key [GET]
+
++ Response 200
+    [Asset][]
+
+
+## Assets [/assets]
+One or multiple Assets.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 3,
+                "links": {
+                    "self": {
+                        "href": "/v1/assets"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 101,
+                        "key": "deniedOnceAgain",
+                        "assetType": "photo",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "DE-NIED Once Again",
+                        "description": "Girl denies guy at basketball game",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T05:12:29-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T05:12:34-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "0001-01-01T00:00:00",
+                        "archiveDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "memes",
+                            "basketball",
+                            "kiss",
+                            "funny"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "fileProperties": {
+                            "fileName": "deniedAgain.gif",
+                            "fileFormat": "gif",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": null,
+                            "uploadedDate": "2014-05-06 07:12:29 +0000",
+                            "importStatus": null,
+                            "lensType": null,
+                            "focalLength": null,
+                            "cameraModel": null,
+                            "iso": null,
+                            "colorSpace": null,
+                            "colorType": null,
+                            "shutterSpeed": null,
+                            "aperture": null,
+                            "imageRotation": null,
+                            "primaryFileName": null,
+                            "previewStatus": null,
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 144,
+                        "key": "scienceStuff",
+                        "assetType": "video",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "Science Stuff",
+                        "description": "Science guys making foam expand",
+                        "owner": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "createdDate": "2014-02-01T23:25:30-05:00",
+                        "createdBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "modifiedDate": "2014-04-30T20:38:04-04:00",
+                        "modifiedBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-04-24T23:44:51-04:00",
+                        "archiveDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "science"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": true,
+                            "mms": false,
+                            "print": true,
+                            "push": false,
+                            "sms": false,
+                            "social": true,
+                            "web": true
+                        },
+                        "fileProperties": {
+                            "fileName": "scienceStuff.mp4",
+                            "fileFormat": "mp4",
+                            "fileSize": "291.18 KB",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": "2014-02-28 17:17:46 +0000",
+                            "uploadedDate": "2014-02-19 10:47:02 +0000",
+                            "importStatus": "complete",
+                            "length": "00:00:06",
+                            "duration": "6.15166666666667",
+                            "frameRate": "30.00",
+                            "bitsPerSample": null,
+                            "videoCodec": null,
+                            "compression": null,
+                            "artist": null,
+                            "creator": null,
+                            "contributor": null,
+                            "primaryFileName": null,
+                            "previewStatus": "2",
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 229,
+                        "key": "heroContent",
+                        "assetType": "htmlonly",
+                        "classification": "structuredcontent",
+                        "version": 1,
+                        "name": "Hero Content Area",
+                        "description": "HTML content for a Message",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T14:59:53-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T14:59:54-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-05-06T15:34:02-04:00",
+                        "archiveDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": true,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [],
+                        "campaigns": [],
+                        "customFields": {
+                            "partner": "ExactTarget",
+                            "season": "Summer"
+                        },
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "contentFields": {
+                            "body": "<p>This is just some content from Adam.</p>"
+                        },
+                        "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+                    }
+                ]
+            }
+
+### Create an Asset [POST]
+__Available Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
+| key  | __`true`__  | string | 
+| name  | __`true`__  | string |
+| assetType  | __`true`__  | string | 
+| classification  | __`true`__  | string | 
+| description  | `false`  | string |
+| owner  | `false`  | User | Authenticated User
+| status  | `false`  | string | `active`
+| activeDate  | `false`  | date | Now
+| archiveDate  | `false`  | date | `null`
+| category  | `false`  | Category | Default Folder
+| tags  | `false`  | array | 
+| channels  | `false`  | ChannelAvailability | All Channels
+| customFields  | `false`  | object | 
+| contentFields  | `false`  | object | 
+| content  | `false`  | string |
+
++ Request
+
+        {
+            "key": "heroContent",
+            "name": "Hero Content Area",
+            "assetType": "htmlOnly",
+            "classification": "structuredcontent",
+            "description": "HTML content for a Message",
+            "contentFields": {
+                "body": "<p>This is just some content from Adam.</p>"
+            },
+            "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+        }
+
++ Response 200
+    [Structured Content Asset][]
+
+
+### Partially Update an Asset Collection [PATCH]
+__Batch-Editable Properties__:
+
+| Name  | Type |
+| :------------- | :------------- |
+| owner  | User |
+| status  | string |
+| activeDate  | date |
+| archiveDate  | date |
+| category  | Category |
+| tags  | array | 
+| channels  | ChannelAvailability |
+
++ Request
+
+        {
+            "assets": [
+                104,
+                110,
+                131,
+                145
+            ],
+            "status": "active",
+            "activeDate": "2014-05-06T15:34:02-04:00"
+        }
+
++ Response 200
+    [Assets][]
+
+
+## Asset Collection [/assets{?$page,$pageSize,$orderBy}]
+A paginated collection of Assets.
+ 
++ Parameters
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `id asc` (string, optional, `modifiedDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `id`
+            + `key`
+            + `name`
+            + `createdDate`
+            + `modifiedDate`
+            + `activeDate`
+            + `archiveDate`
+            + `fileCreatedDate`
+            + `fileModifiedDate`
+            + `uploadedDate`
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 3,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                    "self": {
+                        "href": "/v1/assets"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 101,
+                        "key": "deniedOnceAgain",
+                        "assetType": "photo",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "DE-NIED Once Again",
+                        "description": "Girl denies guy at basketball game",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T05:12:29-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T05:12:34-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "0001-01-01T00:00:00",
+                        "archiveDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "memes",
+                            "basketball",
+                            "kiss",
+                            "funny"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "fileProperties": {
+                            "fileName": "deniedAgain.gif",
+                            "fileFormat": "gif",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": null,
+                            "uploadedDate": "2014-05-06 07:12:29 +0000",
+                            "importStatus": null,
+                            "lensType": null,
+                            "focalLength": null,
+                            "cameraModel": null,
+                            "iso": null,
+                            "colorSpace": null,
+                            "colorType": null,
+                            "shutterSpeed": null,
+                            "aperture": null,
+                            "imageRotation": null,
+                            "primaryFileName": null,
+                            "previewStatus": null,
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 144,
+                        "key": "scienceStuff",
+                        "assetType": "video",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "Science Stuff",
+                        "description": "Science guys making foam expand",
+                        "owner": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "createdDate": "2014-02-01T23:25:30-05:00",
+                        "createdBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "modifiedDate": "2014-04-30T20:38:04-04:00",
+                        "modifiedBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-04-24T23:44:51-04:00",
+                        "archiveDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "science"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": true,
+                            "mms": false,
+                            "print": true,
+                            "push": false,
+                            "sms": false,
+                            "social": true,
+                            "web": true
+                        },
+                        "fileProperties": {
+                            "fileName": "scienceStuff.mp4",
+                            "fileFormat": "mp4",
+                            "fileSize": "291.18 KB",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": "2014-02-28 17:17:46 +0000",
+                            "uploadedDate": "2014-02-19 10:47:02 +0000",
+                            "importStatus": "complete",
+                            "length": "00:00:06",
+                            "duration": "6.15166666666667",
+                            "frameRate": "30.00",
+                            "bitsPerSample": null,
+                            "videoCodec": null,
+                            "compression": null,
+                            "artist": null,
+                            "creator": null,
+                            "contributor": null,
+                            "primaryFileName": null,
+                            "previewStatus": "2",
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 229,
+                        "key": "heroContent",
+                        "assetType": "htmlonly",
+                        "classification": "structuredcontent",
+                        "version": 1,
+                        "name": "Hero Content Area",
+                        "description": "HTML content for a Message",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T14:59:53-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T14:59:54-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-05-06T15:34:02-04:00",
+                        "archiveDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": true,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [],
+                        "campaigns": [],
+                        "customFields": {
+                            "partner": "ExactTarget",
+                            "season": "Summer"
+                        },
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "contentFields": {
+                            "body": "<p>This is just some content from Adam.</p>"
+                        },
+                        "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+                    }
+                ]
+            }
+
+### Retrieve All Assets [GET]
+
++ Response 200
+    [Asset Collection][]
+
+
+## Asset Collection by AssetType [/assets/type:{assetType}]
+A collection of Assets with the given *assetType*.
+
++ Parameters
+    + assetType (string)
+        AssetType of an Asset. *System-defined* AssetTypes are listed to the right.
+        + Values
+            + `archive`
+            + `audio`
+            + `code`
+            + `document`
+            + `photo`
+            + `rawImage`
+            + `video`
+            + `none`
+            + `htmlOnly`
+            + `textOnly`
+            + `imageOnly`
+            + `textPlusImage`
+            + `textPlusImagePlusHeadline`
+            + `dynamicContent`
+            + `header`
+            + `footer`
+            + `message`
+
+### Retrieve Assets by AssetType [GET]
+
++ Response 200
+    [Asset Collection][]
+
+
+## Asset Collection by Classification [/assets/classification:{classification}]
+A collection of Assets with the given *classification*.
+
++ Parameters
+    + classification (string)
+        Classification of an Asset
+        + Values
+            + `file`
+            + `structuredcontent`
+            + `content`
+
+### Retrieve Assets by Classification [GET]
+
++ Response 200
+    [Asset Collection][]
+
+
+## Asset Collection by Category [/assets/f:{categoryId}{?includeChildren}]
+A collection of Assets from the given *categoryId*.
+
+### Retrieve Assets by CategoryId [GET]
++ Parameters
+    + categoryId (required, integer) ... Numeric `id` of the Category
+    + includeChildren = `false` (optional, boolean) ... Specify whether or not to include assets in child categories
+    
++ Response 200
+    [Asset Collection][]
+
+
+## Asset Collection by Tag [/assets/tag:{name}]
+A collection of Assets associated with the given *tag*.
+
++ Parameters
+    + name (required, string, `summer`) ... Name of the Tag. *(case-insensitive)*
+
+### Retrieve Assets by Tag [GET]
+
++ Response 200
+    [Asset Collection][]
+
+
+## Favorite Assets by ID [/assets/{id*}/favorite]
+Favorite or Un-Favorite Assets for the authenticated user.
+
++ Parameters
+    + id (required, integer, `120,145,170`) ... Numeric `id` of the Asset. Specify multiple Assets by comma-delimiting `id`s.
+
+### Favorite One or Many Assets [POST]
+
++ Response 202
+    [Assets][]
+
+### Un-Favorite One or Many Assets [DELETE]
+
++ Response 200
+    [Assets][]
+
+
+## Favorited Asset Collection [/favorites/user:{userId}]
+A collection of Assets favorited by the given *user*.
+
++ Parameters
+    + userId = `@me` (optional) ... Numeric `id` or string alias of the User.
+
+### Retrieve Favorite Assets [GET]
+
++ Response 200
+    [Asset Collection][]
+
 
 # Group Subscriber Resource
 
