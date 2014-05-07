@@ -1605,7 +1605,7 @@ Documentation of the AssetServices API
                 "memberId": 281359,
                 "status": "active",
                 "activeDate": "2014-05-06T05:28:01-04:00",
-                "archiveDate": "0001-01-01T00:00:00",
+                "expirationDate": "0001-01-01T00:00:00",
                 "locked": false,
                 "favorite": true,
                 "category": {
@@ -1697,7 +1697,7 @@ Documentation of the AssetServices API
                 "memberId": 281359,
                 "status": "active",
                 "activeDate": "2014-05-06T15:34:02-04:00",
-                "archiveDate": "0001-01-01T00:00:00",
+                "expirationDate": "0001-01-01T00:00:00",
                 "locked": false,
                 "favorite": true,
                 "category": {
@@ -1765,7 +1765,7 @@ Documentation of the AssetServices API
         "memberId": 281359,
         "status": "active",
         "activeDate": "2014-05-06T05:28:01-04:00",
-        "archiveDate": "0001-01-01T00:00:00",
+        "expirationDate": "0001-01-01T00:00:00",
         "locked": false,
         "favorite": true,
         "category": {
@@ -1827,7 +1827,7 @@ __Asset Properties with Restricted Values__
 `status`
   
   + active
-  + archived
+  + expired
   + deleted
 
 `importStatus`
@@ -1954,7 +1954,7 @@ A single Asset identified by a numeric *id*.
                 "memberId": 281359,
                 "status": "active",
                 "activeDate": "2014-05-06T05:28:01-04:00",
-                "archiveDate": "0001-01-01T00:00:00",
+                "expirationDate": "0001-01-01T00:00:00",
                 "locked": false,
                 "favorite": true,
                 "category": {
@@ -2010,6 +2010,9 @@ A single Asset identified by a numeric *id*.
 
 ### Retrieve an Asset [GET]
 
++ Parameters
+    + id (required, integer, `104`) ... Numeric `id` of the Asset.
+
 + Response 200
     [Asset][]
 
@@ -2025,7 +2028,7 @@ __Editable Properties__:
 | owner  | User |
 | status  | string |
 | activeDate  | date |
-| archiveDate  | date |
+| expirationDate  | date |
 | category  | Category |
 | tags  | array | 
 | channels  | ChannelAvailability |
@@ -2045,7 +2048,7 @@ __Editable Properties__:
             },
             "status": "active",
             "activeDate": "2014-05-06T05:28:01-04:00",
-            "archiveDate": "0001-01-01T00:00:00",
+            "expirationDate": "0001-01-01T00:00:00",
             "category": {
                 "id": 0
             },
@@ -2140,7 +2143,7 @@ One or multiple Assets.
                         "memberId": 281359,
                         "status": "active",
                         "activeDate": "0001-01-01T00:00:00",
-                        "archiveDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
                         "locked": false,
                         "favorite": false,
                         "category": {
@@ -2222,7 +2225,7 @@ One or multiple Assets.
                         "memberId": 281359,
                         "status": "active",
                         "activeDate": "2014-04-24T23:44:51-04:00",
-                        "archiveDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
                         "locked": false,
                         "favorite": false,
                         "category": {
@@ -2302,7 +2305,7 @@ One or multiple Assets.
                         "memberId": 281359,
                         "status": "active",
                         "activeDate": "2014-05-06T15:34:02-04:00",
-                        "archiveDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
                         "locked": false,
                         "favorite": true,
                         "category": {
@@ -2348,7 +2351,7 @@ __Available Request Properties__:
 | owner  | `false`  | User | Authenticated User
 | status  | `false`  | string | `active`
 | activeDate  | `false`  | date | Now
-| archiveDate  | `false`  | date | `null`
+| expirationDate  | `false`  | date | `null`
 | category  | `false`  | Category | Default Folder
 | tags  | `false`  | array | 
 | channels  | `false`  | ChannelAvailability | All Channels
@@ -2382,7 +2385,7 @@ __Batch-Editable Properties__:
 | owner  | User |
 | status  | string |
 | activeDate  | date |
-| archiveDate  | date |
+| expirationDate  | date |
 | category  | Category |
 | tags  | array | 
 | channels  | ChannelAvailability |
@@ -2421,7 +2424,7 @@ A paginated collection of Assets.
             + `createdDate`
             + `modifiedDate`
             + `activeDate`
-            + `archiveDate`
+            + `expirationDate`
             + `fileCreatedDate`
             + `fileModifiedDate`
             + `uploadedDate`
@@ -2472,7 +2475,7 @@ A paginated collection of Assets.
                         "memberId": 281359,
                         "status": "active",
                         "activeDate": "0001-01-01T00:00:00",
-                        "archiveDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
                         "locked": false,
                         "favorite": false,
                         "category": {
@@ -2554,7 +2557,7 @@ A paginated collection of Assets.
                         "memberId": 281359,
                         "status": "active",
                         "activeDate": "2014-04-24T23:44:51-04:00",
-                        "archiveDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
                         "locked": false,
                         "favorite": false,
                         "category": {
@@ -2634,7 +2637,7 @@ A paginated collection of Assets.
                         "memberId": 281359,
                         "status": "active",
                         "activeDate": "2014-05-06T15:34:02-04:00",
-                        "archiveDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
                         "locked": false,
                         "favorite": true,
                         "category": {
@@ -2678,7 +2681,7 @@ A collection of Assets with the given *assetType*.
 
 + Parameters
     + assetType (string)
-        AssetType of an Asset. *System-defined* AssetTypes are listed to the right.
+        AssetType of an Asset. *System-defined* AssetTypes are listed to the right. Additional *Custom* AssetTypes may also be available for an account.
         + Values
             + `archive`
             + `audio`
@@ -2726,8 +2729,8 @@ A collection of Assets from the given *categoryId*.
 
 ### Retrieve Assets by CategoryId [GET]
 + Parameters
-    + categoryId (required, integer) ... Numeric `id` of the Category
-    + includeChildren = `false` (optional, boolean) ... Specify whether or not to include assets in child categories
+    + categoryId (required, integer, `310`) ... Numeric `id`  or string alias of the Category.
+    + includeChildren = `false` (optional, boolean) ... Specify whether or not to include assets in child categories.
     
 + Response 200
     [Asset Collection][]
