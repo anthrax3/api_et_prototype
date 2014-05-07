@@ -678,12 +678,13 @@ JSON Representation of a single AttributeGroup resource.
                 "attributeGroup": {
                     "links": {
                         "self": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}" },
-                        "schema": {"href": "/schemas/{parentReferenceId}" }
+                        "schema": {"href": "/schemas/{parentReferenceId}" },
+                        "attributeSetDefinitions": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}/attributeSetDefinitions" 
                     },
                     "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
                     "key": "com.exacttarget.mobilepush.ETMobilePush",
                     "name": "ExactTarget MobilePush",
-                    "parentId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
                     "isSystemDefined": true,
                     "applicationID": "131975ED-E859-4CC9-B479-62A615BC6C8A",
                     "applicationKey": "com.exacttarget.mobilepush",
@@ -707,16 +708,16 @@ A single AttributeGroup object.
     + Body
     
             {
-                "links": {
-                    "self": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}" },
-                    "schema": {"href": "/schemas/{parentReferenceId}" },
-                    "attributeSetDefinitions": {"href": "/schemas/{parentReferenceId}/attributeGroups/{id}/attributeSetDefinitions" }
-                },
                 "attributeGroup": {
+                    "links": {
+                        "self": {"href": "/schemas/{schemaId}/attributeGroups/{id}" },
+                        "schema": {"href": "/schemas/{schemaId}" },
+                        "attributeSetDefinitions": {"href": "/schemas/{schemaId}/attributeGroups/{id}/attributeSetDefinitions" }
+                    },
                     "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
                     "key": "com.exacttarget.mobilepush.ETMobilePush",
                     "name": "ExactTarget MobilePush",
-                    "parentReferenceId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
                     "isSystemDefined": true,
                     "applicationID": "131975ED-E859-4CC9-B479-62A615BC6C8A",
                     "applicationKey": "com.exacttarget.mobilepush",
