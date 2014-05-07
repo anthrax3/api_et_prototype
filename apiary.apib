@@ -3448,6 +3448,31 @@ A single AnnouncementsEntity entity with all of its details
 + Response 200
     [AnnouncementsEntity][]   
 
+### Update Announcement [PUT]
++ Request
+    
+        {
+            "announcementID": "04cc9ff6-d34c-4f56-be44-47582ed5028c",
+            "orderRanking": 1,
+            "eventStartDate": "0001-01-01T00:00:00",
+            "eventEndDate": "0001-01-01T00:00:00",
+            "announcementBeginDate": "0001-01-01T00:00:00",
+            "announcementEndDate": "0001-01-01T00:00:00",
+            "eID": 0,
+            "mID": 0,
+            "isActive": true,
+            "createdDate": "2013-05-09T23:39:52.917",
+            "modifiedDate": "2013-05-09T23:39:52.917"
+        }
+
+        
++ Response 200
+    [AnnouncementsEntity][] 
+
+
+### Delete an Announcement [DELETE]
++ Response 200 
+
 ## AnnouncementsFullEntity [/PlatformServices-Internal/v1/announcements/{id}/full]
 A single AnnouncementsFullEntity entity with all of its details
 
