@@ -643,7 +643,7 @@ A colection of AttributeGroup references.
                 },
                 "items": [{
                     "links": {
-                        "self": {"href": "/schemas/{schemaId}/attributeGroups/{id}" }
+                        "self": {"href": "/schemas/{parentId}/attributeGroups/{id}" }
                     },
                     "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
                     "key": "com.exacttarget.mobilepush.ETMobilePush",
@@ -652,7 +652,7 @@ A colection of AttributeGroup references.
                 },
                 {
                     "links": {
-                        "self": {"href": "/schemas/{schemaId}/attributeGroups/{id}" }
+                        "self": {"href": "/schemas/{parentId}/attributeGroups/{id}" }
                     },
                     "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
                     "key": "com.exacttarget.mobilepush.ETMobilePush",
@@ -700,7 +700,7 @@ JSON Representation of a single AttributeGroup resource.
 + Response 200
     [AttributeGroup by Id][]
 
-## AttributeGroup by Key [/schemas/{id}/attributeGroups/key:{key}]
+## AttributeGroup by Key [/schemas/{schemaId}/attributeGroups/key:{key}]
 A single AttributeGroup object.
 
 + Model (applcation/json)
@@ -730,6 +730,37 @@ A single AttributeGroup object.
 ### Retrieve an AttributeGroup by Key [GET]
 + Response 200
     [AttributeGroup by Key][]
+
+## AttributeGroup by Name [/schemas/{schemaId}/attributeGroups/name:{name}]
+A single AttributeGroup object.
+
++ Model (applcation/json)
+
+    + Body
+    
+            {
+                "attributeGroup": {
+                    "links": {
+                        "self": {"href": "/schemas/{schemaId}/attributeGroups/{id}" },
+                        "schema": {"href": "/schemas/{schemaId}" },
+                        "attributeSetDefinitions": {"href": "/schemas/{schemaId}/attributeGroups/{id}/attributeSetDefinitions" }
+                    },
+                    "id": "4de15aca-2c17-e311-bb14-00237d5401ce",
+                    "key": "com.exacttarget.mobilepush.ETMobilePush",
+                    "name": "ExactTarget MobilePush",
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "isSystemDefined": true,
+                    "applicationID": "131975ED-E859-4CC9-B479-62A615BC6C8A",
+                    "applicationKey": "com.exacttarget.mobilepush",
+                    "templateID": 100,
+                    "fullyQualifiedName": "com.exacttarget.mobilepush.ETMobilePush",
+                    "attributeGroupType": "standard"
+                }
+            }
+
+### Retrieve an AttributeGroup by Name [GET]
++ Response 200
+    [AttributeGroup by Name][]
 
 ## AttributeSetDefinition Collection [/schemas/{id}/attributeSetDefinitions]
 A collection of AttributeSetDefinition references for the identified schema.
@@ -783,8 +814,9 @@ A collection of AttributeSetDefinition references for the identified schema.
                 "page": 1,
                 "pageSize": 25,
                 "links": {
-                        "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions" }
+                        "self": { "href": "/attributeGroups/{groupId}/attributeSetDefinitions" }
                         "schema": { "href": "/schemas/{schemaId}" },
+                        "attributeGroup": { "href": "/attributeGroups/{groupId}" },
                     },
                 "items": [{
                     "links": {
@@ -810,7 +842,7 @@ A collection of AttributeSetDefinition references for the identified schema.
 + Response 200
     [AttributeGroups AttributeSetDefinition Collection][]
 
-## AttributeSetDefinition by Id [/schemas/{id}/attributeSetDefinitions/{id}]
+## AttributeSetDefinition by Id [/schemas/{schemaId}/attributeSetDefinitions/{id}]
 A single AttributeSetDefinition object.
 
 + Model (applcation/json)
@@ -818,16 +850,17 @@ A single AttributeSetDefinition object.
     + Body
     
             {
-                "links": {
+                "attributeSetDefinition": {
+                    "links": {
                         "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions/{id}" },
                         "schema": { "href": "/schemas/{schemaId}" }
                     },
-                
-                "attributeSetDefinition": {
                     "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
                     "name": "MobileConnect Demographics",
                     "key": "MobileDemographics",
-                    ...
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "relationships": [],
+                    "attributes": [],
                     ...
                     ...more 
                 }    
@@ -845,19 +878,17 @@ A single AttributeSetDefinition object.
     + Body
     
             {
-                "links": {
-                        "self": { "href": { "href": "/attributeSetDefinition/{id}" } }
-                        "attributeDefinitions": { "href": "/attributeSetDefinition/{id}/attributeDefinitions" },
-                        "relationships": { "href": "/attributeSetDefinition/{id}/relationships" },
-                        "schemas": { "href": "/schemas" }
-                    },
-                
-                
                 "attributeSetDefinition": {
+                    "links": {
+                        "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions/{id}" },
+                        "schema": { "href": "/schemas/{schemaId}" }
+                    },
                     "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
                     "name": "MobileConnect Demographics",
                     "key": "MobileDemographics",
-                    ...
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "relationships": [],
+                    "attributes": [],
                     ...
                     ...more 
                 }    
@@ -867,97 +898,34 @@ A single AttributeSetDefinition object.
 + Response 200
     [AttributeSetDefinition by Key][]
 
-## AttributeDefinition Collection [/attributeSetDefinition/{id}/attributeDefinitions]
+## AttributeSetDefinition by Name [/schemas/{id}/attributeSetDefinitions/name:{name}]
+A single AttributeSetDefinition object.
 
 + Model (applcation/json)
 
     + Body
     
             {
-                "count": 2,
-                "page": 1,
-                "pageSize": 25,
-                "links": {
-                        "self": { "href": "/attrubuteSetDefinition/{id}/attributeDefinitions" },
-                        "attributeSetDefinition": { "href": "/attrubuteSetDefinition/{id}" }
+                "attributeSetDefinition": {
+                    "links": {
+                        "self": { "href": "/schemas/{schemaId}/attributeSetDefinitions/{id}" },
+                        "schema": { "href": "/schemas/{schemaId}" }
                     },
-                "items": [{
                     "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
-                    "name": "Customer Key",
-                    "key": "Retail Orders.Customer Key",
+                    "name": "MobileConnect Demographics",
+                    "key": "MobileDemographics",
+                    "schemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                    "relationships": [],
+                    "attributes": [],
                     ...
-                    ... more
-                },
-                {
-                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
-                    "name": "Order Number",
-                    "key": "Retail Orders.Order Number",
-                    ...
-                    ... more
-                }]    
+                    ...more 
+                }    
             }
-
+            
 ### Retrieve an AttributeSetDefinition by Name [GET]
 + Response 200
-    [AttributeDefinition Collection][]
+    [AttributeSetDefinition by Name][]
 
-## Relationships Collection [/attributeSetDefinition/{id}/relationships]
-A collection of Relationship objects for the identified Attribute Set Definition.
-
-+ Model (applcation/json)
-JSON Representation of a collection of Attribute Definition objects.
-
-    + Body
-    
-            {
-                "count": 2,
-                "page": 1,
-                "pageSize": 25,
-                "links": {
-                        "self": { "href": "/attrubuteSetDefinition/{id}/relationships" },
-                        "attributeSetDefinition": { "href": "/attrubuteSetDefinition/{id}" }
-                    },
-                "items": [{
-                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
-                    "setDefinitionId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
-                    "leftItem": {
-                        "relationshipType": "AttributeGroup",
-                        "identifier": "2d386709-562f-e311-bb14-00237d5401ce",
-                        "cardinality": "One"
-                    },
-                    "rightItem": {
-                        "relationshipType": "AttributeSet",
-                        "identifier": "2e386709-562f-e311-bb14-00237d5401ce",
-                        "cardinality": "One",
-                        "objectState": "Created"
-                    },
-                    "relationshipAttributes": [{
-                        "leftAttributeID": "30386709-562f-e311-bb14-00237d5401ce",
-                        "rightAttributeID": "30386709-562f-e311-bb14-00237d5401ce"
-                },
-                {
-                    "id": "abe05aca-2c17-e311-bb14-00237d5401ce",
-                    "leftItem": {
-                        "relationshipType": "AttributeGroup",
-                        "identifier": "2d386709-562f-e311-bb14-00237d5401ce",
-                        "cardinality": "One"
-                    },
-                    "rightItem": {
-                        "relationshipType": "AttributeSet",
-                        "identifier": "2e386709-562f-e311-bb14-00237d5401ce",
-                        "cardinality": "One",
-                        "objectState": "Created"
-                    },
-                    "relationshipAttributes": [{
-                        "leftAttributeID": "30386709-562f-e311-bb14-00237d5401ce",
-                        "rightAttributeID": "30386709-562f-e311-bb14-00237d5401ce"
-                    }]
-                }]
-            }    
-
-### Retrieve a Relationships Collection [GET]
-+ Response 200
-    [Relationships Collection][]
 
 # Group AttributeSet 
 Data related resources of the *Contacts-API*
@@ -981,11 +949,11 @@ JSON Repesentation of an Attribute Value Container or a row of data.
         }]
     }
 
-## AttributeSet Data by Id [/attributeSets/{id ?filter}]
-A collection of Attribute Value Containers or the data rows of an identified Atribute Set.
+## AttributeSet Data by Id [/attributeSets/{id}]
+A collection of Attribute Value Containers or the data rows of an identified Atribute Set using it's unique identifier.
 
 + Model (applcation/json)
-JSON Representation of an AttributeSets Data payload.
+JSON Representation of an AttributeSet Data payload.
 
     + Body
 
@@ -993,12 +961,15 @@ JSON Representation of an AttributeSets Data payload.
                 "count": 200,
                 "page": 10,
                 "pageSize": 3,
+                "Id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                "Key": "Retail Orders",
+                "Name:" "Retail Orders",
+                "SchemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
                 "_links": {
-                        "self": { "href": "/attributeSets/{id, ?filter}"},
-                        "next": { "href": "/attributeSets/{id, ?filter}?$page=11&$pageSize=3" },
-                        "prev": { "href": "/attributeSets/{id, ?filter}?$page=9&$pageSize=3" },
+                        "self": { "href": "/attributeSets/{id}"},
+                        "next": { "href": "/attributeSets/{id}?$page=11&$pageSize=3" },
+                        "prev": { "href": "/attributeSets/{id}?$page=9&$pageSize=3" },
                         "attributeSetDefinition":{},
-                        "attributeDefinitions":{},
                     },
                 
                 "items": [{
@@ -1049,7 +1020,7 @@ JSON Representation of an AttributeSets Data payload.
 + Response 200
     [AttributeSet Data by Id][]
 
-### Create AttributeSet Data by Id [POST]
+### Insert AttributeSet Data by Id [POST]
 + Request
         
             {
@@ -1150,7 +1121,6 @@ JSON Representation of an AttributeSets Data payload.
                 }]
         }
 
-
 + Response 200
     [AttributeSet Data by Id][]
 
@@ -1206,6 +1176,325 @@ JSON Representation of an AttributeSets Data payload.
 
 + Response 200
     [AttributeSet Data by Id][]
+
+## AttributeSet Data by Name [/schemas/{schemaId}/attributeSets/name:{name}]
+A collection of Attribute Value Containers or the data rows of an identified Atribute Set using it's unique identifier.
+
++ Model (applcation/json)
+JSON Representation of an AttributeSet Data payload.
+
+    + Body
+
+            {
+                "count": 200,
+                "page": 10,
+                "pageSize": 3,
+                "Id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                "Key": "Retail Orders",
+                "Name:" "Retail Orders",
+                "SchemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                "_links": {
+                        "self": { "href": "/attributeSets/{id}"},
+                        "next": { "href": "/attributeSets/{id}?$page=11&$pageSize=3" },
+                        "prev": { "href": "/attributeSets/{id}?$page=9&$pageSize=3" },
+                        "attributeSetDefinition":{},
+                    },
+                
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+            }
+            
+### Retrieve AttributeSet Data by Name [GET]
++ Response 200
+    [AttributeSet Data by Name][]
+
+### Insert AttributeSet Data by Name [POST]
++ Request
+        
+            {
+
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+            }
+
++ Response 200
+    [AttributeSet Data by Id][]
+
+### Update AttributeSet Data by Name [PATCH]
++ Request
+            
+            {
+
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+        }
+
++ Response 200
+    [AttributeSet Data by Id][]
+
+### Replace AttributeSet Data by Name [PUT]
+
++ Request
+
+            {
+
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+        }
+
++ Response 200
+    [AttributeSet Data by Id][]
+
+## Search AttributeSet Data by Name [/schemas/{schemaId}/attributeSets/name:{name}/search]
+A collection of Attribute Value Containers or the data rows of an identified Atribute Set using it's unique identifier.
+
++ Model (applcation/json)
+JSON Representation of an AttributeSet Data payload.
+
+    + Body
+
+            {
+                "count": 200,
+                "page": 10,
+                "pageSize": 3,
+                "Id": "abe05aca-2c17-e311-bb14-00237d5401ce",
+                "Key": "Retail Orders",
+                "Name:" "Retail Orders",
+                "SchemaId": "36E001F0-6B8F-E311-A274-08EDB9DDEBF0",
+                "_links": {
+                        "self": { "href": "/attributeSets/{id}"},
+                        "next": { "href": "/attributeSets/{id}?$page=11&$pageSize=3" },
+                        "prev": { "href": "/attributeSets/{id}?$page=9&$pageSize=3" },
+                        "attributeSetDefinition":{},
+                    },
+                
+                "items": [{
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                },
+                {
+                    "values": [{
+                        "name": "Customer Key",
+                        "value": "sgest@urkidding.com",
+                    },
+                    {
+                        "name": "Order Number",
+                        "value": "123456"
+                    },
+                    {
+                        "name": "Order Total",
+                        "value": "177.99"
+                    }]
+                }]
+            }
+            
+### Search AttributeSet Data by Name [POST]
++ Request
+
+    + Body
+            
+            {
+                "conditionSet" : {      
+                    "operator" : "And", 
+                    "conditionSets" : [],
+                    "conditions" : [{    
+                        "attribute" : {  
+                            "key" : "MobileDemographics.MobileNumber",  
+                            "id" : "",   
+                            "isCustomerData" : false
+                        },
+                        "operator" : "In",                  
+                        "values" : ["3171233456", "",]
+                    }]
+                }
+            }
+
++ Response 200
+    [Search AttributeSet Data by Name][]
 
 # Group ContentEntity
 Used to manipulate ContentEntity objects.  These are things like Paste HTMLs, images, videos, etc.
