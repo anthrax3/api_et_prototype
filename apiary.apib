@@ -64,6 +64,10 @@ A single EmailSnippetsEntity with all of its details
 + Model (application/json)
 
         {
+            "_links": {
+                "parent": { "href": "/v1/accounts/{memberId}"},
+                "self":   { "href": "/v1/accounts/{memberId}/snippets/email" },
+            }
             "emailSnippets": [{
                 "name": "TRACK_EMAIL",
                 "value": "<custom name=\"opencounter\" type=\"tracking\">",
