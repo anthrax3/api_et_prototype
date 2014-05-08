@@ -3094,6 +3094,9 @@ A single Subscriber entity belonging to a hidden list. Contains relevant subscri
 ## SubscriberAttribute - v1 [/v1/accounts/{memberId}/subscriberAttributes/]
 A collection of Subscriber Attribute objects.
 
++ Parameters
+    + memberId (required, number, `2345`) ... Numeric `memberId` MemberId of User.
+    
 + Model (application/json)
     JSON Representation of a subscribers with list status data.
     + Body
@@ -3237,6 +3240,9 @@ __Available Request Properties__:
 |restrictedValue| __`true`__  | Byte |0
 
 __Available RestrictedValue Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
 |valueName  | __`true`__  | string | 
 |isDefault  | __`true`__  | string |
 |displayOrder | __`true`__  | string | 
