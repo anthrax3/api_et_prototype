@@ -3406,6 +3406,10 @@ A single AnnouncementsEntity entity with all of its details
 + Model (application/json)
 
         {
+            "_links": {
+                "parent": { "href": "/v1/accounts/{memberId}"},
+                "self": { "href": "/announcements/{id}" },
+            },        
             "announcementID": "04cc9ff6-d34c-4f56-be44-47582ed5028c",
             "orderRanking": 1,
             "eventStartDate": "0001-01-01T00:00:00",
@@ -3428,6 +3432,10 @@ A single AnnouncementsEntity entity with all of its details
 + Request
     
         {
+            "_links": {
+                "parent": { "href": "/v1/accounts/{memberId}"},
+                "self": { "href": "/announcements/{id}" },
+            },
             "announcementID": "04cc9ff6-d34c-4f56-be44-47582ed5028c",
             "orderRanking": 1,
             "eventStartDate": "0001-01-01T00:00:00",
@@ -3449,6 +3457,10 @@ A single AnnouncementsEntity entity with all of its details
 + Request
     
         {
+            "_links": {
+                "parent": { "href": "/v1/accounts/{memberId}"},
+                "self": { "href": "/announcements/{id}" },
+            },
             "announcementID": "04cc9ff6-d34c-4f56-be44-47582ed5028c",
             "orderRanking": 1,
             "eventStartDate": "0001-01-01T00:00:00",
@@ -3476,6 +3488,10 @@ A single AnnouncementsFullEntity entity with all of its details
 + Model (application/json)
 
         {
+            "_links": {
+                "parent": { "href": "/v1/accounts/{memberId}"},
+                "self": { "href": "/announcements/{id}/full" },
+            },
             "announcementID": "04cc9ff6-d34c-4f56-be44-47582ed5028c",
             "orderRanking": 1,
             "eventStartDate": "0001-01-01T00:00:00",
