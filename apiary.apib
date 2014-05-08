@@ -3091,7 +3091,7 @@ A single Subscriber entity belonging to a hidden list. Contains relevant subscri
 
 #  Group Subscriber Attribute
     Subscriber Attribute contains the Profile Attributes and Preferences
-## SubscriberAttribute - v1 [/v1/subscribers/attributes]
+## SubscriberAttribute - v1 [/v1/accounts/{memberId}/subscriberAttributes/]
 A collection of Subscriber Attribute objects.
 
 + Model (application/json)
@@ -3103,8 +3103,8 @@ A collection of Subscriber Attribute objects.
                 "page":1,
                 "pageSize":25,
                 "_links": {
-                    "parent": {"/v1/subscribers" },
-                    "self": { "href": "/v1/subscribers/attributes" },
+                    "parent": {"/v1/accounts/{memberId}/subscriberAttributes" },
+                    "self": { "href": "/v1/accounts/{memberId}" },
                 },
                 "items" :
                      {
@@ -3118,7 +3118,18 @@ A collection of Subscriber Attribute objects.
                         "description" : "System default for subscribers full name",
                         "hasRestrictedValues" : false,
                         "isRequired" : 0,
-                        "defaultValue" : "true"
+                        "defaultValue" : "true",
+                        "AttribType" : 0,
+                        "IsUnique" :0,
+                        "SubscriberView":0,
+                        "SubscriberEdit":0,
+                        "MustContain" : "",
+                        "MustNotContain": "",
+                        "IsDataInLyris"; 0,
+                        "NumericPrecision": 0,
+                        "IsSendTime" :1,
+                        "IsListLevelAttribute":0
+
                     },
                     {
                        "id" : 212,
@@ -3139,7 +3150,17 @@ A collection of Subscriber Attribute objects.
                                                 "defaultValue" : "Email" 
                                             }   
                         "isRequired" : 1,
-                        "defaultValue" : "true"
+                        "defaultValue" : "true",
+                        "AttribType" : 0,
+                        "IsUnique" :0,
+                        "SubscriberView":0,
+                        "SubscriberEdit":0,
+                        "MustContain" : "",
+                        "MustNotContain": "",
+                        "IsDataInLyris"; 0,
+                        "NumericPrecision": 0,
+                        "IsSendTime" :1,
+                        "IsListLevelAttribute":0
                     }
                 
             }
@@ -3148,18 +3169,19 @@ A collection of Subscriber Attribute objects.
 + Response 200
     [SubscriberAttribute - v1][]
 
-## Subscriber Attribute by Attribute ID [/v1/subscribers/attributes/{id}]
+## Subscriber Attribute by Attribute ID [/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}]
 A single subscriber attribute object with all its details
 
 + Parameters
-    + id (required, number, `2345`) ... Numeric `id` of the attribute.
+    + memberId (required, number, `2345`) ... Numeric `memberId` MemberId of User.
+ + subscriberAttributeId (required, number, `4567`) ... Numeric `subscriberAttributeId` Subscriber AttributeId.
     
 + Model (application/json)
    
             {
                 "_links": {
-                    "parent": { "href": "/v1/subscribers/attributes"},
-                    "self":   { "href": "/v1/subscribers/attributes/{id}" },
+                    "parent": { "href": "/v1/accounts/{memberId}/subscriberAttributes/"},
+                    "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
                  }
                 "id" : 213,
                 "name" : "User Defined", 
@@ -3171,21 +3193,139 @@ A single subscriber attribute object with all its details
                 "description" : "System default for subscribers User Defined",
                 "hasRestrictedValues" : false,
                 "isRequired" : 0,
-                "defaultValue" : "false"
+                "defaultValue" : "false",
+                'AttribType" : 0,
+                "IsUnique" :0,
+                "SubscriberView":0,
+                "SubscriberEdit":0,
+                "MustContain" : "",
+                "MustNotContain": "",
+                "IsDataInLyris"; 0,
+                "NumericPrecision": 0,
+                "IsSendTime" :1,
+                "IsListLevelAttribute":0
             }
 
 ### Retrieve a Subscriber Attribute [GET]
 + Response 200 (application/json)
     [Subscriber Attribute by Attribute ID][]
 
+### Create Subscriber Attribute [POST]
+__Available Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
+|attribName  | __`true`__  | string | 
+|description  | `false`  | string |`null`
+|defaultValue | `false`  | string | `null`
+|dataType | __`true`__  | Int | 0
+|attribType |__`true`__| Int |0
+|isRequired | __`true`__ | Int | 0
+|isUnique | __`true`__  | Int | `active`
+|maxLengthe  | __`true`__  | Int | 0
+|minLength  |__`true`__ | Int | `null`
+|subscriberView | __`true`__ | Int | 0
+|subscriberEdit |__`true`__| Int | 0
+|displayAs |__`true`__ | Int | 0
+|mustContain  | `false`  | string | `null`
+|mustNotContain  | `false`  | string | `null`
+|displayOrder |__`true`__| Int |0
+|isDataInLyris |__`true`__ | Int | 0
+|numericPrecision| __`true`__ | Int |0
+|isSendTime | __`true`__ | Int | 
+|isListLevelAttribute |__`true`__ | Byte | 0
+|restrictedValue| __`true`__  | Byte |0
+
+__Available RestrictedValue Request Properties__:
+|valueName  | __`true`__  | string | 
+|isDefault  | __`true`__  | string |
+|displayOrder | __`true`__  | string | 
+|defaultValue | __`true`__  | string | 
+
++ Request(application/json)
+
+        {
+                 "id" : 11477,
+                "name" : "MDS Test Attrib", 
+                "fieldType" : 7,
+                "minLength" : 0,
+                "maxLength" : 2000,
+                "displayOrder" : 7,
+                "restrictedValues" : [{
+                                                "valueName" : "Email Address Value11",
+                                                "isDefault" : "false",
+                                                "valueDesc" : "System defalt Email11",
+                                                "displayOrder": "1",
+                                                "defaultValue" : "Email11" 
+                                            } ,
+                                            {
+                                                "valueName" : "Email Address Value22",
+                                                "isDefault" : "false",
+                                                "valueDesc" : "System defalt Email22",
+                                                "displayOrder": "2",
+                                                "defaultValue" : "Email22" 
+                                            }],
+                "isRequired" : 0,
+                "defaultValue" : "false",
+                'AttribType" : 0,
+                "IsUnique" :0,
+                "SubscriberView":1,
+                "SubscriberEdit":0,
+                "IsDataInLyris"; 1,
+                "NumericPrecision": 0,
+                "IsSendTime" :1,
+                "IsListLevelAttribute":0
+        }
+        
++ Response 201 (application/json)
+
+        {       
+                "id" : 11477,
+                "name" : "MDS Test Attrib", 
+                "fieldType" : 7,
+                "minLength" : 0,
+                "maxLength" : 2000,
+                "displayOrder" : 7,
+                "displayAs" : "",
+                "description" : "",
+                "hasRestrictedValues" : true,
+                "restrictedValues" : [2]
+                                          0  {
+                                                "valueName" : "Email Address Value11",
+                                                "isDefault" : "false",
+                                                "valueDesc" : "System defalt Email11",
+                                                "displayOrder": "1",
+                                                "defaultValue" : "Email11" 
+                                            } ,
+                                           1 {
+                                                "valueName" : "Email Address Value22",
+                                                "isDefault" : "false",
+                                                "valueDesc" : "System defalt Email22",
+                                                "displayOrder": "2",
+                                                "defaultValue" : "Email22" 
+                                            },
+                "isRequired" : 0,
+                "defaultValue" : "false",
+                'AttribType" : 0,
+                "IsUnique" :0,
+                "SubscriberView":1,
+                "SubscriberEdit":0,
+                "IsDataInLyris"; 1,
+                "MustContain" : "",
+                "MustNotContain": "",
+                "NumericPrecision": 0,
+                "IsSendTime" :1,
+                "IsListLevelAttribute":0
+
+        }
 
 ### Update a Subscriber Attribute [PATCH]
 + Request(application/json)
 
         {
                  "_links": {
-                    "parent": { "href": "/v1/subscribers/attributes"},
-                    "self":   { "href": "/v1/subscribers/attributes/{id}" },
+                    "parent": { "href": "/v1/accounts/{memberId}"},
+                    "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
                  }
                 "name" : "First Name", 
                 "fieldType" : 0,
@@ -3204,6 +3344,8 @@ A single subscriber attribute object with all its details
 
 ### Delete a Subscriber Attribute [DELETE]
 + Response 200 
+
+
 
 #  Group Filters
     FilterDefinition with its details.
