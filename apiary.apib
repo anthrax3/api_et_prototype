@@ -493,8 +493,8 @@ A collection of Contacts.
 + Request
     
         {
-            "contactKey": "tnewcome@exacttarget.com",
-            "contactId": 12345678,
+            "contactKey": null,
+            "contactId": null,
             "attributeSets": [{
                 "name": "Email Demographics",
                 "items": [{
@@ -564,7 +564,44 @@ A collection of Contacts.
 + Response 200
     [Contacts Collection][]
 
-## Search Contacts [/contacts/search]
+### Replace Contacts [PUT]
++ Request
+    
+        {
+            "contactKey": "tnewcome@exacttarget.com",
+            "contactId": 12345678,
+            "attributeSets": [{
+                "name": "Email Demographics",
+                "items": [{
+                    "values": [{
+                        "name": "Last Name",
+                        "value": "Nukem"
+                    },
+                    {
+                        "name": "First Name",
+                        "value": "Antoine"
+                    }]
+                }]
+            },
+            {
+                "name": "Email Addresses",
+                "items": [{
+                    "values": [{
+                        "name": "Email Address",
+                        "value": "tnewcome@exacttarget.com"
+                    },
+                    {
+                        "name": "HTML Enabled",
+                        "value": true
+                    }]
+                }]
+            }]
+        }
+
++ Response 200
+    [Contacts Collection][]
+
+## Search Contacts [/schema/{schemaId}/contacts/search]
 Retrieve a list of contacts that match a filter condition represented as `filterJSON` posted in the message body.
 
 ### Search Contacts [POST]
