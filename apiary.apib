@@ -3154,11 +3154,11 @@ A collection of Subscriber Attribute objects.
                 "page":1,
                 "pageSize":25,
                 "_links": {
-                    "self": {"/v1/accounts/{memberId}/subscriberAttributes" },
-                    "parent": { "href": "/v1/accounts/{memberId}" },
+                    "self": "/v1/accounts/{memberId}/subscriberAttributes",
+                    "parent":"/v1/accounts/{memberId}" 
                 },
                 "items" :
-                     {
+                    [ {
                         "id" : 1221,
                         "name" : "Full Name", 
                         "fieldType" : 0,
@@ -3176,7 +3176,7 @@ A collection of Subscriber Attribute objects.
                         "SubscriberEdit":0,
                         "MustContain" : "",
                         "MustNotContain": "",
-                        "IsDataInLyris"; 0,
+                        "IsDataInLyris": 0,
                         "NumericPrecision": 0,
                         "IsSendTime" :1,
                         "IsListLevelAttribute":0
@@ -3192,14 +3192,14 @@ A collection of Subscriber Attribute objects.
                         "displayAs" : "Email Address",
                         "description" : "System default for subscribers email address",
                         "hasRestrictedValues" : true,
-                            "restrictedValues" : [1],
+                        "restrictedValues" : 
                                         {
                                                 "valueName" : "Email Address Value",
                                                 "isDefault" : "false",
                                                 "valueDesc" : "System defalt Email",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email" 
-                                            }   
+                                            },   
                         "isRequired" : 1,
                         "defaultValue" : "true",
                         "AttribType" : 0,
@@ -3208,11 +3208,11 @@ A collection of Subscriber Attribute objects.
                         "SubscriberEdit":0,
                         "MustContain" : "",
                         "MustNotContain": "",
-                        "IsDataInLyris"; 0,
+                        "IsDataInLyris": 0,
                         "NumericPrecision": 0,
                         "IsSendTime" :1,
                         "IsListLevelAttribute":0
-                    }
+                    }]
                 
             }
 
@@ -3284,7 +3284,7 @@ __Available RestrictedValue Request Properties__:
                 "IsUnique" :0,
                 "SubscriberView":1,
                 "SubscriberEdit":0,
-                "IsDataInLyris"; 1,
+                "IsDataInLyris": 1,
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
                 "IsListLevelAttribute":0
@@ -3323,7 +3323,7 @@ __Available RestrictedValue Request Properties__:
                 "IsUnique" :0,
                 "SubscriberView":1,
                 "SubscriberEdit":0,
-                "IsDataInLyris"; 1,
+                "IsDataInLyris": 1,
                 "MustContain" : "",
                 "MustNotContain": "",
                 "NumericPrecision": 0,
@@ -3363,7 +3363,7 @@ A single subscriber attribute object with all its details
                 "SubscriberEdit":0,
                 "MustContain" : "",
                 "MustNotContain": "",
-                "IsDataInLyris"; 0,
+                "IsDataInLyris": 0,
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
                 "IsListLevelAttribute":0
