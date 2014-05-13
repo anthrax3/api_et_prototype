@@ -3154,8 +3154,8 @@ A collection of Subscriber Attribute objects.
                 "page":1,
                 "pageSize":25,
                 "_links": {
-                    "parent": {"/v1/accounts/{memberId}/subscriberAttributes" },
-                    "self": { "href": "/v1/accounts/{memberId}" },
+                    "self": {"/v1/accounts/{memberId}/subscriberAttributes" },
+                    "parent": { "href": "/v1/accounts/{memberId}" },
                 },
                 "items" :
                      {
@@ -3219,47 +3219,6 @@ A collection of Subscriber Attribute objects.
 ### Retrieve a collection of subscriberAttributes [GET]
 + Response 200
     [SubscriberAttribute - v1][]
-
-## Subscriber Attribute by Attribute ID [/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}]
-A single subscriber attribute object with all its details
-
-+ Parameters
-    + memberId (required, number, `2345`) ... Numeric `memberId` MemberId of User.
- + subscriberAttributeId (required, number, `4567`) ... Numeric `subscriberAttributeId` Subscriber AttributeId.
-    
-+ Model (application/json)
-   
-            {
-                "_links": {
-                    "parent": { "href": "/v1/accounts/{memberId}/subscriberAttributes/"},
-                    "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
-                 }
-                "id" : 213,
-                "name" : "User Defined", 
-                "fieldType" : 0,
-                "minLength" : 0,
-                "maxLength" : 2000,
-                "displayOrder" : 4,
-                "displayAs" : "User Defined",
-                "description" : "System default for subscribers User Defined",
-                "hasRestrictedValues" : false,
-                "isRequired" : 0,
-                "defaultValue" : "false",
-                'AttribType" : 0,
-                "IsUnique" :0,
-                "SubscriberView":0,
-                "SubscriberEdit":0,
-                "MustContain" : "",
-                "MustNotContain": "",
-                "IsDataInLyris"; 0,
-                "NumericPrecision": 0,
-                "IsSendTime" :1,
-                "IsListLevelAttribute":0
-            }
-
-### Retrieve a Subscriber Attribute [GET]
-+ Response 200 (application/json)
-    [Subscriber Attribute by Attribute ID][]
 
 ### Create Subscriber Attribute [POST]
 __Available Request Properties__:
@@ -3373,21 +3332,60 @@ __Available RestrictedValue Request Properties__:
 
         }
 
+## Subscriber Attribute by Attribute ID [/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}]
+A single subscriber attribute object with all its details
+
++ Parameters
+    + memberId (required, number, `2345`) ... Numeric `memberId` MemberId of User.
+ + subscriberAttributeId (required, number, `4567`) ... Numeric `subscriberAttributeId` Subscriber AttributeId.
+    
++ Model (application/json)
+   
+            {
+                "_links": {
+                    "parent": { "href": "/v1/accounts/{memberId}/subscriberAttributes/"},
+                    "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
+                 }
+                "id" : 213,
+                "name" : "User Defined", 
+                "fieldType" : 0,
+                "minLength" : 0,
+                "maxLength" : 2000,
+                "displayOrder" : 4,
+                "displayAs" : "User Defined",
+                "description" : "System default for subscribers User Defined",
+                "hasRestrictedValues" : false,
+                "isRequired" : 0,
+                "defaultValue" : "false",
+                'AttribType" : 0,
+                "IsUnique" :0,
+                "SubscriberView":0,
+                "SubscriberEdit":0,
+                "MustContain" : "",
+                "MustNotContain": "",
+                "IsDataInLyris"; 0,
+                "NumericPrecision": 0,
+                "IsSendTime" :1,
+                "IsListLevelAttribute":0
+            }
+
+### Retrieve a Subscriber Attribute [GET]
++ Response 200 (application/json)
+    [Subscriber Attribute by Attribute ID][]
+
+
+
 ### Update a Subscriber Attribute [PATCH]
 + Request(application/json)
 
         {
-                 "_links": {
-                    "parent": { "href": "/v1/accounts/{memberId}"},
-                    "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
-                 }
-                "name" : "First Name", 
+                "name" : "User Defined", 
                 "fieldType" : 0,
                 "minLength" : 0,
                 "maxLength" : 2000,
-                "displayOrder" : 1,
-                "displayAs" : "First Name",
-                "description" : "System default for subscribers First Name",
+                "displayOrder" : 4,
+                "displayAs" : "User Defined",
+                "description" : "System default for subscribers User Defined",
                 "hasRestrictedValues" : false,
                 "isRequired" : 0,
                 "defaultValue" : "false"
