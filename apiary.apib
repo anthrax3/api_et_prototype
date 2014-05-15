@@ -66,7 +66,7 @@ A single EmailSnippetsEntity with all of its details
         {
             "_links": {
                 "parent": { "href": "/v1/accounts/{memberId}"},
-                "self":   { "href": "/v1/accounts/{memberId}/snippets/email" },
+                "self":   { "href": "/v1/accounts/{memberId}/snippets/email" }
             },
             "emailSnippets": [{
                 "name": "TRACK_EMAIL",
@@ -145,7 +145,7 @@ A collection of job objects.
                 "page":1,
                 "pageSize":25,
                 "_links": {
-                    "self": { "href": "/jobs/" },
+                    "self": { "href": "/jobs/" }
                 },
                 "items" : [
                     {
@@ -239,7 +239,7 @@ A single job object.
                 "_links": {
                     "self": { "href": "/jobs/{id}" },
                     "parent": { "href": "/jobs/" },
-                    "events" : { "href" : "/jobs/{id}/events" }
+                    "events" : { "href" : "/jobs/{id}/events" },
                     "status" : { "href" : "/jobs/{id}/status" }
                 },
                 "id" : "{id}",
