@@ -3302,21 +3302,20 @@ __Available RestrictedValue Request Properties__:
                 "displayAs" : "",
                 "description" : "",
                 "hasRestrictedValues" : true,
-                "restrictedValues" : [2]
-                                          0  {
+                "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
                                                 "isDefault" : "false",
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
-                                           1 {
+                                           {
                                                 "valueName" : "Email Address Value22",
                                                 "isDefault" : "false",
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
-                                            },
+                                            }},
                 "isRequired" : 0,
                 "defaultValue" : "false",
                 "AttribType" : 0,
@@ -3345,7 +3344,7 @@ A single subscriber attribute object with all its details
                 "_links": {
                     "parent": { "href": "/v1/accounts/{memberId}/subscriberAttributes/"},
                     "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
-                 }
+                 },
                 "id" : 213,
                 "name" : "User Defined", 
                 "fieldType" : 0,
