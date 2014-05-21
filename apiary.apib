@@ -2194,6 +2194,175 @@ __Editable Properties__:
 + Response 204
 
 
+## Asset via Bridge [/assets-internal/bridge/assets/{id}]
+A single Asset identified by a numeric *id*, accessed via Bridge API.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "id": 104,
+                "key": "justAKitten",
+                "assetType": "photo",
+                "classification": "file",
+                "version": 1,
+                "name": "Kitten",
+                "description": "Kitten sitting on a rug",
+                "owner": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "createdDate": "2014-05-06T05:28:01-04:00",
+                "createdBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "modifiedDate": "2014-05-06T05:28:03-04:00",
+                "modifiedBy": {
+                    "id": 282209,
+                    "email": "agillaspie@exacttarget.com",
+                    "name": "API Client S1QA3 app user",
+                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                },
+                "enterpriseId": 281359,
+                "memberId": 281359,
+                "status": "active",
+                "activeDate": "2014-05-06T05:28:01-04:00",
+                "expirationDate": "0001-01-01T00:00:00",
+                "locked": false,
+                "favorite": true,
+                "category": {
+                    "id": 0,
+                    "name": "Assets",
+                    "path": "/Assets",
+                    "hasChildren": false,
+                    "itemCount": 3
+                },
+                "tags": [
+                    "animals",
+                    "kitten",
+                    "cute"
+                ],
+                "campaigns": [],
+                "customFields": {
+                    "animal": "cat",
+                    "season": "Spring"
+                },
+                "channels": {
+                    "email": false,
+                    "mms": false,
+                    "print": false,
+                    "push": false,
+                    "sms": false,
+                    "social": false,
+                    "web": false
+                },
+                "fileProperties": {
+                    "fileName": "justAKitten.jpg",
+                    "fileFormat": "jpg",
+                    "fileCreatedDate": "2014-05-06 07:28:01 +0000",
+                    "fileModifiedDate": "2014-05-06 07:28:01 +0000",
+                    "uploadedDate": "2014-05-06 07:28:01 +0000",
+                    "importStatus": "complete",
+                    "lensType": null,
+                    "focalLength": null,
+                    "cameraModel": null,
+                    "iso": null,
+                    "colorSpace": null,
+                    "colorType": null,
+                    "shutterSpeed": null,
+                    "aperture": null,
+                    "imageRotation": null,
+                    "primaryFileName": null,
+                    "previewStatus": "complete",
+                    "title": null,
+                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
+                }
+            }
+
+
+### Retrieve an Asset via Bridge [GET]
+
++ Parameters
+    + id (required, integer, `104`) ... Numeric `id` of the Asset.
+
++ Response 200
+    [Asset][]
+
+
+### Partially Update an Asset via Bridge [PATCH]
+__Editable Properties__:
+
+| Name  | Type |
+| :------------- | :------------- |
+| key  | string | 
+| name  | string |
+| description  | string |
+| owner  | User |
+| status  | string |
+| activeDate  | date |
+| expirationDate  | date |
+| category  | Category |
+| tags  | array | 
+| channels  | ChannelAvailability |
+| customFields  | object | 
+| contentFields  | object | 
+| content  | string |
+
++ Request
+
+        {
+            "id": 104,
+            "key": "justAKitten",
+            "name": "Kitten",
+            "description": "Kitten sitting on a rug",
+            "owner": {
+                "id": 282209
+            },
+            "status": "active",
+            "activeDate": "2014-05-06T05:28:01-04:00",
+            "expirationDate": "0001-01-01T00:00:00",
+            "category": {
+                "id": 0
+            },
+            "tags": [
+                "animals",
+                "kitten",
+                "cute"
+            ],
+            "customFields": {
+                "animal": "cat",
+                "season": "Spring"
+            },
+            "channels": {
+                "email": false,
+                "mms": false,
+                "print": false,
+                "push": false,
+                "sms": false,
+                "social": false,
+                "web": false
+            }
+        }
+
++ Response 200
+    [Asset][]
+
+
+### Delete an Asset via Bridge [DELETE]
+
++ Parameters
+    + id (required, integer, `120,145,170`) ... Numeric `id` of the Asset. Specify multiple Assets by comma-delimiting `id`s.
+
++ Response 204
+
+
 ## Asset by Key [/assets/key:{key}]
 A single Asset identified by a string *key*.
 
