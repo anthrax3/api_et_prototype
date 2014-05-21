@@ -2375,6 +2375,18 @@ A single Asset identified by a string *key*.
     [Asset][]
 
 
+## Asset by Key via Bridge [/assets-internal/bridge/assets/key:{key}]
+A single Asset identified by a string *key*, accessed via Bridge API.
+
++ Parameters
+    + key (required, string, `justAKitten`) ... String `key` of the Asset.
+
+### Retrieve an Asset by Key [GET]
+
++ Response 200
+    [Asset][]
+
+
 ## Assets [/assets]
 One or multiple Assets.
 
@@ -2688,6 +2700,586 @@ __Batch-Editable Properties__:
 
 ## Asset Collection [/assets{?$page,$pageSize,$orderBy}]
 A paginated collection of Assets.
+ 
++ Parameters
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `id asc` (string, optional, `modifiedDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `id`
+            + `key`
+            + `name`
+            + `createdDate`
+            + `modifiedDate`
+            + `activeDate`
+            + `expirationDate`
+            + `fileCreatedDate`
+            + `fileModifiedDate`
+            + `uploadedDate`
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 3,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                    "self": {
+                        "href": "/v1/assets"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 101,
+                        "key": "deniedOnceAgain",
+                        "assetType": "photo",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "DE-NIED Once Again",
+                        "description": "Girl denies guy at basketball game",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T05:12:29-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T05:12:34-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "memes",
+                            "basketball",
+                            "kiss",
+                            "funny"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "fileProperties": {
+                            "fileName": "deniedAgain.gif",
+                            "fileFormat": "gif",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": null,
+                            "uploadedDate": "2014-05-06 07:12:29 +0000",
+                            "importStatus": null,
+                            "lensType": null,
+                            "focalLength": null,
+                            "cameraModel": null,
+                            "iso": null,
+                            "colorSpace": null,
+                            "colorType": null,
+                            "shutterSpeed": null,
+                            "aperture": null,
+                            "imageRotation": null,
+                            "primaryFileName": null,
+                            "previewStatus": null,
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 144,
+                        "key": "scienceStuff",
+                        "assetType": "video",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "Science Stuff",
+                        "description": "Science guys making foam expand",
+                        "owner": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "createdDate": "2014-02-01T23:25:30-05:00",
+                        "createdBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "modifiedDate": "2014-04-30T20:38:04-04:00",
+                        "modifiedBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-04-24T23:44:51-04:00",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "science"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": true,
+                            "mms": false,
+                            "print": true,
+                            "push": false,
+                            "sms": false,
+                            "social": true,
+                            "web": true
+                        },
+                        "fileProperties": {
+                            "fileName": "scienceStuff.mp4",
+                            "fileFormat": "mp4",
+                            "fileSize": "291.18 KB",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": "2014-02-28 17:17:46 +0000",
+                            "uploadedDate": "2014-02-19 10:47:02 +0000",
+                            "importStatus": "complete",
+                            "length": "00:00:06",
+                            "duration": "6.15166666666667",
+                            "frameRate": "30.00",
+                            "bitsPerSample": null,
+                            "videoCodec": null,
+                            "compression": null,
+                            "artist": null,
+                            "creator": null,
+                            "contributor": null,
+                            "primaryFileName": null,
+                            "previewStatus": "2",
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 229,
+                        "key": "heroContent",
+                        "assetType": "htmlonly",
+                        "classification": "structuredcontent",
+                        "version": 1,
+                        "name": "Hero Content Area",
+                        "description": "HTML content for a Message",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T14:59:53-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T14:59:54-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-05-06T15:34:02-04:00",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": true,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [],
+                        "campaigns": [],
+                        "customFields": {
+                            "partner": "ExactTarget",
+                            "season": "Summer"
+                        },
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "contentFields": {
+                            "body": "<p>This is just some content from Adam.</p>"
+                        },
+                        "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+                    }
+                ]
+            }
+
+### Retrieve All Assets [GET]
+
++ Response 200
+    [Asset Collection][]
+
+
+## Assets via Bridge [/assets-internal/bridge/assets/]
+One or multiple Assets, accessed via Bridge API.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 3,
+                "links": {
+                    "self": {
+                        "href": "/v1/assets"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 101,
+                        "key": "deniedOnceAgain",
+                        "assetType": "photo",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "DE-NIED Once Again",
+                        "description": "Girl denies guy at basketball game",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T05:12:29-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T05:12:34-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "0001-01-01T00:00:00",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "memes",
+                            "basketball",
+                            "kiss",
+                            "funny"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "fileProperties": {
+                            "fileName": "deniedAgain.gif",
+                            "fileFormat": "gif",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": null,
+                            "uploadedDate": "2014-05-06 07:12:29 +0000",
+                            "importStatus": null,
+                            "lensType": null,
+                            "focalLength": null,
+                            "cameraModel": null,
+                            "iso": null,
+                            "colorSpace": null,
+                            "colorType": null,
+                            "shutterSpeed": null,
+                            "aperture": null,
+                            "imageRotation": null,
+                            "primaryFileName": null,
+                            "previewStatus": null,
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 144,
+                        "key": "scienceStuff",
+                        "assetType": "video",
+                        "classification": "file",
+                        "version": 1,
+                        "name": "Science Stuff",
+                        "description": "Science guys making foam expand",
+                        "owner": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "createdDate": "2014-02-01T23:25:30-05:00",
+                        "createdBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "modifiedDate": "2014-04-30T20:38:04-04:00",
+                        "modifiedBy": {
+                            "id": 281766,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "Adam Gillaspie",
+                            "userId": "s1.qa3.agillaspie"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-04-24T23:44:51-04:00",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": false,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [
+                            "science"
+                        ],
+                        "campaigns": [],
+                        "customFields": {},
+                        "channels": {
+                            "email": true,
+                            "mms": false,
+                            "print": true,
+                            "push": false,
+                            "sms": false,
+                            "social": true,
+                            "web": true
+                        },
+                        "fileProperties": {
+                            "fileName": "scienceStuff.mp4",
+                            "fileFormat": "mp4",
+                            "fileSize": "291.18 KB",
+                            "fileCreatedDate": null,
+                            "fileModifiedDate": "2014-02-28 17:17:46 +0000",
+                            "uploadedDate": "2014-02-19 10:47:02 +0000",
+                            "importStatus": "complete",
+                            "length": "00:00:06",
+                            "duration": "6.15166666666667",
+                            "frameRate": "30.00",
+                            "bitsPerSample": null,
+                            "videoCodec": null,
+                            "compression": null,
+                            "artist": null,
+                            "creator": null,
+                            "contributor": null,
+                            "primaryFileName": null,
+                            "previewStatus": "2",
+                            "title": null,
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
+                        }
+                    },
+                    {
+                        "id": 229,
+                        "key": "heroContent",
+                        "assetType": "htmlonly",
+                        "classification": "structuredcontent",
+                        "version": 1,
+                        "name": "Hero Content Area",
+                        "description": "HTML content for a Message",
+                        "owner": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "createdDate": "2014-05-06T14:59:53-04:00",
+                        "createdBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "modifiedDate": "2014-05-06T14:59:54-04:00",
+                        "modifiedBy": {
+                            "id": 282209,
+                            "email": "agillaspie@exacttarget.com",
+                            "name": "API Client S1QA3 app user",
+                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "status": "active",
+                        "activeDate": "2014-05-06T15:34:02-04:00",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "locked": false,
+                        "favorite": true,
+                        "category": {
+                            "id": 0,
+                            "name": "Assets",
+                            "path": "/Assets",
+                            "hasChildren": false,
+                            "itemCount": 3
+                        },
+                        "tags": [],
+                        "campaigns": [],
+                        "customFields": {
+                            "partner": "ExactTarget",
+                            "season": "Summer"
+                        },
+                        "channels": {
+                            "email": false,
+                            "mms": false,
+                            "print": false,
+                            "push": false,
+                            "sms": false,
+                            "social": false,
+                            "web": false
+                        },
+                        "contentFields": {
+                            "body": "<p>This is just some content from Adam.</p>"
+                        },
+                        "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+                    }
+                ]
+            }
+
+### Create an Asset [POST]
+__Available Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
+| key  | __`true`__  | string | 
+| name  | __`true`__  | string |
+| assetType  | __`true`__  | string | 
+| classification  | __`true`__  | string | 
+| description  | `false`  | string |
+| owner  | `false`  | User | Authenticated User
+| status  | `false`  | string | `active`
+| activeDate  | `false`  | date | Now
+| expirationDate  | `false`  | date | `null`
+| category  | `false`  | Category | Default Folder
+| tags  | `false`  | array | 
+| channels  | `false`  | ChannelAvailability | All Channels
+| customFields  | `false`  | object | 
+| contentFields  | `false`  | object | 
+| content  | `false`  | string |
+
++ Request
+
+        {
+            "key": "heroContent",
+            "name": "Hero Content Area",
+            "assetType": "htmlOnly",
+            "classification": "structuredcontent",
+            "description": "HTML content for a Message",
+            "contentFields": {
+                "body": "<p>This is just some content from Adam.</p>"
+            },
+            "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
+        }
+
++ Response 200
+    [Structured Content Asset][]
+
+
+### Partially Update an Asset Collection [PATCH]
+__Batch-Editable Properties__:
+
+| Name  | Type |
+| :------------- | :------------- |
+| owner  | User |
+| status  | string |
+| activeDate  | date |
+| expirationDate  | date |
+| category  | Category |
+| tags  | array | 
+| channels  | ChannelAvailability |
+
++ Request
+
+        {
+            "assets": [
+                104,
+                110,
+                131,
+                145
+            ],
+            "status": "active",
+            "activeDate": "2014-05-06T15:34:02-04:00"
+        }
+
++ Response 200
+    [Assets][]
+
+
+## Asset Collection via Bridge [/assets-internal/bridge/assets{?$page,$pageSize,$orderBy}]
+A paginated collection of Assets, accessed via Bridge API.
  
 + Parameters
     + page = `1` (integer, optional)
