@@ -3719,6 +3719,95 @@ A collection of Assets associated with the given *tag*, accessed via Bridge API.
 + Response 200
     [Asset Collection][]
 
+# Group Subscriber
+
+## Subscriber Object [/subscribers/{id,subscriberKey}]
+
+Definition of a Subscriber
+
++ Model (application/json)
+    JSON Representation of a single Subscriber.  
+    + Body
+    
+            {
+                "createDate" : "2014-02-30T22:14:38+00:00",
+                "createdBy" : 123456,
+                "createdByName" : "Created By Name",
+                "emailAddress" : "an@email.com",
+                "heldDate" : "2014-02-30T22:14:38+00:00",
+                "id" : 123,
+                "isGlobalUnsub" : false,
+                "isMasterUnsub" : false,
+                "isSpamEmailAddress" : false,
+                "joinedDate" : "2014-02-30T22:14:38+00:00",
+                "lastBounceDate" : "2014-02-30T22:14:38+00:00",
+                "memberID" : 123456,
+                "modifiedBy" : 123456,
+                "modifiedByName" : "Modified By Name",
+                "modifiedDate" : "2014-02-30T22:14:38+00:00",
+                "numberOfBounces" : 0,
+                "subJoinType" : "Application",
+                "subscriberKey" : "an@email.com",
+                "subscriberStatus" : "Active",
+                "subscriberType" : 3,
+                "subType" : "HTML",
+                "unsubDate" : "2014-02-30T22:14:38+00:00",
+                "unsubReason" : "Some reason."
+            }
+
++ Parameters
+    + id (required) ... Id for the Subscriber.
+    + subscriberKey (optional) ... SubscriberKey for the Subscriber, may be used instead of id.
+
+### Retrieve a Subscriber [GET]
+
++ Response 200
+    [Subscriber Object][]
+
+
+
+
+
+## Subscriber Collection Object [/lists/{listId}/subscribers/{?hydrate,orderBy,page,pageSize}]
+
+Definition of a List Subscriber Collection
+
++ Model (application/json)
+    JSON Representation of a collection of List Subscribers.  
+    + Body
+    
+            {
+                "links": {
+                    "self": { "href": "/lists/{listId}/subscribers/?$orderyBy=createDate&$page=1&$pageSize=50" },
+                    "lists": { "href": "/lists/{listId}" },
+                    "subscribers": { "href": "/subscribers/" }
+                },
+                "count": 1, 
+                "page": 1,
+                "pageSize": 50,
+                "items":[
+                    {
+                        "emailAddress" : "an@email.com",
+                        "id" : 123,
+                        "subscriberKey" : "an@email.com",
+                        "subscriberStatus" : "Active",
+                        "subscriberType" : 3
+                    }
+                ]
+            }
+
++ Parameters
+    + listId (required) ... Id for the List.
+    + hydrate = `false` (optional, boolean) ... Specify whether or not to include all Subscriber fields, default false.
+    + orderBy = `createDate` (optional, string) ... Specify the field to sort Subscribers by, default createDate.
+    + page (optional, number `1`) ... Page number to return.
+    + pageSize (optional, number, `100`) ... Number of records to return, default 50.
+
+### Retrieve Subscribers for a List [GET]
+
++ Response 200
+    [Subscriber Collection Object][]
+
 
 # Group Subscriber Resource
 
