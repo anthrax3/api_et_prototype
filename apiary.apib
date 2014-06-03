@@ -56,6 +56,25 @@ Definition of an Account resource
 + Response 200
     [Account Object DRAFT][]
 
+## RmmEntity [/v1/accounts/{memberId}/views/rmm]
+A single RmmEntity with all of its details
+
+
++ Model (application/json)
+
+        {
+            "_links": {
+                "parent": { "href": "/v1/accounts/{memberId}"},
+                "self":   { "href": "/v1/accounts/{memberId}/views/rmm" }
+            },
+            "ReplySubdomain": "email.clientname.com"
+        }
+
+### Retrieve RmmEntity [GET]
++ Response 200 (application/json)
+        [RmmEntity][]
+
+
 
 ## EmailSnippetsEntity [/v1/accounts/{memberId}/snippets/email]
 A single EmailSnippetsEntity with all of its details
