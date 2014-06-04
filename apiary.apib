@@ -4389,4 +4389,62 @@ A single subscriber attribute object with all its details
                  "isSendable": false
 
         }
+        
+#  Group Lists
+    Email list routes with their details.
+    
+## Get FilteredList by id [/messagingservice-internal/v1/lists/filteredLists/{id}]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
+### Get a FilteredList [GET]
++ Response 200 (application/json)
+
+        Filtered List: 
+        { 
+          "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
+          "createdByName": "rmccammonE2                                       ", 
+          “isBuiltFromDataFilter”: false, 
+          "type": "Filtered", 
+          "listId": 4022, 
+          "customerKey": "SaveBuildFilterTest23 - 4033", 
+          "name": "FDTestName1", 
+          "description": "Filtered List Test 25", 
+          "categoryId": 4033, 
+          "createdDate": "2013-03-06T09:42:17.303", 
+          "lastModifiedDate": "2013-05-06T12:34:29.513", 
+          "lastModifiedByName": "rmccammonE2                                       ", 
+          "sourceListId": 3951, 
+          "sourceListName": "TestDE1a", 
+          "totalSubCount": 0, 
+          "lastRefreshedDate": "2013-03-06T09:42:17.303", 
+          "subConfirm": false, 
+          "confirmLandingPage": "", 
+          "isConfirmLandingPage": false, 
+          "useDefaultLandingPage": true, 
+          "isPublic": false, 
+          "isSalesForce": false, 
+          "iD": "4022", 
+          "campaigns": [ 
+            { 
+              "campaignCode": "CD3", 
+              "description": "CampaignDef3", 
+              "isActive": false, 
+              "createdBy": 10650001, 
+              "display": { 
+              "restItemID": 0, 
+              "propertyName": "Color", 
+              "propertyValue": "red", 
+              "isActive": false, 
+              "lastUpdated": "2013-05-30T13:20:59.8043637-04:00", 
+              "mID": 0, 
+              "eID": 0 
+              }, 
+              "lastUpdated": "2013-05-30T13:20:59.8043637-04:00", 
+              "mID": 0, 
+              "eID": 0 
+            } 
+          ] 
+        } 
 
