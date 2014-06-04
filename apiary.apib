@@ -4448,3 +4448,37 @@ A single subscriber attribute object with all its details
           ] 
         } 
 
+## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
+
+### Create a FilteredList [POST]
++ Request(application/json)
+
+        { 
+            "name": "Exists in list of values", 
+            "description": "blah blah blah", 
+            "categoryId": 5501, 
+            "SourceListId": 4088, 
+            "FilterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>" 
+        } 
+
+        
++ Response 201 (application/json)
+
+        { 
+            "createdByName": "user1", 
+            "customerKey": "SaveBuildFilterTest29 - 4875", 
+            "listId": 4171, 
+            "name": "SaveBuildFilterTest26", 
+            "description": "Filtered List Test 26", 
+            "categoryId": 4875, 
+            "createdDate": "2013-03-20T14:05:00.4916378-04:00", 
+            "lastModifiedDate": "2013-03-20T14:05:00.4916378-04:00", 
+            "lastModifiedByName": "user1", 
+            "sourceListId": 4088, 
+            "sourceListName": "All Subscribers", 
+            "totalSubCount": 0, 
+            "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
+            “type”: “Filtered”, 
+            "lastRefreshedByName": "" 
+        } 
+
