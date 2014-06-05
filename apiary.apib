@@ -4398,8 +4398,110 @@ A single subscriber attribute object with all its details
 
         
 + Response 201 
-        
+   
+## Get ListsCounts [/emailservice/v1/lists/subscribercounts]
 
+### Gets the list count [POST]
+
++ Request (applicaiton/json)
+
+        {
+            "ListIdsSubscriberCounts": [
+                {
+                  "ListId": 3951
+                },
+                {
+                  "ListId": 4019
+                },
+                {
+                  "ListId": 4022
+                },
+                {
+                  "ListId": 4025
+                },
+                {
+                  "ListId": 4035
+                }
+            ]
+        }
+        
++ Response 200 (application/json)
+
+        [
+          {
+            "listId": 3951,
+            "subscriberCount": 6
+          },
+          {
+            "listId": 4019,
+            "subscriberCount": 0
+          },
+          {
+            "listId": 4022,
+            "subscriberCount": 0
+          },
+          {
+            "listId": 4025,
+            "subscriberCount": 6
+          },
+          {
+            "listId": 4035,
+            "subscriberCount": 3
+          }
+        ]
+
+## Get ListCollection [/messagingservice-internal/v1/lists/category/{CategoryID}?FullType=RANDOM&Name=rg]
+
+### Gets the ListCollection by category id [GET]
+
++ Parameters
+    + CategoryID (required, int, `4040`) ... `ID` of the category for which to retrieve folders.
+    + FullType (optional, string, `Standard, salesforce, salesforcereport, master, public, private, random, filtered, salesforcegroup, extendedgroup, partnermasterlist, partnerftaflist`) ... `Type` of Lists to retrieve.
+    + Name (optional, int, `4040`) ... Return the lists that start with `Name`.  
+
+
++ Response 200 (application/json)
+
+        {
+          "page": 1,
+          "pageSize": 2,
+          "count": 17,
+          "links": {},
+          "items": [
+            {
+              "listId": "4039",
+              "name": "nRGroup1",
+              "customerKey": "nRGroup1 - 4033",
+              "createdDate": "2013-04-04T15:27:25.12",
+              "lastModifiedBy": 10650001,
+              "lastModifiedDate": "2013-06-11T12:08:27.597",
+              "mID": 10650005,
+              "eID": 10650005,
+              "categoryId": 4033,
+              "subConfirm": false,
+              "description": "RGroup1 Description",
+              "sourceListId": 3951,
+              "type": 6,
+              "listObjectId": "6fe92366-955c-446b-b836-d308b9b2fee4",
+              "ownerId": 10650001,
+              "listStatus": "New",
+              "classificationId": 0,
+              "classification": "ExactTargetList",
+              "fullType": "Qty",
+              "subConfirmEmailName": "",
+              "subConfirmEmailId": "",
+              "subConfirmEmailSubject": "",
+              "confirmLandingPage": "",
+              "tSOptInCustomerKey": "",
+              "lastModifiedByName": "rmccammonE2",
+              "ownerIDName": "rmccammonE2",
+              "refreshDate": "2013-06-11T12:08:27.597",
+              "sourceListName": "My Source List"
+            }
+          ]
+        }
+
+        
 ## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
 
 ### Create a FilteredList [POST]
@@ -4436,11 +4538,11 @@ A single subscriber attribute object with all its details
         
 ## FilteredList by Id [/messagingservice-internal/v1/lists/filteredLists/{id}]
 
+### Get a FilteredList [GET]
+
 + Parameters
     + id (required, int, `1234`) ... The list `id`.
     
-### Get a FilteredList [GET]
-
 + Response 200 (application/json)
 
         Filtered List: 
