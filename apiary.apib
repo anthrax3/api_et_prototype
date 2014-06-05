@@ -4514,9 +4514,178 @@ A single subscriber attribute object with all its details
         
 ## FilteredList Refresh [/messagingservice-internal/v1/lists/filteredLists/{id}/refresh]
 
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-    
 ### Refresh a FilteredList [POST]
 
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
 + Response 204
+
+## FilteredList Migrate [/messagingservice-internal/v1/lists/filteredLists/{id}/migrate]
+
+### Migrate a FilteredList [POST]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 204
+
+## Get Last Refreshed By Name [/emailservice/v1/lists/filteredLists/lastrefreshedbynames]
+
+### Gets the last refreshed a FilteredList by name [POST]
+
++ Request(application/json)
+        
+        { 
+            "listidslastrefreshedbynames": 
+            [ 
+                {"listid":4087},  
+                {"listid":4099},  
+                {"listid":4092},  
+                {"listid":4091},  
+                {"listid":4090} 
+            ] 
+        } 
+
++ Response 200 (application/json)
+
+        [5] 
+        0:  { 
+            listId: 4087 
+            lastRefreshedByName: "" 
+        } 
+        1:  { 
+            listId: 4099 
+            lastRefreshedByName: "black_core" 
+        } 
+        2:  { 
+            listId: 4092 
+        } 
+        3:  { 
+            listId: 4091 
+            lastRefreshedByName: "black_core" 
+        } 
+        4:  { 
+            listId: 4090 
+            lastRefreshedByName: "black_core" 
+        } 
+
+## Get RandomLists [/emailservice/v1/lists/randomdlists/{id}]
+
+### Gets the random lists by id [GET]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 200 (application/json)
+
+        { 
+            "type": "Random", 
+            "createdByName": "core_user1 ", 
+            "quantity": 50, 
+            "quantityType": "Percentage", 
+            "listId": 4156 
+        } 
+
+## Create RandomLists [/emailservice/v1/lists/randomdlists]
+
+### Creates the random lists [POST]
+
++ Request (application/json)
+
+        { 
+            "randomLists": 
+            [
+                {
+                    "SourceListId": 3951,
+                    "Name": "RGroup1",
+                    "Description": "RGroup1 Description",
+                    "CategoryId": 4033,
+                    "Quantity": 2,
+                    "QuantityType": 1
+                },
+                {   
+                    "SourceListId": 3951,
+                    "Name": "RGroup2",
+                    "Description": "RGroup2 Description",
+                    "CategoryId": 4033,
+                    "Quantity": 2,
+                    "QuantityType": 1
+                },
+                {
+                    "SourceListId": 3951, 
+                    "Name": "RGroup3",
+                    "Description": "RGroup3 Description",
+                    "CategoryId": 4033,
+                    "Quantity": 2,
+                    "QuantityType": 1
+                }
+            ] 
+        } 
+
+
++ Response 200 (application/json)
+
+        [ 
+            (3) 
+            { 
+                "type": "Random", 
+                "createdByName": "", 
+                "quantity": 2, 
+                "quantityType": "Count", 
+                "listId": 4030, 
+                "customerKey": "", 
+                "name": "RGroup4", 
+                "description": "RGroup4 Description", 
+                "categoryId": 4033, 
+                "createdDate": "0001-01-01T00:00:00", 
+                "lastModifiedDate": "2013-03-21T13:57:50.4644955-04:00",
+                "lastModifiedByName": "", 
+                "sourceListId": 3951, 
+                "sourceListName": "TestDE1a", 
+                "totalSubCount": 0, 
+                "subConfirm": false, 
+                "subConfirmEmailName": "", 
+                "subConfirmEmailSubject": ""                        
+            }, 
+            { 
+                "type": "Random", 
+                "createdByName": "", 
+                "quantity": 2, 
+                "quantityType": "Count", 
+                "listId": 4031, 
+                "customerKey": "", 
+                "name": "RGroup5", 
+                "description": "RGroup5 Description", 
+                "categoryId": 4033, 
+                "createdDate": "0001-01-01T00:00:00", 
+                "lastModifiedDate": "2013-03-21T13:57:50.6405131-04:00", 
+                "lastModifiedByName": "", 
+                "sourceListId": 3951, 
+                "sourceListName": "TestDE1a", 
+                "totalSubCount": 0, 
+                "subConfirm": false, 
+                "subConfirmEmailName": "", 
+                "subConfirmEmailSubject": "" 
+            }, 
+            { 
+                "type": "Random", 
+                "createdByName": "", 
+                "quantity": 2, 
+                "quantityType": "Count", 
+                "listId": 4032, 
+                "customerKey": "", 
+                "name": "RGroup6", 
+                "description": "RGroup6 Description", 
+                "categoryId": 4033, 
+                "createdDate": "0001-01-01T00:00:00", 
+                "lastModifiedDate": "2013-03-21T13:57:50.6645155-04:00", 
+                "lastModifiedByName": "", 
+                "sourceListId": 3951, 
+                "sourceListName": "TestDE1a", 
+                "totalSubCount": 0, 
+                "subConfirm": false, 
+                "subConfirmEmailName": "", 
+                "subConfirmEmailSubject": "" 
+            } 
+        ] 
