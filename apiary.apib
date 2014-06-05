@@ -418,6 +418,588 @@ Send a message using a pre-existing triggered send definition
         
 + Response 202
 
+## Lists [/MessagingService-Internal/v1/lists]
+
+### Create a List [POST]
++ Request(application/json)
+
+        {
+            "customerKey": "My key",
+            "name": "A new list",
+            "description": "blah blah blah",
+            "categoryId": 5501,
+            “SendClassificationId”: "ee03d794-fcbf-4ca6-87c4-7a8b58eeaccf",
+            “SubConfirmEmailId”: 1234,
+            “SubConfirm”: true,
+            “ConfirmLandingPage”: ”www.mylandingpage.com”,
+            “ConfirmLandingPageId”: 12345,
+            “WelcomeEmailId”: 1234,
+            “Type”: “Private”,
+            “UseDefaultLandingPage”: true
+        }
+
+
+        
++ Response 201 
+   
+## Get ListsCounts [/emailservice/v1/lists/subscribercounts]
+
+### Gets the list count [POST]
+
++ Request (applicaiton/json)
+
+        {
+            "ListIdsSubscriberCounts": [
+                {
+                  "ListId": 3951
+                },
+                {
+                  "ListId": 4019
+                },
+                {
+                  "ListId": 4022
+                },
+                {
+                  "ListId": 4025
+                },
+                {
+                  "ListId": 4035
+                }
+            ]
+        }
+        
++ Response 200 (application/json)
+
+        [
+          {
+            "listId": 3951,
+            "subscriberCount": 6
+          },
+          {
+            "listId": 4019,
+            "subscriberCount": 0
+          },
+          {
+            "listId": 4022,
+            "subscriberCount": 0
+          },
+          {
+            "listId": 4025,
+            "subscriberCount": 6
+          },
+          {
+            "listId": 4035,
+            "subscriberCount": 3
+          }
+        ]
+
+## Get ListCollection [/messagingservice-internal/v1/lists/category/{CategoryID}?FullType=RANDOM&Name=rg]
+
+### Gets the ListCollection by category id [GET]
+
++ Parameters
+    + CategoryID (required, int, `4040`) ... `ID` of the category for which to retrieve folders.
+    + FullType (optional, string, `Standard, salesforce, salesforcereport, master, public, private, random, filtered, salesforcegroup, extendedgroup, partnermasterlist, partnerftaflist`) ... `Type` of Lists to retrieve.
+    + Name (optional, int, `4040`) ... Return the lists that start with `Name`.  
+
+
++ Response 200 (application/json)
+
+        {
+          "page": 1,
+          "pageSize": 2,
+          "count": 17,
+          "links": {},
+          "items": [
+            {
+              "listId": "4039",
+              "name": "nRGroup1",
+              "customerKey": "nRGroup1 - 4033",
+              "createdDate": "2013-04-04T15:27:25.12",
+              "lastModifiedBy": 10650001,
+              "lastModifiedDate": "2013-06-11T12:08:27.597",
+              "mID": 10650005,
+              "eID": 10650005,
+              "categoryId": 4033,
+              "subConfirm": false,
+              "description": "RGroup1 Description",
+              "sourceListId": 3951,
+              "type": 6,
+              "listObjectId": "6fe92366-955c-446b-b836-d308b9b2fee4",
+              "ownerId": 10650001,
+              "listStatus": "New",
+              "classificationId": 0,
+              "classification": "ExactTargetList",
+              "fullType": "Qty",
+              "subConfirmEmailName": "",
+              "subConfirmEmailId": "",
+              "subConfirmEmailSubject": "",
+              "confirmLandingPage": "",
+              "tSOptInCustomerKey": "",
+              "lastModifiedByName": "rmccammonE2",
+              "ownerIDName": "rmccammonE2",
+              "refreshDate": "2013-06-11T12:08:27.597",
+              "sourceListName": "My Source List"
+            }
+          ]
+        }
+
+## Retrieve/Modify a List by ID [/MessagingService-Internal/v1/lists/{id}]
+
++ Parameters
+    + id (required, int, `1234`) ... The List `id`.
+   
+ 
+### Get a list by id [GET]
+
++ Response 200 
+
+        {
+            "listId": 4123,
+            "customerKey": "Exists in list of values - 5501",
+            "name": "Exists in list of values",
+            "description": "blah blah blah",
+            "categoryId": 5501,
+            "createdDate": "2013-02-11T12:42:38.28",
+            "lastModifiedDate": "2013-02-11T12:42:48.857",
+            "lastModifiedByName": "black_core ",
+            "sourceListId": 4088,
+            "sourceListName": "All Subscribers",
+            "lastRefreshedDate": "2013-02-11T12:43:00",
+            " SubConfirm": true,
+            " SubConfirmEmailId": 4022,
+            " WelcomeEmailId": 4023,
+            " ConfirmLandingPage": “http://www.google.com”,
+            " ConfirmLandingPageId": 4024,
+            " UseDefaultLandingPage": true,
+            “listObjectId”: “8e017123-777c-4bd1-b742-467e719e4aa4”,
+            “IsPublic”:true,
+            "iD": "4022",
+            "campaigns": [
+                {
+                  "campaignCode": "CD3",
+                  "description": "CampaignDef3",
+                  "isActive": false,
+                  "createdBy": 10650001,
+                  "display": {
+                    "restItemID": 0,
+                    "propertyName": "Color",
+                    "propertyValue": "red",
+                    "isActive": false,
+                    "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
+                    "mID": 0,
+                    "eID": 0
+                  },
+                  "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
+                  "mID": 0,
+                  "eID": 0
+                }
+        }
+        
+
+### Update a list by id [PATCH]
+
++ Request (application/json)
+
+        {
+         "description": "Filtered List Test 24",
+        }
+
++ Response 200 
+
+        {
+            "listId": 4022,
+            "description": "Filtered List Test 24",
+            "lastModifiedDate" : "2013-05-03T11:06:29.123",
+            "lastModifiedByName" : "dkrishnegowda app user                            "
+        }
+
+### Delete a list by id [DELETE]
+
++ Response 204 
+        
+
+## Copy List [/MessagingService-Internal/v1/lists/{id}/copy?CopySubscribers=true]
+
+### Copies a list [POST]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+    + CopySubscribers (optional, bool, `true`) ...  If set to true, the route will copy the subscribers associated to the list from the source list to the destination list. If set to false, only the list metadata will be copied.
+
++ Request (application/json)
+
+        {
+            "name": " Copy 1",
+            "description": "A copy of the list",
+            "CategoryId": 5501,
+            "CustomerKey": "My cust key"
+        }
+
++ Response 200  (application/json)
+
+        {
+            "listId": 4183,
+            "customerKey": "Males Copy 3 - 5501",
+            "name": "Males Copy 3",
+            "description": "A copy of the males list",
+            "categoryId": 5501,
+            "createdDate": "2013-03-27T16:12:48.95",
+            "lastModifiedDate": "2013-03-27T16:12:48.95",
+            "lastModifiedByName": "black_core ",
+            "sourceListId": 4088,
+            "sourceListName": "All Subscribers",
+            "totalSubCount": 1,
+            "lastRefreshedDate": "2013-03-27T16:12:48.95",
+            "subConfirm": false,
+            "confirmLandingPage": "",
+            "isConfirmLandingPage": false,
+            "useDefaultLandingPage": true
+            "isPublic": false,
+            "isSalesForce": false
+        }
+
+## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
+
+### Create a FilteredList [POST]
++ Request(application/json)
+
+        { 
+            "name": "Exists in list of values", 
+            "description": "blah blah blah", 
+            "categoryId": 5501, 
+            "SourceListId": 4088, 
+            "FilterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>" 
+        } 
+
+        
++ Response 201 (application/json)
+
+        { 
+            "createdByName": "user1", 
+            "customerKey": "SaveBuildFilterTest29 - 4875", 
+            "listId": 4171, 
+            "name": "SaveBuildFilterTest26", 
+            "description": "Filtered List Test 26", 
+            "categoryId": 4875, 
+            "createdDate": "2013-03-20T14:05:00.4916378-04:00", 
+            "lastModifiedDate": "2013-03-20T14:05:00.4916378-04:00", 
+            "lastModifiedByName": "user1", 
+            "sourceListId": 4088, 
+            "sourceListName": "All Subscribers", 
+            "totalSubCount": 0, 
+            "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
+            “type”: “Filtered”, 
+            "lastRefreshedByName": "" 
+        } 
+        
+## FilteredList by Id [/messagingservice-internal/v1/lists/filteredLists/{id}]
+
+### Get a FilteredList [GET]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+    
++ Response 200 (application/json)
+
+        Filtered List: 
+        { 
+          "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
+          "createdByName": "rmccammonE2                                       ", 
+          “isBuiltFromDataFilter”: false, 
+          "type": "Filtered", 
+          "listId": 4022, 
+          "customerKey": "SaveBuildFilterTest23 - 4033", 
+          "name": "FDTestName1", 
+          "description": "Filtered List Test 25", 
+          "categoryId": 4033, 
+          "createdDate": "2013-03-06T09:42:17.303", 
+          "lastModifiedDate": "2013-05-06T12:34:29.513", 
+          "lastModifiedByName": "rmccammonE2                                       ", 
+          "sourceListId": 3951, 
+          "sourceListName": "TestDE1a", 
+          "totalSubCount": 0, 
+          "lastRefreshedDate": "2013-03-06T09:42:17.303", 
+          "subConfirm": false, 
+          "confirmLandingPage": "", 
+          "isConfirmLandingPage": false, 
+          "useDefaultLandingPage": true, 
+          "isPublic": false, 
+          "isSalesForce": false, 
+          "iD": "4022", 
+          "campaigns": [ 
+            { 
+              "campaignCode": "CD3", 
+              "description": "CampaignDef3", 
+              "isActive": false, 
+              "createdBy": 10650001, 
+              "display": { 
+              "restItemID": 0, 
+              "propertyName": "Color", 
+              "propertyValue": "red", 
+              "isActive": false, 
+              "lastUpdated": "2013-05-30T13:20:59.8043637-04:00", 
+              "mID": 0, 
+              "eID": 0 
+              }, 
+              "lastUpdated": "2013-05-30T13:20:59.8043637-04:00", 
+              "mID": 0, 
+              "eID": 0 
+            } 
+          ] 
+        } 
+
+### Update a FilteredList [PATCH]
+
++ Request(application/json)
+
+        { 
+            "SourceListId": 4088, 
+            "FilterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>" 
+        } 
+
++ Response 200 (application/json)
+
+        { 
+            "createdByName": "user1", 
+            "listId": 4171, 
+            "name": "SaveBuildFilterTest26", 
+            "description": "Filtered List Test 26", 
+            "categoryId": 4875, 
+            "createdDate": "2013-03-20T14:05:00.4916378-04:00", 
+            "lastModifiedDate": "2013-03-20T14:05:00.4916378-04:00", 
+            "lastModifiedByName": "user1", 
+            "sourceListId": 4088, 
+            "sourceListName": "All Subscribers", 
+            "totalSubCount": 0, 
+            "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
+            “type”: “Filtered”, 
+            "lastRefreshedByName": "" 
+        } 
+        
+## FilteredList Refresh [/messagingservice-internal/v1/lists/filteredLists/{id}/refresh]
+
+### Refresh a FilteredList [POST]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 204
+
+## FilteredList Migrate [/messagingservice-internal/v1/lists/filteredLists/{id}/migrate]
+
+### Migrate a FilteredList [POST]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 204
+
+## Get Last Refreshed By Name [/emailservice/v1/lists/filteredLists/lastrefreshedbynames]
+
+### Gets the last refreshed a FilteredList by name [POST]
+
++ Request(application/json)
+        
+        { 
+            "listidslastrefreshedbynames": 
+            [ 
+                {"listid":4087},  
+                {"listid":4099},  
+                {"listid":4092},  
+                {"listid":4091},  
+                {"listid":4090} 
+            ] 
+        } 
+
++ Response 200 (application/json)
+
+        [5] 
+        0:  { 
+            listId: 4087 
+            lastRefreshedByName: "" 
+        } 
+        1:  { 
+            listId: 4099 
+            lastRefreshedByName: "black_core" 
+        } 
+        2:  { 
+            listId: 4092 
+        } 
+        3:  { 
+            listId: 4091 
+            lastRefreshedByName: "black_core" 
+        } 
+        4:  { 
+            listId: 4090 
+            lastRefreshedByName: "black_core" 
+        } 
+
+## Get RandomLists [/emailservice/v1/lists/randomdlists/{id}]
+
+### Gets the random lists by id [GET]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 200 (application/json)
+
+        { 
+            "type": "Random", 
+            "createdByName": "core_user1 ", 
+            "quantity": 50, 
+            "quantityType": "Percentage", 
+            "listId": 4156 
+        } 
+
+## Create RandomLists [/emailservice/v1/lists/randomdlists]
+
+### Creates the random lists [POST]
+
++ Request (application/json)
+
+        { 
+            "randomLists": 
+            [
+                {
+                    "SourceListId": 3951,
+                    "Name": "RGroup1",
+                    "Description": "RGroup1 Description",
+                    "CategoryId": 4033,
+                    "Quantity": 2,
+                    "QuantityType": 1
+                },
+                {   
+                    "SourceListId": 3951,
+                    "Name": "RGroup2",
+                    "Description": "RGroup2 Description",
+                    "CategoryId": 4033,
+                    "Quantity": 2,
+                    "QuantityType": 1
+                },
+                {
+                    "SourceListId": 3951, 
+                    "Name": "RGroup3",
+                    "Description": "RGroup3 Description",
+                    "CategoryId": 4033,
+                    "Quantity": 2,
+                    "QuantityType": 1
+                }
+            ] 
+        } 
+
+
++ Response 200 (application/json)
+
+        [ 
+            (3) 
+            { 
+                "type": "Random", 
+                "createdByName": "", 
+                "quantity": 2, 
+                "quantityType": "Count", 
+                "listId": 4030, 
+                "customerKey": "", 
+                "name": "RGroup4", 
+                "description": "RGroup4 Description", 
+                "categoryId": 4033, 
+                "createdDate": "0001-01-01T00:00:00", 
+                "lastModifiedDate": "2013-03-21T13:57:50.4644955-04:00",
+                "lastModifiedByName": "", 
+                "sourceListId": 3951, 
+                "sourceListName": "TestDE1a", 
+                "totalSubCount": 0, 
+                "subConfirm": false, 
+                "subConfirmEmailName": "", 
+                "subConfirmEmailSubject": ""                        
+            }, 
+            { 
+                "type": "Random", 
+                "createdByName": "", 
+                "quantity": 2, 
+                "quantityType": "Count", 
+                "listId": 4031, 
+                "customerKey": "", 
+                "name": "RGroup5", 
+                "description": "RGroup5 Description", 
+                "categoryId": 4033, 
+                "createdDate": "0001-01-01T00:00:00", 
+                "lastModifiedDate": "2013-03-21T13:57:50.6405131-04:00", 
+                "lastModifiedByName": "", 
+                "sourceListId": 3951, 
+                "sourceListName": "TestDE1a", 
+                "totalSubCount": 0, 
+                "subConfirm": false, 
+                "subConfirmEmailName": "", 
+                "subConfirmEmailSubject": "" 
+            }, 
+            { 
+                "type": "Random", 
+                "createdByName": "", 
+                "quantity": 2, 
+                "quantityType": "Count", 
+                "listId": 4032, 
+                "customerKey": "", 
+                "name": "RGroup6", 
+                "description": "RGroup6 Description", 
+                "categoryId": 4033, 
+                "createdDate": "0001-01-01T00:00:00", 
+                "lastModifiedDate": "2013-03-21T13:57:50.6645155-04:00", 
+                "lastModifiedByName": "", 
+                "sourceListId": 3951, 
+                "sourceListName": "TestDE1a", 
+                "totalSubCount": 0, 
+                "subConfirm": false, 
+                "subConfirmEmailName": "", 
+                "subConfirmEmailSubject": "" 
+            } 
+        ] 
+        
+## Get Subscriber Status Counts [/MessagingService-Internal/v1/lists/{id}/subscriberstatuscounts]
+
+### Gets the subscriber status counts by id [GET]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 200 (application/json)
+
+        { 
+            bounceCount: 0 
+            heldCount: 0 
+            unsubscribedCount: 0 
+            activeCount: 0 
+        } 
+
+## Get Subscriber Counts [/MessagingService-Internal/v1/lists/subscribercounts]
+
+### Gets the subscriber count [POST]
+
++ Request (application/json)
+
+        {"ListIdSubscriberCounts": [ 
+            { 
+                "listId": 123 
+            }, 
+            { 
+                "listId": 456 
+            } 
+        ]}
+
++ Response 200 (application/json)
+
+        [ 
+            { 
+                "listId": 123, 
+                "subscriberCount": 0 
+            }, 
+            { 
+                "listId": 456, 
+                "subscriberCount": 4 
+            } 
+        ] 
+
+
 # Group Contact API
 Documentation of the ContactServices API
 
@@ -4371,587 +4953,4 @@ A single subscriber attribute object with all its details
                  "isSendable": false
 
         }
-        
-#  Group Lists
-    Email list routes with their details.
-
-## Lists [/MessagingService-Internal/v1/lists]
-
-### Create a List [POST]
-+ Request(application/json)
-
-        {
-            "customerKey": "My key",
-            "name": "A new list",
-            "description": "blah blah blah",
-            "categoryId": 5501,
-            “SendClassificationId”: "ee03d794-fcbf-4ca6-87c4-7a8b58eeaccf",
-            “SubConfirmEmailId”: 1234,
-            “SubConfirm”: true,
-            “ConfirmLandingPage”: ”www.mylandingpage.com”,
-            “ConfirmLandingPageId”: 12345,
-            “WelcomeEmailId”: 1234,
-            “Type”: “Private”,
-            “UseDefaultLandingPage”: true
-        }
-
-
-        
-+ Response 201 
-   
-## Get ListsCounts [/emailservice/v1/lists/subscribercounts]
-
-### Gets the list count [POST]
-
-+ Request (applicaiton/json)
-
-        {
-            "ListIdsSubscriberCounts": [
-                {
-                  "ListId": 3951
-                },
-                {
-                  "ListId": 4019
-                },
-                {
-                  "ListId": 4022
-                },
-                {
-                  "ListId": 4025
-                },
-                {
-                  "ListId": 4035
-                }
-            ]
-        }
-        
-+ Response 200 (application/json)
-
-        [
-          {
-            "listId": 3951,
-            "subscriberCount": 6
-          },
-          {
-            "listId": 4019,
-            "subscriberCount": 0
-          },
-          {
-            "listId": 4022,
-            "subscriberCount": 0
-          },
-          {
-            "listId": 4025,
-            "subscriberCount": 6
-          },
-          {
-            "listId": 4035,
-            "subscriberCount": 3
-          }
-        ]
-
-## Get ListCollection [/messagingservice-internal/v1/lists/category/{CategoryID}?FullType=RANDOM&Name=rg]
-
-### Gets the ListCollection by category id [GET]
-
-+ Parameters
-    + CategoryID (required, int, `4040`) ... `ID` of the category for which to retrieve folders.
-    + FullType (optional, string, `Standard, salesforce, salesforcereport, master, public, private, random, filtered, salesforcegroup, extendedgroup, partnermasterlist, partnerftaflist`) ... `Type` of Lists to retrieve.
-    + Name (optional, int, `4040`) ... Return the lists that start with `Name`.  
-
-
-+ Response 200 (application/json)
-
-        {
-          "page": 1,
-          "pageSize": 2,
-          "count": 17,
-          "links": {},
-          "items": [
-            {
-              "listId": "4039",
-              "name": "nRGroup1",
-              "customerKey": "nRGroup1 - 4033",
-              "createdDate": "2013-04-04T15:27:25.12",
-              "lastModifiedBy": 10650001,
-              "lastModifiedDate": "2013-06-11T12:08:27.597",
-              "mID": 10650005,
-              "eID": 10650005,
-              "categoryId": 4033,
-              "subConfirm": false,
-              "description": "RGroup1 Description",
-              "sourceListId": 3951,
-              "type": 6,
-              "listObjectId": "6fe92366-955c-446b-b836-d308b9b2fee4",
-              "ownerId": 10650001,
-              "listStatus": "New",
-              "classificationId": 0,
-              "classification": "ExactTargetList",
-              "fullType": "Qty",
-              "subConfirmEmailName": "",
-              "subConfirmEmailId": "",
-              "subConfirmEmailSubject": "",
-              "confirmLandingPage": "",
-              "tSOptInCustomerKey": "",
-              "lastModifiedByName": "rmccammonE2",
-              "ownerIDName": "rmccammonE2",
-              "refreshDate": "2013-06-11T12:08:27.597",
-              "sourceListName": "My Source List"
-            }
-          ]
-        }
-
-## Retrieve/Modify a List by ID [/MessagingService-Internal/v1/lists/{id}]
-
-+ Parameters
-    + id (required, int, `1234`) ... The List `id`.
-    
-### Get a list by id [GET]
-
-+ Response 200 
-
-        {
-            "listId": 4123,
-            "customerKey": "Exists in list of values - 5501",
-            "name": "Exists in list of values",
-            "description": "blah blah blah",
-            "categoryId": 5501,
-            "createdDate": "2013-02-11T12:42:38.28",
-            "lastModifiedDate": "2013-02-11T12:42:48.857",
-            "lastModifiedByName": "black_core ",
-            "sourceListId": 4088,
-            "sourceListName": "All Subscribers",
-            "lastRefreshedDate": "2013-02-11T12:43:00",
-            " SubConfirm": true,
-            " SubConfirmEmailId": 4022,
-            " WelcomeEmailId": 4023,
-            " ConfirmLandingPage": “http://www.google.com”,
-            " ConfirmLandingPageId": 4024,
-            " UseDefaultLandingPage": true,
-            “listObjectId”: “8e017123-777c-4bd1-b742-467e719e4aa4”,
-            “IsPublic”:true,
-            "iD": "4022",
-            "campaigns": [
-                {
-                  "campaignCode": "CD3",
-                  "description": "CampaignDef3",
-                  "isActive": false,
-                  "createdBy": 10650001,
-                  "display": {
-                    "restItemID": 0,
-                    "propertyName": "Color",
-                    "propertyValue": "red",
-                    "isActive": false,
-                    "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
-                    "mID": 0,
-                    "eID": 0
-                  },
-                  "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
-                  "mID": 0,
-                  "eID": 0
-                }
-        }
-        
-
-### Update a list by id [PATCH]
-
-+ Request (application/json)
-
-        {
-         "description": "Filtered List Test 24",
-        }
-
-+ Response 200 
-
-        {
-            "listId": 4022,
-            "description": "Filtered List Test 24",
-            "lastModifiedDate" : "2013-05-03T11:06:29.123",
-            "lastModifiedByName" : "dkrishnegowda app user                            "
-        }
-
-### Delete a list by id [DELETE]
-
-+ Response 204 
-        
-
-## Copy List [/MessagingService-Internal/v1/lists/{id}/copy?CopySubscribers=true]
-
-### Copies a list [POST]
-
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-    + CopySubscribers (optional, bool, `true`) ...  If set to true, the route will copy the subscribers associated to the list from the source list to the destination list. If set to false, only the list metadata will be copied.
-
-+ Request (application/json)
-
-        {
-            "name": " Copy 1",
-            "description": "A copy of the list",
-            "CategoryId": 5501,
-            "CustomerKey": "My cust key"
-        }
-
-+ Response 200  (application/json)
-
-        {
-            "listId": 4183,
-            "customerKey": "Males Copy 3 - 5501",
-            "name": "Males Copy 3",
-            "description": "A copy of the males list",
-            "categoryId": 5501,
-            "createdDate": "2013-03-27T16:12:48.95",
-            "lastModifiedDate": "2013-03-27T16:12:48.95",
-            "lastModifiedByName": "black_core ",
-            "sourceListId": 4088,
-            "sourceListName": "All Subscribers",
-            "totalSubCount": 1,
-            "lastRefreshedDate": "2013-03-27T16:12:48.95",
-            "subConfirm": false,
-            "confirmLandingPage": "",
-            "isConfirmLandingPage": false,
-            "useDefaultLandingPage": true
-            "isPublic": false,
-            "isSalesForce": false
-        }
-
-## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
-
-### Create a FilteredList [POST]
-+ Request(application/json)
-
-        { 
-            "name": "Exists in list of values", 
-            "description": "blah blah blah", 
-            "categoryId": 5501, 
-            "SourceListId": 4088, 
-            "FilterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>" 
-        } 
-
-        
-+ Response 201 (application/json)
-
-        { 
-            "createdByName": "user1", 
-            "customerKey": "SaveBuildFilterTest29 - 4875", 
-            "listId": 4171, 
-            "name": "SaveBuildFilterTest26", 
-            "description": "Filtered List Test 26", 
-            "categoryId": 4875, 
-            "createdDate": "2013-03-20T14:05:00.4916378-04:00", 
-            "lastModifiedDate": "2013-03-20T14:05:00.4916378-04:00", 
-            "lastModifiedByName": "user1", 
-            "sourceListId": 4088, 
-            "sourceListName": "All Subscribers", 
-            "totalSubCount": 0, 
-            "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
-            “type”: “Filtered”, 
-            "lastRefreshedByName": "" 
-        } 
-        
-## FilteredList by Id [/messagingservice-internal/v1/lists/filteredLists/{id}]
-
-### Get a FilteredList [GET]
-
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-    
-+ Response 200 (application/json)
-
-        Filtered List: 
-        { 
-          "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
-          "createdByName": "rmccammonE2                                       ", 
-          “isBuiltFromDataFilter”: false, 
-          "type": "Filtered", 
-          "listId": 4022, 
-          "customerKey": "SaveBuildFilterTest23 - 4033", 
-          "name": "FDTestName1", 
-          "description": "Filtered List Test 25", 
-          "categoryId": 4033, 
-          "createdDate": "2013-03-06T09:42:17.303", 
-          "lastModifiedDate": "2013-05-06T12:34:29.513", 
-          "lastModifiedByName": "rmccammonE2                                       ", 
-          "sourceListId": 3951, 
-          "sourceListName": "TestDE1a", 
-          "totalSubCount": 0, 
-          "lastRefreshedDate": "2013-03-06T09:42:17.303", 
-          "subConfirm": false, 
-          "confirmLandingPage": "", 
-          "isConfirmLandingPage": false, 
-          "useDefaultLandingPage": true, 
-          "isPublic": false, 
-          "isSalesForce": false, 
-          "iD": "4022", 
-          "campaigns": [ 
-            { 
-              "campaignCode": "CD3", 
-              "description": "CampaignDef3", 
-              "isActive": false, 
-              "createdBy": 10650001, 
-              "display": { 
-              "restItemID": 0, 
-              "propertyName": "Color", 
-              "propertyValue": "red", 
-              "isActive": false, 
-              "lastUpdated": "2013-05-30T13:20:59.8043637-04:00", 
-              "mID": 0, 
-              "eID": 0 
-              }, 
-              "lastUpdated": "2013-05-30T13:20:59.8043637-04:00", 
-              "mID": 0, 
-              "eID": 0 
-            } 
-          ] 
-        } 
-
-### Update a FilteredList [PATCH]
-
-+ Request(application/json)
-
-        { 
-            "SourceListId": 4088, 
-            "FilterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>" 
-        } 
-
-+ Response 200 (application/json)
-
-        { 
-            "createdByName": "user1", 
-            "listId": 4171, 
-            "name": "SaveBuildFilterTest26", 
-            "description": "Filtered List Test 26", 
-            "categoryId": 4875, 
-            "createdDate": "2013-03-20T14:05:00.4916378-04:00", 
-            "lastModifiedDate": "2013-03-20T14:05:00.4916378-04:00", 
-            "lastModifiedByName": "user1", 
-            "sourceListId": 4088, 
-            "sourceListName": "All Subscribers", 
-            "totalSubCount": 0, 
-            "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
-            “type”: “Filtered”, 
-            "lastRefreshedByName": "" 
-        } 
-        
-## FilteredList Refresh [/messagingservice-internal/v1/lists/filteredLists/{id}/refresh]
-
-### Refresh a FilteredList [POST]
-
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-
-+ Response 204
-
-## FilteredList Migrate [/messagingservice-internal/v1/lists/filteredLists/{id}/migrate]
-
-### Migrate a FilteredList [POST]
-
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-
-+ Response 204
-
-## Get Last Refreshed By Name [/emailservice/v1/lists/filteredLists/lastrefreshedbynames]
-
-### Gets the last refreshed a FilteredList by name [POST]
-
-+ Request(application/json)
-        
-        { 
-            "listidslastrefreshedbynames": 
-            [ 
-                {"listid":4087},  
-                {"listid":4099},  
-                {"listid":4092},  
-                {"listid":4091},  
-                {"listid":4090} 
-            ] 
-        } 
-
-+ Response 200 (application/json)
-
-        [5] 
-        0:  { 
-            listId: 4087 
-            lastRefreshedByName: "" 
-        } 
-        1:  { 
-            listId: 4099 
-            lastRefreshedByName: "black_core" 
-        } 
-        2:  { 
-            listId: 4092 
-        } 
-        3:  { 
-            listId: 4091 
-            lastRefreshedByName: "black_core" 
-        } 
-        4:  { 
-            listId: 4090 
-            lastRefreshedByName: "black_core" 
-        } 
-
-## Get RandomLists [/emailservice/v1/lists/randomdlists/{id}]
-
-### Gets the random lists by id [GET]
-
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-
-+ Response 200 (application/json)
-
-        { 
-            "type": "Random", 
-            "createdByName": "core_user1 ", 
-            "quantity": 50, 
-            "quantityType": "Percentage", 
-            "listId": 4156 
-        } 
-
-## Create RandomLists [/emailservice/v1/lists/randomdlists]
-
-### Creates the random lists [POST]
-
-+ Request (application/json)
-
-        { 
-            "randomLists": 
-            [
-                {
-                    "SourceListId": 3951,
-                    "Name": "RGroup1",
-                    "Description": "RGroup1 Description",
-                    "CategoryId": 4033,
-                    "Quantity": 2,
-                    "QuantityType": 1
-                },
-                {   
-                    "SourceListId": 3951,
-                    "Name": "RGroup2",
-                    "Description": "RGroup2 Description",
-                    "CategoryId": 4033,
-                    "Quantity": 2,
-                    "QuantityType": 1
-                },
-                {
-                    "SourceListId": 3951, 
-                    "Name": "RGroup3",
-                    "Description": "RGroup3 Description",
-                    "CategoryId": 4033,
-                    "Quantity": 2,
-                    "QuantityType": 1
-                }
-            ] 
-        } 
-
-
-+ Response 200 (application/json)
-
-        [ 
-            (3) 
-            { 
-                "type": "Random", 
-                "createdByName": "", 
-                "quantity": 2, 
-                "quantityType": "Count", 
-                "listId": 4030, 
-                "customerKey": "", 
-                "name": "RGroup4", 
-                "description": "RGroup4 Description", 
-                "categoryId": 4033, 
-                "createdDate": "0001-01-01T00:00:00", 
-                "lastModifiedDate": "2013-03-21T13:57:50.4644955-04:00",
-                "lastModifiedByName": "", 
-                "sourceListId": 3951, 
-                "sourceListName": "TestDE1a", 
-                "totalSubCount": 0, 
-                "subConfirm": false, 
-                "subConfirmEmailName": "", 
-                "subConfirmEmailSubject": ""                        
-            }, 
-            { 
-                "type": "Random", 
-                "createdByName": "", 
-                "quantity": 2, 
-                "quantityType": "Count", 
-                "listId": 4031, 
-                "customerKey": "", 
-                "name": "RGroup5", 
-                "description": "RGroup5 Description", 
-                "categoryId": 4033, 
-                "createdDate": "0001-01-01T00:00:00", 
-                "lastModifiedDate": "2013-03-21T13:57:50.6405131-04:00", 
-                "lastModifiedByName": "", 
-                "sourceListId": 3951, 
-                "sourceListName": "TestDE1a", 
-                "totalSubCount": 0, 
-                "subConfirm": false, 
-                "subConfirmEmailName": "", 
-                "subConfirmEmailSubject": "" 
-            }, 
-            { 
-                "type": "Random", 
-                "createdByName": "", 
-                "quantity": 2, 
-                "quantityType": "Count", 
-                "listId": 4032, 
-                "customerKey": "", 
-                "name": "RGroup6", 
-                "description": "RGroup6 Description", 
-                "categoryId": 4033, 
-                "createdDate": "0001-01-01T00:00:00", 
-                "lastModifiedDate": "2013-03-21T13:57:50.6645155-04:00", 
-                "lastModifiedByName": "", 
-                "sourceListId": 3951, 
-                "sourceListName": "TestDE1a", 
-                "totalSubCount": 0, 
-                "subConfirm": false, 
-                "subConfirmEmailName": "", 
-                "subConfirmEmailSubject": "" 
-            } 
-        ] 
-        
-## Get Subscriber Status Counts [/MessagingService-Internal/v1/lists/{id}/subscriberstatuscounts]
-
-### Gets the subscriber status counts by id [GET]
-
-+ Parameters
-    + id (required, int, `1234`) ... The list `id`.
-
-+ Response 200 (application/json)
-
-        { 
-            bounceCount: 0 
-            heldCount: 0 
-            unsubscribedCount: 0 
-            activeCount: 0 
-        } 
-
-## Get Subscriber Counts [/MessagingService-Internal/v1/lists/subscribercounts]
-
-### Gets the subscriber count [POST]
-
-+ Request (application/json)
-
-        {"ListIdSubscriberCounts": [ 
-            { 
-                "listId": 123 
-            }, 
-            { 
-                "listId": 456 
-            } 
-        ]}
-
-+ Response 200 (application/json)
-
-        [ 
-            { 
-                "listId": 123, 
-                "subscriberCount": 0 
-            }, 
-            { 
-                "listId": 456, 
-                "subscriberCount": 4 
-            } 
-        ] 
 
