@@ -4374,7 +4374,31 @@ A single subscriber attribute object with all its details
         
 #  Group Lists
     Email list routes with their details.
-    
+
+## Lists [/MessagingService-Internal/v1/lists]
+
+### Create a List [POST]
++ Request(application/json)
+
+        {
+            "customerKey": "My key",
+            "name": "A new list",
+            "description": "blah blah blah",
+            "categoryId": 5501,
+            “SendClassificationId”: "ee03d794-fcbf-4ca6-87c4-7a8b58eeaccf",
+            “SubConfirmEmailId”: 1234,
+            “SubConfirm”: true,
+            “ConfirmLandingPage”: ”www.mylandingpage.com”,
+            “ConfirmLandingPageId”: 12345,
+            “WelcomeEmailId”: 1234,
+            “Type”: “Private”,
+            “UseDefaultLandingPage”: true
+        }
+
+
+        
++ Response 201 
+        
 
 ## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
 
