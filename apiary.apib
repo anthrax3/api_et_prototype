@@ -4671,3 +4671,48 @@ A single subscriber attribute object with all its details
                 "subConfirmEmailSubject": "" 
             } 
         ] 
+        
+## Get Subscriber Status Counts [/MessagingService-Internal/v1/lists/{id}/subscriberstatuscounts]
+
+### Gets the subscriber status counts by id [GET]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+
++ Response 200 (application/json)
+
+        { 
+            bounceCount: 0 
+            heldCount: 0 
+            unsubscribedCount: 0 
+            activeCount: 0 
+        } 
+
+## Get Subscriber Counts [/MessagingService-Internal/v1/lists/subscribercounts]
+
+### Gets the subscriber count [POST]
+
++ Request (application/json)
+
+        {"ListIdSubscriberCounts": [ 
+            { 
+                "listId": 123 
+            }, 
+            { 
+                "listId": 456 
+            } 
+        ]}
+
++ Response 200 (application/json)
+
+        [ 
+            { 
+                "listId": 123, 
+                "subscriberCount": 0 
+            }, 
+            { 
+                "listId": 456, 
+                "subscriberCount": 4 
+            } 
+        ] 
+
