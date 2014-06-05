@@ -4501,6 +4501,78 @@ A single subscriber attribute object with all its details
           ]
         }
 
+## Retrieve/Modify a List by ID [/MessagingService-Internal/v1/lists/{id}]
+
++ Parameters
+    + id (required, int, `1234`) ... The List `id`.
+    
+### Get a list by id [GET]
+
++ Response 200 
+
+        {
+            "listId": 4123,
+            "customerKey": "Exists in list of values - 5501",
+            "name": "Exists in list of values",
+            "description": "blah blah blah",
+            "categoryId": 5501,
+            "createdDate": "2013-02-11T12:42:38.28",
+            "lastModifiedDate": "2013-02-11T12:42:48.857",
+            "lastModifiedByName": "black_core ",
+            "sourceListId": 4088,
+            "sourceListName": "All Subscribers",
+            "lastRefreshedDate": "2013-02-11T12:43:00",
+            " SubConfirm": true,
+            " SubConfirmEmailId": 4022,
+            " WelcomeEmailId": 4023,
+            " ConfirmLandingPage": “http://www.google.com”,
+            " ConfirmLandingPageId": 4024,
+            " UseDefaultLandingPage": true,
+            “listObjectId”: “8e017123-777c-4bd1-b742-467e719e4aa4”,
+            “IsPublic”:true,
+            "iD": "4022",
+            "campaigns": [
+                {
+                  "campaignCode": "CD3",
+                  "description": "CampaignDef3",
+                  "isActive": false,
+                  "createdBy": 10650001,
+                  "display": {
+                    "restItemID": 0,
+                    "propertyName": "Color",
+                    "propertyValue": "red",
+                    "isActive": false,
+                    "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
+                    "mID": 0,
+                    "eID": 0
+                  },
+                  "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
+                  "mID": 0,
+                  "eID": 0
+                }
+        }
+        
+
+### Update a list by id [PATCH]
+
++ Request (application/json)
+
+        {
+         "description": "Filtered List Test 24",
+        }
+
++ Response 200 
+
+        {
+            "listId": 4022,
+            "description": "Filtered List Test 24",
+            "lastModifiedDate" : "2013-05-03T11:06:29.123",
+            "lastModifiedByName" : "dkrishnegowda app user                            "
+        }
+
+### Delete a list by id [DELETE]
+
++ Response 204 
         
 ## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
 
