@@ -4575,7 +4575,45 @@ A single subscriber attribute object with all its details
 + Response 204 
         
 
+## Copy List [/MessagingService-Internal/v1/lists/{id}/copy?CopySubscribers=true]
 
+### Copies a list [POST]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+    + CopySubscribers (optional, bool, `true`) ...  If set to true, the route will copy the subscribers associated to the list from the source list to the destination list. If set to false, only the list metadata will be copied.
+
++ Request (application/json)
+
+        {
+            "name": " Copy 1",
+            "description": "A copy of the list",
+            "CategoryId": 5501,
+            "CustomerKey": "My cust key"
+        }
+
++ Response 200  (application/json)
+
+        {
+            "listId": 4183,
+            "customerKey": "Males Copy 3 - 5501",
+            "name": "Males Copy 3",
+            "description": "A copy of the males list",
+            "categoryId": 5501,
+            "createdDate": "2013-03-27T16:12:48.95",
+            "lastModifiedDate": "2013-03-27T16:12:48.95",
+            "lastModifiedByName": "black_core ",
+            "sourceListId": 4088,
+            "sourceListName": "All Subscribers",
+            "totalSubCount": 1,
+            "lastRefreshedDate": "2013-03-27T16:12:48.95",
+            "subConfirm": false,
+            "confirmLandingPage": "",
+            "isConfirmLandingPage": false,
+            "useDefaultLandingPage": true
+            "isPublic": false,
+            "isSalesForce": false
+        }
 
 ## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
 
