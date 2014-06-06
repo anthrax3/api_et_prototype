@@ -4954,3 +4954,232 @@ A single subscriber attribute object with all its details
 
         }
 
+# Group Email Resources
+
+Resources related to email
+
+## Create Email [/messaging-internal/v1/messages/email]
+
+### Create an email [POST]
+
+Creates an email
+
++ Request
+    + Body
+    
+            {
+                "id": 1413,
+                "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                "name": "Questionable Content Notification",
+                "subject": "Someone posted activity with questionable content",
+                "memberId": 20720,
+                "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\">new html</body>",
+                "textBody": "",
+                "isActive": true,
+                "isHtmlPaste": false,
+                "status": "New",
+                "contentCheckStatus": 1,
+                "categoryId": 600,
+                "characterSetId": 1,
+                "hasDynamicSubjectLine": false,
+                "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                "ownerId": 30980,
+                "isLocalizable": false,
+                "preheader": ""
+            }
+
++ Response 200
+    + Body
+    
+            {
+                "id": 1413,
+                "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                "name": "Questionable Content Notification",
+                "subject": "Someone posted activity with questionable content",
+                "memberId": 20720,
+                "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\">new html</body>",
+                "textBody": "",
+                "isActive": true,
+                "isHtmlPaste": false,
+                "modifiedBy": 0,
+                "modifiedDate": "2011-04-20T19:23:16.943",
+                "status": "New",
+                "contentCheckStatus": 1,
+                "categoryId": 600,
+                "characterSetId": 1,
+                "createdDate": "2011-04-20T10:00:33.69",
+                "hasDynamicSubjectLine": false,
+                "templateUpdatedDate": "2011-04-20T10:00:33.967",
+                "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                "ownerId": 30980,
+                "isLocalizable": false,
+                "preheader": ""
+            }
+
+## Get collection of Emails [/messaging-internal/v1/messages/email?$page=1&$pageSize=25]
+
+### Retrieve Emails collection [GET]
+Retrieves paginated list of Emails 
+
++ Parameters
+    + page (optional, number) ... Intial page for pagination (default = 1)
+    + pageSize (optional, number) ... Number of objects per page (default = 25)
+
++ Response 200
+    + Body
+
+            {
+               "count": 2,
+               "page": 1,
+               "pageSize": 25,
+               "items":
+               [
+                   {
+                        "id": 1413,
+                        "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                        "name": "Questionable Content Notification",
+                        "subject": "Someone posted activity with questionable content",
+                        "memberId": 20720,
+                        "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\">new html</body>",
+                        "textBody": "",
+                        "isActive": true,
+                        "isHtmlPaste": false,
+                        "modifiedBy": 0,
+                        "modifiedDate": "2011-04-20T19:23:16.943",
+                        "status": "New",
+                        "contentCheckStatus": 1,
+                        "categoryId": 600,
+                        "characterSetId": 1,
+                        "createdDate": "2011-04-20T10:00:33.69",
+                        "hasDynamicSubjectLine": false,
+                        "templateUpdatedDate": "2011-04-20T10:00:33.967",
+                        "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                        "ownerId": 30980,
+                        "isLocalizable": false,
+                        "preheader": ""
+                    },
+                   {
+                        "id": 1413,
+                        "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                        "name": "Questionable Content Notification",
+                        "subject": "Someone posted activity with questionable content",
+                        "memberId": 20720,
+                        "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\">new html</body>",
+                        "textBody": "",
+                        "isActive": true,
+                        "isHtmlPaste": false,
+                        "modifiedBy": 0,
+                        "modifiedDate": "2011-04-20T19:23:16.943",
+                        "status": "New",
+                        "contentCheckStatus": 1,
+                        "categoryId": 600,
+                        "characterSetId": 1,
+                        "createdDate": "2011-04-20T10:00:33.69",
+                        "hasDynamicSubjectLine": false,
+                        "templateUpdatedDate": "2011-04-20T10:00:33.967",
+                        "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                        "ownerId": 30980,
+                        "isLocalizable": false,
+                        "preheader": ""
+                    }
+               ]
+            }
+
+## Read / Update / Delete email [/messaging-internal/v1/messages/email/{emailId}]
+
++ Parameters
+    + emailId (required, number) ... EmailId
+
+### Retrieve an email [GET]
+
+Retrieves an email
+
++ Response 200
+    + Body
+    
+            {
+                "id": 1413,
+                "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                "name": "Questionable Content Notification",
+                "subject": "Someone posted activity with questionable content",
+                "memberId": 20720,
+                "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\"><table cellspacing=0 cellpadding=0 border=1 bordercolor=#000000 bgcolor=#ffffff width=600 align=center style=\"border-style: solid\"><tr><td></td></tr><tr><td><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n\t<tr>\r\n\t\t<td width=\"10\"><img alt=\"\" src=\"http://localhost/images/lib/ffcf14/m/1/spacer.gif\" height=\"1\" width=\"10\" border=\"0\" style=\"display: block;\" /></td>\r\n\t\t<td>\r\n\t\t\t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n\t\t\t\t<tr>\r\n\t\t\t\t\t<td><img alt=\"\" src=\"http://localhost/images/lib/ffcf14/m/1/spacer.gif\" height=\"10\" width=\"1\" border=\"0\" style=\"display: block;\" /></td>\r\n\t\t\t\t</tr>\r\n\t\t\t\t<tr>\r\n\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t<td valign=\"top\" width=\"33%\" align=\"left\"><custom type=\"content\" name=\"left\"></td>\r\n\t\t\t\t\t\t\t\t<td valign=\"top\" width=\"2%\"><img alt=\"\" src=\"http://localhost/images/lib/ffcf14/m/1/spacer.gif\" height=\"1\" width=\"10\" style=\"display: block;\" /></td>\r\n\t\t\t\t\t\t\t\t<td valign=\"top\" width=\"65%\" align=\"left\">\r\n\t\t\t\t\t\t\t\t\t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n\t\t\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t\t\t<td align=\"left\" valign=\"top\"><custom type=\"content\" name=\"right1\"></td>\r\n\t\t\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t\t\t<td align=\"left\" valign=\"top\" style=\"padding-top: 10px;\"><custom type=\"content\" name=\"right2\"></td>\r\n\t\t\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t</tr>\r\n\t\t\t\t<tr>\r\n\t\t\t\t\t<td style=\"padding-top: 10px;\" valign=\"top\" align=\"left\"><custom type=\"content\" name=\"bottom\"></td>\r\n\t\t\t\t</tr>\r\n\t\t\t\t<tr>\r\n\t\t\t\t\t<td><img alt=\"\" src=\"http://localhost/images/lib/ffcf14/m/1/spacer.gif\" height=\"10\" width=\"1\" border=\"0\" style=\"display: block;\" /></td>\r\n\t\t\t\t</tr>\r\n\t\t\t</table>\r\n\t\t</td>\r\n\t\t<td width=\"10\"><img alt=\"\" src=\"http://localhost/images/lib/ffcf14/m/1/spacer.gif\" height=\"1\" width=\"10\" border=\"0\" style=\"display: block;\" /></td>\r\n\t</tr>\r\n</table></td></tr></table><custom name=\"opencounter\" type=\"tracking\"></body>",
+                "textBody": "",
+                "isActive": true,
+                "isHtmlPaste": false,
+                "modifiedBy": 0,
+                "modifiedDate": "2011-04-20T19:23:16.943",
+                "status": "New",
+                "contentCheckStatus": 1,
+                "categoryId": 600,
+                "characterSetId": 1,
+                "createdDate": "2011-04-20T10:00:33.69",
+                "hasDynamicSubjectLine": false,
+                "templateUpdatedDate": "2011-04-20T10:00:33.967",
+                "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                "ownerId": 30980,
+                "isLocalizable": false,
+                "preheader": ""
+            }
+
+### Update an email [PATCH]
+
+Updates an email
+
++ Request
+    + Body
+    
+            {
+                "id": 1413,
+                "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                "name": "Questionable Content Notification",
+                "subject": "Someone posted activity with questionable content",
+                "memberId": 20720,
+                "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\">new html</body>",
+                "textBody": "",
+                "isActive": true,
+                "isHtmlPaste": false,
+                "status": "New",
+                "contentCheckStatus": 1,
+                "categoryId": 600,
+                "characterSetId": 1,
+                "hasDynamicSubjectLine": false,
+                "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                "ownerId": 30980,
+                "isLocalizable": false,
+                "preheader": ""
+            }
+
++ Response 200
+    + Body
+    
+            {
+                "id": 1413,
+                "key": "365207CD-12AF-4643-B11A-C4C81031FF77",
+                "name": "Questionable Content Notification",
+                "subject": "Someone posted activity with questionable content",
+                "memberId": 20720,
+                "htmlBody": "<body bgcolor=\"#ffffff\" text=\"#000000\">new html</body>",
+                "textBody": "",
+                "isActive": true,
+                "isHtmlPaste": false,
+                "modifiedBy": 0,
+                "modifiedDate": "2011-04-20T19:23:16.943",
+                "status": "New",
+                "contentCheckStatus": 1,
+                "categoryId": 600,
+                "characterSetId": 1,
+                "createdDate": "2011-04-20T10:00:33.69",
+                "hasDynamicSubjectLine": false,
+                "templateUpdatedDate": "2011-04-20T10:00:33.967",
+                "objectId": "d96a8454-ca54-4257-b45e-5ac54df38a44",
+                "ownerId": 30980,
+                "isLocalizable": false,
+                "preheader": ""
+            }
+
+### Delete an email [DELETE]
+
+Deletes an email
+
++ Response 204
