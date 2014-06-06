@@ -5016,7 +5016,7 @@ Creates an email
                 "preheader": ""
             }
 
-## Get collection of Emails [/messaging-internal/v1/messages/email?$page=1&$pageSize=25]
+## Get collection of Emails [/messaging-internal/v1/messages/email?$page={page}&$pageSize={pageSize}]
 
 ### Retrieve Emails collection [GET]
 Retrieves paginated list of Emails 
@@ -5032,6 +5032,11 @@ Retrieves paginated list of Emails
                "count": 2,
                "page": 1,
                "pageSize": 25,
+               "links": 
+                        {
+                            "self": { "href": "/messages/email?$page={page}&$pageSize={pageSize}"},
+                            "next": { "href": "/messages/email?$page={page}&$pageSize={pageSize + 1}" },
+                        },
                "items":
                [
                    {
