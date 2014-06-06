@@ -5224,13 +5224,10 @@ Resources related to categories
                 "editable": 0,
                 "extendable": 1,
                 "hasChildren": false,
-                "created": {
-                    "date": "2014-06-06T11:58:06.667"
-                },
-                "modified": {
-                    "id": 150063,
-                    "date": "2014-06-06T11:58:06.667"
-                }
+                "createdDate": "2014-06-06T11:58:06.667",
+                "createdMemberId": 150063,
+                "modifiedDate": "2014-06-06T11:58:06.667",
+                "modifiedMemberId": 150063
             }
 
 ## Get collection of Categories [/platformservice-internal/v1/categories?$page={page}&$pageSize={pageSize}&$filter={filter}&$orderBy={orderBy}]
@@ -5241,8 +5238,8 @@ Retrieves paginated list of categories
 + Parameters
     + page (optional, number) ... Intial page for pagination (default = 1)
     + pageSize (optional, number) ... Number of objects per page (default = 50)
-    + filter (required, string, `categorytype eq 'email'` ) ... category type to retrieve (only supports equal)
-    + orderBy (optonal, string) ... field to and direction to sort by (defaults to name asc)
+    + filter (required, string, `categorytype eq 'email'`) ... category type to retrieve (only supports equal)
+    + orderBy (optional, string) ... field to and direction to sort by (defaults to name asc)
 
 + Response 200
     + Body
@@ -5263,13 +5260,10 @@ Retrieves paginated list of categories
                         "editable": 0,
                         "extendable": 1,
                         "hasChildren": true,
-                        "created": {
-                            "date": "2010-05-20T08:17:10.553"
-                        },
-                        "modified": {
-                            "id": 0,
-                            "date": "2014-04-09T15:27:44.61"
-                        }
+                        "createdDate": "2014-06-06T11:58:06.667",
+                        "createdMemberId": 150063,
+                        "modifiedDate": "2014-06-06T11:58:06.667",
+                        "modifiedMemberId": 150063
                     },
                     {
                         "id": 3911,
@@ -5283,13 +5277,10 @@ Retrieves paginated list of categories
                         "editable": 0,
                         "extendable": 1,
                         "hasChildren": false,
-                        "created": {
-                            "date": "2011-08-16T14:37:51.09"
-                        },
-                        "modified": {
-                            "id": 30980,
-                            "date": "2011-08-16T14:37:51.09"
-                        }
+                        "createdDate": "2014-06-06T11:58:06.667",
+                        "createdMemberId": 150063,
+                        "modifiedDate": "2014-06-06T11:58:06.667",
+                        "modifiedMemberId": 150063
                     }
                 ]
             }
@@ -5316,13 +5307,10 @@ Retrieves a category
                 "editable": 0,
                 "extendable": 1,
                 "hasChildren": true,
-                "created": {
-                    "date": "2010-05-20T08:17:10.553"
-                },
-                "modified": {
-                    "id": 0,
-                    "date": "2014-04-09T15:27:44.61"
-                }
+                "createdDate": "2014-06-06T11:58:06.667",
+                "createdMemberId": 150063,
+                "modifiedDate": "2014-06-06T11:58:06.667",
+                "modifiedMemberId": 150063
             }
             
 ## Retrieve category children by ID collection [/platformservice-internal/v1/categories/{categoryId}/children?$page={page}&$pageSize={pageSize}&$filter={filter}&$orderBy={orderBy}]
@@ -5334,8 +5322,8 @@ Retrieves a collection of child categories for given category id
     + categoryId (required, number) ... CategoryId
     + page (optional, number) ... Intial page for pagination (default = 1)
     + pageSize (optional, number) ... Number of objects per page (default = 50)
-    + filter (optional, string, `categorytype eq 'email'` ) ... category type to retrieve (only supports equal)
-    + orderBy (optonal, string) ... field to and direction to sort by (defaults to name asc)
+    + filter (optional, string, `categorytype eq 'email'`) ... category type to retrieve (only supports equal)
+    + orderBy (optional, string) ... field to and direction to sort by (defaults to name asc)
 
 + Response 200
     + Body
@@ -5356,13 +5344,10 @@ Retrieves a collection of child categories for given category id
                         "editable": 1,
                         "extendable": 1,
                         "hasChildren": false,
-                        "created": {
-                            "date": "2014-05-06T09:52:51.3"
-                        },
-                        "modified": {
-                            "id": 150063,
-                            "date": "2014-05-06T09:52:51.3"
-                        }
+                        "createdDate": "2014-06-06T11:58:06.667",
+                        "createdMemberId": 150063,
+                        "modifiedDate": "2014-06-06T11:58:06.667",
+                        "modifiedMemberId": 150063
                     },
                     {
                         "id": 3949,
@@ -5375,13 +5360,10 @@ Retrieves a collection of child categories for given category id
                         "editable": 1,
                         "extendable": 1,
                         "hasChildren": false,
-                        "created": {
-                            "date": "2014-05-06T09:52:57.48"
-                        },
-                        "modified": {
-                            "id": 150063,
-                            "date": "2014-05-06T09:52:57.48"
-                        }
+                        "createdDate": "2014-06-06T11:58:06.667",
+                        "createdMemberId": 150063,
+                        "modifiedDate": "2014-06-06T11:58:06.667",
+                        "modifiedMemberId": 150063
                     }
                 ]
             }
