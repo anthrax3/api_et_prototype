@@ -5189,6 +5189,61 @@ Deletes an email
 
 + Response 204
 
+## Get all events for a given campaign email [/messaging-internal/v1/messages/email/{emailId}/events]
+
+
+### Retrieve all Events for a Message [GET]
+
++ Response 200
+    + Body
+    
+            {
+                "_links": {
+                    "self": { "href": "/messaging-internal/v1/messages/email/{emailId}/events" },
+                    "parent": { "href": "/messaging-internal/v1/messages/email/{emailId}" }
+                },
+                "id": "{id}",
+                "startDate" : "{startDate}",
+                "endDate" : "{endDate}",
+                "sent" : { 
+                  "count" : 18500 
+                },
+                "delivered": { 
+                  "count" : 18336, 
+                  "percent" : 99.114
+                },
+                "bounced" : { 
+                  "count" : 164, 
+                  "percent" : 0.009,
+                  "hard" : 12, 
+                  "soft" : 100, 
+                  "blocked" : 50,
+                  "technical" : 1,
+                  "unknown" : 1
+                },
+                "opened" : { 
+                  "unique" : {
+                    "count" : 18133,
+                    "percent" : 98.731
+                  },
+                  "count" : 18200
+                },
+                "clicked" : { 
+                  "unique" : {
+                    "count" : 18022,
+                    "percent" : 98.288
+                  },
+                  "count" : 18300
+                },
+                "unsubscribed": { 
+                  "count" : 33, 
+                  "percent" : 0.002 
+                },
+                "errored" : { 
+                  "count" : 0
+                }
+            }
+
 # Group Category Resources
 Resources related to categories
 
