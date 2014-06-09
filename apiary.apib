@@ -5189,20 +5189,25 @@ Deletes an email
 
 + Response 204
 
-## Get all events for a given campaign email [/messaging-internal/v1/messages/email/{emailId}/events]
+## Get all events for a given campaign email [/messaging-internal/v1/messages/email/{emailId}/events{?fields,startDate,endDate}]
 
++ Parameters
+    + emailId(integer, required, `123`) ... Id of the campaign email.
+    + fields(string, optional) ... event fields requested, default is all fields
+    + startDate=`creationDate of Email`(string, optional) ... ISO8601 formatted Date String, from which to begin collecting events from.
+    + endDate=`today`(string, optional) ... ISO8601 formatted Date string, end time to cap results on.
 
-### Retrieve all Events for a Message [GET]
+### Retrieve all Events for a given campaign email [GET]
 
 + Response 200
     + Body
     
             {
                 "_links": {
-                    "self": { "href": "/messaging-internal/v1/messages/email/{emailId}/events" },
+                    "self": { "href": "/messaging-internal/v1/messages/email/{emailId}/events{?fields,startDate,endDate}" },
                     "parent": { "href": "/messaging-internal/v1/messages/email/{emailId}" }
                 },
-                "id": "{id}",
+                "emailId": "{emailId}",
                 "startDate" : "{startDate}",
                 "endDate" : "{endDate}",
                 "sent" : { 
