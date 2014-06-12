@@ -662,6 +662,31 @@ Send a message using a pre-existing triggered send definition
             "isSalesForce": false
         }
 
+
+## Export List [/MessagingService-Internal/v1/lists/{id}/export]
+
+### Exports a list [POST]
+
++ Parameters
+    + id (required, int, `1234`) ... The list `id`.
+    
++ Request (application/json)
+
+        {
+            "ExportType" : "list",
+            "EmailAddress" : "email@address.com",
+            "FileType" : "csv",
+            "ZipCompress":true,
+            "ResultFileName" : "filename.csv",
+            "Overwrite": false,
+            "SubscriberExportType":"ChannelList"
+        }
+
++ Response 200  (integer)
+
+        123
+
+
 ## FilteredList [/messagingservice-internal/v1/lists/filteredLists]
 
 ### Create a FilteredList [POST]
