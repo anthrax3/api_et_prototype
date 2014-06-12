@@ -673,13 +673,15 @@ Send a message using a pre-existing triggered send definition
 + Request (application/json)
 
         {
-            "ExportType" : "list",
-            "EmailAddress" : "email@address.com",
-            "FileType" : "csv",
-            "ZipCompress":true,
-            "ResultFileName" : "filename.csv",
-            "Overwrite": false,
-            "SubscriberExportType":"ChannelList"
+          "exportType": "LIST",
+          "deliveryType": "EMAIL",
+          "profileAttributeIDs": [211, 212, 215, 1173],
+          "profileAttributeNames": ["HTML Emails", "Email Status"],
+          "emailAddress": "kgong@exacttarget.com",
+          "fileType": "csv",
+          "zipCompress": false,
+          "resultFileName": "mdh",
+          "overwrite": false
         }
 
 + Response 200  (integer)
