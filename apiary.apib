@@ -400,6 +400,108 @@ Status information of a job
 
 # Group Message Resource
 
+## Get Applications [/messaging-internal/v1/messages/applications/{id}]
+
+### Retrieve an application by ID [GET]
+
++ Parameters
+    + id (guid, required, `e1b6fdd1-6986-4260-9a0d-0f6ed643d23c`) ... The Application `id`.
+
++ Response 200 (application/json)
+
+        {
+            id: "e1b6fdd1-6986-4260-9a0d-0f6ed643d23c"
+            name: "Administration"
+            description: "Administration"
+            createdDate: "2013-07-02T12:12:00"
+            modifiedDate: "2014-06-10T15:10:37.73"
+            applicationType: 2
+            applicationState: 1
+            uRL: "http://imh.IN5580/Admin/"
+            iconURL: "http://imh.IN5580/hub/images/admin-icon.png"
+            logoutURL: "http://IN5580/Presentation/Logout.aspx"
+            isVisibleIMH: false
+        }
+        
+## Get Application Collection [/messaging-internal/v1/messages/applications{?page,pageSize,fields,filter,orderBy}]
+
+### Gets the application collection [GET]
+
++ Parameters
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `name asc` (string, optional, `modifiedDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `name`
+            + `createdDate`
+            + `modifiedDate`
+    + filter (string, optional)
+        JSON Collection of filter objects to be used to filter results.
+        + Values
+            + `name`
+            + `description`
+            + `createdDate`
+
++ Response 200 (application/json)
+
+        {
+            count: 54
+            page: 1
+            pageSize: 3
+            -links: {
+                -self: {
+                    href: "/v1/messages/applications?$page=1&$pagesize=3"
+                }
+                -next: {
+                        href: "/v1/messages/applications?$page=2&$pagesize=3"
+                }
+            }
+            -items: [3]
+                -0:  {
+                    id: "e1b6fdd1-6986-4260-9a0d-0f6ed643d23c"
+                    name: "Administration"
+                    description: "Administration"
+                    createdDate: "2013-07-02T12:12:00"
+                    modifiedDate: "2014-06-10T15:10:37.73"
+                    applicationType: 2
+                    applicationState: 1
+                    uRL: "http://imh.IN5580/Admin/"
+                    iconURL: "http://imh.IN5580/hub/images/admin-icon.png"
+                    logoutURL: "http://IN5580/Presentation/Logout.aspx"
+                    isVisibleIMH: false
+                }
+                -1:  {
+                    id: "995faa9d-32c5-4b5b-b383-4fa147de88f8"
+                    name: "Adobe Analytics"
+                    description: "Adobe Analytics"
+                    createdDate: "2013-07-02T12:12:00"
+                    modifiedDate: "2014-06-10T15:10:37.73"
+                    applicationType: 3
+                    applicationState: 1
+                    uRL: "http://imh.IN5580/AdobeAnalytics/default.html"
+                    iconURL: "http://imh.IN5580/AdobeAnalytics/images/generic-icon.png"
+                    logoutURL: ""
+                    isVisibleIMH: true
+                }
+                -2:  {
+                    id: "2370e7c0-caf9-e011-af50-001cc4948c0a"
+                    name: "AdSleuth"
+                    description: "AdSleuth for the HubExchange enables Marketers to visualize and manage online display and search "
+                    createdDate: "2013-07-02T12:12:00"
+                    modifiedDate: "2014-06-10T15:00:36.98"
+                    applicationType: 4
+                    applicationState: 1
+                    uRL: "http://adsleuth.rarebirdinc.com/dashboard"
+                    iconURL: "http://imh.IN5580/hub/images/dev-icon.png"
+                    logoutURL: "http://adsleuth.rarebirdinc.com/saml/logout"
+                    isVisibleIMH: true
+                }
+            
+        }
+
 ## Send a Triggered Message [/messaging-internal/v1/messages/{id}/send]
 Send a message using a pre-existing triggered send definition
 
