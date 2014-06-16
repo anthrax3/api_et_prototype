@@ -3604,7 +3604,7 @@ A collection of Assets favorited by the given *user*.
     [Asset Collection][]
 
 
-## BRIDGE Asset [/assets-internal/bridge/v1/assets/{id}]
+## BRIDGE Asset [/assets-internal/v1/bridge/assets/{id}]
 A single Asset identified by a numeric *id*, accessed via Bridge API.
 
 + Model (application/json)
@@ -3773,7 +3773,7 @@ __Editable Properties__:
 + Response 204
 
 
-## BRIDGE Asset by Key [/assets-internal/bridge/v1/assets/key:{key}]
+## BRIDGE Asset by Key [/assets-internal/v1/bridge/assets/key:{key}]
 A single Asset identified by a string *key*, accessed via Bridge API.
 
 + Parameters
@@ -3785,7 +3785,7 @@ A single Asset identified by a string *key*, accessed via Bridge API.
     [Asset][]
 
 
-## BRIDGE Assets [/assets-internal/bridge/v1/assets/]
+## BRIDGE Assets [/assets-internal/v1/bridge/assets/]
 One or multiple Assets, accessed via Bridge API.
 
 + Model (application/json)
@@ -3796,7 +3796,7 @@ One or multiple Assets, accessed via Bridge API.
                 "count": 3,
                 "links": {
                     "self": {
-                        "href": "/bridge/v1/assets"
+                        "href": "/v1/bridge/assets"
                     }
                 },
                 "items": [
@@ -4096,7 +4096,7 @@ __Batch-Editable Properties__:
     [Assets][]
 
 
-## BRIDGE Asset Collection [/assets-internal/bridge/v1/assets{?$page,$pageSize,$orderBy}]
+## BRIDGE Asset Collection [/assets-internal/v1/bridge/assets{?$page,$pageSize,$orderBy}]
 A paginated collection of Assets, accessed via Bridge API.
  
 + Parameters
@@ -4128,7 +4128,7 @@ A paginated collection of Assets, accessed via Bridge API.
                 "pageSize": 25,
                 "links": {
                     "self": {
-                        "href": "/bridge/v1/assets"
+                        "href": "/v1/bridge/assets"
                     }
                 },
                 "items": [
@@ -4365,7 +4365,7 @@ A paginated collection of Assets, accessed via Bridge API.
     [Asset Collection][]
 
 
-## BRIDGE Asset Collection by AssetType [/assets-internal/bridge/v1/assets/type:{assetType}]
+## BRIDGE Asset Collection by AssetType [/assets-internal/v1/bridge/assets/type:{assetType}]
 A collection of Assets with the given *assetType*, accessed via Bridge API.
 
 + Parameters
@@ -4396,7 +4396,7 @@ A collection of Assets with the given *assetType*, accessed via Bridge API.
     [Asset Collection][]
 
 
-## BRIDGE Asset Collection by Classification [/assets-internal/bridge/v1/assets/classification:{classification}]
+## BRIDGE Asset Collection by Classification [/assets-internal/v1/bridge/assets/classification:{classification}]
 A collection of Assets with the given *classification*, accessed via Bridge API.
 
 + Parameters
@@ -4413,7 +4413,7 @@ A collection of Assets with the given *classification*, accessed via Bridge API.
     [Asset Collection][]
 
 
-## BRIDGE Asset Collection by Category [/assets-internal/bridge/v1/assets/f:{categoryId}{?includeChildren}]
+## BRIDGE Asset Collection by Category [/assets-internal/v1/bridge/assets/f:{categoryId}{?includeChildren}]
 A collection of Assets from the given *categoryId*, accessed via Bridge API.
 
 ### Retrieve Assets by CategoryId via Bridge [GET]
@@ -4425,7 +4425,7 @@ A collection of Assets from the given *categoryId*, accessed via Bridge API.
     [Asset Collection][]
 
 
-## BRIDGE Asset Collection by Tag [/assets-internal/bridge/v1/assets/tag:{name}]
+## BRIDGE Asset Collection by Tag [/assets-internal/v1/bridge/assets/tag:{name}]
 A collection of Assets associated with the given *tag*, accessed via Bridge API.
 
 + Parameters
