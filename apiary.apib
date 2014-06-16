@@ -424,6 +424,7 @@ Status information of a job
         }
         
 ## Get Application Collection [/messaging-internal/v1/messages/applications{?page,pageSize,fields,filter,orderBy}]
+
 ### Gets the application collection [GET]
 
 + Parameters
@@ -502,6 +503,7 @@ Status information of a job
         }
 
 ## Send a Triggered Message [/messaging-internal/v1/messages/{id}/send]
+
 ### Send a triggered send definition message [PUT]
 + Request (application/json)
 
@@ -562,7 +564,7 @@ Status information of a job
             ]
         }
 
-## System Event By Id [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends]        
+## System Event By Id [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends{sendId}]        
 ### Retrieve a Single System Event by MemberId and SendId [GET]
 
 + Parameters
