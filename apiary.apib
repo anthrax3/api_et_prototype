@@ -424,7 +424,6 @@ Status information of a job
         }
         
 ## Get Application Collection [/messaging-internal/v1/messages/applications{?page,pageSize,fields,filter,orderBy}]
-
 ### Gets the application collection [GET]
 
 + Parameters
@@ -503,9 +502,6 @@ Status information of a job
         }
 
 ## Send a Triggered Message [/messaging-internal/v1/messages/{id}/send]
-Send a message using a pre-existing triggered send definition
-
-
 ### Send a triggered send definition message [PUT]
 + Request (application/json)
 
@@ -520,6 +516,70 @@ Send a message using a pre-existing triggered send definition
         
 + Response 202
 
+## System Events Collection [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends]
+### Retrieve Collection of System Events by MemberId [GET]
+
++ Parameters
+    + memberId (id, required, `20720`) ... The memberId.
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `eventDate asc` (string, optional, `eventDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `name`
+            + `sendId`
+            + `eventDate`
+    + filter (string, optional)
+        JSON Collection of filter objects to be used to filter results.
+        + Values
+            + `emailAddress`
+            + `subscriberKey`
+            + `eventDate`    
+
++ Response 200 (application/json)
+
+        {
+            "links": {
+                "self": { "href": "/v1/accounts/{memberId}/messages/triggered/sends"},                    
+                "next" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=3&...}"},
+                "previous" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=1&...}"}                    
+            },
+            "count" : 1,
+            "page": 1,
+            "pageSize": 50,                
+            "items" : [
+                {
+                    "Id": 1,
+                    "Name": "Triggered Send Name",
+                    "EmailAddress": "test@test.com",
+                    "SubscriberKey": "key",
+                    "SMTPCode": 250,
+                    "EventDate": 2014-03-06 13:32:34,
+                    "Status": "Delivered" 
+                }
+            ]
+        }
+
+## System Event By Id [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends]        
+### Retrieve a Single System Event by MemberId and SendId [GET]
+
++ Parameters
+    + memberId (id, required, `20720`) ... The memberId.
+    + sendId (integer, required, `1`) ... The Id of the Send    
+
++ Response 200 (application/json)
+
+        {
+            "Id": 1,
+            "Name": "Triggered Send Name",
+            "EmailAddress": "test@test.com",
+            "SubscriberKey": "key",
+            "SMTPCode": 250,
+            "EventDate": 2014-03-06 13:32:34,
+            "Status": "Delivered" 
+        }
 
 # Group Lists Resource
 
@@ -533,14 +593,14 @@ Send a message using a pre-existing triggered send definition
             "name": "A new list",
             "description": "blah blah blah",
             "categoryId": 5501,
-            “SendClassificationId”: "ee03d794-fcbf-4ca6-87c4-7a8b58eeaccf",
-            “SubConfirmEmailId”: 1234,
-            “SubConfirm”: true,
-            “ConfirmLandingPage”: ”www.mylandingpage.com”,
-            “ConfirmLandingPageId”: 12345,
-            “WelcomeEmailId”: 1234,
-            “Type”: “Private”,
-            “UseDefaultLandingPage”: true,
+            "SendClassificationId": "ee03d794-fcbf-4ca6-87c4-7a8b58eeaccf",
+            "SubConfirmEmailId": 1234,
+            "SubConfirm": true,
+            "ConfirmLandingPage": "www.mylandingpage.com",
+            "ConfirmLandingPageId": 12345,
+            "WelcomeEmailId": 1234,
+            "Type": "Private",
+            "UseDefaultLandingPage": true,
             "bOIReplyEmail" : "signmeup"
         }
 
@@ -675,11 +735,11 @@ Send a message using a pre-existing triggered send definition
             " SubConfirm": true,
             " SubConfirmEmailId": 4022,
             " WelcomeEmailId": 4023,
-            " ConfirmLandingPage": “http://www.google.com”,
+            " ConfirmLandingPage": "http://www.google.com",
             " ConfirmLandingPageId": 4024,
             " UseDefaultLandingPage": true,
-            “listObjectId”: “8e017123-777c-4bd1-b742-467e719e4aa4”,
-            “IsPublic”:true,
+            "listObjectId": "8e017123-777c-4bd1-b742-467e719e4aa4",
+            "IsPublic":true,
             "iD": "4022",
             "campaigns": [
                 {
@@ -822,7 +882,7 @@ Send a message using a pre-existing triggered send definition
             "sourceListName": "All Subscribers", 
             "totalSubCount": 0, 
             "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
-            “type”: “Filtered”, 
+            "type": "Filtered", 
             "lastRefreshedByName": "" 
         } 
         
@@ -839,7 +899,7 @@ Send a message using a pre-existing triggered send definition
         { 
           "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
           "createdByName": "rmccammonE2                                       ", 
-          “isBuiltFromDataFilter”: false, 
+          "isBuiltFromDataFilter": false, 
           "type": "Filtered", 
           "listId": 4022, 
           "customerKey": "SaveBuildFilterTest23 - 4033", 
@@ -906,7 +966,7 @@ Send a message using a pre-existing triggered send definition
             "sourceListName": "All Subscribers", 
             "totalSubCount": 0, 
             "filterXML": "<FilterDefinition Source=\"SubscriberAttribute\"><ConditionSet Operator=\"OR\" ConditionSetName=\"Outer Grouping\"><Condition ID=\"1660\" isParam=\"false\" Operator=\"Equals\" ><Value><![CDATA[M]]></Value></Condition></ConditionSet></FilterDefinition>", 
-            “type”: “Filtered”, 
+            "type": "Filtered", 
             "lastRefreshedByName": "" 
         } 
         
