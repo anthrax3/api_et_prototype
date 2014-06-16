@@ -4437,7 +4437,7 @@ A collection of Assets associated with the given *tag*, accessed via Bridge API.
 
 # Group Sites
 
-## Microsite by Id [/sitesService/microsites/{id}]
+## Microsite by Id [/sites-internal/microsites/{id}]
 
 Definition of a Microsite
 
@@ -4446,7 +4446,7 @@ Definition of a Microsite
     + Body
     
             {
-                "id": "<guid>",
+                "id": "00000000-0000-0000-0000-000000000000",
                 "accountId": 123,
                 "autoPublish": false,
                 "categoryId": 123,
@@ -4478,7 +4478,7 @@ Definition of a Microsite
 
 
 
-## Microsite Collection [/sitesService/microsites/{?filter,orderBy,page,pageSize}]
+## Microsite Collection [/sites-internal/microsites/{?filter,orderBy,page,pageSize}]
 
 Definition of a Microsite Collection
 
@@ -4488,14 +4488,14 @@ Definition of a Microsite Collection
     
             {
                 "links": {
-                    "self": { "href": "/sitesService/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" }
+                    "self": { "href": "/sites-internal/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" }
                 },
                 "count": 1, 
                 "page": 1,
                 "pageSize": 50,
                 "items":[
                     {
-                        "id": "<guid>",
+                        "id": "00000000-0000-0000-0000-000000000000",
                         "accountId": 123,
                         "autoPublish": false,
                         "categoryId": 123,
@@ -4538,7 +4538,7 @@ Definition of a Microsite Collection
 
 
 
-## Landing Page by Id [/sitesService/landingPages/{id}/]
+## Landing Page by Id [/sites-internal/landingPages/{id}/]
 
 Definition of a Landing Page
 
@@ -4568,8 +4568,8 @@ Definition of a Landing Page
                 "purlKey": "a 300 character string",
                 "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
                 "securityType": 1,
-                "siteId": "<guid>",
-                "templateId": "<guid>"
+                "siteId": "00000000-0000-0000-0000-000000000000",
+                "templateId": "00000000-0000-0000-0000-000000000000"
             }
 
 + Parameters
@@ -4582,7 +4582,7 @@ Definition of a Landing Page
 
 
 
-## Landing Page Collection [/sitesService/landingPages/{?filter,orderBy,page,pageSize}]
+## Landing Page Collection [/sites-internal/landingPages/{?filter,orderBy,page,pageSize}]
 
 Definition of a Landing Page Collection
 
@@ -4592,8 +4592,8 @@ Definition of a Landing Page Collection
     
             {
                 "links": {
-                    "self": { "href": "/sitesService/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" },
-                    "microsite": { "href": "/siteService/microsites/{siteId}" }
+                    "self": { "href": "/sites-internal/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" },
+                    "microsite": { "href": "/sites-internal/microsites/{siteId}" }
                 },
                 "count": 1, 
                 "page": 1,
@@ -4621,8 +4621,8 @@ Definition of a Landing Page Collection
                         "purlKey": "a 300 character string",
                         "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
                         "securityType": 1,
-                        "siteId": "<guid>",
-                        "templateId": "<guid>"
+                        "siteId": "00000000-0000-0000-0000-000000000000",
+                        "templateId": "00000000-0000-0000-0000-000000000000"
                     }
                 ": 
             }
@@ -4646,7 +4646,7 @@ Definition of a Landing Page Collection
 
 
 
-## Landing Page Collection by Microsite Id [/sitesService/microsites/{siteId}/landingPages/{?orderBy,page,pageSize}]
+## Landing Page Collection by Microsite Id [/sites-internal/microsites/{siteId}/landingPages/{?filter,orderBy,page,pageSize}]
 
 Definition of a Landing Page Collection by Microsite Id
 
@@ -4656,8 +4656,8 @@ Definition of a Landing Page Collection by Microsite Id
     
             {
                 "links": {
-                    "self": { "href": "/sitesService/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" },
-                    "microsite": { "href": "/siteService/microsites/{siteId}" }
+                    "self": { "href": "/sites-internal/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" },
+                    "microsite": { "href": "/sites-internal/microsites/{siteId}" }
                 },
                 "count": 1, 
                 "page": 1,
@@ -4692,7 +4692,13 @@ Definition of a Landing Page Collection by Microsite Id
             }
 
 + Parameters
-    + siteId (required) ... Id for the Landing Page.
+    + siteId (required) ... Id for the Microsite.
+    + filter (string, optional)
+        JSON Collection of filter objects to be used to filter results.
+        + Values
+            + `classificationType`
+            + `creationMethod`
+            + `isPublished`
     + orderBy = `createDate` (optional, string) ... Specify the field to sort Landing Pages by, default createDate.
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 50.
