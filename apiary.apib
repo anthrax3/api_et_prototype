@@ -4478,7 +4478,7 @@ Definition of a Microsite
 
 
 
-## Microsite Collection [/sitesService/microsites/{?orderBy,page,pageSize}]
+## Microsite Collection [/sitesService/microsites/{?filter,orderBy,page,pageSize}]
 
 Definition of a Microsite Collection
 
@@ -4519,6 +4519,12 @@ Definition of a Microsite Collection
             }
 
 + Parameters
+    + filter (string, optional)
+        JSON Collection of filter objects to be used to filter results.
+        + Values
+            + `entityState`
+            + `name`
+            + `type`
     + orderBy = `createDate` (optional, string) ... Specify the field to sort Microsites by, default createDate.
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 50.
@@ -4551,7 +4557,7 @@ Definition of a Landing Page
                 "enterpriseId": 123456,
                 "entityState": 1,
                 "isPublished": false,
-                "metaDesc": "a 500 character string",
+                "metaDescription": "a 500 character string",
                 "metaFollow": 1,
                 "metaIndex": 1,
                 "metaKeyWords": "a 500 character string",
@@ -4576,7 +4582,7 @@ Definition of a Landing Page
 
 
 
-## Landing Page Collection [/sitesService/landingPages/{?orderBy,page,pageSize}]
+## Landing Page Collection [/sitesService/landingPages/{?filter,orderBy,page,pageSize}]
 
 Definition of a Landing Page Collection
 
@@ -4604,7 +4610,7 @@ Definition of a Landing Page Collection
                         "enterpriseId": 123456,
                         "entityState": 1,
                         "isPublished": false,
-                        "metaDesc": "a 500 character string",
+                        "metaDescription": "a 500 character string",
                         "metaFollow": 1,
                         "metaIndex": 1,
                         "metaKeyWords": "a 500 character string",
@@ -4622,6 +4628,12 @@ Definition of a Landing Page Collection
             }
 
 + Parameters
+    + filter (string, optional)
+        JSON Collection of filter objects to be used to filter results.
+        + Values
+            + `classificationType`
+            + `creationMethod`
+            + `isPublished`
     + orderBy = `createDate` (optional, string) ... Specify the field to sort Landing Pages by, default createDate.
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 50.
