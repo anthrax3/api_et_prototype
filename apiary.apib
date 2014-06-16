@@ -5358,5 +5358,39 @@ A single subscriber attribute object with all its details
 
         }
 
+#  Group Mobile Applications
+    Installed Applications that are marked as mobile
+    
+## MobileApplications - v1 [/internalservice/v1/mcmanage/mobileapplications/]
 
+### Retrieve a collection of MobileApplications [GET]
++ Response 200
+    
+        {
+            "count":2,
+            "page":1,
+            "pageSize":25,
+            "_links": {
+                "self": "/v1/mcmanage/mobileapplications",
+            },
+            "items" :
+                [ {
+                    "applicationId" : "4CE1322C-BB76-4C6A-A383-D58F2373A3E7",
+                    "name" : "Full Name", 
+                    "applicationType" : 0,
+                    "description" : "My mobile application",
+                    "url" : "www.google.com",
+                    "iconUrl" : "www.google.com",
+                    "logoutUrl" : "www.google.com"
+                },
+                {
+                    "applicationId" : "E22A5D68-7D79-4407-B4DD-99873F62B4E4",
+                    "name" : "Another Mobile App", 
+                    "applicationType" : 1,
+                    "description" : "My next mobile application",
+                    "url" : "www.bing.com",
+                    "iconUrl" : "www.bing.com",
+                    "logoutUrl" : "www.bing.com"
+                }]
+        }
 
