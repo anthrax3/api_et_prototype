@@ -4435,6 +4435,261 @@ A collection of Assets associated with the given *tag*, accessed via Bridge API.
 + Response 200
     [Asset Collection][]
 
+# Group Sites
+
+## Microsite by Id [/sitesService/microsites/{id}]
+
+Definition of a Microsite
+
++ Model (application/json)
+    JSON Representation of a single Microste.  
+    + Body
+    
+            {
+                "id": "<guid>",
+                "accountId": 123,
+                "autoPublish": false,
+                "categoryId": 123,
+                "createdBy": 123,
+                "createdDate": "2014-02-27T22:14:38+00:00",
+                "description": "A 50 character desc",
+                "entityState": 1,
+                "masterCssPageId": 123,
+                "masterJSPageId": 123,
+                "modifiedBy": 123,
+                "modifiedDate": "2014-02-27T22:14:38+00:00",
+                "name": "A 50 character name",
+                "pageCount": 12,
+                "pageLimit": 12,
+                "publishedCount": 12,
+                "type": 1,
+                "mId": 123,
+                "eId": 123
+            }
+
++ Parameters
+    + id (required) ... Id for the Microsite.
+
+### Retrieve a Microsite by Id [GET]
+
++ Response 200
+    [Microsite by Id][]
+
+
+
+
+## Microsite Collection [/sitesService/microsites/{?orderBy,page,pageSize}]
+
+Definition of a Microsite Collection
+
++ Model (application/json)
+    JSON Representation of a collection of Microsites.  
+    + Body
+    
+            {
+                "links": {
+                    "self": { "href": "/sitesService/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" }
+                },
+                "count": 1, 
+                "page": 1,
+                "pageSize": 50,
+                "items":[
+                    {
+                        "id": "<guid>",
+                        "accountId": 123,
+                        "autoPublish": false,
+                        "categoryId": 123,
+                        "createdBy": 123,
+                        "createdDate": "2014-02-27T22:14:38+00:00",
+                        "description": "A 50 character string",
+                        "eId": 123,
+                        "entityState": 1,
+                        "masterCssPageId": 123,
+                        "masterJSPageId": 123,
+                        "mId": 123,
+                        "modifiedBy": 123,
+                        "modifiedDate": "2014-02-27T22:14:38+00:00",
+                        "name": "A 50 character string",
+                        "pageCount": 12,
+                        "pageLimit": 12,
+                        "publishedCount": 12,
+                        "type": 1
+                    }
+                ": 
+            }
+
++ Parameters
+    + orderBy = `createDate` (optional, string) ... Specify the field to sort Microsites by, default createDate.
+    + page (optional, number `1`) ... Page number to return.
+    + pageSize (optional, number, `100`) ... Number of records to return, default 50.
+
+### Retrieve Microsites [GET]
+
++ Response 200
+    [Microsite Collection][]
+
+
+
+
+
+## Landing Page by Id [/sitesService/landingPages/{id}/]
+
+Definition of a Landing Page
+
++ Model (application/json)
+    JSON Representation of a single Landing Page.  
+    + Body
+    
+            {
+                "id": 123,
+                "accountId": 123,
+                "classificationType": 1,
+                "createdBy": 123,
+                "creationMethod": 1,
+                "description": "a 250 character string",
+                "documentType": 1,
+                "eId": 123456,
+                "entityState": 1,
+                "isPublished": false,
+                "metaDesc": "a 500 character string",
+                "metaFollow": 1,
+                "metaIndex": 1,
+                "metaKeyWords": "a 500 character string",
+                "mId": 123456,
+                "mimeType":1 ,
+                "publishedDate":"2014-02-27T22:14:38+00:00",
+                "publishedHtml": "a max character string",
+                "purlKey": "a 300 character string",
+                "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
+                "securityType": 1,
+                "siteId": "<guid>",
+                "templateId": "<guid>"
+            }
+
++ Parameters
+    + id (required) ... Id for the Landing Page.
+
+### Retrieve a Landing Page by Id [GET]
+
++ Response 200
+    [Landing Page by Id][]
+
+
+
+## Landing Page Collection [/sitesService/landingPages/{?orderBy,page,pageSize}]
+
+Definition of a Landing Page Collection
+
++ Model (application/json)
+    JSON Representation of a collection of Landing Pages by Microsite Id.  
+    + Body
+    
+            {
+                "links": {
+                    "self": { "href": "/sitesService/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" },
+                    "microsite": { "href": "/siteService/microsites/{siteId}" }
+                },
+                "count": 1, 
+                "page": 1,
+                "pageSize": 50,
+                "items":[
+                    {
+                        "id": 123,
+                        "accountId": 123,
+                        "classificationType": 1,
+                        "createdBy": 123,
+                        "creationMethod": 1,
+                        "description": "a 250 character string",
+                        "documentType": 1,
+                        "eId": 123456,
+                        "entityState": 1,
+                        "isPublished": false,
+                        "metaDesc": "a 500 character string",
+                        "metaFollow": 1,
+                        "metaIndex": 1,
+                        "metaKeyWords": "a 500 character string",
+                        "mId": 123456,
+                        "mimeType":1 ,
+                        "publishedDate":"2014-02-27T22:14:38+00:00",
+                        "publishedHtml": "a max character string",
+                        "purlKey": "a 300 character string",
+                        "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
+                        "securityType": 1,
+                        "siteId": "<guid>",
+                        "templateId": "<guid>"
+                    }
+                ": 
+            }
+
++ Parameters
+    + orderBy = `createDate` (optional, string) ... Specify the field to sort Landing Pages by, default createDate.
+    + page (optional, number `1`) ... Page number to return.
+    + pageSize (optional, number, `100`) ... Number of records to return, default 50.
+
+### Retrieve Landing Page Collection [GET]
+
++ Response 200
+    [Landing Page Collection][]
+
+
+
+
+## Landing Page Collection by Microsite Id [/sitesService/microsites/{siteId}/landingPages/{?orderBy,page,pageSize}]
+
+Definition of a Landing Page Collection by Microsite Id
+
++ Model (application/json)
+    JSON Representation of a collection of Landing Pages by Microsite Id.  
+    + Body
+    
+            {
+                "links": {
+                    "self": { "href": "/sitesService/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" },
+                    "microsite": { "href": "/siteService/microsites/{siteId}" }
+                },
+                "count": 1, 
+                "page": 1,
+                "pageSize": 50,
+                "items":[
+                    {
+                        "id": 123,
+                        "accountId": 123,
+                        "classificationType": 1,
+                        "createdBy": 123,
+                        "creationMethod": 1,
+                        "description": "a 250 character string",
+                        "documentType": 1,
+                        "eId": 123456,
+                        "entityState": 1,
+                        "isPublished": false,
+                        "metaDesc": "a 500 character string",
+                        "metaFollow": 1,
+                        "metaIndex": 1,
+                        "metaKeyWords": "a 500 character string",
+                        "mId": 123456,
+                        "mimeType":1 ,
+                        "publishedDate":"2014-02-27T22:14:38+00:00",
+                        "publishedHtml": "a max character string",
+                        "purlKey": "a 300 character string",
+                        "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
+                        "securityType": 1,
+                        "siteId": "<guid>",
+                        "templateId": "<guid>"
+                    }
+                ": 
+            }
+
++ Parameters
+    + siteId (required) ... Id for the Landing Page.
+    + orderBy = `createDate` (optional, string) ... Specify the field to sort Landing Pages by, default createDate.
+    + page (optional, number `1`) ... Page number to return.
+    + pageSize (optional, number, `100`) ... Number of records to return, default 50.
+
+### Retrieve Landing Page by Microsite Id [GET]
+
++ Response 200
+    [Landing Page Collection by Microsite Id][]
+
 # Group Subscriber
 
 ## Subscriber Object [/subscribers/{id,subscriberKey}]
