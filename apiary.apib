@@ -4551,7 +4551,9 @@ Definition of a Microsite Collection
     
             {
                 "_links": {
-                    "self": { "href": "/sites-internal/v1/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" }
+                    "self": { "href": "/sites-internal/v1/microsites" },
+                    "next": { "href": "/sites-internal/v1/microsites/?$orderyBy=createDate&$page=3&$pageSize=50" },
+                    "prev": { "href": "/sites-internal/v1/microsites/?$orderyBy=createDate&$page=1&$pageSize=50" }
                 },
                 "count": 1, 
                 "page": 1,
@@ -4655,7 +4657,9 @@ Definition of a Landing Page Collection
     
             {
                 "_links": {
-                    "self": { "href": "/sites-internal/v1/landingPages/?$orderyBy=createDate&$page=1&$pageSize=50" }
+                    "self": { "href": "/sites-internal/v1/landingPages" },
+                    "next": { "href": "/sites-internal/v1/landingPages/?$orderyBy=createDate&$page=3&$pageSize=50" },
+                    "prev": { "href": "/sites-internal/v1/landingPages/?$orderyBy=createDate&$page=1&$pageSize=50" }
                 },
                 "count": 1, 
                 "page": 1,
@@ -4718,7 +4722,9 @@ Definition of a Landing Page Collection by Microsite Id
     
             {
                 "_links": {
-                    "self": { "href": "/sites-internal/v1/landingPages/?$orderyBy=createDate&$page=1&$pageSize=50" }
+                    "self": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages" },
+                    "next": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages/?$orderyBy=createDate&$page=3&$pageSize=50" },
+                    "prev": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages/?$orderyBy=createDate&$page=1&$pageSize=50" }
                 },
                 "count": 1, 
                 "page": 1,
