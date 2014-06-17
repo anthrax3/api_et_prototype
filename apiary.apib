@@ -132,72 +132,7 @@ A single EmailSnippetsEntity with all of its details
 
     [EmailSnippetsEntity][]
     
-## System Events Collection [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends]
-### Retrieve Collection of System Events by MemberId [GET]
 
-+ Parameters
-    + memberId (id, required, `20720`) ... The memberId.
-    + page = `1` (integer, optional)
-        Page of the collection to return.
-    + pageSize = `25` (integer, optional)
-        Number of objects to display per page.
-    + orderBy = `eventDate asc` (string, optional, `eventDate desc`)
-        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
-        + Values
-            + `name`
-            + `sendId`
-            + `eventDate`
-    + filter (string, optional)
-        JSON Collection of filter objects to be used to filter results.
-        + Values
-            + `emailAddress`
-            + `subscriberKey`
-            + `eventDate`    
-
-+ Response 200 (application/json)
-
-        {
-            "_links": {
-                "self": { "href": "/v1/accounts/{memberId}/messages/triggered/sends"},                    
-                "next" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=3&...}"},
-                "prev" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=1&...}"}                    
-            },
-            "count" : 1,
-            "page": 1,
-            "pageSize": 50,                
-            "items" : [
-                {
-                    "sendId": 1,
-                    "name": "Triggered Send Name",
-                    "emailAddress": "test@test.com",
-                    "subscriberKey": "key",
-                    "smtpCode": 250,
-                    "smtpDescription": "text describing smtp code",
-                    "eventDate": "2014-06-10T15:10:37.73",
-                    "status": "Delivered" 
-                }
-            ]
-        }
-
-## System Event By Id [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends{sendId}]        
-### Retrieve a Single System Event by MemberId and SendId [GET]
-
-+ Parameters
-    + memberId (id, required, `20720`) ... The memberId.
-    + sendId (integer, required, `1`) ... The Id of the Send    
-
-+ Response 200 (application/json)
-
-        {
-            "sendId": 1,
-            "name": "Triggered Send Name",
-            "emailAddress": "test@test.com",
-            "subscriberKey": "key",
-            "smtpCode": 250,
-            "smtpDescription": "text describing smtp code",
-            "eventDate": "2014-06-10T15:10:37.73",
-            "status": "Delivered" 
-        }    
 
 
 # Group Jobs resource
