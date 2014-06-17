@@ -131,6 +131,73 @@ A single EmailSnippetsEntity with all of its details
 + Response 200 (application/json)
 
     [EmailSnippetsEntity][]
+    
+## System Events Collection [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends]
+### Retrieve Collection of System Events by MemberId [GET]
+
++ Parameters
+    + memberId (id, required, `20720`) ... The memberId.
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `eventDate asc` (string, optional, `eventDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `name`
+            + `sendId`
+            + `eventDate`
+    + filter (string, optional)
+        JSON Collection of filter objects to be used to filter results.
+        + Values
+            + `emailAddress`
+            + `subscriberKey`
+            + `eventDate`    
+
++ Response 200 (application/json)
+
+        {
+            "_links": {
+                "self": { "href": "/v1/accounts/{memberId}/messages/triggered/sends"},                    
+                "next" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=3&...}"},
+                "prev" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=1&...}"}                    
+            },
+            "count" : 1,
+            "page": 1,
+            "pageSize": 50,                
+            "items" : [
+                {
+                    "sendId": 1,
+                    "name": "Triggered Send Name",
+                    "emailAddress": "test@test.com",
+                    "subscriberKey": "key",
+                    "smtpCode": 250,
+                    "smtpDescription": "text describing smtp code",
+                    "eventDate": "2014-06-10T15:10:37.73",
+                    "status": "Delivered" 
+                }
+            ]
+        }
+
+## System Event By Id [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends{sendId}]        
+### Retrieve a Single System Event by MemberId and SendId [GET]
+
++ Parameters
+    + memberId (id, required, `20720`) ... The memberId.
+    + sendId (integer, required, `1`) ... The Id of the Send    
+
++ Response 200 (application/json)
+
+        {
+            "sendId": 1,
+            "name": "Triggered Send Name",
+            "emailAddress": "test@test.com",
+            "subscriberKey": "key",
+            "smtpCode": 250,
+            "smtpDescription": "text describing smtp code",
+            "eventDate": "2014-06-10T15:10:37.73",
+            "status": "Delivered" 
+        }    
 
 
 # Group Jobs resource
@@ -517,71 +584,6 @@ Status information of a job
         }
         
 + Response 202
-
-## System Events Collection [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends]
-### Retrieve Collection of System Events by MemberId [GET]
-
-+ Parameters
-    + memberId (id, required, `20720`) ... The memberId.
-    + page = `1` (integer, optional)
-        Page of the collection to return.
-    + pageSize = `25` (integer, optional)
-        Number of objects to display per page.
-    + orderBy = `eventDate asc` (string, optional, `eventDate desc`)
-        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
-        + Values
-            + `name`
-            + `sendId`
-            + `eventDate`
-    + filter (string, optional)
-        JSON Collection of filter objects to be used to filter results.
-        + Values
-            + `emailAddress`
-            + `subscriberKey`
-            + `eventDate`    
-
-+ Response 200 (application/json)
-
-        {
-            "links": {
-                "self": { "href": "/v1/accounts/{memberId}/messages/triggered/sends"},                    
-                "next" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=3&...}"},
-                "previous" : { "href": "/v1/accounts/{memberId}/messages/triggered/sends{?pageSize=25&page=1&...}"}                    
-            },
-            "count" : 1,
-            "page": 1,
-            "pageSize": 50,                
-            "items" : [
-                {
-                    "Id": 1,
-                    "Name": "Triggered Send Name",
-                    "EmailAddress": "test@test.com",
-                    "SubscriberKey": "key",
-                    "SMTPCode": 250,
-                    "EventDate": 2014-03-06 13:32:34,
-                    "Status": "Delivered" 
-                }
-            ]
-        }
-
-## System Event By Id [/messaging-internal/v1/accounts/{memberId}/messages/triggered/sends{sendId}]        
-### Retrieve a Single System Event by MemberId and SendId [GET]
-
-+ Parameters
-    + memberId (id, required, `20720`) ... The memberId.
-    + sendId (integer, required, `1`) ... The Id of the Send    
-
-+ Response 200 (application/json)
-
-        {
-            "Id": 1,
-            "Name": "Triggered Send Name",
-            "EmailAddress": "test@test.com",
-            "SubscriberKey": "key",
-            "SMTPCode": 250,
-            "EventDate": 2014-03-06 13:32:34,
-            "Status": "Delivered" 
-        }
 
 # Group Lists Resource
 
@@ -2405,7 +2407,7 @@ Documentation of the AssetServices API
     {
         "id": 310,
         "name": "Partner Images",
-        "path": "/All Content/Partner Images",
+        "path": "/Assets/Partner Images",
         "hasChildren": true,
         "itemCount": 6
     }
@@ -2499,8 +2501,8 @@ Documentation of the AssetServices API
                 "favorite": true,
                 "category": {
                     "id": 0,
-                    "name": "All Content",
-                    "path": "/All Content",
+                    "name": "Assets",
+                    "path": "/Assets",
                     "hasChildren": false,
                     "itemCount": 3
                 },
@@ -2542,8 +2544,8 @@ Documentation of the AssetServices API
                     "primaryFileName": null,
                     "previewStatus": "complete",
                     "title": null,
-                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/justAKitten.jpg/justAKitten.jpg",
-                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/justAKitten.jpg/preview.jpg"
+                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
                 }
             }
 
@@ -2591,8 +2593,8 @@ Documentation of the AssetServices API
                 "favorite": true,
                 "category": {
                     "id": 0,
-                    "name": "All Content",
-                    "path": "/All Content",
+                    "name": "Assets",
+                    "path": "/Assets",
                     "hasChildren": false,
                     "itemCount": 3
                 },
@@ -2659,8 +2661,8 @@ Documentation of the AssetServices API
         "favorite": true,
         "category": {
             "id": 0,
-            "name": "All Content",
-            "path": "/All Content",
+            "name": "Assets",
+            "path": "/Assets",
             "hasChildren": false,
             "itemCount": 3
         },
@@ -2693,7 +2695,7 @@ __Asset Properties with Restricted Values__
   + audio
   + code
   + document
-  + image
+  + photo
   + rawImage
   + video
   + none
@@ -2765,8 +2767,8 @@ A handful of top-level properties are only available on Assets of a specific *Cl
             "primaryFileName": null,
             "previewStatus": "complete",
             "title": null,
-            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/justAKitten.jpg/justAKitten.jpg",
-            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/justAKitten.jpg/preview.jpg"
+            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
         }
     }
 
@@ -2789,6 +2791,18 @@ A handful of top-level properties are only available on Assets of a specific *Cl
   For Assets with the AssetType `message`, the __content__ property contains the entire stringified *Guide Message Model*.
 
     {
+        "channelType": {
+            "value": "email",
+            "isActive": true,
+            "modelType": "channelType",
+            "validated": false
+        },
+        "messageType": {
+            "value": "application/vnd.et.message.email.html",
+            "isActive": true,
+            "modelType": "messageType",
+            "validated": false
+        },
         "content": "{\"key\":\"baseValidationMessage\",\"name\":\"Validation Test Message With Address\",\"assetType\":\"message\",\"classification\":\"content\",\"description\":\"This is a sample message from the new editor\",\"category\":{\"id\":312,\"name\":\"Assets\"},\"tags\":[\"sample\",\"email\"],\"status\":\"active\",\"validated\":false,\"channelType\":{\"value\":\"email\",\"isActive\":true,\"modelType\":\"channelType\",\"validated\":false},\"messageType\":{\"value\":\"application/vnd.et.message.email.html\",\"isActive\":true,\"modelType\":\"messageType\",\"validated\":false},\"views\":[{\"bodyTag\":\"<body>\",\"content\":\"HelloWorld Has Address - First Name GTL: {{[First Name]}}<br>First Name OLD: %%First Name%%\",\"head\":\"\",\"htmlTag\":\"<html>\",\"slots\":[{\"alias\":\"hero\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{\"class\":\"text\",\"style\":\"color:#3c4044; font-family:Arial; font-size:13px; line-height:17px; text-align:left\",\"valign\":\"top\",\"width\":\"158\"},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false},{\"alias\":\"content1\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{\"valign\":\"top\",\"width\":\"350\"},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":true},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[{\"alias\":\"leftColumn\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false},{\"alias\":\"rightColumn\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false}],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false},{\"alias\":\"navigation\",\"allowed\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"altered\":false,\"content\":\"<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td align=\\"center\\" valign=\\"top\\"><table width=\\"599\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"0\\" bgcolor=\\"#ffffff\\"><tr><td>MASTER SLOT - <table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td bgcolor=\\"#01488a\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"19\\"></td><td data-type=\\"slot\\" data-alias=\\"headertext\\"></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"13\\"></td></tr></table></td></tr><tr><td bgcolor=\\"#e1e1e1\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\" bgcolor=\\"#fbeea9\\"><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"31\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentleft\\"></td><td data-type=\\"slot\\" data-alias=\\"yellowboxcontentright\\"></td><td width=\\"30\\"></td></tr></table></td></tr></table><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"12\\"></td><td data-type=\\"slot\\" data-alias=\\"bottomboxtext\\"></td><td width=\\"20\\" class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"15\\"></td></tr></table></td></tr><tr><td><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td width=\\"364\\" valign=\\"top\\"><table width=\\"100%\\" cellpadding=\\"0\\" cellspacing=\\"0\\" border=\\"0\\"><tr><td data-type=\\"slot\\" data-alias=\\"footeraddress\\"></td></tr></table></td><td class=\\"img\\" style=\\"font-size:0pt; line-height:0pt; text-align:left\\" width=\\"25\\"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>\",\"defaultContent\":\"\",\"design\":\"\",\"drop\":[\"*\",\"*\",\"*\",\"*\",\"*\",\"*\",\"*\"],\"element\":\"div\",\"gears\":[],\"htmlAttributes\":{},\"locked\":false,\"maxGears\":999,\"minGears\":0,\"nesting\":{\"gears\":true,\"slots\":false},\"origin\":\"viewTemplate\",\"required\":false,\"slots\":[],\"isActive\":true,\"modelType\":\"slot\",\"validated\":false}],\"viewType\":{\"kind\":\"subjectline\",\"mimeType\":\"text/plain\",\"value\":\"text/plain; kind=subjectline\",\"isActive\":true,\"modelType\":\"viewType\",\"validated\":false},\"isActive\":true,\"validated\":false}]}"
     }    
 
@@ -2836,8 +2850,8 @@ A single Asset identified by a numeric *id*.
                 "favorite": true,
                 "category": {
                     "id": 0,
-                    "name": "All Content",
-                    "path": "/All Content",
+                    "name": "Assets",
+                    "path": "/Assets",
                     "hasChildren": false,
                     "itemCount": 3
                 },
@@ -2879,8 +2893,8 @@ A single Asset identified by a numeric *id*.
                     "primaryFileName": null,
                     "previewStatus": "complete",
                     "title": null,
-                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/justAKitten.jpg/justAKitten.jpg",
-                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/justAKitten.jpg/preview.jpg"
+                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
                 }
             }
 
@@ -2982,8 +2996,6 @@ One or multiple Assets.
 
             {
                 "count": 3,
-                "page": 1,
-                "pageSize": 25,
                 "links": {
                     "self": {
                         "href": "/v1/assets"
@@ -3027,8 +3039,8 @@ One or multiple Assets.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3068,8 +3080,8 @@ One or multiple Assets.
                             "primaryFileName": null,
                             "previewStatus": null,
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/deniedAgain.gif/deniedAgain.gif",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/deniedAgain.gif/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
                         }
                     },
                     {
@@ -3109,8 +3121,8 @@ One or multiple Assets.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3148,8 +3160,8 @@ One or multiple Assets.
                             "primaryFileName": null,
                             "previewStatus": "2",
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/scienceStuff.mp4/scienceStuff.mp4",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/scienceStuff.mp4/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
                         }
                     },
                     {
@@ -3189,8 +3201,8 @@ One or multiple Assets.
                         "favorite": true,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3313,18 +3325,12 @@ A paginated collection of Assets.
     + Body
 
             {
-                "count": 10,
-                "page": 2,
-                "pageSize": 3,
+                "count": 3,
+                "page": 1,
+                "pageSize": 25,
                 "links": {
                     "self": {
-                        "href": "/v1/assets?$page=2&$pagesize=3"
-                    },
-                    "next": {
-                        "href": "/v1/assets?$page=3&$pagesize=3"
-                    },
-                    "previous": {
-                        "href": "/v1/assets?$page=1&$pagesize=3"
+                        "href": "/v1/assets"
                     }
                 },
                 "items": [
@@ -3365,8 +3371,8 @@ A paginated collection of Assets.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3406,8 +3412,8 @@ A paginated collection of Assets.
                             "primaryFileName": null,
                             "previewStatus": null,
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/deniedAgain.gif/deniedAgain.gif",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/deniedAgain.gif/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
                         }
                     },
                     {
@@ -3447,8 +3453,8 @@ A paginated collection of Assets.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3486,8 +3492,8 @@ A paginated collection of Assets.
                             "primaryFileName": null,
                             "previewStatus": "2",
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/scienceStuff.mp4/scienceStuff.mp4",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/scienceStuff.mp4/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
                         }
                     },
                     {
@@ -3527,8 +3533,8 @@ A paginated collection of Assets.
                         "favorite": true,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3572,7 +3578,7 @@ A collection of Assets with the given *assetType*.
             + `audio`
             + `code`
             + `document`
-            + `image`
+            + `photo`
             + `rawImage`
             + `video`
             + `none`
@@ -3706,8 +3712,8 @@ A single Asset identified by a numeric *id*, accessed via Bridge API.
                 "favorite": true,
                 "category": {
                     "id": 0,
-                    "name": "All Content",
-                    "path": "/All Content",
+                    "name": "Assets",
+                    "path": "/Assets",
                     "hasChildren": false,
                     "itemCount": 3
                 },
@@ -3749,8 +3755,8 @@ A single Asset identified by a numeric *id*, accessed via Bridge API.
                     "primaryFileName": null,
                     "previewStatus": "complete",
                     "title": null,
-                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/justAKitten.jpg/justAKitten.jpg",
-                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/justAKitten.jpg/preview.jpg"
+                    "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/justAKitten.jpg/justAKitten.jpg",
+                    "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/justAKitten.jpg/preview.jpg"
                 }
             }
 
@@ -3852,8 +3858,6 @@ One or multiple Assets, accessed via Bridge API.
 
             {
                 "count": 3,
-                "page": 1,
-                "pageSize": 25,
                 "links": {
                     "self": {
                         "href": "/v1/bridge/assets"
@@ -3897,8 +3901,8 @@ One or multiple Assets, accessed via Bridge API.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -3938,8 +3942,8 @@ One or multiple Assets, accessed via Bridge API.
                             "primaryFileName": null,
                             "previewStatus": null,
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/deniedAgain.gif/deniedAgain.gif",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/deniedAgain.gif/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
                         }
                     },
                     {
@@ -3979,8 +3983,8 @@ One or multiple Assets, accessed via Bridge API.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -4018,8 +4022,8 @@ One or multiple Assets, accessed via Bridge API.
                             "primaryFileName": null,
                             "previewStatus": "2",
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/scienceStuff.mp4/scienceStuff.mp4",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/scienceStuff.mp4/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
                         }
                     },
                     {
@@ -4059,8 +4063,8 @@ One or multiple Assets, accessed via Bridge API.
                         "favorite": true,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -4183,18 +4187,12 @@ A paginated collection of Assets, accessed via Bridge API.
     + Body
 
             {
-                "count": 10,
-                "page": 2,
-                "pageSize": 3,
+                "count": 3,
+                "page": 1,
+                "pageSize": 25,
                 "links": {
                     "self": {
-                        "href": "/v1/bridge/assets?$page=2&$pagesize=3"
-                    },
-                    "next": {
-                        "href": "/v1/bridge/assets?$page=3&$pagesize=3"
-                    },
-                    "previous": {
-                        "href": "/v1/bridge/assets?$page=1&$pagesize=3"
+                        "href": "/v1/bridge/assets"
                     }
                 },
                 "items": [
@@ -4235,8 +4233,8 @@ A paginated collection of Assets, accessed via Bridge API.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -4276,8 +4274,8 @@ A paginated collection of Assets, accessed via Bridge API.
                             "primaryFileName": null,
                             "previewStatus": null,
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/deniedAgain.gif/deniedAgain.gif",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/deniedAgain.gif/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
                         }
                     },
                     {
@@ -4317,8 +4315,8 @@ A paginated collection of Assets, accessed via Bridge API.
                         "favorite": false,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -4356,8 +4354,8 @@ A paginated collection of Assets, accessed via Bridge API.
                             "primaryFileName": null,
                             "previewStatus": "2",
                             "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/originals/fec3167874670174/scienceStuff.mp4/scienceStuff.mp4",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/files/fec3167874670174/downloads/preview/cache/fec3167874670174/scienceStuff.mp4/preview.jpg"
+                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
+                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
                         }
                     },
                     {
@@ -4397,8 +4395,8 @@ A paginated collection of Assets, accessed via Bridge API.
                         "favorite": true,
                         "category": {
                             "id": 0,
-                            "name": "All Content",
-                            "path": "/All Content",
+                            "name": "Assets",
+                            "path": "/Assets",
                             "hasChildren": false,
                             "itemCount": 3
                         },
@@ -4442,7 +4440,7 @@ A collection of Assets with the given *assetType*, accessed via Bridge API.
             + `audio`
             + `code`
             + `document`
-            + `image`
+            + `photo`
             + `rawImage`
             + `video`
             + `none`
