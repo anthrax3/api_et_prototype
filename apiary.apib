@@ -2982,6 +2982,8 @@ One or multiple Assets.
 
             {
                 "count": 3,
+                "page": 1,
+                "pageSize": 25,
                 "links": {
                     "self": {
                         "href": "/v1/assets"
@@ -3311,12 +3313,18 @@ A paginated collection of Assets.
     + Body
 
             {
-                "count": 3,
-                "page": 1,
-                "pageSize": 25,
+                "count": 10,
+                "page": 2,
+                "pageSize": 3,
                 "links": {
                     "self": {
-                        "href": "/v1/assets"
+                        "href": "/v1/assets?$page=2&$pagesize=3"
+                    },
+                    "next": {
+                        "href": "/v1/assets?$page=3&$pagesize=3"
+                    },
+                    "previous": {
+                        "href": "/v1/assets?$page=1&$pagesize=3"
                     }
                 },
                 "items": [
@@ -3844,6 +3852,8 @@ One or multiple Assets, accessed via Bridge API.
 
             {
                 "count": 3,
+                "page": 1,
+                "pageSize": 25,
                 "links": {
                     "self": {
                         "href": "/v1/bridge/assets"
@@ -4173,12 +4183,18 @@ A paginated collection of Assets, accessed via Bridge API.
     + Body
 
             {
-                "count": 3,
-                "page": 1,
-                "pageSize": 25,
+                "count": 10,
+                "page": 2,
+                "pageSize": 3,
                 "links": {
                     "self": {
-                        "href": "/v1/bridge/assets"
+                        "href": "/v1/bridge/assets?$page=2&$pagesize=3"
+                    },
+                    "next": {
+                        "href": "/v1/bridge/assets?$page=3&$pagesize=3"
+                    },
+                    "previous": {
+                        "href": "/v1/bridge/assets?$page=1&$pagesize=3"
                     }
                 },
                 "items": [
