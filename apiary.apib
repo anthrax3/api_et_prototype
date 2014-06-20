@@ -7586,4 +7586,105 @@ A single subscriber attribute object with all its details
                  "isSendable": false
 
         }
+        
+#  Group Favorites
+    User Favorites
+    
+## New User Favorite - V1 [/platformservice-internal/v1/favorites]
+
+### Create a new user favorite [POST]
+
++ Request(application/json)
+
+        {
+                "objectTypeId": 19022,
+                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a"
+        }
+
++ Response 201 (application/json)
+
+        {
+                "userId": 30980,
+                "mId": 20720,
+                "eId": 20720,
+                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
+                "objectTypeId": 19022,
+                "createdDate": "2013-07-02T12:12:00"
+        }    
+    
+## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,userId,objectTypeId}]
+
+### Retrieve a collection of user favorites [GET]
+
++ Parameters
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `createdDate asc` (string, optional, `objectTypeId desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `createdDate`
+            + `objectTypeId`
+    + userId (integer, optional)
+        UserId of the favorites to return
+    + objectTypeId (string, optional)
+        APIObjectTypeId used to filter the return list of favorites.
+        
+
++ Response 200 (application/json)
+
+        {
+                "count": 26
+                "page": 1
+                "pageSize": 2
+                "links": {
+                        "self": {
+                                "href": "/v1/favorites?$page=1&$pagesize=2"
+                        }
+                        "next": {
+                                "href": "/v1/favorites?$page=2&$pagesize=2"
+                        }
+                }
+                "items": [
+                    {
+                            "userId": 30980,
+                            "mId": 20720,
+                            "eId": 20720,
+                            "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
+                            "objectTypeId": 19022,
+                            "createdDate": "2013-07-02T12:12:00"
+                    },
+                    {
+                            "userId": 32232,
+                            "mId": 23321,
+                            "eId": 12133,
+                            "objectId": "a10bc14f-d51a-441f-8632-f34391fea797",
+                            "objectTypeId": 123,
+                            "createdDate": "2013-07-02T12:12:00"
+                    }
+                ]
+        }
+        
+## Delete User Favorite - V1 [/platformservice-internal/v1/favorites/{objectId}/{objectTypeId}]
+
+### Deletes a user favorite [DELETE]
+
++ Parameters
+    + objectId (string, required)
+        The Id of the object to delete.
+    + objectTypeId (integer, required)
+        The typeId of the object to delete.
+
++ Response 200 (application/json)
+
+        {
+                "userId": 30980,
+                "mId": 20720,
+                "eId": 20720,
+                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
+                "objectTypeId": 19022,
+                "createdDate": "2013-07-02T12:12:00"
+        }
+
 
