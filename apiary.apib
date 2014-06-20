@@ -4379,6 +4379,545 @@ A collection of Assets associated with the given *tag*, accessed via Bridge API.
     [Asset Collection][]
 
 
+# Group Block
+
+## Block [/asset-internal/v1/content/blocks/{id}]
+A single Block identified by a numeric *id*.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "id": 350,
+                "key": "sampleTextOnly",
+                "gearType": "text",
+                "contentType": "text/html; charset=utf-8",
+                "version": 1,
+                "links": {
+                    "self": "/v1/content/blocks/350"
+                },
+                "name": "Sample Text Block",
+                "description": "something here",
+                "owner": {
+                    "id": 282209,
+                    "name": "Adam"
+                },
+                "createdDate": "2013-04-01T00:00:00",
+                "createdBy": {
+                    "id": 282211,
+                    "name": "Sam Ple"
+                },
+                "modifiedDate": "2013-04-01T00:00:00",
+                "modifiedBy": {
+                    "id": 282211,
+                    "name": "Sam Ple"
+                },
+                "enterpriseId": 281359,
+                "memberId": 281359,
+                "validated": true,
+                "status": "active",
+                "activeDate": "2014-05-06T05:28:01",
+                "expirationDate": "0001-01-01T00:00:00",
+                "favorite": false,
+                "category": {
+                    "id": 110
+                },
+                "tags": [
+                    "sample",
+                    "Summer"
+                ],
+                "options": {
+                    "assetId": "221"
+                },
+                "customFields": {
+                    "partnerId": "swc180271nd1",
+                    "season": "Summer"
+                },
+                "legacy": {
+                    "legacyId": "BD881FFD-EFD2-419C-BE8D-063A46E2DE6A",
+                    "legacyType": "content",
+                    "legacyCategoryId": "1668"
+                },
+                "locked": false,
+                "altered": true,
+                "content": "<div>{{_gearData.textBody}}</div>",
+                "default": "<h3>No Content</h3>",
+                "htmlAttributes": {
+                    "style": "float: left;"
+                },
+                "gearData": {
+                    "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                }
+            }
+
+
+### Retrieve a Block [GET]
+
++ Parameters
+    + id (required, integer, `350`) ... Numeric `id` of the Block.
+
++ Response 200
+    [Block][]
+
+### Partially Update a Block [PATCH]
+__Editable Properties__:
+
+| Name  | Type |
+| :------------- | :------------- |
+| key  | string | 
+| name  | string |
+| description  | string |
+| owner  | User |
+| status  | string |
+| activeDate  | date |
+| expirationDate  | date |
+| category  | Category |
+| tags  | array | 
+| options  | object | 
+| customFields  | object | 
+| locked  | boolean |
+| content  | string |
+| default  | string |
+| htmlAttributes  | object |
+| gearData  | object |
+
++ Request
+
+        {
+            "id": 350,
+            "key": "sampleTextOnly",
+            "name": "Sample Text Block",
+            "description": "something here",
+            "owner": {
+                "id": 282209
+            },
+            "status": "active",
+            "activeDate": "2014-05-06T05:28:01",
+            "expirationDate": "0001-01-01T00:00:00",
+            "category": {
+                "id": 110
+            },
+            "tags": [
+                "sample",
+                "Summer"
+            ],
+            "options": {
+                "assetId": "221"
+            },
+            "customFields": {
+                "partnerId": "swc180271nd1",
+                "season": "Summer"
+            },
+            "locked": false,
+            "content": "<div>{{_gearData.textBody}}</div>",
+            "default": "<h3>No Content</h3>",
+            "htmlAttributes": {
+                "style": "float: left;"
+            },
+            "gearData": {
+                "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+            }
+        }
+
++ Response 200
+    [Block][]
+
+### Delete a Block [DELETE]
+
++ Parameters
+    + id (required, integer, `350`) ... Numeric `id` of the Block. Specify multiple Blocks by comma-delimiting `id`s.
+
++ Response 204
+
+
+## Block by Key [/asset-internal/v1/content/blocks/key:{key}]
+A single Block identified by a string *key*.
+
++ Parameters
+    + key (required, string, `sampleTextOnly`) ... String `key` of the Block.
+
+### Retrieve a Block by Key [GET]
+
++ Response 200
+    [Block][]
+
+
+## Blocks [/asset-internal/v1/content/blocks]
+One or multiple Blocks.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 2,
+                "links": {
+                    "self": {
+                        "href": "/v1/content/blocks"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 350,
+                        "key": "sampleTextOnly",
+                        "gearType": "text",
+                        "contentType": "text/html; charset=utf-8",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/blocks/350"
+                        },
+                        "name": "Sample Text Block",
+                        "description": "something here",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-04-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-04-01T00:00:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": true,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "favorite": false,
+                        "category": {
+                            "id": 110
+                        },
+                        "tags": [
+                            "sample",
+                            "Summer"
+                        ],
+                        "options": {
+                            "assetId": "221"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Summer"
+                        },
+                        "legacy": {
+                            "legacyId": "BD881FFD-EFD2-419C-BE8D-063A46E2DE6A",
+                            "legacyType": "content",
+                            "legacyCategoryId": "1668"
+                        },
+                        "locked": false,
+                        "altered": true,
+                        "content": "<div>{{_gearData.textBody}}</div>",
+                        "default": "<h3>No Content</h3>",
+                        "htmlAttributes": {
+                            "style": "float: left;"
+                        },
+                        "gearData": {
+                            "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                        }
+                    },
+                    {
+                        "id": 352,
+                        "key": "sampleTextPlusImage",
+                        "gearType": "textPlusImage",
+                        "contentType": "text/html; charset=utf-8",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/blocks/352"
+                        },
+                        "name": "Sample Text + Image Gear",
+                        "description": "something here",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-04-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-04-01T00:00:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": false,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "favorite": false,
+                        "category": {
+                            "id": 110
+                        },
+                        "tags": [
+                            "sample",
+                            "Summer"
+                        ],
+                        "options": {
+                            "assetId": "111"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Summer"
+                        },
+                        "legacy": {},
+                        "locked": false,
+                        "altered": true,
+                        "content": "<h3>Sample Text and an Image</h3><div>{{_gearData.textBody}}</div><img src=\"{{_gearData.src}}\">",
+                        "default": "<h3>No Content</h3>",
+                        "htmlAttributes": {
+                            "style": "float: left;"
+                        },
+                        "gearData": {
+                            "textBody": "This is the body of the Article.",
+                            "src": "http://image.exct.net/59238466505.jpg"
+                        }
+                    }
+                ]
+            }
+
+### Create a Block [POST]
+__Available Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
+| key  | __`true`__  | string | 
+| gearType  | __`true`__  | string | 
+| name  | __`true`__  | string |
+| description  | `false`  | string |
+| owner  | `false`  | User | Authenticated User
+| status  | `false`  | string | `active`
+| activeDate  | `false`  | date | Now
+| expirationDate  | `false`  | date | `null`
+| category  | `false`  | Category | Default Folder
+| tags  | `false`  | array | 
+| options  | `false`  | object |
+| customFields  | `false`  | object | 
+| legacy  | `false`  | object |
+| locked  | `false`  | boolean |
+| content  | `false`  | string |
+| default  | `false`  | string |
+| htmlAttributes  | `false`  | object |
+| gearData  | `false`  | object |
+
++ Request
+
+        {
+            "id": 350,
+            "key": "sampleTextOnly",
+            "gearType": "text",
+            "name": "Sample Text Block",
+            "description": "something here",
+            "owner": {
+                "id": 282209,
+                "name": "Adam"
+            },
+            "status": "active",
+            "activeDate": "2014-05-06T05:28:01",
+            "expirationDate": "2015-05-06T05:28:01",
+            "category": {
+                "id": 110
+            },
+            "tags": [
+                "sample",
+                "Summer"
+            ],
+            "options": {
+                "assetId": "221"
+            },
+            "customFields": {
+                "partnerId": "swc180271nd1",
+                "season": "Summer"
+            },
+            "legacy": {
+                "legacyId": "BD881FFD-EFD2-419C-BE8D-063A46E2DE6A",
+                "legacyType": "content",
+                "legacyCategoryId": "1668"
+            },
+            "locked": false,
+            "content": "<div>{{_gearData.textBody}}</div>",
+            "default": "<h3>No Content</h3>",
+            "htmlAttributes": {
+                "style": "float: left;"
+            },
+            "gearData": {
+                "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+            }
+        }
+
++ Response 200
+    [Block][]
+
+
+## Block Collection [/asset-internal/v1/content/blocks{?$page,$pageSize,$orderBy}]
+A paginated collection of Blocks.
+ 
++ Parameters
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `id asc` (string, optional, `modifiedDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `id`
+            + `key`
+            + `name`
+            + `createdDate`
+            + `modifiedDate`
+            + `activeDate`
+            + `expirationDate`
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                    "self": {
+                        "href": "/v1/content/blocks"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 350,
+                        "key": "sampleTextOnly",
+                        "gearType": "text",
+                        "contentType": "text/html; charset=utf-8",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/blocks/350"
+                        },
+                        "name": "Sample Text Block",
+                        "description": "something here",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-04-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-04-01T00:00:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": true,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "favorite": false,
+                        "category": {
+                            "id": 110
+                        },
+                        "tags": [
+                            "sample",
+                            "Summer"
+                        ],
+                        "options": {
+                            "assetId": "221"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Summer"
+                        },
+                        "legacy": {
+                            "legacyId": "BD881FFD-EFD2-419C-BE8D-063A46E2DE6A",
+                            "legacyType": "content",
+                            "legacyCategoryId": "1668"
+                        },
+                        "locked": false,
+                        "altered": true,
+                        "content": "<div>{{_gearData.textBody}}</div>",
+                        "default": "<h3>No Content</h3>",
+                        "htmlAttributes": {
+                            "style": "float: left;"
+                        },
+                        "gearData": {
+                            "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                        }
+                    },
+                    {
+                        "id": 352,
+                        "key": "sampleTextPlusImage",
+                        "gearType": "textPlusImage",
+                        "contentType": "text/html; charset=utf-8",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/blocks/352"
+                        },
+                        "name": "Sample Text + Image Gear",
+                        "description": "something here",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-04-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-04-01T00:00:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": false,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "0001-01-01T00:00:00",
+                        "favorite": false,
+                        "category": {
+                            "id": 110
+                        },
+                        "tags": [
+                            "sample",
+                            "Summer"
+                        ],
+                        "options": {
+                            "assetId": "111"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Summer"
+                        },
+                        "legacy": {},
+                        "locked": false,
+                        "altered": true,
+                        "content": "<h3>Sample Text and an Image</h3><div>{{_gearData.textBody}}</div><img src=\"{{_gearData.src}}\">",
+                        "default": "<h3>No Content</h3>",
+                        "htmlAttributes": {
+                            "style": "float: left;"
+                        },
+                        "gearData": {
+                            "textBody": "This is the body of the Article.",
+                            "src": "http://image.exct.net/59238466505.jpg"
+                        }
+                    }
+                ]
+            }
+
+### Retrieve All Blocks [GET]
+
++ Response 200
+    [Block Collection][]
+
+
 # Group Message Model
 
 ## General API Contracts
