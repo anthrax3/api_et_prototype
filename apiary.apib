@@ -4379,7 +4379,48 @@ A collection of Assets associated with the given *tag*, accessed via Bridge API.
     [Asset Collection][]
 
 
-# Group Message Content
+# Group Message Model
+
+## General API Contracts
+
+  `User` Specification
+
+    {
+        "id": 281766,
+        "name": "Adam Gillaspie"
+    }
+
+  `Category` Specification
+
+    {
+        "id": 310,
+        "name": "Partner Images"
+    }
+
+  `Links` Specification
+
+    {
+        "self": "/v1/content/messages/105"
+    }
+
+ `ContentReference` Specification
+
+    {
+        "id": "101",
+        "key": "sampleReferencedObject",
+        "ref": "/v1/content/blocks/101",
+        "content": "<p>Content can just be inline also.</p>"
+    }
+    
+
+## Components of the Message Model
+
+ - __Message__ - a single Message resource, composed of a collection of Views
+ - __View__ - the content of a Message for a specific viewing/rendering context
+ - __Template__- defines a starting point or restricts modification of a View
+ - __Layout__ - defines basic structure for a View, such as the available Slots and supported ViewTypes
+ - __Slot__ - a placeholder for content on a View or Template
+ 
 
 ## Message [/asset-internal/v1/content/messages/{id}]
 A single Message identified by a numeric *id*.
