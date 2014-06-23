@@ -7850,6 +7850,8 @@ A collection of Subscriber Attribute objects.
                         "defaultValue" : "true",
                         "AttribType" : 0,
                         "IsUnique" :0,
+                        "IsHidden": 1,
+                        "IsReadOnly": 1,
                         "SubscriberView":0,
                         "SubscriberEdit":0,
                         "MustContain" : "",
@@ -7857,7 +7859,7 @@ A collection of Subscriber Attribute objects.
                         "IsDataInLyris": 0,
                         "NumericPrecision": 0,
                         "IsSendTime" :1,
-                        "IsListLevelAttribute":0
+                        "IsListLevelAttrib":0
 
                     },
                     {
@@ -7873,7 +7875,7 @@ A collection of Subscriber Attribute objects.
                         "restrictedValues" : 
                                         {
                                                 "valueName" : "Email Address Value",
-                                                "isDefault" : "false",
+                                                "isDefault" :0,
                                                 "valueDesc" : "System defalt Email",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email" 
@@ -7882,6 +7884,8 @@ A collection of Subscriber Attribute objects.
                         "defaultValue" : "true",
                         "AttribType" : 0,
                         "IsUnique" :0,
+                         "IsHidden": 1,
+                        "IsReadOnly": 1,
                         "SubscriberView":0,
                         "SubscriberEdit":0,
                         "MustContain" : "",
@@ -7889,7 +7893,7 @@ A collection of Subscriber Attribute objects.
                         "IsDataInLyris": 0,
                         "NumericPrecision": 0,
                         "IsSendTime" :1,
-                        "IsListLevelAttribute":0
+                        "IsListLevelAttrib":0
                     }]
                 
             }
@@ -7944,14 +7948,14 @@ __Available RestrictedValue Request Properties__:
                 "displayOrder" : 7,
                 "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
-                                                "isDefault" : "false",
+                                                "isDefault" : 0,
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
                                             {
                                                 "valueName" : "Email Address Value22",
-                                                "isDefault" : "false",
+                                                "isDefault" : 0,
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
@@ -7960,12 +7964,14 @@ __Available RestrictedValue Request Properties__:
                 "defaultValue" : "false",
                 "AttribType" : 0,
                 "IsUnique" :0,
+                "IsHidden": 1,
+                "IsReadOnly": 1,
                 "SubscriberView":1,
                 "SubscriberEdit":0,
                 "IsDataInLyris": 1,
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
-                "IsListLevelAttribute":0
+                "IsListLevelAttrib":0
         }
         
 + Response 201 (application/json)
@@ -7982,14 +7988,14 @@ __Available RestrictedValue Request Properties__:
                 "hasRestrictedValues" : true,
                 "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
-                                                "isDefault" : "false",
+                                                "isDefault" : 0,
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
                                            {
                                                 "valueName" : "Email Address Value22",
-                                                "isDefault" : "false",
+                                                "isDefault" : 0,
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
@@ -7998,6 +8004,8 @@ __Available RestrictedValue Request Properties__:
                 "defaultValue" : "false",
                 "AttribType" : 0,
                 "IsUnique" :0,
+                "IsHidden": 1,
+                "IsReadOnly": 1,
                 "SubscriberView":1,
                 "SubscriberEdit":0,
                 "IsDataInLyris": 1,
@@ -8005,7 +8013,7 @@ __Available RestrictedValue Request Properties__:
                 "MustNotContain": "",
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
-                "IsListLevelAttribute":0
+                "IsListLevelAttrib":0
 
         }
 
@@ -8036,6 +8044,8 @@ A single subscriber attribute object with all its details
                 "defaultValue" : "false",
                 "AttribType" : 0,
                 "IsUnique" :0,
+                "IsHidden": 1,
+                "IsReadOnly": 1,
                 "SubscriberView":0,
                 "SubscriberEdit":0,
                 "MustContain" : "",
@@ -8043,7 +8053,7 @@ A single subscriber attribute object with all its details
                 "IsDataInLyris": 0,
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
-                "IsListLevelAttribute":0
+                "IsListLevelAttrib":0
             }
 
 ### Retrieve a Subscriber Attribute [GET]
@@ -8065,7 +8075,13 @@ A single subscriber attribute object with all its details
                 "description" : "System default for subscribers User Defined",
                 "hasRestrictedValues" : false,
                 "isRequired" : 0,
-                "defaultValue" : "false"
+                "IsHidden": 1,
+                "IsReadOnly": 1,
+                "defaultValue" : "false",
+                "IsDataInLyris": 0,
+                "NumericPrecision": 0,
+                "IsSendTime": 1,
+                "IsListLevelAttrib": 0
         }
         
 + Response 200 (application/json)
