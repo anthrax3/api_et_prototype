@@ -5572,10 +5572,10 @@ This resource does not have any attributes. Instead it provides all the methods 
                 }
         ```
 
-# Group Interaction
+## Group Interaction
 Journey Builer - Interaction related resources
 
-## Interaction [/interactions/{id},key:{key}{?versionNumber}]
+### Interaction [/interactions/{id},key:{key}]
 A single Interaction object. The interaction resource is the central resource in Journey Builder. It represents a single workflow of engagements.
 When creating an Interaction with POST, you must use the Workflow Document Format
 
@@ -5594,12 +5594,11 @@ The Interaction object has the following attributes:
 - status
 - definitionId
 
-The states *id*, *key*, *createdDate*, *modifiedDate* and *definitionId* are assigned by the Interaction API at the moment of creation.
+The states *id*, *createdDate*, *modifiedDate* and *definitionId* are assigned by the Interaction API at the moment of creation.
 
 + Parameters
     + id (string) ... ID of the Interaction in the form of a GUID
     + key (string) ... Key of the Interaction in the form of a GUID
-    + versionNumber (number) ... Number which represents the version of the Interaction to retrieve
     
 + Model (application/json)
 
@@ -5608,114 +5607,57 @@ The states *id*, *key*, *createdDate*, *modifiedDate* and *definitionId* are ass
     + Body
     
             {
-                id: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0",
-                key: "367d9073-afc4-1d8a-a84c-e108aaf4b132",
-                name: "FilterXMLBuilder",
-                description: "Untitled Interaction",
-                version: 1,
-                workflowApiVersion: 1,
-                createdDate: "2014-06-17T10:29:43.673",
-                modifiedDate: "2014-06-17T11:53:22.477",
-                triggers: [ ],
-                goals: [ ],
-                status: "Draft",
-                definitionId: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0"
+                count: 5,
+                page: 1,
+                pageSize: 50,
+                links: {
+                    self: {
+                        href: "/v1/interactions?$page=1&$pagesize=50&$orderby=Name ASC&extras=stats&_=1403281409575"
+                    }
+                },
+                items: [
+                    {
+                        id: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0",
+                        key: "367d9073-afc4-1d8a-a84c-e108aaf4b132",
+                        name: "FilterXMLBuilder",
+                        description: "Untitled Interaction",
+                        version: 1,
+                        workflowApiVersion: 1,
+                        createdDate: "2014-06-17T10:29:43.673",
+                        modifiedDate: "2014-06-17T11:53:22.477",
+                        triggers: [ ],
+                        goals: [ ],
+                        status: "Draft",
+                        definitionId: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0",
+                    }
+                ]
             }
 
 ### Retrieve a single Interaction [GET]
 + Response 200
 
-        [Interaction][]
-
-### Create an Interaction [POST]
-To create a new Interaction simply provide a JSON payload in the appropriate Workflow Document Format.
-
-+ Request (application/json)
-
         ```
         {
-            
+            id: "c6258bdd-2e87-4709-b6be-98d3d1ddf6d4",
+            key: "first-ixn-created-via-the-api",
+            name: "First API-Created",
+            description: "This is the first API created in this account using the Interaction V1 API",
+            version: 1,
+            workflowApiVersion: 1,
+            createdDate: "2014-06-14T23:53:50.48",
+            modifiedDate: "2014-06-14T23:53:50.48",
+            activities: [0],
+            triggers: [0],
+            goals: [0],
+            status: "Draft",
+            definitionId: "c6258bdd-2e87-4709-b6be-98d3d1ddf6d4"
         }
         ```
 
-+ Response 201 (application/json)
+### Interaction Collection [/interaction/v1/interactions]
+Collection of all Interactions
 
-    [Interaction][]
 
-### Update an Interaction [PUT]
-To update an Interaction (create a new version of the Interaction), simply provide a JSON payload in the appropriate Workflow Document Format.
 
-+ Request (application/json)
-
-        ```
-        {
-        }
-        ```
-        
-+ Response 201 (application/json)
-
-    [Interaction][]
-    
-### Delete an Interaction [DELETE]
-To delete an Interaction, provide the id, key of the Interaction you wish to delete. Optionally, you can delete a version of an Interaction by passing the versionNumber query parameter.
-
-+ Response 201 (application/json)
-
-    [Interaction][]
-
-## Interaction Collection [/interaction/v1/interactions]
-Collection of all Interactions.
-
-The Interaction Collection resources are embedded within the **items** property of the response payload
-
-+ Model (application/json)
-
-        HATEOS representation of the Interaction Collection resource.
-
-        + Body
-                ```
-                {
-                    count: 5,
-                    page: 1,
-                    pageSize: 50,
-                    links: {
-                        self: {
-                            href: "/v1/interactions?$page=1&$pagesize=50&$orderby=Name ASC&extras=stats&_=1403281409575"
-                        }
-                    },
-                    items: [
-                        {
-                            id: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0",
-                            key: "367d9073-afc4-1d8a-a84c-e108aaf4b132",
-                            name: "FilterXMLBuilder",
-                            description: "Untitled Interaction",
-                            version: 1,
-                            workflowApiVersion: 1,
-                            createdDate: "2014-06-17T10:29:43.673",
-                            modifiedDate: "2014-06-17T11:53:22.477",
-                            triggers: [ ],
-                            goals: [ ],
-                            status: "Draft",
-                            definitionId: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0"
-                        }
-                    ]
-                }
-                ```
-
-## List All Interactions [GET]
-
-+ Response 200
-
-        [Interaction Collection[]
-
-+ Response 500
-
-        ```
-        {
-            "documentation": "<link>",
-            "errorcode": <errorcode_number>,
-            "message": "Internal server error"
-        }
-        ```
 
 }
