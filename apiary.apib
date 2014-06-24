@@ -8101,13 +8101,34 @@ A single subscriber attribute object with all its details
 + Response 201 (application/json)
 
         {
+                "id": "23b45ee6-caf9-e011-af50-0012223ecbc0a"
                 "userId": 30980,
                 "mId": 20720,
                 "eId": 20720,
                 "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
                 "apiObjectTypeId": 19022,
                 "createdDate": "2013-07-02T12:12:00"
-        }    
+        }
+        
+## User Favorite By Id - V1 [/platformservice-internal/v1/favorites/{id}]
+
+### Retrieves a User Favorite By Id [GET]
+
++ Parameters
+    + id (guid, required)
+        Guid `Id` of the favorite to get.
+
++ Response 200 (application/json)
+
+        {
+                "id": "23b45ee6-caf9-e011-af50-0012223ecbc0a"
+                "userId": 30980,
+                "mId": 20720,
+                "eId": 20720,
+                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
+                "apiObjectTypeId": 19022,
+                "createdDate": "2013-07-02T12:12:00"
+        }
     
 ## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,userId,apiObjectTypeId}]
 
@@ -8145,6 +8166,7 @@ A single subscriber attribute object with all its details
                 }
                 "items": [
                     {
+                            "id": "23b45ee6-caf9-e011-af50-0012223ecbc0a"
                             "userId": 30980,
                             "mId": 20720,
                             "eId": 20720,
@@ -8153,6 +8175,7 @@ A single subscriber attribute object with all its details
                             "createdDate": "2013-07-02T12:12:00"
                     },
                     {
+                            "id": "3333bee6-caf9-e011-ff32-0012223ecbc0a"
                             "userId": 32232,
                             "mId": 23321,
                             "eId": 12133,
@@ -8163,15 +8186,13 @@ A single subscriber attribute object with all its details
                 ]
         }
         
-## Delete User Favorite - V1 [/platformservice-internal/v1/favorites/{objectId}/{apiObjectTypeId}]
+## Delete User Favorite - V1 [/platformservice-internal/v1/favorites/{id}]
 
 ### Deletes a user favorite [DELETE]
 
 + Parameters
-    + objectId (string, required)
-        The Id of the object to delete.
-    + apiObjectTypeId (integer, required)
-        The typeId of the object to delete.
+    + id (guid, required)
+        Guid `Id` of the favorite to delete.
 
 + Response 200 (application/json)
 
