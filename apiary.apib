@@ -8117,7 +8117,7 @@ A single subscriber attribute object with all its details
 + Response 201 (application/json)
 
         {
-                "id": "23b45ee6-caf9-e011-af50-0012223ecbc0a"
+                "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg==",
                 "userId": 30980,
                 "mId": 20720,
                 "eId": 20720,
@@ -8131,13 +8131,13 @@ A single subscriber attribute object with all its details
 ### Retrieves a User Favorite By Id [GET]
 
 + Parameters
-    + id (guid, required)
-        Guid `Id` of the favorite to get.
+    + id (string, required)
+        `Id` of the favorite to get.
 
 + Response 200 (application/json)
 
         {
-                "id": "23b45ee6-caf9-e011-af50-0012223ecbc0a"
+                "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg==",
                 "userId": 30980,
                 "mId": 20720,
                 "eId": 20720,
@@ -8182,7 +8182,7 @@ A single subscriber attribute object with all its details
                 }
                 "items": [
                     {
-                            "id": "23b45ee6-caf9-e011-af50-0012223ecbc0a"
+                            "id": "X22mdHdhcmVUZXN0asdnTmV0LmNvbSBpcyXX0Gdvb2QgU29mdHdhcmUgVGVzdSsaI4BCbG9nLg=="
                             "userId": 30980,
                             "mId": 20720,
                             "eId": 20720,
@@ -8191,7 +8191,7 @@ A single subscriber attribute object with all its details
                             "createdDate": "2013-07-02T12:12:00"
                     },
                     {
-                            "id": "3333bee6-caf9-e011-ff32-0012223ecbc0a"
+                            "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg=="
                             "userId": 32232,
                             "mId": 23321,
                             "eId": 12133,
@@ -8207,8 +8207,8 @@ A single subscriber attribute object with all its details
 ### Deletes a user favorite [DELETE]
 
 + Parameters
-    + id (guid, required)
-        Guid `Id` of the favorite to delete.
+    + id (string, required)
+        `Id` of the favorite to delete.
 
 + Response 200 (application/json)
 
