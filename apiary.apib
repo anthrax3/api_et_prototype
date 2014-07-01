@@ -8887,7 +8887,7 @@ A collection of Subscriber Attribute objects.
                         "restrictedValues" : 
                                         {
                                                 "valueName" : "Email Address Value",
-                                                "isDefault" :0,
+                                                "isChecked" :0,
                                                 "valueDesc" : "System defalt Email",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email" 
@@ -8919,13 +8919,13 @@ __Available Subscriber Attribute Request Properties__:
 | :------------- | :------------- | :------------- | :------------- |
 |attribName  | __`true`__  | string | 
 |description  | `false`  | string |`null`
-|defaultValue | `false`  | string | `null`
+|defaultValue | `false`  | string | 
 |dataType | __`true`__  | Int | 0
 |attribType |__`true`__| Int |0
 |isRequired | __`true`__ | Int | 0
-|isUnique | __`true`__  | Int | `active`
+|isUnique | __`true`__  | Int | 0
 |maxLengthe  | __`true`__  | Int | 0
-|minLength  |__`true`__ | Int | `null`
+|minLength  |__`true`__ | Int | 0
 |subscriberView | __`true`__ | Int | 0
 |subscriberEdit |__`true`__| Int | 0
 |displayAs |__`true`__ | Int | 0
@@ -8943,9 +8943,10 @@ __Available RestrictedValue Request Properties__:
 | Name  | Required | Type | Default
 | :------------- | :------------- | :------------- | :------------- |
 |valueName  | __`true`__  | string | 
-|isDefault  | __`true`__  | string |
-|displayOrder | __`true`__  | string | 
+|isChecked  | __`true`__  | Bit |0
+|displayOrder | __`true`__  | Int | 
 |defaultValue | __`true`__  | string | 
+|valueDesc  |__`true`__  | string | 
 
 + Request(application/json)
 
@@ -8958,14 +8959,14 @@ __Available RestrictedValue Request Properties__:
                 "displayOrder" : 7,
                 "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
-                                                "isDefault" : 0,
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
                                             {
                                                 "valueName" : "Email Address Value22",
-                                                "isDefault" : 0,
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
@@ -8996,14 +8997,14 @@ __Available RestrictedValue Request Properties__:
                 "hasRestrictedValues" : true,
                 "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
-                                                "isDefault" : 0,
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
                                            {
                                                 "valueName" : "Email Address Value22",
-                                                "isDefault" : 0,
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
