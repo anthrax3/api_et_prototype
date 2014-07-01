@@ -6470,6 +6470,22 @@ A single Message identified by a string *key*.
     [Message][]
 
 
+## BRIDGE Message by Legacy ID [/asset-internal/v1/bridge/content/messages/legacy:{legacyId}]
+A single Message identified by a string *legacyId*.
+
++ Parameters
+    + legacyId (required, integer, `333`) ... Numeric `legacyId` of the legacy email object.
+
+### BRIDGE Retrieve a Message by Legacy ID [GET]
+
++ Response 200
+    [Message][]
+
+### BRIDGE Delete a Message by Legacy ID [DELETE]
+
++ Response 204
+
+
 ## BRIDGE Messages [/asset-internal/v1/bridge/content/messages]
 One or multiple Messages.
 
