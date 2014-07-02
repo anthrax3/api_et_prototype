@@ -8325,4 +8325,302 @@ A single subscriber attribute object with all its details
                 "createdDate": "2013-07-02T12:12:00"
         }
 
+# Interaction API Root [/interaction/v1]
+Interaction API entry point
+
+## Interaction API Discovery Document [/rest]
+This resource does not have any attributes. Instead it provides all the methods available for use in the Interaction API.
+
+### Retrieve Interaction API Discovery Document [GET]
+
++ Response 200 (application/json)
+    + Headers
+    
+            X-Mashery-ID: GUID provided by Mashery and can be used for request lookup issues
+    
+    + Body
+        ```
+                {
+                    methods: {
+                        discovery: {
+                            path: "rest",
+                            httpMethod: "get",
+                            description: "Returns discovery document",
+                            parameters: {}
+                        },
+                            postInteraction: {
+                                path: "interactions",
+                                httpMethod: "post",
+                                description: "Create or save an interaction",
+                                parameters: {}
+                        },
+                            updateInteraction: {
+                                path: "interactions",
+                                httpMethod: "put",
+                                description: "Update an interaction version",
+                                parameters: {}
+                        },
+                            publishInteractionById: {
+                                path: "interactions/publishAsync/{id}",
+                                httpMethod: "post",
+                                description: "Publish an interaction version asynchronously",
+                                parameters: {}
+                        },
+                            publishInteractionByKey: {
+                                path: "interactions/publishAsync/key:{key}",
+                                httpMethod: "post",
+                                description: "Publish an interaction version asynchronously",
+                                parameters: {}
+                        },
+                            publishStatus: {
+                                path: "interactions/publishStatus/{id}",
+                                httpMethod: "get",
+                                description: "Check the status of a publication",
+                                parameters: {}
+                        },
+                            stop: {
+                                path: "interactions/stop/{id}",
+                                httpMethod: "post",
+                                description: "Stops a running interaction.",
+                                parameters: {}
+                        },
+                            stopByKey: {
+                                path: "interactions/stop/key:{key}",
+                                httpMethod: "post",
+                                description: "Stops a running interaction.",
+                                parameters: {}
+                        },
+                            getGoalStatistics: {
+                                path: "goalstatistics/{id}",
+                                httpMethod: "get",
+                                description: "Retrieve goal statistics for an interaction",
+                                parameters: {
+                                    id: "String id of the interaction"
+                                }
+                        },
+                            getInteraction: {
+                                path: "interactions/{id}",
+                                httpMethod: "get",
+                                description: "Retrieve an interaction.",
+                                parameters: {}
+                        },
+                            deleteInteraction: {
+                                path: "interactions/{id}",
+                                httpMethod: "delete",
+                                description: "Delete an interaction.",
+                                parameters: {}
+                        },
+                            deleteInteractionByKey: {
+                                path: "interactions/key:{key}",
+                                httpMethod: "delete",
+                                description: "Delete an interaction.",
+                                parameters: {}
+                        },
+                            getInteractionCollection: {
+                                path: "interactions",
+                                httpMethod: "get",
+                                description: "Retrieve a collection of interactions.",
+                                parameters: {}
+                        },
+                            getWaitStatistics: {
+                                path: "waitstatistics/{id}",
+                                httpMethod: "get",
+                                description: "Retrieve wait activity counts for an interaction",
+                                parameters: {
+                                    id: "String id of the interaction"
+                                }
+                        },
+                            getJourneyMap: {
+                                path: "interactions/journeyMaps",
+                                httpMethod: "get",
+                                description: "Get a Journey Map.",
+                                parameters: {}
+                        },
+                            createUpdateJourneyMap: {
+                                path: "interactions/journeyMaps",
+                                httpMethod: "post",
+                                description: "Create/update a Journey Map.",
+                                parameters: {}
+                        }
+                    }
+                }
+        ```
+
+# Group Interaction
+Journey Builer - Interaction related resources
+
+## Interaction [/interactions/{id},key:{key}{?versionNumber}]
+A single Interaction object. The interaction resource is the central resource in Journey Builder. It represents a single workflow of engagements.
+When creating an Interaction with POST, you must use the Workflow Document Format
+
+The Interaction object has the following attributes:
+
+- id
+- key
+- name
+- description
+- version
+- workflowApiVersion
+- createdDate
+- modifiedDate
+- goals
+- triggers
+- status
+- definitionId
+
+The states *id*, *key*, *createdDate*, *modifiedDate* and *definitionId* are assigned by the Interaction API at the moment of creation.
+
++ Parameters
+    + id (string) ... ID of the Interaction in the form of a GUID
+    + key (string) ... Key of the Interaction in the form of a GUID
+    + versionNumber (number) ... Number which represents the version of the Interaction to retrieve
+    
++ Model (application/json)
+
+    JSON representation of an Interaction resource. In addition to representing Interaction states in the form of JSON, it offers affordances in the form of the HTTP Link header and HATEOS data.
+    
+    + Body
+    
+            {
+                id: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0",
+                key: "367d9073-afc4-1d8a-a84c-e108aaf4b132",
+                name: "FilterXMLBuilder",
+                description: "Untitled Interaction",
+                version: 1,
+                workflowApiVersion: 1,
+                createdDate: "2014-06-17T10:29:43.673",
+                modifiedDate: "2014-06-17T11:53:22.477",
+                triggers: [ ],
+                goals: [ ],
+                status: "Draft",
+                definitionId: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0"
+            }
+
+### Retrieve a single Interaction [GET]
++ Response 200
+
+        [Interaction][]
+
+### Create an Interaction [POST]
+To create a new Interaction simply provide a JSON payload in the appropriate Workflow Document Format. The below request is an example of the "bare minimum properties from the Workflow Document Format which must be included to create an Interaction via the API. Complete documentation on the Workflow Document Format can be found at: http://base/Development/Marketing_Automation/JourneyBuilder/Workflow_Document_Format
+
++ Request (application/json)
+
+        ```
+        {
+            "key": "ixn-created-via-the-api",
+            "name": "API-Created Interaction",
+            "description": "This is an Interaction created via the API created in this account using the Interaction V1 API",
+            "workflowApiVersion": 1.0 
+        }
+        ```
+
++ Response 200 (application/json)
+
+    [Interaction][]
+
++ Response 400 (application/json)
+
+        ```
+        {
+            "documentation": "https://code.exacttarget.com/rest/errors/400",
+            "errorcode": 10001,
+            "errors": ["Interaction key was not unique.", "Missing document API version ID."]
+        }
+        ```
+
+### Delete an Interaction [DELETE]
+To delete an Interaction, provide the id, key of the Interaction you wish to delete. Optionally, you can delete a version of an Interaction by passing the versionNumber query parameter.
+
++ Response 200 (application/json)
+
+## Interaction Collection [/interaction/v1/interactions]
+Collection of all Interactions.
+
+The Interaction Collection resources are embedded within the **items** property of the response payload
+
++ Model (application/json)
+
+        HATEOS representation of the Interaction Collection resource.
+
+        + Body
+                ```
+                {
+                    count: 5,
+                    page: 1,
+                    pageSize: 50,
+                    links: {
+                        self: {
+                            href: "/v1/interactions?$page=1&$pagesize=50&$orderby=Name ASC&extras=stats&_=1403281409575"
+                        }
+                    },
+                    items: [
+                        {
+                            id: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0",
+                            key: "367d9073-afc4-1d8a-a84c-e108aaf4b132",
+                            name: "FilterXMLBuilder",
+                            description: "Untitled Interaction",
+                            version: 1,
+                            workflowApiVersion: 1,
+                            createdDate: "2014-06-17T10:29:43.673",
+                            modifiedDate: "2014-06-17T11:53:22.477",
+                            triggers: [ ],
+                            goals: [ ],
+                            status: "Draft",
+                            definitionId: "3072c4ec-364e-4133-b31f-d0a3abc4dfd0"
+                        }
+                    ]
+                }
+                ```
+
+## List All Interactions [GET]
+
++ Response 200
+
+        [Interaction Collection][]
+
++ Response 500
+
+        ```
+        {
+            "documentation": "<link>",
+            "errorcode": <errorcode_number>,
+            "message": "Internal server error"
+        }
+
+
+## Async Publish Interaction [/interactions/publishAsync/{id},key:{key}{?versionNumber}]
+A single Interaction object. The interaction resource is the central resource in Journey Builder. It represents a single workflow of engagements.
+When creating an Interaction with POST, you must use the Workflow Document Format
+
++ Parameters
+    + id (string) ... ID of the Interaction in the form of a GUID
+    + key (string) ... Key of the Interaction in the form of a GUID
+    + versionNumber (number) ... Number which represents the version of the Interaction to retrieve
+    
++ Model (application/json)
+
+    JSON representation of an Interaction resource. In addition to representing Interaction states in the form of JSON, it offers affordances in the form of the HTTP Link header and HATEOS data.
+    
+    + Body
+    
+            {
+                "statusId": "bd93502a­773c­4588­81d9­d3c7ca0cc10a"
+            }
+
+
+### Async Publish Interaction [POST]
+
++ Response 200
+
+        ```
+        {
+            "statusId": "bd93502a­773c­4588­81d9­d3c7ca0cc10a"
+        }
+        ```
+
+## Publish Status [/interactions/publishStatus/{statusId}]
+The publishing status for a particular interaction.
+
+### Publish Status [GET]
 
