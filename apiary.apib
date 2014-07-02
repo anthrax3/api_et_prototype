@@ -524,28 +524,6 @@ Status information of a job
 
 ## Lists [/MessagingService-Internal/v1/lists]
 
-### Create a List [POST]
-+ Request(application/json)
-
-        {
-            "key": "My key",
-            "name": "A new list",
-            "description": "blah blah blah",
-            "categoryId": 5501,
-            "SendClassificationId": "ee03d794-fcbf-4ca6-87c4-7a8b58eeaccf",
-            "SubConfirmEmailId": 1234,
-            "SubConfirm": true,
-            "ConfirmLandingPage": "www.mylandingpage.com",
-            "ConfirmLandingPageId": 12345,
-            "WelcomeEmailId": 1234,
-            "Type": "Private",
-            "UseDefaultLandingPage": true,
-            "bOIReplyEmail" : "signmeup"
-        }
-
-
-        
-+ Response 201 
    
 ## Get ListsCounts [/emailservice/v1/lists/subscribercounts]
 
@@ -3546,839 +3524,6 @@ A collection of Assets favorited by the given *user*.
     [Asset Collection][]
 
 
-## BRIDGE Asset [/asset-internal/v1/bridge/assets/{id}]
-A single Asset identified by a numeric *id*, accessed via Bridge API.
-
-+ Model (application/json)
-
-    + Body
-
-            {
-                "id": 104,
-                "key": "justAKitten",
-                "assetType": "image",
-                "classification": "file",
-                "version": 1,
-                "name": "Kitten",
-                "description": "Kitten sitting on a rug",
-                "owner": {
-                    "id": 282209,
-                    "email": "agillaspie@exacttarget.com",
-                    "name": "API Client S1QA3 app user",
-                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                },
-                "createdDate": "2014-05-06T05:28:01-04:00",
-                "createdBy": {
-                    "id": 282209,
-                    "email": "agillaspie@exacttarget.com",
-                    "name": "API Client S1QA3 app user",
-                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                },
-                "modifiedDate": "2014-05-06T05:28:03-04:00",
-                "modifiedBy": {
-                    "id": 282209,
-                    "email": "agillaspie@exacttarget.com",
-                    "name": "API Client S1QA3 app user",
-                    "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                },
-                "enterpriseId": 281359,
-                "memberId": 281359,
-                "status": "active",
-                "activeDate": "2014-05-06T05:28:01-04:00",
-                "expirationDate": "0001-01-01T00:00:00",
-                "locked": false,
-                "favorite": true,
-                "category": {
-                    "id": 0,
-                    "name": "Assets",
-                    "path": "/Assets",
-                    "hasChildren": false,
-                    "itemCount": 3
-                },
-                "tags": [
-                    "animals",
-                    "kitten",
-                    "cute"
-                ],
-                "campaigns": [],
-                "customFields": {
-                    "animal": "cat",
-                    "season": "Spring"
-                },
-                "channels": {
-                    "email": false,
-                    "mms": false,
-                    "print": false,
-                    "push": false,
-                    "sms": false,
-                    "social": false,
-                    "web": false
-                },
-                "fileProperties": {
-                    "fileName": "justAKitten.jpg",
-                    "fileFormat": "jpg",
-                    "fileCreatedDate": "2014-05-06 07:28:01 +0000",
-                    "fileModifiedDate": "2014-05-06 07:28:01 +0000",
-                    "uploadedDate": "2014-05-06 07:28:01 +0000",
-                    "importStatus": "complete",
-                    "lensType": null,
-                    "focalLength": null,
-                    "cameraModel": null,
-                    "iso": null,
-                    "colorSpace": null,
-                    "colorType": null,
-                    "shutterSpeed": null,
-                    "aperture": null,
-                    "imageRotation": null,
-                    "primaryFileName": null,
-                    "previewStatus": "complete",
-                    "title": null,
-                    "fileUrl": "https://em.s1.qa1.exacttarget.com/files/fe6515707362027d7513/downloads/originals/fe6515707362027d7513/justAKitten.jpg/justAKitten.jpg",
-                    "thumbUrl": "https://em.s1.qa1.exacttarget.com/files/fe6515707362027d7513/downloads/preview/cache/fe6515707362027d7513/justAKitten.jpg/preview.jpg"
-                }
-            }
-
-
-### Retrieve an Asset via Bridge [GET]
-
-+ Parameters
-    + id (required, integer, `104`) ... Numeric `id` of the Asset.
-
-+ Response 200
-    [Asset][]
-
-
-### Partially Update an Asset via Bridge [PATCH]
-__Editable Properties__:
-
-| Name  | Type |
-| :------------- | :------------- |
-| key  | string | 
-| name  | string |
-| description  | string |
-| owner  | User |
-| status  | string |
-| activeDate  | date |
-| expirationDate  | date |
-| category  | Category |
-| tags  | array | 
-| channels  | ChannelAvailability |
-| customFields  | object | 
-| contentFields  | object | 
-| content  | string |
-
-+ Request
-
-        {
-            "id": 104,
-            "key": "justAKitten",
-            "name": "Kitten",
-            "description": "Kitten sitting on a rug",
-            "owner": {
-                "id": 282209
-            },
-            "status": "active",
-            "activeDate": "2014-05-06T05:28:01-04:00",
-            "expirationDate": "0001-01-01T00:00:00",
-            "category": {
-                "id": 0
-            },
-            "tags": [
-                "animals",
-                "kitten",
-                "cute"
-            ],
-            "customFields": {
-                "animal": "cat",
-                "season": "Spring"
-            },
-            "channels": {
-                "email": false,
-                "mms": false,
-                "print": false,
-                "push": false,
-                "sms": false,
-                "social": false,
-                "web": false
-            }
-        }
-
-+ Response 200
-    [Asset][]
-
-
-### Delete an Asset via Bridge [DELETE]
-
-+ Parameters
-    + id (required, integer, `120,145,170`) ... Numeric `id` of the Asset. Specify multiple Assets by comma-delimiting `id`s.
-
-+ Response 204
-
-
-## BRIDGE Asset by Key [/asset-internal/v1/bridge/assets/key:{key}]
-A single Asset identified by a string *key*, accessed via Bridge API.
-
-+ Parameters
-    + key (required, string, `justAKitten`) ... String `key` of the Asset.
-
-### Retrieve an Asset by Key [GET]
-
-+ Response 200
-    [Asset][]
-
-
-## BRIDGE Assets [/asset-internal/v1/bridge/assets/]
-One or multiple Assets, accessed via Bridge API.
-
-+ Model (application/json)
-
-    + Body
-
-            {
-                "count": 3,
-                "links": {
-                    "self": {
-                        "href": "/v1/bridge/assets"
-                    }
-                },
-                "items": [
-                    {
-                        "id": 101,
-                        "key": "deniedOnceAgain",
-                        "assetType": "image",
-                        "classification": "file",
-                        "version": 1,
-                        "name": "DE-NIED Once Again",
-                        "description": "Girl denies guy at basketball game",
-                        "owner": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "createdDate": "2014-05-06T05:12:29-04:00",
-                        "createdBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "modifiedDate": "2014-05-06T05:12:34-04:00",
-                        "modifiedBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "enterpriseId": 281359,
-                        "memberId": 281359,
-                        "status": "active",
-                        "activeDate": "0001-01-01T00:00:00",
-                        "expirationDate": "0001-01-01T00:00:00",
-                        "locked": false,
-                        "favorite": false,
-                        "category": {
-                            "id": 0,
-                            "name": "Assets",
-                            "path": "/Assets",
-                            "hasChildren": false,
-                            "itemCount": 3
-                        },
-                        "tags": [
-                            "memes",
-                            "basketball",
-                            "kiss",
-                            "funny"
-                        ],
-                        "campaigns": [],
-                        "customFields": {},
-                        "channels": {
-                            "email": false,
-                            "mms": false,
-                            "print": false,
-                            "push": false,
-                            "sms": false,
-                            "social": false,
-                            "web": false
-                        },
-                        "fileProperties": {
-                            "fileName": "deniedAgain.gif",
-                            "fileFormat": "gif",
-                            "fileCreatedDate": null,
-                            "fileModifiedDate": null,
-                            "uploadedDate": "2014-05-06 07:12:29 +0000",
-                            "importStatus": null,
-                            "lensType": null,
-                            "focalLength": null,
-                            "cameraModel": null,
-                            "iso": null,
-                            "colorSpace": null,
-                            "colorType": null,
-                            "shutterSpeed": null,
-                            "aperture": null,
-                            "imageRotation": null,
-                            "primaryFileName": null,
-                            "previewStatus": null,
-                            "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
-                        }
-                    },
-                    {
-                        "id": 144,
-                        "key": "scienceStuff",
-                        "assetType": "video",
-                        "classification": "file",
-                        "version": 1,
-                        "name": "Science Stuff",
-                        "description": "Science guys making foam expand",
-                        "owner": {
-                            "id": 281766,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "Adam Gillaspie",
-                            "userId": "s1.qa3.agillaspie"
-                        },
-                        "createdDate": "2014-02-01T23:25:30-05:00",
-                        "createdBy": {
-                            "id": 281766,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "Adam Gillaspie",
-                            "userId": "s1.qa3.agillaspie"
-                        },
-                        "modifiedDate": "2014-04-30T20:38:04-04:00",
-                        "modifiedBy": {
-                            "id": 281766,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "Adam Gillaspie",
-                            "userId": "s1.qa3.agillaspie"
-                        },
-                        "enterpriseId": 281359,
-                        "memberId": 281359,
-                        "status": "active",
-                        "activeDate": "2014-04-24T23:44:51-04:00",
-                        "expirationDate": "0001-01-01T00:00:00",
-                        "locked": false,
-                        "favorite": false,
-                        "category": {
-                            "id": 0,
-                            "name": "Assets",
-                            "path": "/Assets",
-                            "hasChildren": false,
-                            "itemCount": 3
-                        },
-                        "tags": [
-                            "science"
-                        ],
-                        "campaigns": [],
-                        "customFields": {},
-                        "channels": {
-                            "email": true,
-                            "mms": false,
-                            "print": true,
-                            "push": false,
-                            "sms": false,
-                            "social": true,
-                            "web": true
-                        },
-                        "fileProperties": {
-                            "fileName": "scienceStuff.mp4",
-                            "fileFormat": "mp4",
-                            "fileSize": "291.18 KB",
-                            "fileCreatedDate": null,
-                            "fileModifiedDate": "2014-02-28 17:17:46 +0000",
-                            "uploadedDate": "2014-02-19 10:47:02 +0000",
-                            "importStatus": "complete",
-                            "length": "00:00:06",
-                            "duration": "6.15166666666667",
-                            "frameRate": "30.00",
-                            "bitsPerSample": null,
-                            "videoCodec": null,
-                            "compression": null,
-                            "artist": null,
-                            "creator": null,
-                            "contributor": null,
-                            "primaryFileName": null,
-                            "previewStatus": "2",
-                            "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/scienceStuff.mp4/scienceStuff.mp4",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/scienceStuff.mp4/preview.jpg"
-                        }
-                    },
-                    {
-                        "id": 229,
-                        "key": "heroContent",
-                        "assetType": "htmlonly",
-                        "classification": "structuredcontent",
-                        "version": 1,
-                        "name": "Hero Content Area",
-                        "description": "HTML content for a Message",
-                        "owner": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "createdDate": "2014-05-06T14:59:53-04:00",
-                        "createdBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "modifiedDate": "2014-05-06T14:59:54-04:00",
-                        "modifiedBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "enterpriseId": 281359,
-                        "memberId": 281359,
-                        "status": "active",
-                        "activeDate": "2014-05-06T15:34:02-04:00",
-                        "expirationDate": "0001-01-01T00:00:00",
-                        "locked": false,
-                        "favorite": true,
-                        "category": {
-                            "id": 0,
-                            "name": "Assets",
-                            "path": "/Assets",
-                            "hasChildren": false,
-                            "itemCount": 3
-                        },
-                        "tags": [],
-                        "campaigns": [],
-                        "customFields": {
-                            "partner": "ExactTarget",
-                            "season": "Summer"
-                        },
-                        "channels": {
-                            "email": false,
-                            "mms": false,
-                            "print": false,
-                            "push": false,
-                            "sms": false,
-                            "social": false,
-                            "web": false
-                        },
-                        "contentFields": {
-                            "body": "<p>This is just some content from Adam.</p>"
-                        },
-                        "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
-                    }
-                ]
-            }
-
-### Create an Asset via Bridge [POST]
-__Available Request Properties__:
-
-| Name  | Required | Type | Default
-| :------------- | :------------- | :------------- | :------------- |
-| key  | __`true`__  | string | 
-| name  | __`true`__  | string |
-| assetType  | __`true`__  | string | 
-| classification  | __`true`__  | string | 
-| description  | `false`  | string |
-| owner  | `false`  | User | Authenticated User
-| status  | `false`  | string | `active`
-| activeDate  | `false`  | date | Now
-| expirationDate  | `false`  | date | `null`
-| category  | `false`  | Category | Default Folder
-| tags  | `false`  | array | 
-| channels  | `false`  | ChannelAvailability | All Channels
-| customFields  | `false`  | object | 
-| contentFields  | `false`  | object | 
-| content  | `false`  | string |
-
-+ Request
-
-        {
-            "key": "heroContent",
-            "name": "Hero Content Area",
-            "assetType": "htmlOnly",
-            "classification": "structuredcontent",
-            "description": "HTML content for a Message",
-            "contentFields": {
-                "body": "<p>This is just some content from Adam.</p>"
-            },
-            "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
-        }
-
-+ Response 200
-    [Structured Content Asset][]
-
-
-### Partially Update an Asset Collection via Bridge [PATCH]
-__Batch-Editable Properties__:
-
-| Name  | Type |
-| :------------- | :------------- |
-| owner  | User |
-| status  | string |
-| activeDate  | date |
-| expirationDate  | date |
-| category  | Category |
-| tags  | array | 
-| channels  | ChannelAvailability |
-
-+ Request
-
-        {
-            "assets": [
-                104,
-                110,
-                131,
-                145
-            ],
-            "status": "active",
-            "activeDate": "2014-05-06T15:34:02-04:00"
-        }
-
-+ Response 200
-    [Assets][]
-
-
-## BRIDGE Asset Collection [/asset-internal/v1/bridge/assets{?$page,$pageSize,$orderBy}]
-A paginated collection of Assets, accessed via Bridge API.
- 
-+ Parameters
-    + page = `1` (integer, optional)
-        Page of the collection to return.
-    + pageSize = `25` (integer, optional)
-        Number of objects to display per page.
-    + orderBy = `id asc` (string, optional, `modifiedDate desc`)
-        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
-        + Values
-            + `id`
-            + `key`
-            + `name`
-            + `createdDate`
-            + `modifiedDate`
-            + `activeDate`
-            + `expirationDate`
-            + `fileCreatedDate`
-            + `fileModifiedDate`
-            + `uploadedDate`
-
-+ Model (application/json)
-
-    + Body
-
-            {
-                "count": 3,
-                "page": 1,
-                "pageSize": 25,
-                "links": {
-                    "self": {
-                        "href": "/v1/bridge/assets"
-                    }
-                },
-                "items": [
-                    {
-                        "id": 101,
-                        "key": "deniedOnceAgain",
-                        "assetType": "image",
-                        "classification": "file",
-                        "version": 1,
-                        "name": "DE-NIED Once Again",
-                        "description": "Girl denies guy at basketball game",
-                        "owner": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "createdDate": "2014-05-06T05:12:29-04:00",
-                        "createdBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "modifiedDate": "2014-05-06T05:12:34-04:00",
-                        "modifiedBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "enterpriseId": 281359,
-                        "memberId": 281359,
-                        "status": "active",
-                        "activeDate": "0001-01-01T00:00:00",
-                        "expirationDate": "0001-01-01T00:00:00",
-                        "locked": false,
-                        "favorite": false,
-                        "category": {
-                            "id": 0,
-                            "name": "Assets",
-                            "path": "/Assets",
-                            "hasChildren": false,
-                            "itemCount": 3
-                        },
-                        "tags": [
-                            "memes",
-                            "basketball",
-                            "kiss",
-                            "funny"
-                        ],
-                        "campaigns": [],
-                        "customFields": {},
-                        "channels": {
-                            "email": false,
-                            "mms": false,
-                            "print": false,
-                            "push": false,
-                            "sms": false,
-                            "social": false,
-                            "web": false
-                        },
-                        "fileProperties": {
-                            "fileName": "deniedAgain.gif",
-                            "fileFormat": "gif",
-                            "fileCreatedDate": null,
-                            "fileModifiedDate": null,
-                            "uploadedDate": "2014-05-06 07:12:29 +0000",
-                            "importStatus": null,
-                            "lensType": null,
-                            "focalLength": null,
-                            "cameraModel": null,
-                            "iso": null,
-                            "colorSpace": null,
-                            "colorType": null,
-                            "shutterSpeed": null,
-                            "aperture": null,
-                            "imageRotation": null,
-                            "primaryFileName": null,
-                            "previewStatus": null,
-                            "title": null,
-                            "fileUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/originals/281359/281359/deniedAgain.gif/deniedAgain.gif",
-                            "thumbUrl": "http://qanv1cdntomcat01.qa.local:8080/accounts/281359/catalog/downloads/preview/cache/281359/281359/deniedAgain.gif/preview.jpg"
-                        }
-                    },
-                    {
-                        "id": 144,
-                        "key": "scienceStuff",
-                        "assetType": "video",
-                        "classification": "file",
-                        "version": 1,
-                        "name": "Science Stuff",
-                        "description": "Science guys making foam expand",
-                        "owner": {
-                            "id": 281766,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "Adam Gillaspie",
-                            "userId": "s1.qa3.agillaspie"
-                        },
-                        "createdDate": "2014-02-01T23:25:30-05:00",
-                        "createdBy": {
-                            "id": 281766,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "Adam Gillaspie",
-                            "userId": "s1.qa3.agillaspie"
-                        },
-                        "modifiedDate": "2014-04-30T20:38:04-04:00",
-                        "modifiedBy": {
-                            "id": 281766,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "Adam Gillaspie",
-                            "userId": "s1.qa3.agillaspie"
-                        },
-                        "enterpriseId": 281359,
-                        "memberId": 281359,
-                        "status": "active",
-                        "activeDate": "2014-04-24T23:44:51-04:00",
-                        "expirationDate": "0001-01-01T00:00:00",
-                        "locked": false,
-                        "favorite": false,
-                        "category": {
-                            "id": 0,
-                            "name": "Assets",
-                            "path": "/Assets",
-                            "hasChildren": false,
-                            "itemCount": 3
-                        },
-                        "tags": [
-                            "science"
-                        ],
-                        "campaigns": [],
-                        "customFields": {},
-                        "channels": {
-                            "email": true,
-                            "mms": false,
-                            "print": true,
-                            "push": false,
-                            "sms": false,
-                            "social": true,
-                            "web": true
-                        },
-                        "fileProperties": {
-                            "fileName": "scienceStuff.mp4",
-                            "fileFormat": "mp4",
-                            "fileSize": "291.18 KB",
-                            "fileCreatedDate": null,
-                            "fileModifiedDate": "2014-02-28 17:17:46 +0000",
-                            "uploadedDate": "2014-02-19 10:47:02 +0000",
-                            "importStatus": "complete",
-                            "length": "00:00:06",
-                            "duration": "6.15166666666667",
-                            "frameRate": "30.00",
-                            "bitsPerSample": null,
-                            "videoCodec": null,
-                            "compression": null,
-                            "artist": null,
-                            "creator": null,
-                            "contributor": null,
-                            "primaryFileName": null,
-                            "previewStatus": "2",
-                            "title": null,
-                            "fileUrl": "http://em.s1.qa1.exacttarget.com/files/fe6515707362027d7513/downloads/originals/fe6515707362027d7513/scienceStuff.mp4/scienceStuff.mp4",
-                            "thumbUrl": "http://em.s1.qa1.exacttarget.com/files/fe6515707362027d7513/downloads/preview/cache/fe6515707362027d7513/scienceStuff.mp4/preview.jpg"
-                        }
-                    },
-                    {
-                        "id": 229,
-                        "key": "heroContent",
-                        "assetType": "htmlonly",
-                        "classification": "structuredcontent",
-                        "version": 1,
-                        "name": "Hero Content Area",
-                        "description": "HTML content for a Message",
-                        "owner": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "createdDate": "2014-05-06T14:59:53-04:00",
-                        "createdBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "modifiedDate": "2014-05-06T14:59:54-04:00",
-                        "modifiedBy": {
-                            "id": 282209,
-                            "email": "agillaspie@exacttarget.com",
-                            "name": "API Client S1QA3 app user",
-                            "userId": "0e114f08-ebbb-42be-87b5-86db4d077b3c"
-                        },
-                        "enterpriseId": 281359,
-                        "memberId": 281359,
-                        "status": "active",
-                        "activeDate": "2014-05-06T15:34:02-04:00",
-                        "expirationDate": "0001-01-01T00:00:00",
-                        "locked": false,
-                        "favorite": true,
-                        "category": {
-                            "id": 0,
-                            "name": "Assets",
-                            "path": "/Assets",
-                            "hasChildren": false,
-                            "itemCount": 3
-                        },
-                        "tags": [],
-                        "campaigns": [],
-                        "customFields": {
-                            "partner": "ExactTarget",
-                            "season": "Summer"
-                        },
-                        "channels": {
-                            "email": false,
-                            "mms": false,
-                            "print": false,
-                            "push": false,
-                            "sms": false,
-                            "social": false,
-                            "web": false
-                        },
-                        "contentFields": {
-                            "body": "<p>This is just some content from Adam.</p>"
-                        },
-                        "content": "<table><tr><td><div>{{body}}</div></td></tr></table>"
-                    }
-                ]
-            }
-
-### Retrieve All Assets via Bridge [GET]
-
-+ Response 200
-    [Asset Collection][]
-
-
-## BRIDGE Asset Collection by AssetType [/asset-internal/v1/bridge/assets/type:{assetType}]
-A collection of Assets with the given *assetType*, accessed via Bridge API.
-
-+ Parameters
-    + assetType (string)
-        AssetType of an Asset. *System-defined* AssetTypes are listed to the right. Additional *Custom* AssetTypes may also be available for an account.
-        + Values
-            + `archive`
-            + `audio`
-            + `code`
-            + `document`
-            + `image`
-            + `rawImage`
-            + `video`
-            + `none`
-            + `htmlOnly`
-            + `textOnly`
-            + `imageOnly`
-            + `textPlusImage`
-            + `textPlusImagePlusHeadline`
-            + `dynamicContent`
-            + `header`
-            + `footer`
-            + `message`
-
-### Retrieve Assets by AssetType via Bridge [GET]
-
-+ Response 200
-    [Asset Collection][]
-
-
-## BRIDGE Asset Collection by Classification [/asset-internal/v1/bridge/assets/classification:{classification}]
-A collection of Assets with the given *classification*, accessed via Bridge API.
-
-+ Parameters
-    + classification (string)
-        Classification of an Asset
-        + Values
-            + `file`
-            + `structuredcontent`
-            + `content`
-
-### Retrieve Assets by Classification via Bridge [GET]
-
-+ Response 200
-    [Asset Collection][]
-
-
-## BRIDGE Asset Collection by Category [/asset-internal/v1/bridge/assets/f:{categoryId}{?includeChildren}]
-A collection of Assets from the given *categoryId*, accessed via Bridge API.
-
-### Retrieve Assets by CategoryId via Bridge [GET]
-+ Parameters
-    + categoryId (required, integer, `310`) ... Numeric `id`  or string alias of the Category.
-    + includeChildren = `false` (optional, boolean) ... Specify whether or not to include assets in child categories.
-    
-+ Response 200
-    [Asset Collection][]
-
-
-## BRIDGE Asset Collection by Tag [/asset-internal/v1/bridge/assets/tag:{name}]
-A collection of Assets associated with the given *tag*, accessed via Bridge API.
-
-+ Parameters
-    + name (required, string, `summer`) ... Name of the Tag. *(case-insensitive)*
-
-### Retrieve Assets by Tag via Bridge [GET]
-
-+ Response 200
-    [Asset Collection][]
-
-
 # Group Block
 
 ## Block [/asset-internal/v1/content/blocks/{id}]
@@ -7209,6 +6354,1875 @@ A paginated collection of Messages.
 + Response 200
     [Message Collection][]
 
+## BRIDGE Message [/asset-internal/v1/bridge/content/messages/{id}]
+A single Message identified by a numeric *id*.
+
+### BRIDGE Retrieve a Message [GET]
+
++ Parameters
+    + id (required, integer, `105`) ... Numeric `id` of the Message.
+
++ Response 200
+    [Message][]
+
+### BRIDGE Partially Update a Message [PATCH]
+__Editable Properties__:
+
+| Name  | Type |
+| :------------- | :------------- |
+| key  | string | 
+| name  | string |
+| description  | string |
+| owner  | User |
+| status  | string |
+| activeDate  | date |
+| expirationDate  | date |
+| category  | Category |
+| tags  | array | 
+| options  | object | 
+| customFields  | object | 
+| views  | object |
+
++ Request
+
+        {
+            "id": 105,
+            "key": "sampleEmailMessage",
+            "contentType": "application/vnd.exacttarget.com/email/Message",
+            "name": "Sample Email Message",
+            "description": "Hi, I am a Message",
+            "owner": {
+                "id": 282209
+            },
+            "status": "active",
+            "activeDate": "2014-05-06T05:28:01",
+            "expirationDate": "2015-10-06T00:00:00",
+            "category": {
+                "id": 101
+            },
+            "tags": [
+                "awesome",
+                "Message"
+            ],
+            "customFields": {
+                "partnerId": "swc180271nd1",
+                "season": "Spring"
+            },
+            "views": {
+                "forwardHtml": {
+                    "use": "html"
+                },
+                "subjectline": {
+                    "id": 201,
+                    "key": "sampleSubjectLineView",
+                    "contentType": "application/vnd.exacttarget.com/email/Message; kind=subjectline",
+                    "ref": "",
+                    "name": "Mr. SubjectLine",
+                    "description": "Hi I am a subjectline",
+                    "owner": {
+                        "id": 282209
+                    },
+                    "status": "active",
+                    "tags": [
+                        "awesome",
+                        "View",
+                        "subject"
+                    ],
+                    "options": {},
+                    "content": "HelloWorld - I am a MessageModel Subjectline",
+                    "slots": {},
+                    "template": {},
+                    "themes": [
+                        {
+                            "key": "defaultTheme"
+                        }
+                    ],
+                    "positioning": {
+                        "key": "defaultPostioning"
+                    }
+                },
+                "viewAsAWebPage": {
+                    "use": "html"
+                }
+            }
+        }
+
++ Response 200
+    [Message][]
+
+### BRIDGE Delete a Message [DELETE]
+
++ Parameters
+    + id (required, integer, `105`) ... Numeric `id` of the Message. Specify multiple Messages by comma-delimiting `id`s.
+
++ Response 204
+
+
+## BRIDGE Message by Key [/asset-internal/v1/bridge/content/messages/key:{key}]
+A single Message identified by a string *key*.
+
++ Parameters
+    + key (required, string, `sampleEmailMessage`) ... String `key` of the Asset.
+
+### BRIDGE Retrieve a Message by Key [GET]
+
++ Response 200
+    [Message][]
+
+
+## BRIDGE Message by Legacy ID [/asset-internal/v1/bridge/content/messages/legacy:{legacyId}]
+A single Message identified by a string *legacyId*.
+
++ Parameters
+    + legacyId (required, integer, `333`) ... Numeric `legacyId` of the legacy email object.
+
+### BRIDGE Retrieve a Message by Legacy ID [GET]
+
++ Response 200
+    [Message][]
+
+### BRIDGE Delete a Message by Legacy ID [DELETE]
+
++ Response 204
+
+
+## BRIDGE Messages [/asset-internal/v1/bridge/content/messages]
+One or multiple Messages.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 2,
+                "links": {
+                    "self": {
+                        "href": "/v1/content/messages"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 105,
+                        "key": "sampleEmailMessage",
+                        "contentType": "application/vnd.exacttarget.com/email/Message",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/messages/105"
+                        },
+                        "name": "Sample Email Message",
+                        "description": "Hi, I am a Message",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-04-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-04-01T00:00:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": false,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "2015-10-06T00:00:00",
+                        "favorite": true,
+                        "category": {
+                            "id": 101
+                        },
+                        "tags": [
+                            "awesome",
+                            "Message"
+                        ],
+                        "options": {
+                            "__AdditionalEmailAttribute1": "1249581abc",
+                            "__AdditionalEmailAttribute2": "something here"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Spring"
+                        },
+                        "legacy": {
+                            "legacyId": "DC411FFD-EFD2-419C-BE8D-063A46E2DE6C",
+                            "legacyType": "email",
+                            "legacyCategoryId": "319"
+                        },
+                        "views": {
+                            "forwardHtml": {
+                                "use": "html"
+                            },
+                            "forwardText": {
+                                "generateFrom": "forwardHtml"
+                            },
+                            "html": {
+                                "id": 200,
+                                "key": "sampleHtmlView",
+                                "contentType": "application/vnd.exacttarget.com/email/Message; kind=html",
+                                "version": 1,
+                                "ref": "",
+                                "links": {
+                                    "self": "/v1/content/views/200"
+                                },
+                                "name": "Mr. HTML",
+                                "description": "Hi, I am a message view",
+                                "owner": {
+                                    "id": 282209,
+                                    "name": "Adam"
+                                },
+                                "createdDate": "2013-04-01T00:00:00",
+                                "createdBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "modifiedDate": "2013-04-01T00:00:00",
+                                "modifiedBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "status": "active",
+                                "tags": [
+                                    "awesome",
+                                    "View"
+                                ],
+                                "options": {},
+                                "content": "<html><head><title><div data-type=\"slot\" data-key=\"title\"></title></head><body><div><div data-type=\"slot\" data-key=\"header\"></div><table style=\"width: 100%;\"><tr><td rowspan=\"3\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce feugiat lorem libero, id vulputate mi tempor ut. Aliquam eu velit ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean id lacus at nibh ornare dapibus tincidunt eu sapien. Quisque quis massa in libero aliquet vehicula. Donec sed eros scelerisque, egestas erat nec, ultrices risus. Nulla scelerisque id mauris sed adipiscing. Etiam et nulla massa. Mauris dignissim ultrices justo, id hendrerit justo convallis ac. Sed nec aliquet tortor. Nunc mi elit, semper eu metus et, euismod dapibus diam. Nulla vitae nisl mattis, consequat tellus vitae, interdum ligula. Vestibulum sit amet auctor orci. Proin sit amet porta libero. Fusce aliquet nisi eget urna tincidunt consequat. Aliquam erat volutpat. Maecenas porttitor ornare massa, a auctor neque sodales id. Sed feugiat nisl sapien, ut ornare nibh vulputate iaculis. Curabitur auctor faucibus vulputate. Suspendisse quis faucibus mauris, in mollis orci. Nunc eget arcu porttitor, interdum metus eu, tincidunt mi. Mauris vitae placerat risus. Proin laoreet felis ante, et pulvinar nisi scelerisque ut. Integer condimentum tortor a ipsum ultrices, ut elementum leo facilisis. Maecenas tincidunt metus eu sapien sollicitudin bibendum. Vestibulum tempus et sem ut elementum. Nullam suscipit accumsan est eget ornare. Maecenas varius auctor libero facilisis elementum. Ut interdum aliquet cursus. Nulla mollis faucibus neque at pharetra. Nulla molestie arcu ipsum, id fringilla odio tincidunt a. Phasellus elementum lobortis porttitor. Donec dignissim consectetur est, sed vulputate odio volutpat eu. Duis eget tortor ornare, dapibus nibh sit amet, pretium metus. Nunc nec risus in nibh sollicitudin facilisis at in tellus. Aliquam lacus tortor, tempus nec tincidunt a, accumsan vitae urna. Integer cursus urna vel sem sollicitudin gravida. Fusce in eros interdum, volutpat augue ac, venenatis odio. Pellentesque tincidunt vitae felis ac rhoncus. Vestibulum tincidunt blandit nibh eget tristique. Donec lorem ligula, dapibus sit amet molestie a, eleifend ut sapien. Vivamus dictum tortor a ipsum rutrum, non feugiat enim facilisis. Cras semper nisl vitae diam posuere varius. Nullam purus ipsum, blandit condimentum eleifend non, commodo vitae ipsum. Donec rhoncus pharetra leo, at ullamcorper orci convallis nec. Sed egestas fermentum ante tristique faucibus. Proin condimentum molestie metus eget semper. Ut a commodo risus. Aliquam posuere nunc diam, id gravida dui iaculis nec.</td><td><div data-type=\"slot\" data-key=\"a\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"b"></td></tr><tr><td><div data-type=\"slot\" data-key=\"c\"></td></tr></table><div><div data-type=\"slot\" data-key=\"footer\"></div></body></html>",
+                                "slots": {
+                                    "a": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": true,
+                                        "content": "<div data-type=\"gear\" data-key=\"sampleTextPlusImage\"/>",
+                                        "design": "<p>Place Text + Image Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "textPlusImage",
+                                            "image"
+                                        ],
+                                        "gears": {
+                                            "sampleTextPlusImage": {
+                                                "id": 123,
+                                                "key": "sampleTextPlusImage",
+                                                "gearType": "textPlusImage",
+                                                "contentType": "text/html; charset=utf-8",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/123"
+                                                },
+                                                "name": "Sample Image Gear",
+                                                "description": "something here",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": false,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [],
+                                                "options": {
+                                                    "assetId": "111"
+                                                },
+                                                "locked": false,
+                                                "altered": true,
+                                                "content": "<h3>Sample Text and an Image</h3><div>{{_gearData.textBody}}</div><img src=\"{{_gearData.src}}\">",
+                                                "default": "<h3>No Content</h3>",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "textBody": "This is the body of the Article.",
+                                                    "src": "http://image.exct.net/59238466505.jpg"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "b": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"sampleTextOnly\"/>",
+                                        "design": "<p>Place Text Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 2,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {
+                                            "sampleTextOnly": {
+                                                "id": 350,
+                                                "key": "sampleTextOnly",
+                                                "gearType": "text",
+                                                "contentType": "text/html; charset=utf-8",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/350"
+                                                },
+                                                "name": "Sample Image Gear",
+                                                "description": "something here",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [],
+                                                "options": {
+                                                    "assetId": "221"
+                                                },
+                                                "locked": true,
+                                                "altered": false,
+                                                "content": "<div>{{_gearData.textBody}}</div>",
+                                                "default": "<h3>No Content</h3>",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "c": {
+                                        "contentType": "",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": false,
+                                        "content": "",
+                                        "design": "<p>Place Image Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "image"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "title": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<h1>I am the Title Content</h1>",
+                                        "design": "Enter Title Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "header": {
+                                        "contentType": "image/jpeg",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"blueHeaderImage\"/>",
+                                        "design": "Header Image Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "image"
+                                        ],
+                                        "gears": {
+                                            "blueHeaderImage": {
+                                                "id": 411,
+                                                "key": "blueHeaderImage",
+                                                "gearType": "image",
+                                                "contentType": "image/jpeg",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/411"
+                                                },
+                                                "name": "The Blue One",
+                                                "description": "This is blue",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [
+                                                    "blue"
+                                                ],
+                                                "options": {
+                                                    "assetId": "101"
+                                                },
+                                                "locked": false,
+                                                "altered": false,
+                                                "content": "&nbsp;",
+                                                "default": "&nbsp;",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "format": "HTML",
+                                                    "alt": "Turn on your Images!",
+                                                    "height": "120",
+                                                    "width": "640",
+                                                    "class": "wide-image",
+                                                    "id": "bigBlue",
+                                                    "src": "http://image.exct.net/blue.jpg"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "footer": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<br><a href=\"%%unsub_center_url%%\" alias=\"Unsubscribe\">Unsubscribe</a> &nbsp;<a href=\"%%profile_center_url%%\" alias=\"Update Profile\">Update Profile</a><br><table cellpadding=\"2\" cellspacing=\"0\" width=\"600\" id=\"Table5\" border=\"0\"><tr><td><font face=\"verdana\" size=\"1\" color=\"#444444\">This email was sent to: %%emailaddr%%<br><b>Email Sent By:</b> %%Member_Busname%%<br>%%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%<br><br></font></td></tr></table><br><custom name=\"opencounter\" type=\"tracking\"><br>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    }
+                                },
+                                "template": {},
+                                "themes": [
+                                    {
+                                        "key": "defaultTheme"
+                                    },
+                                    {
+                                        "content": "<link type=\"text/css\" href=\"http://image.exct.net/theme.css\">"
+                                    }
+                                ],
+                                "positioning": {
+                                    "key": "defaultPostioning"
+                                }
+                            },
+                            "preheader": {
+                                "generateFrom": "html"
+                            },
+                            "subjectline": {
+                                "id": 201,
+                                "key": "sampleSubjectLineView",
+                                "contentType": "application/vnd.exacttarget.com/email/Message; kind=subjectline",
+                                "version": 1,
+                                "ref": "",
+                                "links": {
+                                    "self": "/v1/content/views/201"
+                                },
+                                "name": "Mr. SubjectLine",
+                                "description": "Hi I am a subjectline",
+                                "owner": {
+                                    "id": 282209,
+                                    "name": "Adam"
+                                },
+                                "createdDate": "2013-04-01T00:00:00",
+                                "createdBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "modifiedDate": "2013-04-01T00:00:00",
+                                "modifiedBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "status": "active",
+                                "tags": [
+                                    "awesome",
+                                    "View",
+                                    "subject"
+                                ],
+                                "options": {},
+                                "content": "HelloWorld - I am a MessageModel Subjectline",
+                                "slots": {},
+                                "template": {},
+                                "themes": [
+                                    {
+                                        "key": "defaultTheme"
+                                    }
+                                ],
+                                "positioning": {
+                                    "key": "defaultPostioning"
+                                }
+                            },
+                            "text": {
+                                "generateFrom": "html"
+                            },
+                            "viewAsAWebPage": {
+                                "use": "html"
+                            }
+                        }
+                    },
+                    {
+                        "id": 110,
+                        "key": "anotherEmailMessage",
+                        "contentType": "application/vnd.exacttarget.com/email/Message",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/messages/110"
+                        },
+                        "name": "Another Email Message",
+                        "description": "Hi, I am also a Message",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-05-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-06-01T12:30:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": true,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "2014-08-20T00:00:00",
+                        "favorite": false,
+                        "category": {
+                            "id": 222
+                        },
+                        "tags": [
+                            "awesome",
+                            "Summer",
+                            "Message"
+                        ],
+                        "options": {
+                            "__AdditionalEmailAttribute1": "1249581abc",
+                            "__AdditionalEmailAttribute2": "something else here"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Summer"
+                        },
+                        "legacy": {
+                            "legacyId": "AB510AFD-EFD4-419C-BE8D-063A46E2DE6C",
+                            "legacyType": "email",
+                            "legacyCategoryId": "319"
+                        },
+                        "views": {
+                            "forwardHtml": {
+                                "use": "html"
+                            },
+                            "forwardText": {
+                                "generateFrom": "forwardHtml"
+                            },
+                            "html": {
+                                "id": 206,
+                                "key": "anotherHtmlView",
+                                "contentType": "application/vnd.exacttarget.com/email/Message; kind=html",
+                                "version": 1,
+                                "ref": "",
+                                "links": {
+                                    "self": "/v1/content/views/206"
+                                },
+                                "name": "Mr. HTML",
+                                "description": "Hi, I am a message view",
+                                "owner": {
+                                    "id": 282209,
+                                    "name": "Adam"
+                                },
+                                "createdDate": "2013-04-01T00:00:00",
+                                "createdBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "modifiedDate": "2013-04-01T00:00:00",
+                                "modifiedBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "status": "active",
+                                "tags": [
+                                    "awesome",
+                                    "View"
+                                ],
+                                "options": {},
+                                "content": "<html><head><title><div data-type=\"slot\" data-key=\"title\"></title></head><body><div><div data-type=\"slot\" data-key=\"header\"></div><table style=\"width: 100%;\"><tr><td rowspan=\"3\">I'm just another example email. Nothing special.</td><td><div data-type=\"slot\" data-key=\"Slot1\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"Slot2\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"Slot3\"></td></tr></table><div><div data-type=\"slot\" data-key=\"footer\"></div></body></html>",
+                                "slots": {
+                                    "Slot1": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": true,
+                                        "content": "<p>This is just some static HTML</p>",
+                                        "design": "<p>Place Text + Image Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "textPlusImage",
+                                            "image"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "Slot2": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"sampleTextOnly\"/>",
+                                        "design": "<p>Place Text Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 2,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {
+                                            "sampleTextOnly": {
+                                                "id": 350,
+                                                "key": "sampleTextOnly",
+                                                "gearType": "text",
+                                                "contentType": "text/html; charset=utf-8",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/350"
+                                                },
+                                                "name": "Sample Image Gear",
+                                                "description": "something here",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [],
+                                                "options": {
+                                                    "assetId": "221"
+                                                },
+                                                "locked": true,
+                                                "altered": false,
+                                                "content": "<div>{{_gearData.textBody}}</div>",
+                                                "default": "<h3>No Content</h3>",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "title": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<h1>I am the Title Content</h1>",
+                                        "design": "Enter Title Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "header": {
+                                        "contentType": "image/jpeg",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"blueHeaderImage\"/>",
+                                        "design": "Header Image Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "image"
+                                        ],
+                                        "gears": {
+                                            "blueHeaderImage": {
+                                                "id": 411,
+                                                "key": "blueHeaderImage",
+                                                "gearType": "image",
+                                                "contentType": "image/jpeg",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/411"
+                                                },
+                                                "name": "The Blue One",
+                                                "description": "This is blue",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [
+                                                    "blue"
+                                                ],
+                                                "options": {
+                                                    "assetId": "101"
+                                                },
+                                                "locked": false,
+                                                "altered": false,
+                                                "content": "&nbsp;",
+                                                "default": "&nbsp;",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "format": "HTML",
+                                                    "alt": "Turn on your Images!",
+                                                    "height": "120",
+                                                    "width": "640",
+                                                    "class": "wide-image",
+                                                    "id": "bigBlue",
+                                                    "src": "http://image.exct.net/blue.jpg"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "footer": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<br><a href=\"%%unsub_center_url%%\" alias=\"Unsubscribe\">Unsubscribe</a> &nbsp;<a href=\"%%profile_center_url%%\" alias=\"Update Profile\">Update Profile</a><br><table cellpadding=\"2\" cellspacing=\"0\" width=\"600\" id=\"Table5\" border=\"0\"><tr><td><font face=\"verdana\" size=\"1\" color=\"#444444\">This email was sent to: %%emailaddr%%<br><b>Email Sent By:</b> %%Member_Busname%%<br>%%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%<br><br></font></td></tr></table><br><custom name=\"opencounter\" type=\"tracking\"><br>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    }
+                                },
+                                "template": {},
+                                "themes": [
+                                    {
+                                        "key": "defaultTheme"
+                                    }
+                                ],
+                                "positioning": {
+                                    "key": "defaultPostioning"
+                                }
+                            },
+                            "preheader": {
+                                "generateFrom": "html"
+                            },
+                            "subjectline": {
+                                "content": "I am a static Subjectline"
+                            },
+                            "text": {
+                                "generateFrom": "html"
+                            },
+                            "viewAsAWebPage": {
+                                "use": "html"
+                            }
+                        }
+                    }
+                ]
+            }
+
+### BRIDGE Create a Message [POST]
+__Available Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
+| key  | __`true`__  | string | 
+| contentType  | __`true`__  | string | 
+| name  | __`true`__  | string |
+| description  | `false`  | string |
+| owner  | `false`  | User | Authenticated User
+| status  | `false`  | string | `active`
+| activeDate  | `false`  | date | Now
+| expirationDate  | `false`  | date | `null`
+| category  | `false`  | Category | Default Folder
+| tags  | `false`  | array | 
+| options  | `false`  | object |
+| customFields  | `false`  | object | 
+| legacy  | `false`  | object | 
+| views  | `true`  | object |
+
++ Request
+
+        {
+            "id": 105,
+            "key": "sampleEmailMessage",
+            "contentType": "application/vnd.exacttarget.com/email/Message",
+            "name": "Sample Email Message",
+            "description": "Hi, I am a Message",
+            "owner": {
+                "id": 282209
+            },
+            "status": "active",
+            "activeDate": "2014-05-06T05:28:01",
+            "expirationDate": "2015-10-06T00:00:00",
+            "category": {
+                "id": 101
+            },
+            "tags": [
+                "awesome",
+                "Message"
+            ],
+            "customFields": {
+                "partnerId": "swc180271nd1",
+                "season": "Spring"
+            },
+            "views": {
+                "forwardHtml": {
+                    "use": "html"
+                },
+                "forwardText": {
+                    "generateFrom": "forwardHtml"
+                },
+                "html": {
+                    "key": "sampleHtmlView",
+                    "contentType": "application/vnd.exacttarget.com/email/Message; kind=html",
+                    "name": "Mr. HTML",
+                    "description": "Hi, I am a message view",
+                    "tags": [
+                        "awesome",
+                        "View"
+                    ],
+                    "content": "<html><head><title><div data-type=\"slot\" data-key=\"title\"></title></head><body><div><div data-type=\"slot\" data-key=\"header\"></div><table style=\"width: 100%;\"><tr><td rowspan=\"3\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce feugiat lorem libero, id vulputate mi tempor ut. Aliquam eu velit ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean id lacus at nibh ornare dapibus tincidunt eu sapien. Quisque quis massa in libero aliquet vehicula. Donec sed eros scelerisque, egestas erat nec, ultrices risus. Nulla scelerisque id mauris sed adipiscing. Etiam et nulla massa. Mauris dignissim ultrices justo, id hendrerit justo convallis ac. Sed nec aliquet tortor. Nunc mi elit, semper eu metus et, euismod dapibus diam. Nulla vitae nisl mattis, consequat tellus vitae, interdum ligula. Vestibulum sit amet auctor orci. Proin sit amet porta libero. Fusce aliquet nisi eget urna tincidunt consequat. Aliquam erat volutpat. Maecenas porttitor ornare massa, a auctor neque sodales id. Sed feugiat nisl sapien, ut ornare nibh vulputate iaculis. Curabitur auctor faucibus vulputate. Suspendisse quis faucibus mauris, in mollis orci. Nunc eget arcu porttitor, interdum metus eu, tincidunt mi. Mauris vitae placerat risus. Proin laoreet felis ante, et pulvinar nisi scelerisque ut. Integer condimentum tortor a ipsum ultrices, ut elementum leo facilisis. Maecenas tincidunt metus eu sapien sollicitudin bibendum. Vestibulum tempus et sem ut elementum. Nullam suscipit accumsan est eget ornare. Maecenas varius auctor libero facilisis elementum. Ut interdum aliquet cursus. Nulla mollis faucibus neque at pharetra. Nulla molestie arcu ipsum, id fringilla odio tincidunt a. Phasellus elementum lobortis porttitor. Donec dignissim consectetur est, sed vulputate odio volutpat eu. Duis eget tortor ornare, dapibus nibh sit amet, pretium metus. Nunc nec risus in nibh sollicitudin facilisis at in tellus. Aliquam lacus tortor, tempus nec tincidunt a, accumsan vitae urna. Integer cursus urna vel sem sollicitudin gravida. Fusce in eros interdum, volutpat augue ac, venenatis odio. Pellentesque tincidunt vitae felis ac rhoncus. Vestibulum tincidunt blandit nibh eget tristique. Donec lorem ligula, dapibus sit amet molestie a, eleifend ut sapien. Vivamus dictum tortor a ipsum rutrum, non feugiat enim facilisis. Cras semper nisl vitae diam posuere varius. Nullam purus ipsum, blandit condimentum eleifend non, commodo vitae ipsum. Donec rhoncus pharetra leo, at ullamcorper orci convallis nec. Sed egestas fermentum ante tristique faucibus. Proin condimentum molestie metus eget semper. Ut a commodo risus. Aliquam posuere nunc diam, id gravida dui iaculis nec.</td><td><div data-type=\"slot\" data-key=\"a\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"b"></td></tr><tr><td><div data-type=\"slot\" data-key=\"c\"></td></tr></table><div><div data-type=\"slot\" data-key=\"footer\"></div></body></html>",
+                    "slots": {
+                        "a": {
+                            "contentType": "text/html; charset=utf-8",
+                            "contentEncoding": "identity",
+                            "locked": false,
+                            "altered": true,
+                            "content": "<div data-type=\"gear\" data-key=\"sampleTextPlusImage\"/>",
+                            "design": "<p>Place Text + Image Block Here</p>",
+                            "minGears": 0,
+                            "maxGears": 1,
+                            "allowedGears": [
+                                "textPlusImage",
+                                "image"
+                            ],
+                            "gears": {
+                                "sampleTextPlusImage": {
+                                    "id": 123,
+                                    "key": "sampleTextPlusImage",
+                                    "gearType": "textPlusImage",
+                                    "contentType": "text/html; charset=utf-8",
+                                    "version": 1,
+                                    "links": {
+                                        "self": "/v1/content/blocks/123"
+                                    },
+                                    "name": "Sample Image Gear",
+                                    "description": "something here",
+                                    "owner": {
+                                        "id": 282209,
+                                        "name": "Adam"
+                                    },
+                                    "createdDate": "2013-04-01T00:00:00",
+                                    "createdBy": {
+                                        "id": 282211,
+                                        "name": "Sam Ple"
+                                    },
+                                    "modifiedDate": "2013-04-01T00:00:00",
+                                    "modifiedBy": {
+                                        "id": 282211,
+                                        "name": "Sam Ple"
+                                    },
+                                    "validated": false,
+                                    "status": "active",
+                                    "activeDate": "2014-05-06T05:28:01",
+                                    "expirationDate": "0001-01-01T00:00:00",
+                                    "tags": [],
+                                    "options": {
+                                        "assetId": "111"
+                                    },
+                                    "locked": false,
+                                    "altered": true,
+                                    "content": "<h3>Sample Text and an Image</h3><div>{{_gearData.textBody}}</div><img src=\"{{_gearData.src}}\">",
+                                    "default": "<h3>No Content</h3>",
+                                    "htmlAttributes": {
+                                        "style": "float: left;"
+                                    },
+                                    "gearData": {
+                                        "textBody": "This is the body of the Article.",
+                                        "src": "http://image.exct.net/59238466505.jpg"
+                                    }
+                                }
+                            }
+                        },
+                        "b": {
+                            "contentType": "text/html; charset=utf-8",
+                            "contentEncoding": "identity",
+                            "locked": false,
+                            "altered": false,
+                            "content": "<div data-type=\"gear\" data-key=\"sampleTextOnly\"/>",
+                            "design": "<p>Place Text Block Here</p>",
+                            "minGears": 0,
+                            "maxGears": 2,
+                            "allowedGears": [
+                                "text"
+                            ],
+                            "gears": {
+                                "sampleTextOnly": {
+                                    "id": 350,
+                                    "key": "sampleTextOnly",
+                                    "gearType": "text",
+                                    "contentType": "text/html; charset=utf-8",
+                                    "version": 1,
+                                    "links": {
+                                        "self": "/v1/content/blocks/350"
+                                    },
+                                    "name": "Sample Image Gear",
+                                    "description": "something here",
+                                    "owner": {
+                                        "id": 282209,
+                                        "name": "Adam"
+                                    },
+                                    "createdDate": "2013-04-01T00:00:00",
+                                    "createdBy": {
+                                        "id": 282211,
+                                        "name": "Sam Ple"
+                                    },
+                                    "modifiedDate": "2013-04-01T00:00:00",
+                                    "modifiedBy": {
+                                        "id": 282211,
+                                        "name": "Sam Ple"
+                                    },
+                                    "validated": true,
+                                    "status": "active",
+                                    "activeDate": "2014-05-06T05:28:01",
+                                    "expirationDate": "0001-01-01T00:00:00",
+                                    "tags": [],
+                                    "options": {
+                                        "assetId": "221"
+                                    },
+                                    "locked": true,
+                                    "altered": false,
+                                    "content": "<div>{{_gearData.textBody}}</div>",
+                                    "default": "<h3>No Content</h3>",
+                                    "htmlAttributes": {
+                                        "style": "float: left;"
+                                    },
+                                    "gearData": {
+                                        "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                                    }
+                                }
+                            }
+                        },
+                        "c": {
+                            "contentType": "",
+                            "contentEncoding": "identity",
+                            "locked": false,
+                            "altered": false,
+                            "content": "",
+                            "design": "<p>Place Image Block Here</p>",
+                            "minGears": 0,
+                            "maxGears": 1,
+                            "allowedGears": [
+                                "image"
+                            ],
+                            "gears": {}
+                        },
+                        "title": {
+                            "contentType": "text/html;charset=utf-8",
+                            "contentEncoding": "identity",
+                            "locked": true,
+                            "altered": false,
+                            "content": "<h1>I am the Title Content</h1>",
+                            "design": "Enter Title Here",
+                            "minGears": 0,
+                            "maxGears": 1,
+                            "allowedGears": [
+                                "text"
+                            ],
+                            "gears": {}
+                        },
+                        "header": {
+                            "contentType": "image/jpeg",
+                            "contentEncoding": "identity",
+                            "locked": true,
+                            "altered": false,
+                            "content": "<div data-type=\"gear\" data-key=\"blueHeaderImage\"/>",
+                            "design": "Header Image Here",
+                            "minGears": 0,
+                            "maxGears": 1,
+                            "allowedGears": [
+                                "image"
+                            ],
+                            "gears": {
+                                "blueHeaderImage": {
+                                    "id": 411,
+                                    "key": "blueHeaderImage",
+                                    "gearType": "image",
+                                    "contentType": "image/jpeg",
+                                    "version": 1,
+                                    "links": {
+                                        "self": "/v1/content/blocks/411"
+                                    },
+                                    "name": "The Blue One",
+                                    "description": "This is blue",
+                                    "owner": {
+                                        "id": 282209,
+                                        "name": "Adam"
+                                    },
+                                    "createdDate": "2013-04-01T00:00:00",
+                                    "createdBy": {
+                                        "id": 282211,
+                                        "name": "Sam Ple"
+                                    },
+                                    "modifiedDate": "2013-04-01T00:00:00",
+                                    "modifiedBy": {
+                                        "id": 282211,
+                                        "name": "Sam Ple"
+                                    },
+                                    "validated": true,
+                                    "status": "active",
+                                    "activeDate": "2014-05-06T05:28:01",
+                                    "expirationDate": "0001-01-01T00:00:00",
+                                    "tags": [
+                                        "blue"
+                                    ],
+                                    "options": {
+                                        "assetId": "101"
+                                    },
+                                    "locked": false,
+                                    "altered": false,
+                                    "content": "&nbsp;",
+                                    "default": "&nbsp;",
+                                    "htmlAttributes": {
+                                        "style": "float: left;"
+                                    },
+                                    "gearData": {
+                                        "format": "HTML",
+                                        "alt": "Turn on your Images!",
+                                        "height": "120",
+                                        "width": "640",
+                                        "class": "wide-image",
+                                        "id": "bigBlue",
+                                        "src": "http://image.exct.net/blue.jpg"
+                                    }
+                                }
+                            }
+                        },
+                        "footer": {
+                            "contentType": "text/html;charset=utf-8",
+                            "contentEncoding": "identity",
+                            "locked": true,
+                            "altered": false,
+                            "content": "<br><a href=\"%%unsub_center_url%%\" alias=\"Unsubscribe\">Unsubscribe</a> &nbsp;<a href=\"%%profile_center_url%%\" alias=\"Update Profile\">Update Profile</a><br><table cellpadding=\"2\" cellspacing=\"0\" width=\"600\" id=\"Table5\" border=\"0\"><tr><td><font face=\"verdana\" size=\"1\" color=\"#444444\">This email was sent to: %%emailaddr%%<br><b>Email Sent By:</b> %%Member_Busname%%<br>%%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%<br><br></font></td></tr></table><br><custom name=\"opencounter\" type=\"tracking\"><br>",
+                            "minGears": 0,
+                            "maxGears": 1,
+                            "allowedGears": [
+                                "text"
+                            ],
+                            "gears": {}
+                        }
+                    },
+                    "themes": [
+                        {
+                            "key": "defaultTheme"
+                        },
+                        {
+                            "content": "<link type=\"text/css\" href=\"http://image.exct.net/theme.css\">"
+                        }
+                    ],
+                    "positioning": {
+                        "key": "defaultPostioning"
+                    }
+                },
+                "preheader": {
+                    "generateFrom": "html"
+                },
+                "subjectline": {
+                    "key": "sampleSubjectLineView",
+                    "contentType": "application/vnd.exacttarget.com/email/Message; kind=subjectline",
+                    "name": "Mr. SubjectLine",
+                    "description": "Hi I am a subjectline",
+                    "tags": [
+                        "awesome",
+                        "View",
+                        "subject"
+                    ],
+                    "content": "HelloWorld - I am a MessageModel Subjectline"
+                },
+                "text": {
+                    "generateFrom": "html"
+                },
+                "viewAsAWebPage": {
+                    "use": "html"
+                }
+            }
+        }
+
++ Response 200
+    [Message][]
+
+
+## BRIDGE Message Collection [/asset-internal/v1/bridge/content/messages{?$page,$pageSize,$orderBy}]
+A paginated collection of Messages.
+ 
++ Parameters
+    + page = `1` (integer, optional)
+        Page of the collection to return.
+    + pageSize = `25` (integer, optional)
+        Number of objects to display per page.
+    + orderBy = `id asc` (string, optional, `modifiedDate desc`)
+        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
+        + Values
+            + `id`
+            + `key`
+            + `name`
+            + `createdDate`
+            + `modifiedDate`
+            + `activeDate`
+            + `expirationDate`
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "count": 2,
+                "page": 1,
+                "pageSize": 25,
+                "links": {
+                    "self": {
+                        "href": "/v1/content/messages"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 105,
+                        "key": "sampleEmailMessage",
+                        "contentType": "application/vnd.exacttarget.com/email/Message",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/messages/105"
+                        },
+                        "name": "Sample Email Message",
+                        "description": "Hi, I am a Message",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-04-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-04-01T00:00:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": false,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "2015-10-06T00:00:00",
+                        "favorite": true,
+                        "category": {
+                            "id": 101
+                        },
+                        "tags": [
+                            "awesome",
+                            "Message"
+                        ],
+                        "options": {
+                            "__AdditionalEmailAttribute1": "1249581abc",
+                            "__AdditionalEmailAttribute2": "something here"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Spring"
+                        },
+                        "legacy": {
+                            "legacyId": "DC411FFD-EFD2-419C-BE8D-063A46E2DE6C",
+                            "legacyType": "email",
+                            "legacyCategoryId": "319"
+                        },
+                        "views": {
+                            "forwardHtml": {
+                                "use": "html"
+                            },
+                            "forwardText": {
+                                "generateFrom": "forwardHtml"
+                            },
+                            "html": {
+                                "id": 200,
+                                "key": "sampleHtmlView",
+                                "contentType": "application/vnd.exacttarget.com/email/Message; kind=html",
+                                "version": 1,
+                                "ref": "",
+                                "links": {
+                                    "self": "/v1/content/views/200"
+                                },
+                                "name": "Mr. HTML",
+                                "description": "Hi, I am a message view",
+                                "owner": {
+                                    "id": 282209,
+                                    "name": "Adam"
+                                },
+                                "createdDate": "2013-04-01T00:00:00",
+                                "createdBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "modifiedDate": "2013-04-01T00:00:00",
+                                "modifiedBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "status": "active",
+                                "tags": [
+                                    "awesome",
+                                    "View"
+                                ],
+                                "options": {},
+                                "content": "<html><head><title><div data-type=\"slot\" data-key=\"title\"></title></head><body><div><div data-type=\"slot\" data-key=\"header\"></div><table style=\"width: 100%;\"><tr><td rowspan=\"3\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce feugiat lorem libero, id vulputate mi tempor ut. Aliquam eu velit ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean id lacus at nibh ornare dapibus tincidunt eu sapien. Quisque quis massa in libero aliquet vehicula. Donec sed eros scelerisque, egestas erat nec, ultrices risus. Nulla scelerisque id mauris sed adipiscing. Etiam et nulla massa. Mauris dignissim ultrices justo, id hendrerit justo convallis ac. Sed nec aliquet tortor. Nunc mi elit, semper eu metus et, euismod dapibus diam. Nulla vitae nisl mattis, consequat tellus vitae, interdum ligula. Vestibulum sit amet auctor orci. Proin sit amet porta libero. Fusce aliquet nisi eget urna tincidunt consequat. Aliquam erat volutpat. Maecenas porttitor ornare massa, a auctor neque sodales id. Sed feugiat nisl sapien, ut ornare nibh vulputate iaculis. Curabitur auctor faucibus vulputate. Suspendisse quis faucibus mauris, in mollis orci. Nunc eget arcu porttitor, interdum metus eu, tincidunt mi. Mauris vitae placerat risus. Proin laoreet felis ante, et pulvinar nisi scelerisque ut. Integer condimentum tortor a ipsum ultrices, ut elementum leo facilisis. Maecenas tincidunt metus eu sapien sollicitudin bibendum. Vestibulum tempus et sem ut elementum. Nullam suscipit accumsan est eget ornare. Maecenas varius auctor libero facilisis elementum. Ut interdum aliquet cursus. Nulla mollis faucibus neque at pharetra. Nulla molestie arcu ipsum, id fringilla odio tincidunt a. Phasellus elementum lobortis porttitor. Donec dignissim consectetur est, sed vulputate odio volutpat eu. Duis eget tortor ornare, dapibus nibh sit amet, pretium metus. Nunc nec risus in nibh sollicitudin facilisis at in tellus. Aliquam lacus tortor, tempus nec tincidunt a, accumsan vitae urna. Integer cursus urna vel sem sollicitudin gravida. Fusce in eros interdum, volutpat augue ac, venenatis odio. Pellentesque tincidunt vitae felis ac rhoncus. Vestibulum tincidunt blandit nibh eget tristique. Donec lorem ligula, dapibus sit amet molestie a, eleifend ut sapien. Vivamus dictum tortor a ipsum rutrum, non feugiat enim facilisis. Cras semper nisl vitae diam posuere varius. Nullam purus ipsum, blandit condimentum eleifend non, commodo vitae ipsum. Donec rhoncus pharetra leo, at ullamcorper orci convallis nec. Sed egestas fermentum ante tristique faucibus. Proin condimentum molestie metus eget semper. Ut a commodo risus. Aliquam posuere nunc diam, id gravida dui iaculis nec.</td><td><div data-type=\"slot\" data-key=\"a\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"b"></td></tr><tr><td><div data-type=\"slot\" data-key=\"c\"></td></tr></table><div><div data-type=\"slot\" data-key=\"footer\"></div></body></html>",
+                                "slots": {
+                                    "a": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": true,
+                                        "content": "<div data-type=\"gear\" data-key=\"sampleTextPlusImage\"/>",
+                                        "design": "<p>Place Text + Image Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "textPlusImage",
+                                            "image"
+                                        ],
+                                        "gears": {
+                                            "sampleTextPlusImage": {
+                                                "id": 123,
+                                                "key": "sampleTextPlusImage",
+                                                "gearType": "textPlusImage",
+                                                "contentType": "text/html; charset=utf-8",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/123"
+                                                },
+                                                "name": "Sample Image Gear",
+                                                "description": "something here",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": false,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [],
+                                                "options": {
+                                                    "assetId": "111"
+                                                },
+                                                "locked": false,
+                                                "altered": true,
+                                                "content": "<h3>Sample Text and an Image</h3><div>{{_gearData.textBody}}</div><img src=\"{{_gearData.src}}\">",
+                                                "default": "<h3>No Content</h3>",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "textBody": "This is the body of the Article.",
+                                                    "src": "http://image.exct.net/59238466505.jpg"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "b": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"sampleTextOnly\"/>",
+                                        "design": "<p>Place Text Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 2,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {
+                                            "sampleTextOnly": {
+                                                "id": 350,
+                                                "key": "sampleTextOnly",
+                                                "gearType": "text",
+                                                "contentType": "text/html; charset=utf-8",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/350"
+                                                },
+                                                "name": "Sample Image Gear",
+                                                "description": "something here",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [],
+                                                "options": {
+                                                    "assetId": "221"
+                                                },
+                                                "locked": true,
+                                                "altered": false,
+                                                "content": "<div>{{_gearData.textBody}}</div>",
+                                                "default": "<h3>No Content</h3>",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "c": {
+                                        "contentType": "",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": false,
+                                        "content": "",
+                                        "design": "<p>Place Image Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "image"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "title": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<h1>I am the Title Content</h1>",
+                                        "design": "Enter Title Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "header": {
+                                        "contentType": "image/jpeg",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"blueHeaderImage\"/>",
+                                        "design": "Header Image Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "image"
+                                        ],
+                                        "gears": {
+                                            "blueHeaderImage": {
+                                                "id": 411,
+                                                "key": "blueHeaderImage",
+                                                "gearType": "image",
+                                                "contentType": "image/jpeg",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/411"
+                                                },
+                                                "name": "The Blue One",
+                                                "description": "This is blue",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [
+                                                    "blue"
+                                                ],
+                                                "options": {
+                                                    "assetId": "101"
+                                                },
+                                                "locked": false,
+                                                "altered": false,
+                                                "content": "&nbsp;",
+                                                "default": "&nbsp;",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "format": "HTML",
+                                                    "alt": "Turn on your Images!",
+                                                    "height": "120",
+                                                    "width": "640",
+                                                    "class": "wide-image",
+                                                    "id": "bigBlue",
+                                                    "src": "http://image.exct.net/blue.jpg"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "footer": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<br><a href=\"%%unsub_center_url%%\" alias=\"Unsubscribe\">Unsubscribe</a> &nbsp;<a href=\"%%profile_center_url%%\" alias=\"Update Profile\">Update Profile</a><br><table cellpadding=\"2\" cellspacing=\"0\" width=\"600\" id=\"Table5\" border=\"0\"><tr><td><font face=\"verdana\" size=\"1\" color=\"#444444\">This email was sent to: %%emailaddr%%<br><b>Email Sent By:</b> %%Member_Busname%%<br>%%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%<br><br></font></td></tr></table><br><custom name=\"opencounter\" type=\"tracking\"><br>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    }
+                                },
+                                "template": {},
+                                "themes": [
+                                    {
+                                        "key": "defaultTheme"
+                                    },
+                                    {
+                                        "content": "<link type=\"text/css\" href=\"http://image.exct.net/theme.css\">"
+                                    }
+                                ],
+                                "positioning": {
+                                    "key": "defaultPostioning"
+                                }
+                            },
+                            "preheader": {
+                                "generateFrom": "html"
+                            },
+                            "subjectline": {
+                                "id": 201,
+                                "key": "sampleSubjectLineView",
+                                "contentType": "application/vnd.exacttarget.com/email/Message; kind=subjectline",
+                                "version": 1,
+                                "ref": "",
+                                "links": {
+                                    "self": "/v1/content/views/201"
+                                },
+                                "name": "Mr. SubjectLine",
+                                "description": "Hi I am a subjectline",
+                                "owner": {
+                                    "id": 282209,
+                                    "name": "Adam"
+                                },
+                                "createdDate": "2013-04-01T00:00:00",
+                                "createdBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "modifiedDate": "2013-04-01T00:00:00",
+                                "modifiedBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "status": "active",
+                                "tags": [
+                                    "awesome",
+                                    "View",
+                                    "subject"
+                                ],
+                                "options": {},
+                                "content": "HelloWorld - I am a MessageModel Subjectline",
+                                "slots": {},
+                                "template": {},
+                                "themes": [
+                                    {
+                                        "key": "defaultTheme"
+                                    }
+                                ],
+                                "positioning": {
+                                    "key": "defaultPostioning"
+                                }
+                            },
+                            "text": {
+                                "generateFrom": "html"
+                            },
+                            "viewAsAWebPage": {
+                                "use": "html"
+                            }
+                        }
+                    },
+                    {
+                        "id": 110,
+                        "key": "anotherEmailMessage",
+                        "contentType": "application/vnd.exacttarget.com/email/Message",
+                        "version": 1,
+                        "links": {
+                            "self": "/v1/content/messages/110"
+                        },
+                        "name": "Another Email Message",
+                        "description": "Hi, I am also a Message",
+                        "owner": {
+                            "id": 282209,
+                            "name": "Adam"
+                        },
+                        "createdDate": "2013-05-01T00:00:00",
+                        "createdBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "modifiedDate": "2013-06-01T12:30:00",
+                        "modifiedBy": {
+                            "id": 282211,
+                            "name": "Sam Ple"
+                        },
+                        "enterpriseId": 281359,
+                        "memberId": 281359,
+                        "validated": true,
+                        "status": "active",
+                        "activeDate": "2014-05-06T05:28:01",
+                        "expirationDate": "2014-08-20T00:00:00",
+                        "favorite": false,
+                        "category": {
+                            "id": 222
+                        },
+                        "tags": [
+                            "awesome",
+                            "Summer",
+                            "Message"
+                        ],
+                        "options": {
+                            "__AdditionalEmailAttribute1": "1249581abc",
+                            "__AdditionalEmailAttribute2": "something else here"
+                        },
+                        "customFields": {
+                            "partnerId": "swc180271nd1",
+                            "season": "Summer"
+                        },
+                        "legacy": {
+                            "legacyId": "AB510AFD-EFD4-419C-BE8D-063A46E2DE6C",
+                            "legacyType": "email",
+                            "legacyCategoryId": "319"
+                        },
+                        "views": {
+                            "forwardHtml": {
+                                "use": "html"
+                            },
+                            "forwardText": {
+                                "generateFrom": "forwardHtml"
+                            },
+                            "html": {
+                                "id": 206,
+                                "key": "anotherHtmlView",
+                                "contentType": "application/vnd.exacttarget.com/email/Message; kind=html",
+                                "version": 1,
+                                "ref": "",
+                                "links": {
+                                    "self": "/v1/content/views/206"
+                                },
+                                "name": "Mr. HTML",
+                                "description": "Hi, I am a message view",
+                                "owner": {
+                                    "id": 282209,
+                                    "name": "Adam"
+                                },
+                                "createdDate": "2013-04-01T00:00:00",
+                                "createdBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "modifiedDate": "2013-04-01T00:00:00",
+                                "modifiedBy": {
+                                    "id": 282211,
+                                    "name": "Sam Ple"
+                                },
+                                "status": "active",
+                                "tags": [
+                                    "awesome",
+                                    "View"
+                                ],
+                                "options": {},
+                                "content": "<html><head><title><div data-type=\"slot\" data-key=\"title\"></title></head><body><div><div data-type=\"slot\" data-key=\"header\"></div><table style=\"width: 100%;\"><tr><td rowspan=\"3\">I'm just another example email. Nothing special.</td><td><div data-type=\"slot\" data-key=\"Slot1\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"Slot2\"></td></tr><tr><td><div data-type=\"slot\" data-key=\"Slot3\"></td></tr></table><div><div data-type=\"slot\" data-key=\"footer\"></div></body></html>",
+                                "slots": {
+                                    "Slot1": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": true,
+                                        "content": "<p>This is just some static HTML</p>",
+                                        "design": "<p>Place Text + Image Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "textPlusImage",
+                                            "image"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "Slot2": {
+                                        "contentType": "text/html; charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": false,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"sampleTextOnly\"/>",
+                                        "design": "<p>Place Text Block Here</p>",
+                                        "minGears": 0,
+                                        "maxGears": 2,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {
+                                            "sampleTextOnly": {
+                                                "id": 350,
+                                                "key": "sampleTextOnly",
+                                                "gearType": "text",
+                                                "contentType": "text/html; charset=utf-8",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/350"
+                                                },
+                                                "name": "Sample Image Gear",
+                                                "description": "something here",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [],
+                                                "options": {
+                                                    "assetId": "221"
+                                                },
+                                                "locked": true,
+                                                "altered": false,
+                                                "content": "<div>{{_gearData.textBody}}</div>",
+                                                "default": "<h3>No Content</h3>",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "textBody": "<p>This is the body of the text. The user typed this up.</p>"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "title": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<h1>I am the Title Content</h1>",
+                                        "design": "Enter Title Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    },
+                                    "header": {
+                                        "contentType": "image/jpeg",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<div data-type=\"gear\" data-key=\"blueHeaderImage\"/>",
+                                        "design": "Header Image Here",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "image"
+                                        ],
+                                        "gears": {
+                                            "blueHeaderImage": {
+                                                "id": 411,
+                                                "key": "blueHeaderImage",
+                                                "gearType": "image",
+                                                "contentType": "image/jpeg",
+                                                "version": 1,
+                                                "links": {
+                                                    "self": "/v1/content/blocks/411"
+                                                },
+                                                "name": "The Blue One",
+                                                "description": "This is blue",
+                                                "owner": {
+                                                    "id": 282209,
+                                                    "name": "Adam"
+                                                },
+                                                "createdDate": "2013-04-01T00:00:00",
+                                                "createdBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "modifiedDate": "2013-04-01T00:00:00",
+                                                "modifiedBy": {
+                                                    "id": 282211,
+                                                    "name": "Sam Ple"
+                                                },
+                                                "validated": true,
+                                                "status": "active",
+                                                "activeDate": "2014-05-06T05:28:01",
+                                                "expirationDate": "0001-01-01T00:00:00",
+                                                "tags": [
+                                                    "blue"
+                                                ],
+                                                "options": {
+                                                    "assetId": "101"
+                                                },
+                                                "locked": false,
+                                                "altered": false,
+                                                "content": "&nbsp;",
+                                                "default": "&nbsp;",
+                                                "htmlAttributes": {
+                                                    "style": "float: left;"
+                                                },
+                                                "gearData": {
+                                                    "format": "HTML",
+                                                    "alt": "Turn on your Images!",
+                                                    "height": "120",
+                                                    "width": "640",
+                                                    "class": "wide-image",
+                                                    "id": "bigBlue",
+                                                    "src": "http://image.exct.net/blue.jpg"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "footer": {
+                                        "contentType": "text/html;charset=utf-8",
+                                        "contentEncoding": "identity",
+                                        "locked": true,
+                                        "altered": false,
+                                        "content": "<br><a href=\"%%unsub_center_url%%\" alias=\"Unsubscribe\">Unsubscribe</a> &nbsp;<a href=\"%%profile_center_url%%\" alias=\"Update Profile\">Update Profile</a><br><table cellpadding=\"2\" cellspacing=\"0\" width=\"600\" id=\"Table5\" border=\"0\"><tr><td><font face=\"verdana\" size=\"1\" color=\"#444444\">This email was sent to: %%emailaddr%%<br><b>Email Sent By:</b> %%Member_Busname%%<br>%%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%<br><br></font></td></tr></table><br><custom name=\"opencounter\" type=\"tracking\"><br>",
+                                        "minGears": 0,
+                                        "maxGears": 1,
+                                        "allowedGears": [
+                                            "text"
+                                        ],
+                                        "gears": {}
+                                    }
+                                },
+                                "template": {},
+                                "themes": [
+                                    {
+                                        "key": "defaultTheme"
+                                    }
+                                ],
+                                "positioning": {
+                                    "key": "defaultPostioning"
+                                }
+                            },
+                            "preheader": {
+                                "generateFrom": "html"
+                            },
+                            "subjectline": {
+                                "content": "I am a static Subjectline"
+                            },
+                            "text": {
+                                "generateFrom": "html"
+                            },
+                            "viewAsAWebPage": {
+                                "use": "html"
+                            }
+                        }
+                    }
+                ]
+            }
+
+### BRIDGE Retrieve All Messages [GET]
+
++ Response 200
+    [Message Collection][]
+
 # Group Sites
 
 ## Microsite by Id [/sites-internal/v1/microsites/{id}]
@@ -7220,13 +8234,13 @@ Definition of a Microsite
     + Body
     
             {
-                "id": "00000000-0000-0000-0000-000000000000",
                 "autoPublish": false,
                 "categoryId": 123,
                 "createdBy": 123,
                 "createdDate": "2014-02-27T22:14:38+00:00",
                 "description": "A 50 character desc",
                 "entityState": 1,
+                "id": "00000000-0000-0000-0000-000000000000",
                 "masterCssPageId": 123,
                 "masterJsPageId": 123,
                 "memberId": 123,
@@ -7269,13 +8283,13 @@ Definition of a Microsite Collection
                 "pageSize": 50,
                 "items":[
                     {
-                        "id": "00000000-0000-0000-0000-000000000000",
                         "autoPublish": false,
                         "categoryId": 123,
                         "createdBy": 123,
                         "createdDate": "2014-02-27T22:14:38+00:00",
                         "description": "A 50 character string",
                         "entityState": 1,
+                        "id": "00000000-0000-0000-0000-000000000000",
                         "masterCssPageId": 123,
                         "masterJsPageId": 123,
                         "memberId": 123,
@@ -7294,9 +8308,7 @@ Definition of a Microsite Collection
     + filter (string, optional)
         JSON Collection of filter objects to be used to filter results.
         + Values
-            + `entityState`
             + `name`
-            + `type`
     + orderBy = `createDate` (optional, string) ... Specify the field to sort Microsites by, default createDate.
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 15.
@@ -7319,27 +8331,38 @@ Definition of a Landing Page
     + Body
     
             {
-                "id": 123,
+                "categoryId": 123,
+                "characterSetId": 123,
                 "classificationType": 1,
                 "createdBy": 123,
+                "createdDate": "2014-02-27T22:14:38+00:00",
                 "creationMethod": 1,
                 "description": "a 250 character string",
                 "documentType": 1,
                 "entityState": 1,
+                "htmlBody": "a string of html",
+                "htmlPaste": true,
+                "id": 123,
+                "isActive": false,
                 "isPublished": false,
                 "metaDescription": "a 500 character string",
                 "metaFollow": 1,
                 "metaIndex": 1,
                 "metaKeyWords": "a 500 character string",
                 "memberId": 123456,
+                "messageType": 1,
+                "microSiteId": "00000000-0000-0000-0000-000000000000",
                 "mimeType":1 ,
+                "modifiedBy": 123,
+                "modifiedDate": "2014-02-27T22:14:38+00:00",
+                "name": "a 100 character string",
                 "publishedDate":"2014-02-27T22:14:38+00:00",
                 "publishedHtml": "a max character string",
                 "purlKey": "a 300 character string",
                 "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
                 "securityType": 1,
-                "siteId": "00000000-0000-0000-0000-000000000000",
-                "templateId": "00000000-0000-0000-0000-000000000000"
+                "templateId": "00000000-0000-0000-0000-000000000000",
+                "title": "a 100 character string"
             }
 
 + Parameters
@@ -7371,27 +8394,38 @@ Definition of a Landing Page Collection
                 "pageSize": 50,
                 "items":[
                     {
-                        "id": 123,
+                        "categoryId": 123,
+                        "characterSetId": 123,
                         "classificationType": 1,
                         "createdBy": 123,
+                        "createdDate": "2014-02-27T22:14:38+00:00",
                         "creationMethod": 1,
                         "description": "a 250 character string",
                         "documentType": 1,
                         "entityState": 1,
+                        "htmlBody": "a string of html",
+                        "htmlPaste": true,
+                        "id": 123,
+                        "isActive": false,
                         "isPublished": false,
                         "metaDescription": "a 500 character string",
                         "metaFollow": 1,
                         "metaIndex": 1,
                         "metaKeyWords": "a 500 character string",
                         "memberId": 123456,
+                        "messageType": 1,
+                        "microSiteId": "00000000-0000-0000-0000-000000000000",
                         "mimeType":1 ,
+                        "modifiedBy": 123,
+                        "modifiedDate": "2014-02-27T22:14:38+00:00",
+                        "name": "a 100 character string",
                         "publishedDate":"2014-02-27T22:14:38+00:00",
                         "publishedHtml": "a max character string",
                         "purlKey": "a 300 character string",
                         "publishingExpirationDate": "2014-02-27T22:14:38+00:00",
                         "securityType": 1,
-                        "siteId": "00000000-0000-0000-0000-000000000000",
-                        "templateId": "00000000-0000-0000-0000-000000000000"
+                        "templateId": "00000000-0000-0000-0000-000000000000",
+                        "title": "a 100 character string"
                     }
                 ] 
             }
@@ -7400,8 +8434,6 @@ Definition of a Landing Page Collection
     + filter (string, optional)
         JSON Collection of filter objects to be used to filter results.
         + Values
-            + `classificationType`
-            + `creationMethod`
             + `isPublished`
     + orderBy = `createDate` (optional, string) ... Specify the field to sort Landing Pages by, default createDate.
     + page (optional, number `1`) ... Page number to return.
@@ -7442,7 +8474,7 @@ Definition of a Landing Page Collection by Microsite Id
                         "documentType": 1,
                         "entityState": 1,
                         "isPublished": false,
-                        "metaDesc": "a 500 character string",
+                        "metaDescription": "a 500 character string",
                         "metaFollow": 1,
                         "metaIndex": 1,
                         "metaKeyWords": "a 500 character string",
@@ -7464,8 +8496,6 @@ Definition of a Landing Page Collection by Microsite Id
     + filter (string, optional)
         JSON Collection of filter objects to be used to filter results.
         + Values
-            + `classificationType`
-            + `creationMethod`
             + `isPublished`
     + orderBy = `createDate` (optional, string) ... Specify the field to sort Landing Pages by, default createDate.
     + page (optional, number `1`) ... Page number to return.
@@ -7850,14 +8880,14 @@ A collection of Subscriber Attribute objects.
                         "defaultValue" : "true",
                         "AttribType" : 0,
                         "IsUnique" :0,
-                        "SubscriberView":0,
-                        "SubscriberEdit":0,
+                        "IsHidden": 1,
+                        "IsReadOnly": 1,
                         "MustContain" : "",
                         "MustNotContain": "",
                         "IsDataInLyris": 0,
                         "NumericPrecision": 0,
                         "IsSendTime" :1,
-                        "IsListLevelAttribute":0
+                        "IsListLevelAttrib":0
 
                     },
                     {
@@ -7873,7 +8903,7 @@ A collection of Subscriber Attribute objects.
                         "restrictedValues" : 
                                         {
                                                 "valueName" : "Email Address Value",
-                                                "isDefault" : "false",
+                                                "isChecked" :0,
                                                 "valueDesc" : "System defalt Email",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email" 
@@ -7882,14 +8912,14 @@ A collection of Subscriber Attribute objects.
                         "defaultValue" : "true",
                         "AttribType" : 0,
                         "IsUnique" :0,
-                        "SubscriberView":0,
-                        "SubscriberEdit":0,
+                         "IsHidden": 1,
+                        "IsReadOnly": 1,
                         "MustContain" : "",
                         "MustNotContain": "",
                         "IsDataInLyris": 0,
                         "NumericPrecision": 0,
                         "IsSendTime" :1,
-                        "IsListLevelAttribute":0
+                        "IsListLevelAttrib":0
                     }]
                 
             }
@@ -7905,13 +8935,13 @@ __Available Subscriber Attribute Request Properties__:
 | :------------- | :------------- | :------------- | :------------- |
 |attribName  | __`true`__  | string | 
 |description  | `false`  | string |`null`
-|defaultValue | `false`  | string | `null`
+|defaultValue | `false`  | string | 
 |dataType | __`true`__  | Int | 0
 |attribType |__`true`__| Int |0
 |isRequired | __`true`__ | Int | 0
-|isUnique | __`true`__  | Int | `active`
+|isUnique | __`true`__  | Int | 0
 |maxLengthe  | __`true`__  | Int | 0
-|minLength  |__`true`__ | Int | `null`
+|minLength  |__`true`__ | Int | 0
 |subscriberView | __`true`__ | Int | 0
 |subscriberEdit |__`true`__| Int | 0
 |displayAs |__`true`__ | Int | 0
@@ -7929,9 +8959,10 @@ __Available RestrictedValue Request Properties__:
 | Name  | Required | Type | Default
 | :------------- | :------------- | :------------- | :------------- |
 |valueName  | __`true`__  | string | 
-|isDefault  | __`true`__  | string |
-|displayOrder | __`true`__  | string | 
+|isChecked  | __`true`__  | Bit |0
+|displayOrder | __`true`__  | Int | 
 |defaultValue | __`true`__  | string | 
+|valueDesc  |__`true`__  | string | 
 
 + Request(application/json)
 
@@ -7944,14 +8975,14 @@ __Available RestrictedValue Request Properties__:
                 "displayOrder" : 7,
                 "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
-                                                "isDefault" : "false",
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
                                             {
                                                 "valueName" : "Email Address Value22",
-                                                "isDefault" : "false",
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
@@ -7960,12 +8991,12 @@ __Available RestrictedValue Request Properties__:
                 "defaultValue" : "false",
                 "AttribType" : 0,
                 "IsUnique" :0,
-                "SubscriberView":1,
-                "SubscriberEdit":0,
+                "IsHidden": 1,
+                "IsReadOnly": 1,
                 "IsDataInLyris": 1,
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
-                "IsListLevelAttribute":0
+                "IsListLevelAttrib":0
         }
         
 + Response 201 (application/json)
@@ -7982,14 +9013,14 @@ __Available RestrictedValue Request Properties__:
                 "hasRestrictedValues" : true,
                 "restrictedValues" : [{
                                                 "valueName" : "Email Address Value11",
-                                                "isDefault" : "false",
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email11",
                                                 "displayOrder": "1",
                                                 "defaultValue" : "Email11" 
                                             } ,
                                            {
                                                 "valueName" : "Email Address Value22",
-                                                "isDefault" : "false",
+                                                "isChecked" : 0,
                                                 "valueDesc" : "System defalt Email22",
                                                 "displayOrder": "2",
                                                 "defaultValue" : "Email22" 
@@ -7998,14 +9029,14 @@ __Available RestrictedValue Request Properties__:
                 "defaultValue" : "false",
                 "AttribType" : 0,
                 "IsUnique" :0,
-                "SubscriberView":1,
-                "SubscriberEdit":0,
+                "IsHidden": 1,
+                "IsReadOnly": 1,
                 "IsDataInLyris": 1,
                 "MustContain" : "",
                 "MustNotContain": "",
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
-                "IsListLevelAttribute":0
+                "IsListLevelAttrib":0
 
         }
 
@@ -8019,10 +9050,7 @@ A single subscriber attribute object with all its details
 + Model (application/json)
    
             {
-                "_links": {
-                    "parent": { "href": "/v1/accounts/{memberId}/subscriberAttributes/"},
-                    "self":   { "href": "/v1/accounts/{memberId}/subscriberAttributes/{subscriberAttributeId}" }
-                           },
+               
                 "id" : 213,
                 "name" : "User Defined", 
                 "fieldType" : 0,
@@ -8036,6 +9064,8 @@ A single subscriber attribute object with all its details
                 "defaultValue" : "false",
                 "AttribType" : 0,
                 "IsUnique" :0,
+                "IsHidden": 1,
+                "IsReadOnly": 1,
                 "SubscriberView":0,
                 "SubscriberEdit":0,
                 "MustContain" : "",
@@ -8043,7 +9073,7 @@ A single subscriber attribute object with all its details
                 "IsDataInLyris": 0,
                 "NumericPrecision": 0,
                 "IsSendTime" :1,
-                "IsListLevelAttribute":0
+                "IsListLevelAttrib":0
             }
 
 ### Retrieve a Subscriber Attribute [GET]
@@ -8065,7 +9095,13 @@ A single subscriber attribute object with all its details
                 "description" : "System default for subscribers User Defined",
                 "hasRestrictedValues" : false,
                 "isRequired" : 0,
-                "defaultValue" : "false"
+                "IsHidden": 1,
+                "IsReadOnly": 1,
+                "defaultValue" : "false",
+                "IsDataInLyris": 0,
+                "NumericPrecision": 0,
+                "IsSendTime": 1,
+                "IsListLevelAttrib": 0
         }
         
 + Response 200 (application/json)
@@ -8089,22 +9125,43 @@ A single subscriber attribute object with all its details
 + Request(application/json)
 
         {
-                "objectTypeId": 19022,
+                "apiObjectTypeId": 19022,
                 "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a"
         }
 
 + Response 201 (application/json)
 
         {
+                "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg==",
                 "userId": 30980,
-                "mId": 20720,
-                "eId": 20720,
+                "memberId": 20720,
+                "enterpriseId": 20720,
                 "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
-                "objectTypeId": 19022,
-                "createdDate": "2013-07-02T12:12:00"
-        }    
+                "apiObjectTypeId": 19022,
+                "createdDate": "2013-07-02T12:12:00Z"
+        }
+        
+## User Favorite By Id - V1 [/platformservice-internal/v1/favorites/{id}]
+
+### Retrieves a User Favorite By Id [GET]
+
++ Parameters
+    + id (string, required)
+        `Id` of the favorite to get.
+
++ Response 200 (application/json)
+
+        {
+                "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg==",
+                "userId": 30980,
+                "memberId": 20720,
+                "enterpriseId": 20720,
+                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
+                "apiObjectTypeId": 19022,
+                "createdDate": "2013-07-02T12:12:00Z"
+        }
     
-## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,userId,objectTypeId}]
+## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,userId,apiObjectTypeId}]
 
 ### Retrieve a collection of user favorites [GET]
 
@@ -8113,14 +9170,14 @@ A single subscriber attribute object with all its details
         Page of the collection to return.
     + pageSize = `25` (integer, optional)
         Number of objects to display per page.
-    + orderBy = `createdDate asc` (string, optional, `objectTypeId desc`)
+    + orderBy = `createdDate asc` (string, optional, `apiObjectTypeId desc`)
         Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
         + Values
             + `createdDate`
-            + `objectTypeId`
+            + `apiObjectTypeId`
     + userId (integer, optional)
         UserId of the favorites to return
-    + objectTypeId (string, optional)
+    + apiObjectTypeId (string, optional)
         APIObjectTypeId used to filter the return list of favorites.
         
 
@@ -8140,43 +9197,38 @@ A single subscriber attribute object with all its details
                 }
                 "items": [
                     {
+                            "id": "X22mdHdhcmVUZXN0asdnTmV0LmNvbSBpcyXX0Gdvb2QgU29mdHdhcmUgVGVzdSsaI4BCbG9nLg=="
                             "userId": 30980,
-                            "mId": 20720,
-                            "eId": 20720,
+                            "memberId": 20720,
+                            "enterpriseId": 20720,
                             "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
-                            "objectTypeId": 19022,
-                            "createdDate": "2013-07-02T12:12:00"
+                            "apiObjectTypeId": 19022,
+                            "createdDate": "2013-07-02T12:12:00Z"
                     },
                     {
+                            "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg=="
                             "userId": 32232,
-                            "mId": 23321,
-                            "eId": 12133,
+                            "memberId": 23321,
+                            "enterpriseId": 12133,
                             "objectId": "a10bc14f-d51a-441f-8632-f34391fea797",
-                            "objectTypeId": 123,
-                            "createdDate": "2013-07-02T12:12:00"
+                            "apiObjectTypeId": 123,
+                            "createdDate": "2013-07-02T12:12:00Z"
                     }
                 ]
         }
         
-## Delete User Favorite - V1 [/platformservice-internal/v1/favorites/{objectId}/{objectTypeId}]
+## Delete User Favorite - V1 [/platformservice-internal/v1/favorites/{id}]
 
 ### Deletes a user favorite [DELETE]
 
 + Parameters
-    + objectId (string, required)
-        The Id of the object to delete.
-    + objectTypeId (integer, required)
-        The typeId of the object to delete.
+    + id (string, required)
+        `Id` of the favorite to delete.
 
 + Response 200 (application/json)
 
         {
-                "userId": 30980,
-                "mId": 20720,
-                "eId": 20720,
-                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
-                "objectTypeId": 19022,
-                "createdDate": "2013-07-02T12:12:00"
+                "message": "Favorite successfully deleted"
         }
 
 #  Group Filters
