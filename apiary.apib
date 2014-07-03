@@ -8225,12 +8225,12 @@ A paginated collection of Messages.
 
 # Group Sites
 
-## Microsite by Id [/sites-internal/v1/microsites/{id}]
+## MicroSite by Id [/sites-internal/v1/microsites/{id}]
 
-Definition of a Microsite
+Definition of a MicroSite
 
 + Model (application/json)
-    JSON Representation of a single Microste.  
+    JSON Representation of a single MicroSite.  
     + Body
     
             {
@@ -8254,22 +8254,59 @@ Definition of a Microsite
             }
 
 + Parameters
-    + id (required) ... Id for the Microsite.
+    + id (required) ... Id for the MicroSite.
 
-### Retrieve a Microsite by Id [GET]
+### Retrieve a MicroSite by Id [GET]
 
 + Response 200
-    [Microsite by Id][]
+    [MicroSite by Id][]
+
+### Create a MicroSite [POST]
++ Request(application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "description": "A 50 character desc",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1 
+        } 
+
+        
++ Response 201 (application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "createdBy": 123,
+            "createdDate": "2014-02-27T22:14:38+00:00",
+            "description": "A 50 character desc",
+            "entityState": 1,
+            "id": "00000000-0000-0000-0000-000000000000",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "memberId": 123,
+            "modifiedBy": 123,
+            "modifiedDate": "2014-02-27T22:14:38+00:00",
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1
+        } 
 
 
+## MicroSite Collection [/sites-internal/v1/microsites/{?filter,orderBy,page,pageSize}]
 
-
-## Microsite Collection [/sites-internal/v1/microsites/{?filter,orderBy,page,pageSize}]
-
-Definition of a Microsite Collection
+Definition of a MicroSite Collection
 
 + Model (application/json)
-    JSON Representation of a collection of Microsites.  
+    JSON Representation of a collection of MicroSites.  
     + Body
     
             {
@@ -8309,16 +8346,14 @@ Definition of a Microsite Collection
         JSON Collection of filter objects to be used to filter results.
         + Values
             + `name`
-    + orderBy = `createDate` (optional, string) ... Specify the field to sort Microsites by, default createDate.
+    + orderBy = `createDate` (optional, string) ... Specify the field to sort MicroSites by, default createDate.
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 15.
 
-### Retrieve Microsites [GET]
+### Retrieve MicroSites [GET]
 
 + Response 200
-    [Microsite Collection][]
-
-
+    [MicroSite Collection][]
 
 
 
@@ -8447,20 +8482,15 @@ Definition of a Landing Page Collection
 
 
 
-## Landing Page Collection by Microsite Id [/sites-internal/v1/microsites/{siteId}/landingPages/{?filter,orderBy,page,pageSize}]
+## Landing Page Collection by MicroSite Id [/sites-internal/v1/microsites/{microSiteId}/landingPages/{?filter,orderBy,page,pageSize}]
 
-Definition of a Landing Page Collection by Microsite Id
+Definition of a Landing Page Collection by MicroSite Id
 
 + Model (application/json)
-    JSON Representation of a collection of Landing Pages by Microsite Id.  
+    JSON Representation of a collection of Landing Pages by MicroSite Id.  
     + Body
     
             {
-                "_links": {
-                    "self": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages" },
-                    "next": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages/?$orderyBy=createDate&$page=3&$pageSize=50" },
-                    "prev": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages/?$orderyBy=createDate&$page=1&$pageSize=50" }
-                },
                 "count": 1, 
                 "page": 1,
                 "pageSize": 50,
@@ -8492,7 +8522,7 @@ Definition of a Landing Page Collection by Microsite Id
             }
 
 + Parameters
-    + siteId (required) ... Id for the Microsite.
+    + microSiteId (required) ... Id for the MicroSite.
     + filter (string, optional)
         JSON Collection of filter objects to be used to filter results.
         + Values
@@ -8501,10 +8531,10 @@ Definition of a Landing Page Collection by Microsite Id
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 15.
 
-### Retrieve Landing Page by Microsite Id [GET]
+### Retrieve Landing Page by MicroSite Id [GET]
 
 + Response 200
-    [Landing Page Collection by Microsite Id][]
+    [Landing Page Collection by MicroSite Id][]
 
 # Group Subscriber
 
