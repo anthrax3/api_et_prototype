@@ -8261,6 +8261,56 @@ Definition of a MicroSite
 + Response 200
     [MicroSite by Id][]
 
+### Update a MicroSite [PATCH]
++ Request(application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "description": "A 50 character desc",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1 
+        } 
+
+        
++ Response 201 (application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "createdBy": 123,
+            "createdDate": "2014-02-27T22:14:38+00:00",
+            "description": "A 50 character desc",
+            "entityState": 1,
+            "id": "00000000-0000-0000-0000-000000000000",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "memberId": 123,
+            "modifiedBy": 123,
+            "modifiedDate": "2014-02-27T22:14:38+00:00",
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1
+        }
+
+### Delete a MicroSite [DELETE]
+
+        
++ Response 200 (application/json)
+
+        {
+                "Message":"MicroSite {Id} was successfully deleted."
+        }
+
+## MicroSite [/sites-internal/v1/microsites/]
+
 ### Create a MicroSite [POST]
 + Request(application/json)
 
@@ -8298,7 +8348,7 @@ Definition of a MicroSite
             "pageLimit": 12,
             "publishedCount": 12,
             "type": 1
-        } 
+        }
 
 
 ## MicroSite Collection [/sites-internal/v1/microsites/{?filter,orderBy,page,pageSize}]
