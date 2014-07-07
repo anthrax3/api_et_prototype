@@ -9206,14 +9206,12 @@ __User Favorite Request Properties__:
 
 | Name  | Required | Type | Default
 | :------------- | :------------- | :------------- | :------------- |
-|userId  | `false`  | int | current user
-|apiObjectTypeId  | __`true`__  | int |
-|objectId | __`true`__  | string | 
+|apiObjectTypeId  | __`true`__  | int | 0
+|objectId | __`true`__  | string | null
 
 + Request(application/json)
 
         {       
-                "userId": 2077,
                 "apiObjectTypeId": 19022,
                 "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a"
         }
@@ -9250,7 +9248,7 @@ __User Favorite Request Properties__:
                 "createdDate": "2013-07-02T12:12:00Z"
         }
     
-## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,userId,apiObjectTypeId}]
+## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,apiObjectTypeId}]
 
 ### Retrieve a collection of user favorites [GET]
 
@@ -9264,8 +9262,6 @@ __User Favorite Request Properties__:
         + Values
             + `createdDate`
             + `apiObjectTypeId`
-    + userId (integer, optional)
-        UserId of the favorites to return
     + apiObjectTypeId (string, optional)
         APIObjectTypeId used to filter the return list of favorites.
         
@@ -9288,7 +9284,7 @@ __User Favorite Request Properties__:
                     {
                             "id": "X22mdHdhcmVUZXN0asdnTmV0LmNvbSBpcyXX0Gdvb2QgU29mdHdhcmUgVGVzdSsaI4BCbG9nLg=="
                             "userId": 30980,
-                            "memberId": 20720,
+                            "memberId": 20230,
                             "enterpriseId": 20720,
                             "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
                             "apiObjectTypeId": 19022,
@@ -9296,8 +9292,8 @@ __User Favorite Request Properties__:
                     },
                     {
                             "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg=="
-                            "userId": 32232,
-                            "memberId": 23321,
+                            "userId": 30980,
+                            "memberId": 20230,
                             "enterpriseId": 12133,
                             "objectId": "a10bc14f-d51a-441f-8632-f34391fea797",
                             "apiObjectTypeId": 123,
