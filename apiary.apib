@@ -649,15 +649,16 @@ Status information of a job
             "sourceListId": 4088,
             "sourceListName": "All Subscribers",
             "lastRefreshedDate": "2013-02-11T12:43:00",
-            " SubConfirm": true,
-            " SubConfirmEmailId": 4022,
-            " WelcomeEmailId": 4023,
-            " ConfirmLandingPage": "http://www.google.com",
-            " ConfirmLandingPageId": 4024,
-            " UseDefaultLandingPage": true,
+            "subConfirm": true,
+            "subConfirmEmailId": 4022,
+            "welcomeEmailId": 4023,
+            "confirmLandingPage": "http://www.google.com",
+            "confirmLandingPageId": 4024,
+            "useDefaultLandingPage": true,
             "listObjectId": "8e017123-777c-4bd1-b742-467e719e4aa4",
             "IsPublic":true,
             "iD": "4022",
+            "doubleOptInReplyEmailPrefix" : "signmeup",
             "campaigns": [
                 {
                   "campaignCode": "CD3",
@@ -8225,12 +8226,12 @@ A paginated collection of Messages.
 
 # Group Sites
 
-## Microsite by Id [/sites-internal/v1/microsites/{id}]
+## MicroSite by Id [/sites-internal/v1/microsites/{id}]
 
-Definition of a Microsite
+Definition of a MicroSite
 
 + Model (application/json)
-    JSON Representation of a single Microste.  
+    JSON Representation of a single MicroSite.  
     + Body
     
             {
@@ -8254,22 +8255,109 @@ Definition of a Microsite
             }
 
 + Parameters
-    + id (required) ... Id for the Microsite.
+    + id (required) ... Id for the MicroSite.
 
-### Retrieve a Microsite by Id [GET]
+### Retrieve a MicroSite by Id [GET]
 
 + Response 200
-    [Microsite by Id][]
+    [MicroSite by Id][]
+
+### Update a MicroSite [PATCH]
++ Request(application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "description": "A 50 character desc",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1 
+        } 
+
+        
++ Response 201 (application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "createdBy": 123,
+            "createdDate": "2014-02-27T22:14:38+00:00",
+            "description": "A 50 character desc",
+            "entityState": 1,
+            "id": "00000000-0000-0000-0000-000000000000",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "memberId": 123,
+            "modifiedBy": 123,
+            "modifiedDate": "2014-02-27T22:14:38+00:00",
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1
+        }
+
+### Delete a MicroSite [DELETE]
+
+        
++ Response 200 (application/json)
+
+        {
+                "Message":"MicroSite {Id} was successfully deleted."
+        }
+
+## MicroSite [/sites-internal/v1/microsites/]
+
+### Create a MicroSite [POST]
++ Request(application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "description": "A 50 character desc",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1 
+        } 
+
+        
++ Response 201 (application/json)
+
+        { 
+            "autoPublish": false,
+            "categoryId": 123,
+            "createdBy": 123,
+            "createdDate": "2014-02-27T22:14:38+00:00",
+            "description": "A 50 character desc",
+            "entityState": 1,
+            "id": "00000000-0000-0000-0000-000000000000",
+            "masterCssPageId": 123,
+            "masterJsPageId": 123,
+            "memberId": 123,
+            "modifiedBy": 123,
+            "modifiedDate": "2014-02-27T22:14:38+00:00",
+            "name": "A 50 character name",
+            "pageCount": 12,
+            "pageLimit": 12,
+            "publishedCount": 12,
+            "type": 1
+        }
 
 
+## MicroSite Collection [/sites-internal/v1/microsites/{?filter,orderBy,page,pageSize}]
 
-
-## Microsite Collection [/sites-internal/v1/microsites/{?filter,orderBy,page,pageSize}]
-
-Definition of a Microsite Collection
+Definition of a MicroSite Collection
 
 + Model (application/json)
-    JSON Representation of a collection of Microsites.  
+    JSON Representation of a collection of MicroSites.  
     + Body
     
             {
@@ -8309,16 +8397,14 @@ Definition of a Microsite Collection
         JSON Collection of filter objects to be used to filter results.
         + Values
             + `name`
-    + orderBy = `createDate` (optional, string) ... Specify the field to sort Microsites by, default createDate.
+    + orderBy = `createDate` (optional, string) ... Specify the field to sort MicroSites by, default createDate.
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 15.
 
-### Retrieve Microsites [GET]
+### Retrieve MicroSites [GET]
 
 + Response 200
-    [Microsite Collection][]
-
-
+    [MicroSite Collection][]
 
 
 
@@ -8447,20 +8533,15 @@ Definition of a Landing Page Collection
 
 
 
-## Landing Page Collection by Microsite Id [/sites-internal/v1/microsites/{siteId}/landingPages/{?filter,orderBy,page,pageSize}]
+## Landing Page Collection by MicroSite Id [/sites-internal/v1/microsites/{microSiteId}/landingPages/{?filter,orderBy,page,pageSize}]
 
-Definition of a Landing Page Collection by Microsite Id
+Definition of a Landing Page Collection by MicroSite Id
 
 + Model (application/json)
-    JSON Representation of a collection of Landing Pages by Microsite Id.  
+    JSON Representation of a collection of Landing Pages by MicroSite Id.  
     + Body
     
             {
-                "_links": {
-                    "self": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages" },
-                    "next": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages/?$orderyBy=createDate&$page=3&$pageSize=50" },
-                    "prev": { "href": "/sites-internal/v1/microsites/{siteId}/landingPages/?$orderyBy=createDate&$page=1&$pageSize=50" }
-                },
                 "count": 1, 
                 "page": 1,
                 "pageSize": 50,
@@ -8492,7 +8573,7 @@ Definition of a Landing Page Collection by Microsite Id
             }
 
 + Parameters
-    + siteId (required) ... Id for the Microsite.
+    + microSiteId (required) ... Id for the MicroSite.
     + filter (string, optional)
         JSON Collection of filter objects to be used to filter results.
         + Values
@@ -8501,10 +8582,10 @@ Definition of a Landing Page Collection by Microsite Id
     + page (optional, number `1`) ... Page number to return.
     + pageSize (optional, number, `100`) ... Number of records to return, default 15.
 
-### Retrieve Landing Page by Microsite Id [GET]
+### Retrieve Landing Page by MicroSite Id [GET]
 
 + Response 200
-    [Landing Page Collection by Microsite Id][]
+    [Landing Page Collection by MicroSite Id][]
 
 # Group Subscriber
 
@@ -9115,121 +9196,7 @@ A single subscriber attribute object with all its details
                 "Message":""Subscriber Attribute {{subscriberAttributeId}} was successfully deleted."
         }
 
-#  Group Favorites
-    User Favorites
-    
-## New User Favorite - V1 [/platformservice-internal/v1/favorites]
 
-### Create a new user favorite [POST]
-
-+ Request(application/json)
-
-        {
-                "apiObjectTypeId": 19022,
-                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a"
-        }
-
-+ Response 201 (application/json)
-
-        {
-                "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg==",
-                "userId": 30980,
-                "memberId": 20720,
-                "enterpriseId": 20720,
-                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
-                "apiObjectTypeId": 19022,
-                "createdDate": "2013-07-02T12:12:00Z"
-        }
-        
-## User Favorite By Id - V1 [/platformservice-internal/v1/favorites/{id}]
-
-### Retrieves a User Favorite By Id [GET]
-
-+ Parameters
-    + id (string, required)
-        `Id` of the favorite to get.
-
-+ Response 200 (application/json)
-
-        {
-                "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg==",
-                "userId": 30980,
-                "memberId": 20720,
-                "enterpriseId": 20720,
-                "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
-                "apiObjectTypeId": 19022,
-                "createdDate": "2013-07-02T12:12:00Z"
-        }
-    
-## User Favorites Collection - V1 [/platformservice-internal/v1/favorites{?page,pageSize,orderBy,userId,apiObjectTypeId}]
-
-### Retrieve a collection of user favorites [GET]
-
-+ Parameters
-    + page = `1` (integer, optional)
-        Page of the collection to return.
-    + pageSize = `25` (integer, optional)
-        Number of objects to display per page.
-    + orderBy = `createdDate asc` (string, optional, `apiObjectTypeId desc`)
-        Field and direction used to sort the results. System-defined *sortable* fields are listed to the right.
-        + Values
-            + `createdDate`
-            + `apiObjectTypeId`
-    + userId (integer, optional)
-        UserId of the favorites to return
-    + apiObjectTypeId (string, optional)
-        APIObjectTypeId used to filter the return list of favorites.
-        
-
-+ Response 200 (application/json)
-
-        {
-                "count": 26
-                "page": 1
-                "pageSize": 2
-                "links": {
-                        "self": {
-                                "href": "/v1/favorites?$page=1&$pagesize=2"
-                        }
-                        "next": {
-                                "href": "/v1/favorites?$page=2&$pagesize=2"
-                        }
-                }
-                "items": [
-                    {
-                            "id": "X22mdHdhcmVUZXN0asdnTmV0LmNvbSBpcyXX0Gdvb2QgU29mdHdhcmUgVGVzdSsaI4BCbG9nLg=="
-                            "userId": 30980,
-                            "memberId": 20720,
-                            "enterpriseId": 20720,
-                            "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a",
-                            "apiObjectTypeId": 19022,
-                            "createdDate": "2013-07-02T12:12:00Z"
-                    },
-                    {
-                            "id": "U29mdHdhcmVUZXN0aW5nTmV0LmNvbSBpcyBhIGdvb2QgU29mdHdhcmUgVGVzdGluZyBCbG9nLg=="
-                            "userId": 32232,
-                            "memberId": 23321,
-                            "enterpriseId": 12133,
-                            "objectId": "a10bc14f-d51a-441f-8632-f34391fea797",
-                            "apiObjectTypeId": 123,
-                            "createdDate": "2013-07-02T12:12:00Z"
-                    }
-                ]
-        }
-        
-## Delete User Favorite - V1 [/platformservice-internal/v1/favorites/{id}]
-
-### Deletes a user favorite [DELETE]
-
-+ Parameters
-    + id (string, required)
-        `Id` of the favorite to delete.
-
-+ Response 200 (application/json)
-
-        {
-                "message": "Favorite successfully deleted"
-        }
 
 #  Group Filters
     FilterDefinition with its details.
