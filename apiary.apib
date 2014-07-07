@@ -9202,10 +9202,18 @@ A single subscriber attribute object with all its details
 ## New User Favorite - V1 [/platformservice-internal/v1/favorites]
 
 ### Create a new user favorite [POST]
+__User Favorite Request Properties__:
+
+| Name  | Required | Type | Default
+| :------------- | :------------- | :------------- | :------------- |
+|userId  | `false`  | int | current user
+|apiObjectTypeId  | __`true`__  | int |
+|objectId | __`true`__  | string | 
 
 + Request(application/json)
 
-        {
+        {       
+                "userId": 2077,
                 "apiObjectTypeId": 19022,
                 "objectId": "2370e7c0-caf9-e011-af50-001cc4948c0a"
         }
