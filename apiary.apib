@@ -595,14 +595,14 @@ Status information of a job
           "links": {},
           "items": [
             {
-              "listId": "4039",
+              "id": "4039",
               "name": "nRGroup1",
               "customerKey": "nRGroup1 - 4033",
               "createdDate": "2013-04-04T15:27:25.12",
               "lastModifiedBy": 10650001,
               "lastModifiedDate": "2013-06-11T12:08:27.597",
-              "mID": 10650005,
-              "eID": 10650005,
+              "memberId": 10650005,
+              "enterpriseId": 10650005,
               "categoryId": 4033,
               "subConfirm": false,
               "description": "RGroup1 Description",
@@ -622,7 +622,8 @@ Status information of a job
               "lastModifiedByName": "rmccammonE2",
               "ownerIDName": "rmccammonE2",
               "refreshDate": "2013-06-11T12:08:27.597",
-              "sourceListName": "My Source List"
+              "sourceListName": "My Source List",
+              "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }]
             }
           ]
         }
@@ -638,7 +639,7 @@ Status information of a job
 + Response 200 
 
         {
-            "listId": 4123,
+            "id": 4123,
             "customerKey": "Exists in list of values - 5501",
             "name": "Exists in list of values",
             "description": "blah blah blah",
@@ -656,28 +657,9 @@ Status information of a job
             "confirmLandingPageId": 4024,
             "useDefaultLandingPage": true,
             "listObjectId": "8e017123-777c-4bd1-b742-467e719e4aa4",
-            "IsPublic":true,
-            "iD": "4022",
+            "isPublic":true,
             "doubleOptInReplyEmailPrefix" : "signmeup",
-            "campaigns": [
-                {
-                  "campaignCode": "CD3",
-                  "description": "CampaignDef3",
-                  "isActive": false,
-                  "createdBy": 10650001,
-                  "display": {
-                    "restItemID": 0,
-                    "propertyName": "Color",
-                    "propertyValue": "red",
-                    "isActive": false,
-                    "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
-                    "mID": 0,
-                    "eID": 0
-                  },
-                  "lastUpdated": "2013-05-30T13:20:59.8043637-04:00",
-                  "mID": 0,
-                  "eID": 0
-                }
+            "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }]
         }
         
 
@@ -686,22 +668,56 @@ Status information of a job
 + Request (application/json)
 
         {
-         "description": "Filtered List Test 24",
+            "customerKey": "Exists in list of values - 5501",
+            "name": "Exists in list of values",
+            "description": "blah blah blah",
+            "categoryId": 5501,
+            "sourceListId": 4088,
+            "sourceListName": "All Subscribers",
+            "subConfirm": true,
+            "subConfirmEmailId": 4022,
+            "welcomeEmailId": 4023,
+            "confirmLandingPage": "http://www.google.com",
+            "confirmLandingPageId": 4024,
+            "useDefaultLandingPage": true,
+            "listObjectId": "8e017123-777c-4bd1-b742-467e719e4aa4",
+            "isPublic":true,
+            "doubleOptInReplyEmailPrefix" : "signmeup",
         }
 
 + Response 200 
 
         {
-            "listId": 4022,
-            "description": "Filtered List Test 24",
-            "lastModifiedDate" : "2013-05-03T11:06:29.123",
-            "lastModifiedByName" : "dkrishnegowda app user                            "
+            "id": 4123,
+            "customerKey": "Exists in list of values - 5501",
+            "name": "Exists in list of values",
+            "description": "blah blah blah",
+            "categoryId": 5501,
+            "createdDate": "2013-02-11T12:42:38.28",
+            "lastModifiedDate": "2013-02-11T12:42:48.857",
+            "lastModifiedByName": "black_core ",
+            "sourceListId": 4088,
+            "sourceListName": "All Subscribers",
+            "lastRefreshedDate": "2013-02-11T12:43:00",
+            "subConfirm": true,
+            "subConfirmEmailId": 4022,
+            "welcomeEmailId": 4023,
+            "confirmLandingPage": "http://www.google.com",
+            "confirmLandingPageId": 4024,
+            "useDefaultLandingPage": true,
+            "listObjectId": "8e017123-777c-4bd1-b742-467e719e4aa4",
+            "isPublic":true,
+            "doubleOptInReplyEmailPrefix" : "signmeup",
+            "campaigns": [{ "id": 1, "name": "My Campaign", "color": "#ffc7c7" }]
         }
 
 ### Delete a list by id [DELETE]
 
-+ Response 204 
-        
++ Response 200
+
+        { 
+            "message" : "campaign {campaignId} successfully deleted."
+        }
 
 ## Copy List [/MessagingService-Internal/v1/lists/{id}/copy?CopySubscribers=true]
 
